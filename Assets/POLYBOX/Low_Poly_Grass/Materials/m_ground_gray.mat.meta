@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e6b38187e6b08824fb9a2bbaedd8f3d5
+timeCreated: 1475706798
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287759
+  packageName: Low Poly Grass
+  packageVersion: 1.0
+  assetPath: Assets/POLYBOX/Low_Poly_Grass/Materials/m_ground_gray.mat
+  uploadId: 673442

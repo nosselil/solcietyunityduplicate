@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 70081ad7bb43cb74cab69894d58b67c8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - visualTreeAsset: {fileID: 9197481963319205126, guid: 44b5726a567b8d448a3d4d327e9b44bf,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298820
+  packageName: Easy Grid Builder Pro 2 (Modular Building System)
+  packageVersion: 2.0.2
+  assetPath: Assets/SoulGames/Easy Grid Builder Pro 2/Scripts/Grid Area Controller
+    Scripts/Grid Area Disablers/Editor/GridAreaDisablerManagerEditor.cs
+  uploadId: 725391

@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2523eebf25157584abcdf56245fd0cbf, type: 3}
+  m_Name: GoldMiner HarvesterUnitData
+  m_EditorClassIdentifier: 
+  textId: Gold miner
+  icon: {fileID: -1376796583, guid: 368440a3027714a379623d2813bff640, type: 3}
+  unitModel: {fileID: 0}
+  canBeDestroyed: 1
+  maxHealth: 100
+  isHarvester: 1
+  isInfantry: 1
+  visionDistance: 12
+  price: 120
+  buildTime: 3
+  ResourceRequirements:
+  - gameResource: {fileID: 11400000, guid: 36701f8dfecd38c4f9402d041d94d7de, type: 2}
+    ResourceRequired: 200
+  hasMoveModule: 1
+  moveType: 0
+  moveSpeed: 2
+  rotationSpeed: 360
+  flyingFlyHeight: 6
+  canMoveWhileAttackingTarget: 1
+  hasAttackModule: 0
+  attackPossibility: 0
+  attackDistance: 0
+  usedDamageType: 0
+  attackDamage: 15
+  attackShell: {fileID: 0}
+  allowShootThroughUnitObstacles: 1
+  allowShootThroughAnyObstacles: 1
+  needAimToTargetToShoot: 1
+  stillTryRotateToTargetWhenNoAimNeeded: 1
+  reloadTime: 1
+  hasTurret: 0
+  turretRotationSpeed: 0
+  limitTurretRotationAngle: 0
+  maximumTurretRotationAngle: 15
+  addsElectricity: 0
+  usesElectricity: 0
+  canBeCarried: 0
+  canCarryUnitsCount: 0
+  harvestMaxResources: 600
+  harvestTime: 5
+  harvestCarryOutTime: 3
+  explosionEffect: {fileID: 1095235177254582, guid: 396041383660ed14e864f26d897f68f1, type: 3}
+  shootEffect: {fileID: 0}
+  useAnimations: 0
+  animatorController: {fileID: 0}
+  shootSoundVariations: []
+  selectionSoundVariations:
+  - {fileID: 8300000, guid: caf195c014c7c8943b585ddc9a480de7, type: 3}
+  orderSoundVariations: []
+  shootSoundPitchRandomization: 0.05
+  selfPrefab: {fileID: 1332937269014874, guid: 845cb95ad2cd3b64391da547ac5b7e2b, type: 3}
+  isBuilding: 0
+  isRefinery: 0
+  isProduction: 0
+  productionCategories: []
+  drawerObject: {fileID: 0}
+  unitAbilities: []
+  UpgradePrice: 0
+  BuildingToUpgrade: {fileID: 0}
+  NewBuildingData: {fileID: 0}

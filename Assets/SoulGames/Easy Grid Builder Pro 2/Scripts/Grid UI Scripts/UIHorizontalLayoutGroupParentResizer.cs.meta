@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 7ed11f76da4f9de4594e6f569e546ecd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298820
+  packageName: Easy Grid Builder Pro 2 (Modular Building System)
+  packageVersion: 2.0.2
+  assetPath: Assets/SoulGames/Easy Grid Builder Pro 2/Scripts/Grid UI Scripts/UIHorizontalLayoutGroupParentResizer.cs
+  uploadId: 725391

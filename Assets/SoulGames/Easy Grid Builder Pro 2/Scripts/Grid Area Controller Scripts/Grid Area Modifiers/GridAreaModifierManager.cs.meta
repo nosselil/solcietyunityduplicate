@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 910f7ee37f9e04d4ba95cccf3146a137
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298820
+  packageName: Easy Grid Builder Pro 2 (Modular Building System)
+  packageVersion: 2.0.2
+  assetPath: Assets/SoulGames/Easy Grid Builder Pro 2/Scripts/Grid Area Controller
+    Scripts/Grid Area Modifiers/GridAreaModifierManager.cs
+  uploadId: 725391

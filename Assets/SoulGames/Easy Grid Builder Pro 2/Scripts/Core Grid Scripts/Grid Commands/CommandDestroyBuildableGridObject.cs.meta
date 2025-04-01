@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 71de9e9ece6e1e041b579170974c4c57
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298820
+  packageName: Easy Grid Builder Pro 2 (Modular Building System)
+  packageVersion: 2.0.2
+  assetPath: Assets/SoulGames/Easy Grid Builder Pro 2/Scripts/Core Grid Scripts/Grid
+    Commands/CommandDestroyBuildableGridObject.cs
+  uploadId: 725391

@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Global Volume Profile
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: 4672154529181166959}
+--- !u!114 &4672154529181166959
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d2da40ebb77b944bc3b032a724941f, type: 3}
+  m_Name: OutlineVolumeSettings
+  m_EditorClassIdentifier: 
+  active: 1
+  outlineColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  maximumOutlineThickness:
+    m_OverrideState: 1
+    m_Value: 2.7
+  edgeThreshold:
+    m_OverrideState: 0
+    m_Value: 0
+  excludeSkybox:
+    m_OverrideState: 0
+    m_Value: 1
+  resolutionScaling:
+    m_OverrideState: 0
+    m_Value: 1080
+  frameRate:
+    m_OverrideState: 0
+    m_Value: 6
+  depthThickness01:
+    m_OverrideState: 0
+    m_Value: 1
+  depthThreshold:
+    m_OverrideState: 0
+    m_Value: 1
+  depthSoftness:
+    m_OverrideState: 0
+    m_Value: 0.1
+  normalThickness01:
+    m_OverrideState: 0
+    m_Value: 1
+  normalThreshold:
+    m_OverrideState: 0
+    m_Value: 0.5
+  normalSoftness:
+    m_OverrideState: 0
+    m_Value: 0.5
+  lumaThickness01:
+    m_OverrideState: 0
+    m_Value: 1
+  lumaThreshold:
+    m_OverrideState: 0
+    m_Value: 0.2
+  lumaSoftness:
+    m_OverrideState: 0
+    m_Value: 0.1
+  colorThickness01:
+    m_OverrideState: 0
+    m_Value: 1
+  colorThreshold:
+    m_OverrideState: 0
+    m_Value: 0.2
+  colorSoftness:
+    m_OverrideState: 0
+    m_Value: 0.1
+  distanceStart:
+    m_OverrideState: 0
+    m_Value: 0
+  distanceEnd:
+    m_OverrideState: 0
+    m_Value: 100
+  nearThickness01:
+    m_OverrideState: 0
+    m_Value: 1
+  farThickness01:
+    m_OverrideState: 0
+    m_Value: 1
+  nearAlpha:
+    m_OverrideState: 0
+    m_Value: 1
+  farAlpha:
+    m_OverrideState: 0
+    m_Value: 1
+  grazingAngleThreshold:
+    m_OverrideState: 0
+    m_Value: 0.2
+  grazingAngleOffset:
+    m_OverrideState: 0
+    m_Value: 3
+  offsetTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  offsetTextureStrength:
+    m_OverrideState: 0
+    m_Value: 0
+  offsetTextureScale:
+    m_OverrideState: 0
+    m_Value: 3
+  offsetTextureSpeed:
+    m_OverrideState: 0
+    m_Value: 10
+  offsetExcludeSkybox:
+    m_OverrideState: 0
+    m_Value: 1
+  paperTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  paperTextureStrength:
+    m_OverrideState: 0
+    m_Value: 0
+  paperTextureScale:
+    m_OverrideState: 0
+    m_Value: 10
+  paperTextureSpeed:
+    m_OverrideState: 0
+    m_Value: 0
+  paperExcludeSkybox:
+    m_OverrideState: 0
+    m_Value: 1
+  blurAmount:
+    m_OverrideState: 0
+    m_Value: 0
+  blurNoiseEnabled:
+    m_OverrideState: 0
+    m_Value: 0
+  previewOutlines:
+    m_OverrideState: 0
+    m_Value: 0

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 5c0a2cf3121e44d4cb6a0367d8a1afba
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287759
+  packageName: Low Poly Grass
+  packageVersion: 1.0
+  assetPath: Assets/POLYBOX/Low_Poly_Grass/Shaders/UltimateFog/POLYBOX_Ultimate_Fog_2.0.shader
+  uploadId: 673442

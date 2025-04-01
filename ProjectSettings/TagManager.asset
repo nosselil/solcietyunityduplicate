@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Mask
+  - NFTMesh
+  - NFT_1
+  - NFT_2
+  - NFT_3
+  - NFT_4
+  - NFT_5
+  - NFT_6
+  - NFT_7
+  - NFT_8
+  - NFT_9
+  - NFT_10
+  - NFT_11
+  - NFT_12
+  - NFT_13
+  - NFT_14
+  - NFT_15
+  - NFT_16
+  - NFT_17
+  - NFT_18
+  - NFT_19
+  - NFT_20
+  - NFT_21
+  - NFT_22
+  - NFT_23
+  - NFT_24
+  - NFT_25
+  - NFT_26
+  - NFT_27
+  - NFT_28
+  - NFT_29
+  - NFT_30
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - Unit
+  - Terrain
+  - FogOfWar
+  - ResourceField
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  m_RenderingLayers:
+  - Default

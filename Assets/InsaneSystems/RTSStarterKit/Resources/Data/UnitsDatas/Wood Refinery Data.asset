@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2523eebf25157584abcdf56245fd0cbf, type: 3}
+  m_Name: Wood Refinery Data
+  m_EditorClassIdentifier: 
+  textId: Wood Refinery
+  icon: {fileID: 21300000, guid: ccc6821dfca524279b7fc0b77ef9787d, type: 3}
+  unitModel: {fileID: 1295301125069354, guid: 40f2509c0b2791147ba47060e26c8465, type: 3}
+  canBeDestroyed: 1
+  maxHealth: 125
+  isHarvester: 0
+  isInfantry: 0
+  visionDistance: 18
+  price: 1500
+  buildTime: 4
+  ResourceRequirements: []
+  hasMoveModule: 0
+  moveType: 0
+  moveSpeed: 0
+  rotationSpeed: 0
+  flyingFlyHeight: 6
+  canMoveWhileAttackingTarget: 0
+  hasAttackModule: 0
+  attackPossibility: 0
+  attackDistance: 5
+  usedDamageType: 0
+  attackDamage: 15
+  attackShell: {fileID: 0}
+  allowShootThroughUnitObstacles: 1
+  allowShootThroughAnyObstacles: 1
+  needAimToTargetToShoot: 1
+  stillTryRotateToTargetWhenNoAimNeeded: 1
+  reloadTime: 1
+  hasTurret: 0
+  turretRotationSpeed: 1
+  limitTurretRotationAngle: 0
+  maximumTurretRotationAngle: 15
+  addsElectricity: 0
+  usesElectricity: 0
+  canBeCarried: 0
+  canCarryUnitsCount: 0
+  harvestMaxResources: 600
+  harvestTime: 5
+  harvestCarryOutTime: 3
+  explosionEffect: {fileID: 1444189580755094, guid: 0e4557f159442ff45b215522ee1afef1, type: 3}
+  shootEffect: {fileID: 0}
+  useAnimations: 0
+  animatorController: {fileID: 9100000, guid: 016db8e3787f7524880293f626561ed5, type: 2}
+  shootSoundVariations: []
+  selectionSoundVariations:
+  - {fileID: 8300000, guid: caf195c014c7c8943b585ddc9a480de7, type: 3}
+  orderSoundVariations: []
+  shootSoundPitchRandomization: 0.05
+  selfPrefab: {fileID: 1053988311106114, guid: caa26891d10615b4eb2bfbdf06cb84cb, type: 3}
+  isBuilding: 1
+  isRefinery: 1
+  isProduction: 0
+  productionCategories: []
+  drawerObject: {fileID: 1482671818793482, guid: bfb60cf1fddb48446926cae68e92fbd5, type: 3}
+  unitAbilities: []
+  UpgradePrice: 0
+  BuildingToUpgrade: {fileID: 0}
+  NewBuildingData: {fileID: 0}

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 89bb0245d57b5944ab806f0374b43e49
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287759
+  packageName: Low Poly Grass
+  packageVersion: 1.0
+  assetPath: Assets/POLYBOX/Low_Poly_Grass/Materials/m_ground_grass_cube.mat
+  uploadId: 673442

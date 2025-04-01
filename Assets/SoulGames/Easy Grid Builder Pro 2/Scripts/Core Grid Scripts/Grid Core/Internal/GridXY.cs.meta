@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 5970061e28ee7e44ea59374eb7e9a480
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298820
+  packageName: Easy Grid Builder Pro 2 (Modular Building System)
+  packageVersion: 2.0.2
+  assetPath: Assets/SoulGames/Easy Grid Builder Pro 2/Scripts/Core Grid Scripts/Grid
+    Core/Internal/GridXY.cs
+  uploadId: 725391

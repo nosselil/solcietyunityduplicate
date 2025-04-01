@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1f2500fc363a97f41ac2674fe4207f64
+ShaderIncludeImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287759
+  packageName: Low Poly Grass
+  packageVersion: 1.0
+  assetPath: Assets/POLYBOX/Low_Poly_Grass/Shaders/UltimateFog/PolyboxCoreForward_UltimateFog.cginc
+  uploadId: 673442

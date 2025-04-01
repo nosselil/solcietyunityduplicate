@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0bc5d7180246704dbf29d4903fa9974, type: 3}
+  m_Name: ExampleMapSettingsSingleplayer
+  m_EditorClassIdentifier: 
+  mapSceneName: Example (Singleplayer)
+  maxMapPlayersCount: 4
+  mapPreviewImage: {fileID: 21300000, guid: 6dadf45939e1621448bc7af98867dbab, type: 3}
+  mapSize: 256
+  ambientSoundsTracks: []
+  isThisMapForSingleplayer: 1
+  playersSettingsForSingleplayer:
+  - nickName: Player
+    team: 0
+    color: {r: 1, g: 0, b: 0, a: 1}
+    isAI: 0
+    selectedFaction: {fileID: 11400000, guid: f646544667d922f47a64c5de1b78771d, type: 2}
+    startMoneyForSingleplayer: 10000
+    playerLobbyEntry: {fileID: 0}
+  - nickName: Bot
+    team: 1
+    color: {r: 1, g: 0.78961587, b: 0, a: 1}
+    isAI: 1
+    selectedFaction: {fileID: 11400000, guid: f646544667d922f47a64c5de1b78771d, type: 2}
+    startMoneyForSingleplayer: 10000
+    playerLobbyEntry: {fileID: 0}
+  autoSpawnPlayerStabs: 1

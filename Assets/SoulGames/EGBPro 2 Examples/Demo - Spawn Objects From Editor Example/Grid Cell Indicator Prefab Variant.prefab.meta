@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 27839feeb9e44934088e5134465b157a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298820
+  packageName: Easy Grid Builder Pro 2 (Modular Building System)
+  packageVersion: 2.0.2
+  assetPath: Assets/SoulGames/EGBPro 2 Examples/Demo - Spawn Objects From Editor
+    Example/Grid Cell Indicator Prefab Variant.prefab
+  uploadId: 725391

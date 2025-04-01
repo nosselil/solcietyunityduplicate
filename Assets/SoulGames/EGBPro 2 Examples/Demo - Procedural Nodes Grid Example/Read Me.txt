@@ -1,0 +1,2 @@
+The Grid Custom Surface Projection feature is not compatible with the Unity Built-In Render Pipeline. It is designed exclusively for projects using the URP (Universal Render Pipeline) or HDRP (High Definition Render Pipeline).
+To enable Custom Surface Projection for terrains or other uneven surfaces, please ensure your project is set up with either URP or HDRP and import the appropriate package.

@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2523eebf25157584abcdf56245fd0cbf, type: 3}
+  m_Name: Unit20_WarBrig
+  m_EditorClassIdentifier: 
+  textId: WarBrig
+  icon: {fileID: 622511200, guid: 05bd34f7ea54c4aaa9d9b08726a279c7, type: 3}
+  unitModel: {fileID: 0}
+  canBeDestroyed: 1
+  maxHealth: 50
+  isHarvester: 0
+  isInfantry: 0
+  visionDistance: 13
+  price: 300
+  buildTime: 2
+  ResourceRequirements:
+  - gameResource: {fileID: 11400000, guid: 36701f8dfecd38c4f9402d041d94d7de, type: 2}
+    ResourceRequired: 1000
+  hasMoveModule: 0
+  moveType: 0
+  moveSpeed: 0
+  rotationSpeed: 0
+  flyingFlyHeight: 6
+  canMoveWhileAttackingTarget: 0
+  hasAttackModule: 0
+  attackPossibility: 0
+  attackDistance: 8
+  usedDamageType: 0
+  attackDamage: 12.36
+  attackShell: {fileID: 1435341541335832, guid: 4f6b5a593d1df8b45b97c8fd519bca3b, type: 3}
+  allowShootThroughUnitObstacles: 1
+  allowShootThroughAnyObstacles: 0
+  needAimToTargetToShoot: 1
+  stillTryRotateToTargetWhenNoAimNeeded: 1
+  reloadTime: 0.2
+  hasTurret: 0
+  turretRotationSpeed: 0
+  limitTurretRotationAngle: 0
+  maximumTurretRotationAngle: 15
+  addsElectricity: 0
+  usesElectricity: 0
+  canBeCarried: 0
+  canCarryUnitsCount: 3
+  harvestMaxResources: 600
+  harvestTime: 5
+  harvestCarryOutTime: 3
+  explosionEffect: {fileID: 1095235177254582, guid: 396041383660ed14e864f26d897f68f1, type: 3}
+  shootEffect: {fileID: 0}
+  useAnimations: 0
+  animatorController: {fileID: 0}
+  shootSoundVariations:
+  - {fileID: 8300000, guid: e85b5b1fce8a23845a5ef6215efa92dc, type: 3}
+  selectionSoundVariations:
+  - {fileID: 8300000, guid: caf195c014c7c8943b585ddc9a480de7, type: 3}
+  orderSoundVariations:
+  - {fileID: 8300000, guid: aa41b778ae57a7342a03350443602331, type: 3}
+  shootSoundPitchRandomization: 0.05
+  selfPrefab: {fileID: 1002602696114472, guid: 127997e5226ca43e8a786573a1b4ee9a, type: 3}
+  isBuilding: 0
+  isRefinery: 0
+  isProduction: 0
+  productionCategories: []
+  drawerObject: {fileID: 0}
+  unitAbilities:
+  - {fileID: 11400000, guid: 0d41f4cae02943f4294d1c127d8ed380, type: 2}
+  UpgradePrice: 0
+  BuildingToUpgrade: {fileID: 0}
+  NewBuildingData: {fileID: 0}

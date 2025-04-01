@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 03424f807999bab4c890c20ae81097b9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 237270
+  packageName: RTS Pack - Stylized Buildings, Props, Ships Set
+  packageVersion: 1.5
+  assetPath: Assets/RTSToonBuildings/Demo/Demo_HDRP/LightingDataHDRP.lighting
+  uploadId: 594234

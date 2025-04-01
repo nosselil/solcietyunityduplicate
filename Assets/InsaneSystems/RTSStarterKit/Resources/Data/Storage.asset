@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adbff24f6ba528a41b7090bd6b1ecf80, type: 3}
+  m_Name: Storage
+  m_EditorClassIdentifier: 
+  availableMaps:
+  - {fileID: 11400000, guid: 238dd5cc0a00df345ac03d2f8a882121, type: 2}
+  availableProductionCategories:
+  - {fileID: 11400000, guid: 77f24b34eb410e24185c0e68bd31c1fe, type: 2}
+  - {fileID: 11400000, guid: 7ec79b372a8c2d340baf155f997cefbe, type: 2}
+  - {fileID: 11400000, guid: 8009317d064cdd14aacb8030d32e562c, type: 2}
+  - {fileID: 11400000, guid: 104f16cf14b8b8540871d5d8f97226e7, type: 2}
+  - {fileID: 11400000, guid: d9bbc7e1b0b5a904584836c85c35c418, type: 2}
+  availableFactions:
+  - {fileID: 11400000, guid: f646544667d922f47a64c5de1b78771d, type: 2}
+  - {fileID: 11400000, guid: b1cf3617b4716bc4fb487204ba02002b, type: 2}
+  availablePlayerColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 1, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  startPlayerMoney: 22605
+  maxBuildDistance: 1000
+  allowBuildingsRotation: 1
+  useGridForBuildingMode: 1
+  allowCameraRotation: 1
+  allowCameraZoom: 1
+  showMapBorders: 0
+  addNavMeshObstacleToBuildings: 1
+  unitsFormation: 1
+  isElectricityUsedInGame: 1
+  speedCoefForProductionsWithoutElectricity: 0.5
+  isFogOfWarOn: 0
+  fowUpdateDelay: 0.05
+  buildingRepairHealthPerSecond: 5
+  buildingRepairCostPerSecond: 2
+  buildingSellReturnPercents: 0.5
+  carriedUnitsIconsCount: 4
+  unitIconsLimitInMultiselectionUI: 20
+  showHotkeysOnUI: 0
+  selectionIndicatorTemplate: {fileID: 1408226756325000, guid: 743145233254d1c428e95566beb7eab8, type: 3}
+  moveOrderEffect: {fileID: 1014848878779896, guid: 8dd8295e6d7218b4199b1e586d6ac794, type: 3}
+  attackOrderEffect: {fileID: 1542113254481524, guid: 1119ca740bfe05f4b9de493384b52fc8, type: 3}
+  repairEffectTemplate: {fileID: 1930975124551680, guid: 718c3e9268331a74590a95661c878944, type: 3}
+  unitMinimapIconTemplate: {fileID: 1288692940309684, guid: 69af3012b392b3b4b9223e9263faf7ba, type: 3}
+  healthbarTemplate: {fileID: 1886112832727732, guid: 553f92f7fdb08af4ba91cf63dcf656a5, type: 3}
+  productionButtonTemplate: {fileID: 1397789756557262, guid: 211e3c50075bcfd4887422c4bb843e86, type: 3}
+  productionNumberButtonTemplate: {fileID: 1855071972094314, guid: dfba176ab8553d741aa9842f3eb5fb11, type: 3}
+  unitProductionIconTemplate: {fileID: 1319784404240366, guid: f91c2331b5e7d7245938fa59487df41e, type: 3}
+  unitMultiselectionIconTemplate: {fileID: 1660155159141532, guid: c0b29c2fa9fe5174ea521c4db3e625e7, type: 3}
+  harvesterBarTemplate: {fileID: 1886112832727732, guid: bb8f2dcf81dfc7243bcae999a747277d, type: 3}
+  minimapSignalTemplate: {fileID: 1432615671354668, guid: d82ccc1d1a3c36e41b61271d50d1340d, type: 3}
+  unitCarryingIcon: {fileID: 1660155159141532, guid: 64f78a9bd30413d4d84335480b5eb2b6, type: 3}
+  unitAbilityIcon: {fileID: 1488488925886356, guid: 264ff36b93a233c4f8549eeba5ad96da, type: 3}
+  carryCellTemplate: {fileID: 1418146573945092, guid: a504fbab63663ec41ae10e5076acd304, type: 3}
+  defaultCursour: {fileID: 2800000, guid: 6c25189fecb044abe805a62d5d416639, type: 3}
+  attackCursour: {fileID: 2800000, guid: d1009ddd9dade2e44b2a03405ef605a0, type: 3}
+  gatherResourcesCursour: {fileID: 2800000, guid: 5d08bdfd588813449a26e6108a18ee7b, type: 3}
+  giveResourcesCursour: {fileID: 2800000, guid: c3b6321e4babfa04189ca68d0f2e8c93, type: 3}
+  restrictCursour: {fileID: 2800000, guid: f6cd3dee9871ffb4da7c1deb9a446f0f, type: 3}
+  mapOrderCursor: {fileID: 2800000, guid: 73dace499f407054caa0214560364107, type: 3}
+  repairCursor: {fileID: 2800000, guid: 4808aec4a22680e489a7c084ce15f887, type: 3}
+  sellCursor: {fileID: 2800000, guid: 6a11343b628a68f44b9c9ea64b295e4a, type: 3}
+  playerEntry: {fileID: 1189882231017266, guid: 9a87f1d82a4322e4fae0ee8351fe557f, type: 3}
+  playerColorMaterialTemplate: {fileID: 2100000, guid: 48a314484f6c897459334ec2ecd63770, type: 2}
+  soundLibrary: {fileID: 11400000, guid: c62e2d6357556084bbd6e9521d9be721, type: 2}
+  textsLibrary: {fileID: 11400000, guid: 2f0c08539f6e3f84cafbceae510966aa, type: 2}
+  unitLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  obstaclesToUnitShoots:
+    serializedVersion: 2
+    m_Bits: 1537
+  obstaclesToUnitShootsWithoutUnitLayer:
+    serializedVersion: 2
+    m_Bits: 1025

@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: c329315a20bc0e04b8dd14d4a44bca4e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - visualTreeAsset: {fileID: 9197481963319205126, guid: 69e23bbd5e3da3446924f4ca8fb91fd6,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298820
+  packageName: Easy Grid Builder Pro 2 (Modular Building System)
+  packageVersion: 2.0.2
+  assetPath: Assets/SoulGames/Easy Grid Builder Pro 2/Scripts/Core Grid Scripts/Grid
+    Scriptable Objects/Editor/BuildableEdgeObjectSOEditor.cs
+  uploadId: 725391

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 61f419b985a2d7745adcb76aceabbe52
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249287
+  packageName: Dialogue System for Unity Addon for OpenAI, ElevenLabs & Other Generative
+    AI
+  packageVersion: 1.0.22
+  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System Addon for OpenAI/Scripts/AddonAssemblyDefinitions.unitypackage
+  uploadId: 737345

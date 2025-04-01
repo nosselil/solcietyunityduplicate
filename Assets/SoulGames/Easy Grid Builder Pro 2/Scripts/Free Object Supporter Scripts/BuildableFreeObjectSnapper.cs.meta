@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 2ad6f3f1f94e617468921dd56505cf88
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298820
+  packageName: Easy Grid Builder Pro 2 (Modular Building System)
+  packageVersion: 2.0.2
+  assetPath: Assets/SoulGames/Easy Grid Builder Pro 2/Scripts/Free Object Supporter
+    Scripts/BuildableFreeObjectSnapper.cs
+  uploadId: 725391

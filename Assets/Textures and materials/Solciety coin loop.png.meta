@@ -1,0 +1,2338 @@
+fileFormatVersion: 2
+guid: 86c63db872b364429aef29a94fa00bfd
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Solciety coin loop_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7068
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06b03c99bdc064464bb7a44e77509dee
+      internalID: 1627176632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_1
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 7068
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6de2a6f2240d442d8b5b42ac4d5cd54
+      internalID: -843631015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_2
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 7068
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b55dc055c57554e668e40efc98eabc2e
+      internalID: -848711964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_3
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 7068
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9308a6a835f954c2fa2f09f47077b34e
+      internalID: 370569562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_4
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 7068
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a24d74e1f9af04883a07e439de0b9868
+      internalID: -751347553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6696
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adf6933ee947c4722bd77ee0a3e59f4e
+      internalID: 1744089836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_6
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 6696
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ee4047e0fdb94ff59d3352071c4af74
+      internalID: -1963560544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_7
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 6696
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 659fc0dbf689e4ea7b5d705862db2397
+      internalID: 10538980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_8
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 6696
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9250117ef155342b9a799e425ed29e14
+      internalID: 1531139274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_9
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 6696
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ea8b9d9ec9e64d5bbdb71b8e80ab1f0
+      internalID: -1213476975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6324
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94b8f8f12de8d4b7d9ed2a2f4fd49ae0
+      internalID: -1115351398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_11
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 6324
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e1de6fd2415240738e9f72aa7bba355
+      internalID: 1177447194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_12
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 6324
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c16eab1146c8b463f9fbc604d9e66af6
+      internalID: 290396054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_13
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 6324
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a381318f004814f50b4b28d16e89a411
+      internalID: -44001452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_14
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 6324
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a95a09f39c67443e4835b01391986989
+      internalID: -1290907898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5952
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0c435792928b4bfe9215c38f7b18235
+      internalID: 630380888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_16
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 5952
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 401d443d105884c258d67e9b55cfe8d3
+      internalID: 2053479537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_17
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 5952
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9d6d6837fafa4cbf83e368fea4546d2
+      internalID: 1499159332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_18
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 5952
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 984d9cf8526834a83be2fdeb932a071c
+      internalID: -687826178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_19
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 5952
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d39e36a55d0884461bd2a22f5fa3a171
+      internalID: 834235644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5580
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdac4f4c9f4a7426c9b66c8d3be63b04
+      internalID: -1835849031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_21
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 5580
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dde7b0bb79fc54a63a58cec07f8447e0
+      internalID: -1060957690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_22
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 5580
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bceff00b3d4fa469e9fa22122ae7b42f
+      internalID: 1356974568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_23
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 5580
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88c343f2d27c7454487b35abfc8be186
+      internalID: -1274254322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_24
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 5580
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec79e1052d185473e9f2d206d736322e
+      internalID: -1924075457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5208
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1bd19a04da5b43a2abe70d5031a887a
+      internalID: 1420414796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_26
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 5208
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d75e05fffb59645dfbbab987c09be504
+      internalID: 1062847441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_27
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 5208
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdd00ac246db74f45b8839b63400e8ea
+      internalID: -1456582363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_28
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 5208
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 446332037830c487ba19e9b022b54371
+      internalID: 75309678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_29
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 5208
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb0e7e662170345179c75d2a36a1feeb
+      internalID: -414176322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4836
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 583f98e59e72745dfac162e9e60c01b2
+      internalID: 1476269589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_31
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 4836
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e19d7dc07117449ba5646dc2ea6b731
+      internalID: 1942645920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_32
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 4836
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea77d55e882e84310a8436ee543284ae
+      internalID: -839119253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_33
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 4836
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81318aa1b11eb452ab5bc53519b4fd3d
+      internalID: -16076344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_34
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 4836
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecf635db614af402785f21210fb1fb9a
+      internalID: -972517045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4464
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f3c5eea470054c698c6ceb666dfe48f
+      internalID: -552978334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_36
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 4464
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e535a919d41584f2d9e9f1448aac12be
+      internalID: 2095710018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_37
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 4464
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38c32edadba674fcfa41c378a1f619ac
+      internalID: 527521731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_38
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 4464
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86afb6947741f4a47a2fa2f2bde8704e
+      internalID: -1528046625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_39
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 4464
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 926f13d838b564e8ebb0445626be620c
+      internalID: 148798530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4092
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad63f43d7cb94498aa85538b9c9201bb
+      internalID: -74007562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_41
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 4092
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2969fc456f8f0413c9a78b16efa62cbe
+      internalID: -596349362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_42
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 4092
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36bb9b3800a2146bca739f3c06a6b7ee
+      internalID: 234164587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_43
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 4092
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1921e729ee0f4a33a04045aa0c5dceb
+      internalID: -256913808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_44
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 4092
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d4b55afe07494c9797d06d861e47f94
+      internalID: -1955806162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3720
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c2f3c06a194349628949f826fc036b9
+      internalID: 366478502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_46
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 3720
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3fe9faab492d452c9f5150051f78df1
+      internalID: -774924851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_47
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 3720
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eff5fe483acb34607aae3523830c5982
+      internalID: 1367961174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_48
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 3720
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c66f1977c8e64d269f803f78cdb6c8d
+      internalID: 705146102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_49
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 3720
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c657002ce9f4d4720b51445d4e2c7e15
+      internalID: -1957615706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3348
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff6145cb079264a63a6d3d1d6a1f7133
+      internalID: -485965422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_51
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 3348
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6345410738d3487b994689c6fe30526
+      internalID: -449196817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_52
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 3348
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37cb6f5d3645648648ed80e63fa5aba3
+      internalID: 1487796051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_53
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 3348
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c610d2171d174468ba4b911a69777eda
+      internalID: 1178154220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_54
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 3348
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0df87f0172dc405c8757631df20d61e
+      internalID: 745032790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_55
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2976
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2723d64ebc18a4e15967fd6945082e79
+      internalID: -1605786772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_56
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 2976
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48293cf6e84d141fe97a28f02a7ba0a7
+      internalID: 727530718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_57
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 2976
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63f6e545622f84909b2fe73f7fb89602
+      internalID: 1369407866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_58
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 2976
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5294c3384af4944b9bcaf9ed65c02c16
+      internalID: -1806652274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_59
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 2976
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9bbad52aa4364c27893b5ec3eeffc34
+      internalID: -1203342829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2604
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98cedf8efacb4429d968ef9399376456
+      internalID: 1043068506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_61
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 2604
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffbdd3a0dd53b4599af1da91f3082cc2
+      internalID: -1386743860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_62
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 2604
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ddeba75d01b149d1ac72073887f5c80
+      internalID: 358846369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_63
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 2604
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1064ca0c62924b29af2ccc885e33063
+      internalID: -2072959209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_64
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 2604
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b3992b4eb22341b2bd16028f88a4158
+      internalID: 1376089967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_65
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2232
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b953cfaeac7cc47ce9c67acfbeb620f9
+      internalID: -394237656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_66
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 2232
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2090aa04d8e8e48d1b9cd67e5aaa0d82
+      internalID: -902188681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_67
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 2232
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7218b843465e44c7da1cb359d2ac214b
+      internalID: 464135563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_68
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 2232
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f63c28f923cc54e9ea28cdddf3dff89a
+      internalID: 1531799272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_69
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 2232
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d2dc1c30128345a2bb71883d74ce4d1
+      internalID: -95007346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1860
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c29c652cfa39b44a79fcbdcb64fc04ee
+      internalID: -1794745946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_71
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1860
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dc0d8719ee4b4d17807c2f0a7b99648
+      internalID: 158202181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_72
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1860
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1c6553dfd6e84a898b8fb852591948e
+      internalID: 1347164884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_73
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1860
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f918e62effb384cafb39c59cfac01beb
+      internalID: 495199944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_74
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1860
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c807ca1cefcb493b90d9f0584598584
+      internalID: 1597890200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_75
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1488
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f14afc1143a144cdfb0110cfb18406bc
+      internalID: -1628761617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_76
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1488
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d523456be7f444ab3817837b8ec067a7
+      internalID: 998108496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_77
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1488
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d51fc1c7eb9b4b5f856cf8f78c66b40
+      internalID: 1802130027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_78
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1488
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44dac93d9866b44f4baa0988fb97c94f
+      internalID: 1061119030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_79
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1488
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f6306cef775f44df96e2ebcffc0d4b7
+      internalID: -883055831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_80
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1116
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ccad6495cfe149af820ca3a9e4cbd22
+      internalID: 2021699495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_81
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1116
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 280e5d17ed5264e6a98bbc0b1d9474b7
+      internalID: 1864156103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_82
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1116
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6de24fb8c63b84279ab6a2bc2d1202e9
+      internalID: -1063637995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_83
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1116
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45b5d028bc8a14d9c9a3c25372baa49e
+      internalID: -204214156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_84
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1116
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9abd52b61c9a14ac2a19db9fa5b1b9cf
+      internalID: -1386015628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_85
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 744
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b23efacdf6944f287f170af27827e1
+      internalID: 1324660612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_86
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 744
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a64563ae9635d459192844a0db3f2fdc
+      internalID: 1003793595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_87
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 744
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e63eb731043bd4cbabe9b29664efad6e
+      internalID: 580658258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_88
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 744
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4603e5b003b784e77a190bcaa44a6bf2
+      internalID: -278457315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_89
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 744
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84bc399f4727949ddadd49d9e8f7c5bf
+      internalID: 284474243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_90
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 372
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 005cb9ce5941e4c8f938c3866ee7c53a
+      internalID: 1379984848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_91
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 372
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29abaf3f62d7c4bb9a81f7768de1b4d7
+      internalID: 2056487337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_92
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 372
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cefa2dbe6edc4cf782369d175ade6d2
+      internalID: -1468132733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_93
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 372
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5317c2bfdd56341349a09fefbc1b46d7
+      internalID: -1393552509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_94
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 372
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fb2d41c9e8214b4082d9f808323c8cd
+      internalID: 203295830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Solciety coin loop_95
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 400
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d9dc10b354d14e4bbe51ea3a9c6ca55
+      internalID: 1915565811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 8334f9c4505c94b4fb9c8f2d032ea24e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Solciety coin loop_0: 1627176632
+      Solciety coin loop_1: -843631015
+      Solciety coin loop_10: -1115351398
+      Solciety coin loop_11: 1177447194
+      Solciety coin loop_12: 290396054
+      Solciety coin loop_13: -44001452
+      Solciety coin loop_14: -1290907898
+      Solciety coin loop_15: 630380888
+      Solciety coin loop_16: 2053479537
+      Solciety coin loop_17: 1499159332
+      Solciety coin loop_18: -687826178
+      Solciety coin loop_19: 834235644
+      Solciety coin loop_2: -848711964
+      Solciety coin loop_20: -1835849031
+      Solciety coin loop_21: -1060957690
+      Solciety coin loop_22: 1356974568
+      Solciety coin loop_23: -1274254322
+      Solciety coin loop_24: -1924075457
+      Solciety coin loop_25: 1420414796
+      Solciety coin loop_26: 1062847441
+      Solciety coin loop_27: -1456582363
+      Solciety coin loop_28: 75309678
+      Solciety coin loop_29: -414176322
+      Solciety coin loop_3: 370569562
+      Solciety coin loop_30: 1476269589
+      Solciety coin loop_31: 1942645920
+      Solciety coin loop_32: -839119253
+      Solciety coin loop_33: -16076344
+      Solciety coin loop_34: -972517045
+      Solciety coin loop_35: -552978334
+      Solciety coin loop_36: 2095710018
+      Solciety coin loop_37: 527521731
+      Solciety coin loop_38: -1528046625
+      Solciety coin loop_39: 148798530
+      Solciety coin loop_4: -751347553
+      Solciety coin loop_40: -74007562
+      Solciety coin loop_41: -596349362
+      Solciety coin loop_42: 234164587
+      Solciety coin loop_43: -256913808
+      Solciety coin loop_44: -1955806162
+      Solciety coin loop_45: 366478502
+      Solciety coin loop_46: -774924851
+      Solciety coin loop_47: 1367961174
+      Solciety coin loop_48: 705146102
+      Solciety coin loop_49: -1957615706
+      Solciety coin loop_5: 1744089836
+      Solciety coin loop_50: -485965422
+      Solciety coin loop_51: -449196817
+      Solciety coin loop_52: 1487796051
+      Solciety coin loop_53: 1178154220
+      Solciety coin loop_54: 745032790
+      Solciety coin loop_55: -1605786772
+      Solciety coin loop_56: 727530718
+      Solciety coin loop_57: 1369407866
+      Solciety coin loop_58: -1806652274
+      Solciety coin loop_59: -1203342829
+      Solciety coin loop_6: -1963560544
+      Solciety coin loop_60: 1043068506
+      Solciety coin loop_61: -1386743860
+      Solciety coin loop_62: 358846369
+      Solciety coin loop_63: -2072959209
+      Solciety coin loop_64: 1376089967
+      Solciety coin loop_65: -394237656
+      Solciety coin loop_66: -902188681
+      Solciety coin loop_67: 464135563
+      Solciety coin loop_68: 1531799272
+      Solciety coin loop_69: -95007346
+      Solciety coin loop_7: 10538980
+      Solciety coin loop_70: -1794745946
+      Solciety coin loop_71: 158202181
+      Solciety coin loop_72: 1347164884
+      Solciety coin loop_73: 495199944
+      Solciety coin loop_74: 1597890200
+      Solciety coin loop_75: -1628761617
+      Solciety coin loop_76: 998108496
+      Solciety coin loop_77: 1802130027
+      Solciety coin loop_78: 1061119030
+      Solciety coin loop_79: -883055831
+      Solciety coin loop_8: 1531139274
+      Solciety coin loop_80: 2021699495
+      Solciety coin loop_81: 1864156103
+      Solciety coin loop_82: -1063637995
+      Solciety coin loop_83: -204214156
+      Solciety coin loop_84: -1386015628
+      Solciety coin loop_85: 1324660612
+      Solciety coin loop_86: 1003793595
+      Solciety coin loop_87: 580658258
+      Solciety coin loop_88: -278457315
+      Solciety coin loop_89: 284474243
+      Solciety coin loop_9: -1213476975
+      Solciety coin loop_90: 1379984848
+      Solciety coin loop_91: 2056487337
+      Solciety coin loop_92: -1468132733
+      Solciety coin loop_93: -1393552509
+      Solciety coin loop_94: 203295830
+      Solciety coin loop_95: 1915565811
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

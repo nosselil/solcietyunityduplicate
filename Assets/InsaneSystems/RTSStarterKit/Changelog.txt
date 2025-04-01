@@ -1,0 +1,298 @@
+Version 1.6.6 (current):
+- Abilities system fully rewritten and now more ready for extensions and productions.
+- Abilities documentation extended, added new partitions.
+- Documentation mistakes fixes etc.
+- Carry module code - new events was added.
+- harvesterResourcesChanged event is renamed to resourcesChangedEvent.
+- Shell code changed, now it have ownerUnit field with shooted unit class link. It replaced some old methods in its code.
+- Fixed small mistake in Build class, now zone check for building works more correct.
+- Added new module named AnimationsModule, which is partially replaces infantry module and will allow in future adding more animations for units.
+- Harvester now supports 2 new events - startHarvest and stopHarvest. And this events supports animations using AnimationsModule. 
+- Improved Follow order, now units move to position near target, not its center. Also improved orders code for a bit. Now Follow order receives Unit component as target, not Transform.
+- Unit class code optimizations.
+- Partially implemented ending resource fields. You can change it's settings and set resources count on resource field.
+- API documentation filled with new information.
+- Added 4 abilities hotkeys (previously was only 1), and now it is shown visually on abilities icons.
+- Added visual icons for hotkeys of production building (units, buildings etc).
+
+Version 1.6.5 - Apr 24, 2020:
+- Removed deprecated class BuildingData.
+- Added special building hotkeys like Q W E R A S D F etc, which allows to buy units in selected building.
+- Improvements in Harvester code, a lot of optimizations for it and added new UnitData properties for harvester.
+- Changed Module class code, now you need override AwakeAction instead Awake. It makes parent Awake safer and isolated.
+- Refinery class is now inherited from Module, previously it was MonoBehaviour, which is not correct.
+- Added DoCustomShoot method to the Attackable class, which you can need for extension purposes or something.
+- Added support for Shoot Effect for units (when unit attack target). You can set up this effect in UnitData of your units.
+- Improved AI settings - now AI use infantry units and Hard AI preset can build additional defense turret.
+- Added Search field to the Units Editor window.
+- Added some new comments in code.
+- Added Bunker defensive building.
+- Fixed problem when custom cursor can be still in menu after game match end.
+- Fixed problem when unit tried to attack target which he can not attack.
+- Other minor code optimizations and removed some unused code.
+
+Version 1.6.4 - Mar 26, 2020:
+- Fixed drawing carry icons for enemy units on hover.
+- Added buildings repair and sell support.
+- Added event onCarryStateChange to CarryModule.
+- Added parameter, which allows to change max count of showing on unit healthbar carry icons.
+- Fixed that infantry corpses not being removed after die.
+- Added pause support and Pause Menu, which being shown on pressing Esc. You can customize it in SceneBase/UICanvas prefab.
+- Attackable class now have new public field named customShell - you can change unit shell from code if you need it for some reasons.
+- Added a lot of new tooltips (mouse-hover help) to Game Settings (Storage) fields.
+- Little improved/corrected example explosion effects.
+- Some optimizations and refactoring.
+
+Version 1.6.3 - Mar 5, 2020:
+- Improved unit prefab generator.
+- Buildings now have correct rotation in build mode. 
+- Production categories now should be setted up in unit data file instead of prefab.
+- Fixed problem with minimap icons and signals on different maps sizes.
+- Some code improvements and optimizations.
+- Fixed soldier death animation.
+- Changed building drawer material type to prevent using vertex color of model. 
+- Added 2 new example models for Refinery and Factory. Previous was removed.
+- Documentation was renewed, also added new partitions like Faction description and How to setup units with turrets?
+
+Warning: After this update you'll need to setup production categories in UnitData files of all your production units (buildings like factories, command center, etc). It will take few minutes.
+Warning 2: If your buildings rotation wrong after update, possible you need to change rotation of model in prefab by 180 on Y-axis.
+
+Version 1.6.2 - Mar 2, 2020:
+- Added debug menu, which help to test key features faster. Currently only on example scene. It can be opened by pressing LeftShift + D. If you want it on your own scene, drag DebugCanvas to it from prefabs.
+- Fixed problem with attack cursour, worked on enemies in fog of war.
+- Fixed problem with factions production categories icon.
+- Improved some editors initial UI (window size) and graphics part for a bit.
+- For unit turrets added improvement for second-axis gun, which will return it to default position after attack end.
+- Improved Unit shader, now supports Smoothness from metallic alpha and Invert Roughness (if you're using smoothness map).
+- New simple, but more optimized for RTS example soldier model.
+- Improved guide - added info about setting up infantry units.
+
+Version 1.6.1 - Feb 6, 2020:
+- Added new hotkeys - L and O to select unit alternative (L with focus, O - without).
+- Added new hotkey - F to lock/unlock units movement.
+- Added 2 new infantry soldier types - Rocket soldier and Sniper. Currently uses default model, so it can looks weird, we're working on it.
+- Added camera icon rotation for minimap.
+- Added attack signal for minimap. It shows on map when your units being attacked. Also have a sound signal.
+- Now doubleclick on group keys (1-9 when unit groups created) it will focus camera on unit of this group.
+- Carry module added for units! Now units, which have this module, can take other units (like infantry) on board. All settings you can find in UnitData as always. Carried units can shoot.
+- Some optimizations for UI.
+- Added new parameter for singleplayer maps in Map Settings data file.
+- Fixed a lot of small annoying bugs.
+- Also done lot of minor changes and improvements.
+
+Version 1.6.0 - Nov 5, 2019:
+- Units formations is improved. Also added possibility to select default formation type in GameSettings. Now you also can select square units formation.
+- Improved units exit from factory on spawn. Now situations when units stuck in small group is very rare. Also works for aviation.
+- Increased default camera height, default max zoom value set up for new values of camera height.
+- Improved camera rotation added! Now it works much better than before.
+- Added hotkeys support for different game actions. You can check Keymap class to see what it does.
+- Hotkeys editor added, player can change hotkeys in game runtime.
+- Selection groups of units code is simplified and optimized.
+- Camera controls mowed from WASD to Arrow keys, because by default in most of rts WASD used for hotkeys.
+- Improved air units movement.
+- Right-click on minimap was replaced to move (if units selected), left-click only now for move camera, as in other rts.
+- Now any asset example shells can't miss target by default. You can change it from shell object settings.
+- Improved and optimized code of land units movement, also fixed bug with wheels, which appeared sometime.
+- Added custom cursors for different game actions. You can customize it in Game Settings.
+- Units now defend their positions: if any target gets in their vision on limited radius, they will move to attack it. This is basis for future behaviours mechanic.
+- Improved camera centering algorithm.
+ 
+Version 1.5.5 - Sep 18, 2019:
+- Fog of War now works on any platforms, work with OpenGL fixed. Supports more units, just change unitLimit variable value.
+- Fog of War now have parameter to change its strength (alpha color of dark area).
+- Camera zoom improved.
+- Camera parameters improved, speed increased and code extended. "Classic" camera move type is preview feature and not finished yet.
+- Added selection of all units of same type on screen by double click by one unit as it done in other RTS.
+- Some selection code optimizations done.
+- Fixed critical bug with units lists. 
+
+Version 1.5.4 - Aug 14, 2019:
+- Fog of War was added! Now you can turn it in the Game Settings/Storage file. Note that this is Preview feature and will be improved in next updates. Feel free to write about any bugs and problems to the our support email.
+- Healthbars minor improvements.
+- Minor changes.
+
+Version 1.5.3 - Jul 26, 2019:
+- Harvesting system fixed and optimized.
+
+Version 1.5.3 - Jul 10, 2019:
+- Electricity support added! A lot of military rts have this mechanic, now you can use it too. Also added a documentation for it, check Guide file.
+- Power plant building example added to show electricity work. Example AI will also build it.
+- Fixes and improvements in attack module. New parameter added to the unit data.
+- Added Texts Library - now you can change all texts (previously hardcoded) to your own.
+- Now healthbar also shown when you hover unit or building. Works for enemy units too.
+
+Version 1.5.2 - Jun 6, 2019:
+- Factions support added! Now you can create your own factions in few steps without additional coding.
+- Infantry supported now. Added infantry production category for example, new building and one example soldier.
+- Guide now have info about factions setup.
+- Little improvements in guide.
+- Added link to a Google Docs Guide version with better navigation and actual updates.
+
+All added features currently in preview, so use it carefully. Note that we will improve these features in next updates.
+
+Version 1.5.1 - May 27, 2019:
+- Added support of Triggers! It is very useful for singleplayer games. Triggers allow to add custom functionality (like spawn units, add money, etc) without coding.
+- Added TriggerEditor for managing triggers on your level.
+- Added several triggers for start. We will add new triggers periodically to extend possibilities of levels creation.
+- Added Trigger Zone compoent and Trigger Condition for it. Useful to manage, handle and filter trigger calls.
+- Little improved SetOwner functionality, especially for allow work better with triggers.
+- Sound Library added. It allows manage project sounds easier.
+- Sound Editor added. This is a window helps to manage sounds in Sound Library. Can be opened from top menu -> RTS Starter Kit -> Sound Editor. Currently in preview.
+- Added info about Sound Editor and Triggers to Guide.
+- Fixed critical bug that harvesters added money to local player instead of AI players.
+- Fixed wrong AI Settings in Example scene was added so AI builded only air units.
+- Fixed warning "must be instantiated using the ScriptableObject.CreateInstance method" - used correct way of SO creation.
+
+Version 1.5.0 - May 20, 2019:
+- Improved parameters for singleplayer (campaign) games. Now you can pre-setup parameters of players for your maps without coding. Info about single maps added to documentation.
+- Added auto-setup of NavMeshObstacle for buildings (if you're not setted it before). It copies box collider parameters of your building.
+- Unit house color shader finaly added! It works in metallic + roughness flow, supports normal map, occlusion and emission. This approach can boost your performance and more flexible at all.
+- Now on first run project Color Space will be set to Linear automatically.
+- Fixed bug that start player money from storage wasn't used anywhere.
+- Example Tank unit model updated to work with house color shader.
+- Added possibility to create Air Units!
+- Added Helicopter example unit.
+- Added Air units production category.
+- Added Air Center example building which allows to create Helicopters.
+- Added Anti-Air turret example of defensive building.
+- Improved AI settings for a bit and added 2 additional examples of AI Settings. Also AI supports new buildings and Units. 
+- Improved Wheels component for a bit.
+- Added different attack types by unit move type (Land, Air, Land and Air).
+- Added Production Categories editor. You can open it in top menu -> Rts Starter Kit -> Production Categories Editor.
+- Added Game Settings window (shows your Storage data). You can open it in top menu -> Rts Starter Kit -> Game Settings.
+
+Version 1.4.0 - May 13, 2019:
+- Artillery attack type now suppored! Added Artillery shell and Artillery unit to example.
+- Added Unit Editor! You can open it from top menu -> RTS Starter Kit -> Unit Editor. Unit editor should speedup unit creation.
+- BuildingData was merged with UnitData to unify units creation workflow.
+- Added semi-automatic unit prefab generation. It will reduce time needed for setting up new unit.
+
+Version 1.3.6 - Apr 15, 2019:
+- IMPORTANT: Layers 10-11 was reserved for RTS Kit needs, so if you're used one of these layer, please, create new layers. We're so sorry for this issue.
+- Added unit selection groups!
+- Improved check for aiming to target in turret and attack unit modules.
+- Added possibility to enable shoot through units mode. Useful if in your games big units count. Disabled by default, but possible to enable in unit settings.
+- Now selfUnit variable of any module is public field with protected set method instead of protected variable. 
+- Added HasOrders() method to the Unit class. You can use it instead of [orders.count > 0] construction.
+
+Version 1.3.5 - Mar 12, 2019:
+- Added possibility to limit turret rotation angle.
+- Fixed bug when unit without move module was able to rotate to enemy target.
+
+Version 1.3.4 - Mar 4, 2019:
+- Healthbar position on unit moved to some pixels highter.
+- Added possibility to order harvester move to refinery when it is not finished harvesting (to give smaller amount of resources to refinery).
+- Harvester fill bar added to UI.
+- Added map borders visual effect and possibility to turn it on/off in settings.
+- Example map improved visually.
+- Fix: Harvesters doesn't returned from resource field to refinery sometimes.
+- Fix: Little bug with auto-aiming shells fixed.
+
+Version 1.3.3 - Jan 23, 2019:
+- Map camera icon controls now works much better, than previously.
+- Now, when player selecting building, UI production panel being show for this building, if it has production module added.
+- Unit NavMesh Agent size now depends on its collider size (calculates for box collider or copies radius for sphere collider).
+- Increased distance of rotation "start zone" in build mode. Now buildings rotation works better.
+- Units without turrets now start attacking enemy target, which enters attack radius.
+- Added GetModule method to the Unit class. Now all modules, added to unit, automatically being registered in Unit class and can be accessed with this method from any class.
+- Added buildings animations.
+- Main UI Font changed.
+- UI Canvas now in Pixel Perfect mode.
+- Now, when factory spawns new unit, units on exit waypoint moves side to prevent stacking.
+- Resource field moved to Ignore Raycast layer. It is recommended to use this layer for any game triggers colliders.
+- Harvester now selects randomized point to harvest resource field - it will prevent stacking several harvesters at the center of resource field.
+- Improvement/Fix: harvesters of AI bots now works better.
+- Improvement/Fix: Now all buildings have proper forward direction.
+- Fix: Serious rework of all events and statics to remove problems when game match was started several times.
+- Fix: Fixed problem with disabling build mode sometimes without reason.
+- Fix: Sometimes appeared problems with game initalization in the build.
+
+Version 1.3.2 - Jan 14, 2019:
+- Damageable Die method now virtual. Also added virtual OnStart method (same to Unity default Start method, but override will not affect default component Start actions).
+- A lot of Attackable methods now virtual. You can extend it as you want.
+- Added DamageableTakeDamage event, which is always called when any damageable receives damage.
+- Added GetOwnerPlayer method to the Unit class. It gives quick access to unit owner player object.
+- Minor optimizations of Build class.
+- Now lobby always contains AI player of team 2 at load (which can be removed by player if not needed).
+- Attack module now has better check of attack conditions and units shoot enemy only when fully rotated (tower if have, or self transform, if not) to target.
+- Example scene NavMesh settings improved. It is better to use same settings on your custom maps.
+- Example tank tower rotation speed increased twice.
+- Added return to lobby button to win/lose screen.
+- Added scrollbar to units multiselection icons window.
+- Improvement/Fix: Now harvester will start harvest resources from field, which you'll order him to harvest. Previously any order to harvester broke its harvest behaviour.
+- Added NavMesh and events info partitions to the Guide.
+- Fix: Defencive turret collider fixed and added Damageable module.
+- Fix: Minimap size parameter now depends on map size parameter from map settings, previously it was always 256.
+- Fix: Camera now not get out of map bounds in left corner of the map.
+
+Version 1.3.1 - Jan 7, 2019:
+- Some scripts code formatting.
+- A lot of updates in online API Documentation. Still working on it.
+- Few optimizations in code.
+- Added pooling of healthbars and units icons for optimization. It works fully automatically.
+- Removed doppler level on units sounds because it is not needed in RTS.
+- Fixed small problem with units audio.
+- Improved AI behaviour: now AI units group search new target, if previous was destroyed.
+- New guide partition about UI customization.
+
+Version 1.3.0 - December 11, 2018:
+- Map Settings Checker now available as Window. It allows more quick and flexible access to itself information.
+- Added destination point for Production module. Now player can see and change units start waypoint for each factory.
+- Added two new events to Production class.
+- Added auto-aim parameter for shells. If true, this shell will fly like auto-aiming missile, following attack target. Otherwise it can miss target.
+- Improved work of units without Damageable component.
+- Added Add modules buttons to Unit component Inspector.
+- Added possibility to disallow units attack while movement. So units will stop before attack, if you set this parameter true.
+- Now units can work correctly with Attackable and without Tower components. Them will rotate all self transform to target, not only tower. Also them will be autoamtically marked as "Can't attack in move".
+- Added several shoot points parameter. WARNING: your current units with Attackable module possible lost its shoot point setting.
+- Added new Scout unit: faster than tank, but can't attack in move because has no rotatable turret.
+
+Version 1.2.1 - 29 November, 2018:
+- Defencive buildings category and example turret added.
+- Added hints and improved inspector UI to Production component.
+- Added hints and improved inspector UI to Attackable component.
+- Added arrow in Scene view for Attackable component, which shows direction of shoot point.
+- Added tooltips to Unit component fields.
+- Improved sound settings, fixed several problems with unit audio.
+- Added new information to online API Documentation.
+- Minor fixes and improvements.
+
+Version 1.2.0 - 23 November, 2018:
+- Added a big sound integration - now you can customize sounds of units, new sound settings, add map ambient music, etc.
+- Added sounds examples for different effects.
+- Added custom attack damage setting to unit data.
+- Finally added online API Documentation! You can find link to it in Guide.
+
+Version 1.1.1 - 31 October, 2018:
+- Camera mover fixes and improvements, added new tooltip for one of Inspector fields.
+- Click effects added for Move and Attack orders.
+- Fix for Ordering class.
+- Added customizable map size (because now some variables depends on it, also it allows show map borders in Editor).
+- Added more help console messages and hints.
+- We're working on full online API documentation, it will be ready in next update!
+
+Version 1.1.0 - 15 October, 2018:
+- Guide: added info about rocket/shell settings.
+- Improved rocket/shell parameters, added sliders to fields.
+- Better guide formatting.
+- Added automatic scenes addition for Build Settings on first start.
+- Added buildings rotation in Build Mode.
+- Units multiselection UI.
+- Added more game settings to Storage for customization.
+- Fix: removed error on trying to send move order to building, which can't has orders.
+- Fix: multiselection applied to the buildings, which don't have Production module.
+
+Version 1.0.2 - 25 September, 2018:
+- Added MapSettingsChecker component, which allow you find problems with your map settings, if you forget setup something.
+- Added startup auto-configurator for asset. Now needed layers for asset is configurated automatically on project start.
+- Guide: added some info about AI and Map settings checker.
+
+Version 1.0.1 - 20 September, 2018:
+- Guide: more details added.
+- Folders structure improved.
+- Added win and lose conditions.
+- Fixed mistake with harvester.
+- Other small fixes.
+
+Version 1.0.0 - 18 September, 2018:
+First release

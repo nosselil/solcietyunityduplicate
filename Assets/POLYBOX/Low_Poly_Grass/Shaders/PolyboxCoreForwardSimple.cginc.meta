@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 750e78db15c4c6a4db9d47d8f97844ac
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287759
+  packageName: Low Poly Grass
+  packageVersion: 1.0
+  assetPath: Assets/POLYBOX/Low_Poly_Grass/Shaders/PolyboxCoreForwardSimple.cginc
+  uploadId: 673442

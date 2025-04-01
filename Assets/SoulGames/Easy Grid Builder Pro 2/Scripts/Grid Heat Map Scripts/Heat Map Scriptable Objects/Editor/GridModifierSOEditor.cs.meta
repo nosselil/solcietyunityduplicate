@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 0b0aa35a6d526854b9065b5641d67e1a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - visualTreeAsset: {fileID: 9197481963319205126, guid: ce97b9190d6bd43408adbbe834c6712b,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298820
+  packageName: Easy Grid Builder Pro 2 (Modular Building System)
+  packageVersion: 2.0.2
+  assetPath: Assets/SoulGames/Easy Grid Builder Pro 2/Scripts/Grid Heat Map Scripts/Heat
+    Map Scriptable Objects/Editor/GridModifierSOEditor.cs
+  uploadId: 725391

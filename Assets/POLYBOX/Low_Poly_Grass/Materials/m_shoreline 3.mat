@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: m_shoreline 3
+  m_Shader: {fileID: 4800000, guid: 26a4ae8b53a58944b93ff0d3b38fc812, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _FoamDetailNoise:
+        m_Texture: {fileID: 2800000, guid: 15ea0cbf38801b94da5201e88290e82b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample3:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _DeepWaterDistance: 1
+    - _FalseShadowFadeSpeed: -2.45
+    - _FalseShadowFallEnd: 0.44
+    - _FalseShadowFallStart: 0.35
+    - _FalseShadowWidth: 0.02
+    - _Float4: 2
+    - _FoamFadeStretch: 2
+    - _FoamNoiseClipMax: 1.5
+    - _FoamNoiseClipMin: -0.2
+    - _FoamNoiseScaling: 3
+    - _FoamNoiseStretch: 2
+    - _FoamSoftness: 0.384
+    - _PullbackDistance: 0.5
+    - _PullbackWidth: 20.38
+    - _ShorelineJaggedness: 0.03
+    - _ShorelineNoiseFrequency: 0.5
+    - _ShorelineNoiseStrength: 0.03
+    - _TEST: 0
+    - _WarbleStrength: 0.03
+    - _WaveDepth: 4
+    - _WaveJaggedness: 0
+    - _WaveOffsetFrequency1: 0.07
+    - _WaveOffsetFrequency2: 0.01
+    - _WaveOffsetNoise: 0.1
+    - _WaveOffsetNoise1: 1
+    - _WaveOffsetStrength1: 0.15
+    - _WaveOffsetStrength2: 0.44
+    - _WaveRollSpeed: 1
+    - _WaveThickness: 0.5
+    - _WaveThicness: 0.213
+    - __dirty: 0
+    m_Colors:
+    - _DeepWaterColor: {r: 0.21300003, g: 0.90840954, b: 1, a: 0}
+    - _FalseShadowColor: {r: 1, g: 1, b: 1, a: 0.7921569}
+    - _FoamColor: {r: 0.88699996, g: 0.88699996, b: 0.88699996, a: 0.35686275}
+    - _FoamNoiseScaling: {r: 7, g: 2.33, b: 0, a: 0}
+    - _ShallowWaterColor: {r: 0, g: 0.16876552, b: 0.90099996, a: 0}
+    - _Tiling: {r: 16, g: 0.9, b: 0, a: 0}
+  m_BuildTextureStacks: []

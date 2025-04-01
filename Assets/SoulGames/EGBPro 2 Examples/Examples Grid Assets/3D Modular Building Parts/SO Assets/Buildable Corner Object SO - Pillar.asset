@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778207c9cf632c047b538a11bf345d18, type: 3}
+  m_Name: Buildable Corner Object SO - Pillar
+  m_EditorClassIdentifier: 
+  objectName: Pillar
+  objectIcon: {fileID: 21300000, guid: 6806c7c4de6f4c74da6563e939757650, type: 3}
+  buildableObjectUICategorySO: {fileID: 11400000, guid: 12ae603fd2634bf469de442f30abcc0b,
+    type: 2}
+  randomPrefabs:
+  - objectPrefab: {fileID: 7803159104911250065, guid: 2846e7ca08db58c4b94a445a10c336b2,
+      type: 3}
+    ghostObjectPrefab: {fileID: 7803159104911250065, guid: 2846e7ca08db58c4b94a445a10c336b2,
+      type: 3}
+    probability: 0
+  eachPlacementUseRandomPrefab: 1
+  validPlacementMaterial: {fileID: 2100000, guid: 281380b3d50e1eb46b869b8c8aa1307c,
+    type: 2}
+  invalidPlacementMaterial: {fileID: 2100000, guid: 1fb75a46b45af6e49a32883c3bcb026a,
+    type: 2}
+  setSpawnedObjectLayer: 0
+  spawnedObjectLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  setGridSystemAsParent: 0
+  useObjectGridCustomAlphaMaskScale: 0
+  objectGridCustomAlphaMaskScale: {x: 0, y: 0}
+  customSurfaceLayerMask:
+    serializedVersion: 2
+    m_Bits: 1073741824
+  raiseObjectWithVerticalGrids: 1
+  enablePlaceAndDeselect: 0
+  affectByBasicAreaDisablers: 1
+  affectByAreaDisablers: 1
+  affectByBasicAreaEnablers: 1
+  affectByAreaEnablers: 1
+  isObjectReplacable: 0
+  replacingObjectIgnoreCustomConditions: 1
+  isObjectSelectable: 1
+  isSelectedObjectRotatable: 1
+  isObjectDestructable: 1
+  isObjectMovable: 1
+  enableTerrainInteractions: 0
+  flattenTerrain: 0
+  flattenerSize: 0
+  removeTerrainDetails: 0
+  detailsRemoverSize: 0
+  paintTerrainTexture: 0
+  terrainTextureIndex: 0
+  painterBrushSize: 0
+  painterBrushType: 1
+  painterBrushOpacity: 1
+  painterBrushFallOff: 0
+  buildableCornerObjectCategorySO: {fileID: 11400000, guid: 00e4b3388cbef5947824af271a557b5c,
+    type: 2}
+  snapToTheClosestVerticalGridHeight: 0
+  minimumHeightThresholdPercentage: 25
+  rotationType: 1
+  freeRotationSpeed: 100
+  freezeRotation: 0
+  fourDirectionalRotation: 0
+  eightDirectionalRotation: 0
+  freeRotation: 0
+  placementType: 0
+  intervalBetweenEachPlacement: 0
+  spawnOnlyAtEndPoints: 1

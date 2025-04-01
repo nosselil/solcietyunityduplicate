@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b7ee1c8a4cf40ee4e8016d45a2dd9009
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298820
+  packageName: Easy Grid Builder Pro 2 (Modular Building System)
+  packageVersion: 2.0.2
+  assetPath: Assets/SoulGames/EGBPro 2 Examples/Examples Assets/Modular Building
+    Assets/Shader/Basic Buildings Shader Graph.shadergraph
+  uploadId: 725391

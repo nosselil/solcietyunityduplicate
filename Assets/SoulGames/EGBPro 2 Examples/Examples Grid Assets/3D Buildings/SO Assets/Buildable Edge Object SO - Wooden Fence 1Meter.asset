@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf3d8c6d1bb4e0489a63cbd68de1909, type: 3}
+  m_Name: Buildable Edge Object SO - Wooden Fence 1Meter
+  m_EditorClassIdentifier: 
+  objectName: Wooden Fence
+  objectIcon: {fileID: 21300000, guid: 740a6c1530fcff142be3ca0119365d61, type: 3}
+  buildableObjectUICategorySO: {fileID: 11400000, guid: 87b8527cede7f6442a78b2515a17cc43,
+    type: 2}
+  randomPrefabs:
+  - objectPrefab: {fileID: 6554749469597746354, guid: ce03cd92bac0b5445ad807931266731c,
+      type: 3}
+    ghostObjectPrefab: {fileID: 6554749469597746354, guid: ce03cd92bac0b5445ad807931266731c,
+      type: 3}
+    probability: 50
+  - objectPrefab: {fileID: 5567715187591561626, guid: c72655d51fb1ca345b79bec68f5af76b,
+      type: 3}
+    ghostObjectPrefab: {fileID: 5567715187591561626, guid: c72655d51fb1ca345b79bec68f5af76b,
+      type: 3}
+    probability: 50
+  eachPlacementUseRandomPrefab: 1
+  validPlacementMaterial: {fileID: 2100000, guid: 281380b3d50e1eb46b869b8c8aa1307c,
+    type: 2}
+  invalidPlacementMaterial: {fileID: 2100000, guid: 1fb75a46b45af6e49a32883c3bcb026a,
+    type: 2}
+  setSpawnedObjectLayer: 0
+  spawnedObjectLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  setGridSystemAsParent: 1
+  useObjectGridCustomAlphaMaskScale: 0
+  objectGridCustomAlphaMaskScale: {x: 0, y: 0}
+  customSurfaceLayerMask:
+    serializedVersion: 2
+    m_Bits: 1073741824
+  raiseObjectWithVerticalGrids: 1
+  enablePlaceAndDeselect: 0
+  affectByBasicAreaDisablers: 1
+  affectByAreaDisablers: 1
+  affectByBasicAreaEnablers: 1
+  affectByAreaEnablers: 1
+  isObjectReplacable: 1
+  replacingObjectIgnoreCustomConditions: 1
+  isObjectSelectable: 1
+  isSelectedObjectRotatable: 1
+  isObjectDestructable: 1
+  isObjectMovable: 1
+  enableTerrainInteractions: 1
+  flattenTerrain: 1
+  flattenerSize: 1
+  removeTerrainDetails: 0
+  detailsRemoverSize: 0
+  paintTerrainTexture: 0
+  terrainTextureIndex: 0
+  painterBrushSize: 0
+  painterBrushType: 1
+  painterBrushOpacity: 1
+  painterBrushFallOff: 0
+  buildableEdgeObjectCategorySO: {fileID: 11400000, guid: b4b49994b24081d4e958e44f0405dcaa,
+    type: 2}
+  snapToTheClosestVerticalGridHeight: 0
+  minimumHeightThresholdPercentage: 25
+  placementType: 4
+  intervalBetweenEachPlacement: 0
+  freezeRotation: 0
+  fourDirectionalRotation: 0
+  isObjectFlipped: 0
+  mergeWithBuildableCornerObject: 1
+  buildableCornerObjectSO: {fileID: 11400000, guid: aca766a3e6308cb43b8a75ded7276322,
+    type: 2}
+  onlyUsedWithGhostObject: 0

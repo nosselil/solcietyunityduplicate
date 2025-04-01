@@ -1,0 +1,33 @@
+# Unity-generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Uu]ser[Ss]ettings/
+
+# Asset Store tools
+Assets/AssetStoreTools*
+
+# IDEs
+.vs/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+.idea/
+*.sln.iml
+
+# Crash reports
+*.stackdump
+
+# macOS system files
+__MACOSX/
+**/.DS_Store

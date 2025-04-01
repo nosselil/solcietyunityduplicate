@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2d37cc4f3a7539c4d81272cc7718a763
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287759
+  packageName: Low Poly Grass
+  packageVersion: 1.0
+  assetPath: Assets/POLYBOX/Low_Poly_Grass/Shaders/matte_shadow.shader
+  uploadId: 673442

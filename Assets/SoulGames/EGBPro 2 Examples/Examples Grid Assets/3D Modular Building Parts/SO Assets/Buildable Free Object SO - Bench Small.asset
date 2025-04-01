@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c911fdae6a66643488f5baf45dd89ac3, type: 3}
+  m_Name: Buildable Free Object SO - Bench Small
+  m_EditorClassIdentifier: 
+  objectName: Bench Small
+  objectIcon: {fileID: 21300000, guid: 0aa999ad33480c345afc8fcd60212b09, type: 3}
+  buildableObjectUICategorySO: {fileID: 11400000, guid: c8edbe4f26d58fc449ba262129142fcf,
+    type: 2}
+  randomPrefabs:
+  - objectPrefab: {fileID: 7601818999874009593, guid: f3091fd128f334c448603ed26e7606cc,
+      type: 3}
+    ghostObjectPrefab: {fileID: 7601818999874009593, guid: f3091fd128f334c448603ed26e7606cc,
+      type: 3}
+    probability: 0
+  eachPlacementUseRandomPrefab: 1
+  validPlacementMaterial: {fileID: 2100000, guid: 281380b3d50e1eb46b869b8c8aa1307c,
+    type: 2}
+  invalidPlacementMaterial: {fileID: 2100000, guid: 1fb75a46b45af6e49a32883c3bcb026a,
+    type: 2}
+  setSpawnedObjectLayer: 0
+  spawnedObjectLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  setGridSystemAsParent: 0
+  useObjectGridCustomAlphaMaskScale: 0
+  objectGridCustomAlphaMaskScale: {x: 0, y: 0}
+  customSurfaceLayerMask:
+    serializedVersion: 2
+    m_Bits: 1073741824
+  raiseObjectWithVerticalGrids: 1
+  enablePlaceAndDeselect: 0
+  affectByBasicAreaDisablers: 1
+  affectByAreaDisablers: 1
+  affectByBasicAreaEnablers: 1
+  affectByAreaEnablers: 1
+  isObjectReplacable: 0
+  replacingObjectIgnoreCustomConditions: 1
+  isObjectSelectable: 1
+  isSelectedObjectRotatable: 1
+  isObjectDestructable: 1
+  isObjectMovable: 1
+  enableTerrainInteractions: 0
+  flattenTerrain: 0
+  flattenerSize: 0
+  removeTerrainDetails: 0
+  detailsRemoverSize: 0
+  paintTerrainTexture: 0
+  terrainTextureIndex: 0
+  painterBrushSize: 0
+  painterBrushType: 1
+  painterBrushOpacity: 1
+  painterBrushFallOff: 0
+  faceCollidingSurfaceNormalDirection: 0
+  surfaceNormalDirectionLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  buildableFreeObjectCategorySO: {fileID: 11400000, guid: f2b1e8c5f31c2ba46a13d601ccbc6bc8,
+    type: 2}
+  rotationType: 2
+  freeRotationSpeed: 100
+  freezeRotation: 0
+  fourDirectionalRotation: 0
+  eightDirectionalRotation: 0
+  freeRotation: 0
+  placementType: 0
+  intervalBetweenEachPlacement: 0
+  objectBaseSpacingAlongSpline: 1
+  objectMinSpacingAlongSpline: 1
+  objectMaxSpacingAlongSpline: 1
+  objectRotateToSplineDirection: 0
+  spacingChangeSmoothness: 1
+  splineTangetMode: 0
+  closedSpline: 0
+  affectByFreeObjectSnappers: 1

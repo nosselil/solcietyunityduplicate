@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2523eebf25157584abcdf56245fd0cbf, type: 3}
+  m_Name: FactoryBuildingData
+  m_EditorClassIdentifier: 
+  textId: Siege shop
+  icon: {fileID: 1070446682, guid: 573ce868ccf7d465f984df6125c4669d, type: 3}
+  unitModel: {fileID: 1838873232057466, guid: c99203bc817c96344837e1674dd43df7, type: 3}
+  canBeDestroyed: 1
+  maxHealth: 150
+  isHarvester: 0
+  isInfantry: 0
+  visionDistance: 18
+  price: 1500
+  buildTime: 5
+  ResourceRequirements:
+  - gameResource: {fileID: 11400000, guid: 36701f8dfecd38c4f9402d041d94d7de, type: 2}
+    ResourceRequired: 1200
+  hasMoveModule: 0
+  moveType: 0
+  moveSpeed: 0
+  rotationSpeed: 0
+  flyingFlyHeight: 6
+  canMoveWhileAttackingTarget: 0
+  hasAttackModule: 0
+  attackPossibility: 0
+  attackDistance: 5
+  usedDamageType: 0
+  attackDamage: 15
+  attackShell: {fileID: 0}
+  allowShootThroughUnitObstacles: 1
+  allowShootThroughAnyObstacles: 1
+  needAimToTargetToShoot: 1
+  stillTryRotateToTargetWhenNoAimNeeded: 1
+  reloadTime: 1
+  hasTurret: 0
+  turretRotationSpeed: 1
+  limitTurretRotationAngle: 0
+  maximumTurretRotationAngle: 15
+  addsElectricity: 0
+  usesElectricity: 4
+  canBeCarried: 0
+  canCarryUnitsCount: 0
+  harvestMaxResources: 600
+  harvestTime: 5
+  harvestCarryOutTime: 3
+  explosionEffect: {fileID: 1444189580755094, guid: 0e4557f159442ff45b215522ee1afef1, type: 3}
+  shootEffect: {fileID: 0}
+  useAnimations: 0
+  animatorController: {fileID: 9100000, guid: 016db8e3787f7524880293f626561ed5, type: 2}
+  shootSoundVariations: []
+  selectionSoundVariations:
+  - {fileID: 8300000, guid: caf195c014c7c8943b585ddc9a480de7, type: 3}
+  orderSoundVariations: []
+  shootSoundPitchRandomization: 0.05
+  selfPrefab: {fileID: 1823350394833120, guid: 11f412fd7d23f8c40a4a6ba2ecdb43ee, type: 3}
+  isBuilding: 1
+  isRefinery: 0
+  isProduction: 1
+  productionCategories:
+  - {fileID: 11400000, guid: 77f24b34eb410e24185c0e68bd31c1fe, type: 2}
+  - {fileID: 11400000, guid: 7ec79b372a8c2d340baf155f997cefbe, type: 2}
+  drawerObject: {fileID: 1997016529979864, guid: eab670a20fca3814186a28308b21647a, type: 3}
+  unitAbilities: []
+  UpgradePrice: 1000
+  BuildingToUpgrade: {fileID: 11400000, guid: a3ec40256b99c0846aa9ce66c06f00ff, type: 2}
+  NewBuildingData: {fileID: 11400000, guid: cb2a954e21d14b24890196fc8ba0bc21, type: 2}

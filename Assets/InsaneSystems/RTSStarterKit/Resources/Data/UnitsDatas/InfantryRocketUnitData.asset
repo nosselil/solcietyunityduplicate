@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2523eebf25157584abcdf56245fd0cbf, type: 3}
+  m_Name: InfantryRocketUnitData
+  m_EditorClassIdentifier: 
+  textId: Archer
+  icon: {fileID: 21300000, guid: c50e07518121146d18f69acc102d6066, type: 3}
+  unitModel: {fileID: 100052, guid: 8779868d26e087644847e778bd95ba30, type: 3}
+  canBeDestroyed: 1
+  maxHealth: 50
+  isHarvester: 0
+  isInfantry: 1
+  visionDistance: 15
+  price: 250
+  buildTime: 2
+  ResourceRequirements: []
+  hasMoveModule: 1
+  moveType: 0
+  moveSpeed: 2
+  rotationSpeed: 360
+  flyingFlyHeight: 6
+  canMoveWhileAttackingTarget: 0
+  hasAttackModule: 1
+  attackPossibility: 2
+  attackDistance: 8
+  usedDamageType: 0
+  attackDamage: 10
+  attackShell: {fileID: 1352396323047504, guid: 6b26061c995ecc0458e79b62dadba697, type: 3}
+  allowShootThroughUnitObstacles: 1
+  allowShootThroughAnyObstacles: 0
+  needAimToTargetToShoot: 1
+  stillTryRotateToTargetWhenNoAimNeeded: 1
+  reloadTime: 1
+  hasTurret: 0
+  turretRotationSpeed: 0
+  limitTurretRotationAngle: 0
+  maximumTurretRotationAngle: 15
+  addsElectricity: 0
+  usesElectricity: 0
+  canBeCarried: 1
+  canCarryUnitsCount: 0
+  harvestMaxResources: 600
+  harvestTime: 5
+  harvestCarryOutTime: 3
+  explosionEffect: {fileID: 0}
+  shootEffect: {fileID: 0}
+  useAnimations: 1
+  animatorController: {fileID: 9100000, guid: b356be950a49ccb4a83f9e126232da7f, type: 2}
+  shootSoundVariations:
+  - {fileID: 8300000, guid: 04b16b308467d8e49addcd670db9e5bf, type: 3}
+  selectionSoundVariations:
+  - {fileID: 8300000, guid: caf195c014c7c8943b585ddc9a480de7, type: 3}
+  orderSoundVariations:
+  - {fileID: 8300000, guid: aa41b778ae57a7342a03350443602331, type: 3}
+  shootSoundPitchRandomization: 0.05
+  selfPrefab: {fileID: 1860852122088542, guid: 3b49301feef604e45a71ad34c61b884f, type: 3}
+  isBuilding: 0
+  isRefinery: 0
+  isProduction: 0
+  productionCategories: []
+  drawerObject: {fileID: 0}
+  unitAbilities: []
+  UpgradePrice: 0
+  BuildingToUpgrade: {fileID: 0}
+  NewBuildingData: {fileID: 0}

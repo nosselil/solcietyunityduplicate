@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 5a1da2798b5d2404ea7367ba19315ebf
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 13804, guid: 0000000000000000e000000000000000, type: 0}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298820
+  packageName: Easy Grid Builder Pro 2 (Modular Building System)
+  packageVersion: 2.0.2
+  assetPath: Assets/SoulGames/Utilities/Custom Editor UI Elements/Easy Grid Builder
+    Pro 2/Custom Property Field Buildable Corner Object SO.uxml
+  uploadId: 725391

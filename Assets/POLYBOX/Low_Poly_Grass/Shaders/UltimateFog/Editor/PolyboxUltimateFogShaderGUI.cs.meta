@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 3cb1f5705e3493c4bb3b42a6cf078b74
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287759
+  packageName: Low Poly Grass
+  packageVersion: 1.0
+  assetPath: Assets/POLYBOX/Low_Poly_Grass/Shaders/UltimateFog/Editor/PolyboxUltimateFogShaderGUI.cs
+  uploadId: 673442
