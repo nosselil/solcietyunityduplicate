@@ -18,7 +18,9 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 
             GameObject go = spawnedObject.gameObject;            
             PlayerSetup setup = go.GetComponent<PlayerSetup>();
-            
+
+            Debug.Log("SETUP: Calling setupPlayer for player " + player.PlayerId);
+
             setup.SetupPlayer();
         }
     }

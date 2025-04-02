@@ -35,8 +35,8 @@ public class MultiplayerChat : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!HasStateAuthority) // Another alternative would be to move this to FixedUpdateNetwork, I guess
-            return;
+        //if (!HasStateAuthority) // Another alternative would be to move this to FixedUpdateNetwork, I guess
+        //    return;
 
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) /*Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))*/
         {
@@ -49,8 +49,8 @@ public class MultiplayerChat : NetworkBehaviour
         // Only process input if this is the state authority
         //Debug.Log("CHAT: Input finished for object " + name + ", hasStateAuthority: " + HasStateAuthority);
         
-        if (!HasStateAuthority)
-            return;
+        //if (!HasStateAuthority)
+        //    return;
         
         // Check for Enter key press
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))

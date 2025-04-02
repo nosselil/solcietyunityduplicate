@@ -946,7 +946,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2605385215669759333}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MultiplayerChat, Assembly-CSharp
         m_MethodName: OnInputFinished
         m_Mode: 1
@@ -1163,8 +1163,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2475502360247341710}
-  - component: {fileID: 5230335930879220403}
-  - component: {fileID: 2605385215669759333}
   - component: {fileID: 6694622559969598355}
   - component: {fileID: 5584523762259955158}
   - component: {fileID: 995877869236638415}
@@ -1195,41 +1193,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &5230335930879220403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8402417023514683416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SortKey: 2956023577
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 2605385215669759333}
-  ForceRemoteRenderTimeframe: 0
---- !u!114 &2605385215669759333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8402417023514683416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d8c312f69440714eaa16170d5d88c59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  publicMessages: []
-  fullChatText: {fileID: 974879442459224728}
-  chatMessageInputText: {fileID: 8819934722348402546}
-  chatParent: {fileID: 540409412257813371}
 --- !u!223 &6694622559969598355
 Canvas:
   m_ObjectHideFlags: 0

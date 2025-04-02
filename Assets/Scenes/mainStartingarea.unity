@@ -127554,6 +127554,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6694622559969598355, guid: d6d9fac397346394b985b423a17560d4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8648727922183536212, guid: d6d9fac397346394b985b423a17560d4, type: 3}
       propertyPath: m_Name
       value: LocalPlayerCoreUtilities
@@ -127561,6 +127565,14 @@ PrefabInstance:
     - target: {fileID: 8648727922183536212, guid: d6d9fac397346394b985b423a17560d4, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819934722348402546, guid: d6d9fac397346394b985b423a17560d4, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 211636955}
+    - target: {fileID: 8819934722348402546, guid: d6d9fac397346394b985b423a17560d4, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInputFinished
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
