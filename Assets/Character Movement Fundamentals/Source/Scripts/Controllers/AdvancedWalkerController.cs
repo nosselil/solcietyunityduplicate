@@ -85,8 +85,10 @@ namespace CMF
 			if(characterInput == null)
 				Debug.LogWarning("No character input script has been attached to this gameobject", this.gameObject);
 
-			Setup();
-            Debug.Log("Player Spawn Position: " + gameObject.transform.position);
+            Debug.Log("Player Spawn Position (before): " + gameObject.transform.position + " called from player with name " + name);
+
+            Setup();
+            Debug.Log("Player Spawn Position (before): " + gameObject.transform.position + " called from player with name " + name);
         }
 
 		//This function is called right after Awake(); It can be overridden by inheriting scripts;

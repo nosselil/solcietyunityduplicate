@@ -36,6 +36,10 @@ TagManager:
   - NFT_28
   - NFT_29
   - NFT_30
+  - LocalPlayerCoreUtilities
+  - LocalPlayerMobileUI
+  - LocalPlayerChatCanvas
+  - LocalPlayerCamera
   layers:
   - Default
   - TransparentFX

@@ -50,6 +50,8 @@ namespace CMF
 			if(target == null)
 				target = this.transform.parent;
 
+			Debug.Log("SMOOTH: SMooth position awake, target set to this transform.parent");
+
 			tr = transform;
 			currentPosition = transform.position;
 
