@@ -21,6 +21,9 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 
             Debug.Log("SETUP: Calling setupPlayer for player " + player.PlayerId);
 
+            string localWalletAddress = MultiplayerChat.Instance.AssignMockWalletAddress();
+            MultiplayerChat.Instance.RegisterWalletAddressRpc(Runner.LocalPlayer.PlayerId, localWalletAddress);
+
             setup.SetupPlayer();
         }
     }
