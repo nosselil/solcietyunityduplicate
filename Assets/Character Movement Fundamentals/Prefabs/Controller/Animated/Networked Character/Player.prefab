@@ -426,6 +426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8359581135223283338}
+  - component: {fileID: 8795949776479662967}
   - component: {fileID: 8580229899205145702}
   - component: {fileID: 5428427374091536500}
   - component: {fileID: 5527702063959420591}
@@ -436,7 +437,7 @@ GameObject:
   - component: {fileID: -3334969266110531944}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: NetworkedPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -457,6 +458,19 @@ Transform:
   - {fileID: 5295346930257504534}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8795949776479662967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4252807520051894478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d29c3d7488f1255409e59757c5df2250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _LocalWalletAddress: 
 --- !u!33 &8580229899205145702
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -562,6 +576,7 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 8795949776479662967}
   - {fileID: 2595136303920247731}
   - {fileID: -3334969266110531944}
   ForceRemoteRenderTimeframe: 0

@@ -32,7 +32,7 @@ public class PlayerMovement : NetworkBehaviour
 
         if (isGrounded)
         {
-            Debug.Log("Player is grounded");
+            //Debug.Log("Player is grounded");
             // Reset vertical velocity when grounded.
             _velocity.y = 0f;
 

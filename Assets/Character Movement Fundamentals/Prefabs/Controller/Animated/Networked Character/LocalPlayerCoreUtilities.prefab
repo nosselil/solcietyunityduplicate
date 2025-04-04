@@ -30,7 +30,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7420943166147145251}
-  - {fileID: 9199933759025385037}
   - {fileID: 8164760733175066924}
   m_Father: {fileID: 6315731933398781738}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -282,6 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1574966712586255894}
   - component: {fileID: 1560944097915321710}
+  - component: {fileID: 7331332519975947913}
   - component: {fileID: 5248582728754627885}
   m_Layer: 0
   m_Name: PrivateChatRespondentSelectionPopUp
@@ -321,6 +321,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801167241268479815}
   m_CullTransparentMesh: 1
+--- !u!114 &7331332519975947913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801167241268479815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc692d8e6b6cc545ad354532e2cf2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respondentButtonListParent: {fileID: 6738215817839570602}
+  noRespondentsAvailableText: {fileID: 5484791181724512830}
+  respondentButtonPrefab: {fileID: 668731398709777765, guid: 9f1fd86cb710b5a4e9de7147d30ca6a8, type: 3}
 --- !u!114 &5248582728754627885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,7 +486,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3050704102430677065}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1767116183287255892}
+        m_TargetAssemblyTypeName: LocalChatWindowController, Assembly-CSharp
+        m_MethodName: OpenPrivateChatRespondentSelectionPopUp
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &2342614293899336912
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +891,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7102843829125676561}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1767116183287255892}
+        m_TargetAssemblyTypeName: LocalChatWindowController, Assembly-CSharp
+        m_MethodName: OpenPrivateChatRespondentSelectionPopUp
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3808400269994783270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2240,9 +2279,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d4d9500bbb77140a1c30533462c257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chatWindowTabParent: {fileID: 0}
-  privateChatWindowTabPrefab: {fileID: 0}
-  privateChatRespondentSelectionPopUp: {fileID: 0}
+  chatWindowTabParent: {fileID: 15119965776524845}
+  privateChatWindowTabPrefab: {fileID: 9175936887153079320, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
+  privateChatRespondentSelectionPopUp: {fileID: 801167241268479815}
+  fullChatText: {fileID: 974879442459224728}
 --- !u!223 &6694622559969598355
 Canvas:
   m_ObjectHideFlags: 0
@@ -2818,110 +2858,4 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5807100225980209653, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
   m_PrefabInstance: {fileID: 481725652070996646}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &8963081011583533198
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 3222030289806426314}
-    m_Modifications:
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 320
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9175936887153079320, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_Name
-      value: PrivateChatButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 9175936887153079320, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
---- !u!224 &9199933759025385037 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 274712652233133763, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-  m_PrefabInstance: {fileID: 8963081011583533198}
   m_PrefabAsset: {fileID: 0}

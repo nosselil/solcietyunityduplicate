@@ -4,6 +4,7 @@ using Language.Lua;
 using NUnit.Framework;
 using Solana.Unity.Soar.Types;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,12 +16,14 @@ public class MultiplayerChat : NetworkBehaviour
     // Other keys are associated with players' wallet ids
     private Dictionary<string, List<string>> chatMessages = new ();
 
-    // Assume this dictionary is declared as a local (non-networked) member of your class.
-    private Dictionary<int, string> playerWallets = new();
+    //    Dictionary<int, string> playerWallets = new();
 
-    string localWalletAddress; // TODO: Change later on with the actual wallet address // TODO: Probably shouldn't be public
+    //[Networked] // TODO: Adjust capacity    
+    //private Dictionary<int, string> PlayerWallets => default;
+    private HashSet<string> PlayerWallets = new();
 
-    [SerializeField] TextMeshProUGUI fullChatText;
+    public string localWalletAddress; // This will be set to player object's LocalWalletAddress, which is a networked variable
+    
     [SerializeField] TMP_InputField chatMessageInputText;
 
     [SerializeField] GameObject chatParent;
@@ -35,22 +38,13 @@ public class MultiplayerChat : NetworkBehaviour
         chatParent.SetActive(false); // Hide chat at first
         chatMessages["public"] = new List<string>();
     }
-    
-    public string AssignMockWalletAddress()
-    {
-        int cloneIndex = GetCloneIndex();
-        Debug.Log("Clone index " + cloneIndex);
-
-        localWalletAddress = GenerateLocalWalletAddress(cloneIndex); // Read stored address or generate a new one, one address per ParrelSync clone
-        Debug.Log("Mock address for client is " + localWalletAddress);
-
-        return localWalletAddress;
-    }
 
     public string[] GetActivePlayerList() // Used with private chats
     {
-        return null;
+        return PlayerWallets.ToArray();
     }
+
+
 
     void SetChatActive(bool active)
     {
@@ -65,10 +59,24 @@ public class MultiplayerChat : NetworkBehaviour
             Debug.Log("CHAT: Toggle chat parent active");
             chatParent.SetActive(!chatParent.activeInHierarchy); // Toggle chat parent activity
         }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Debug.Log("Printing networked hashset contents:");
+            foreach (string wallet in PlayerWallets)
+            {
+                Debug.Log($"WalletAddress: {wallet}");
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+            UpdateWalletAddressCollection(); // Make sure each client has an updated copy of the wallet addresses
     }
 
     public void OnInputFinished()
     {
+        Debug.Log("CHAT: On Input finished");
+
         // Check for Enter key press (may be frame-dependent)
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
@@ -86,6 +94,7 @@ public class MultiplayerChat : NetworkBehaviour
             // To send a private message, call with the target wallet address instead:
             // SendChatMessageRpc(newMessage, targetWalletAddress);
         }
+        
     }
 
     // RPC: Called on all clients to update messages for a given conversation.
@@ -101,8 +110,8 @@ public class MultiplayerChat : NetworkBehaviour
         if (targetWalletAddress == "public" || string.IsNullOrEmpty(targetWalletAddress))
         {
             chatMessages["public"].Add(newMessage);
-            fullChatText.text = string.Join("\n", chatMessages["public"].ToArray());
-            Debug.Log("CHAT: Full public chat text is now: " + fullChatText.text);
+            LocalChatWindowController.Instance.SetChatText(chatMessages["public"]);
+                //fullChatText.text = string.Join("\n", chatMessages["public"].ToArray());            
         }
         else
         {
@@ -119,14 +128,30 @@ public class MultiplayerChat : NetworkBehaviour
         }
     }
 
-    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void UpdateWalletAddressCollection()
+    {
+        GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("NetworkedPlayer");
+        foreach (GameObject playerObject in playerObjects)
+        {
+            // Assume every spawned player object has a PlayerAttributes component.
+            PlayerAttributes attr = playerObject.GetComponent<PlayerAttributes>();
+            if (attr != null && !string.IsNullOrEmpty(attr.LocalWalletAddress))
+            {
+                // Add the wallet address to the HashSet.
+                PlayerWallets.Add(attr.LocalWalletAddress);
+            }
+        }
+    }
+
+
+    /*[Rpc(RpcSources.All, RpcTargets.All)]
     public void RegisterWalletAddressRpc(int playerId, string walletAddress, RpcInfo info = default) // Consider making private and refactoring this
     {
-        Debug.Log($"Registering wallet address '{walletAddress}' for player ID {playerId}");
+        Debug.Log($"WALLET: Registering wallet address '{walletAddress}' for player ID {playerId}");
 
         // Find and remove any duplicate wallet addresses associated with a different playerId.
         List<int> keysToRemove = new List<int>();
-        foreach (var kvp in playerWallets)
+        foreach (var kvp in PlayerWallets)
         {
             if (kvp.Value == walletAddress && kvp.Key != playerId)
             {
@@ -135,16 +160,17 @@ public class MultiplayerChat : NetworkBehaviour
         }
         foreach (int key in keysToRemove)
         {
-            playerWallets.Remove(key);
+            PlayerWallets.Remove(key);
             Debug.Log($"Removed duplicate wallet address for player ID {key}");
         }
 
         // Add or update the wallet address for the specified playerId.
-        playerWallets[playerId] = walletAddress;
-        Debug.Log($"Updated wallet dictionary: {string.Join(", ", playerWallets)}");
-    }
+        //PlayerWallets.Set(playerId, walletAddress); // For networked dictionary
+        PlayerWallets[playerId] = walletAddress;
+        Debug.Log($"Updated wallet dictionary: {string.Join(", ", PlayerWallets)}");
+    }*/
 
-
+    #region helpers
 
     // Helper method to shorten a wallet address.
     private string ShortenWalletAddress(string walletAddress)
@@ -180,13 +206,24 @@ public class MultiplayerChat : NetworkBehaviour
         return walletAddress;
     }
 
+    public string AssignMockWalletAddress()
+    {
+        int cloneIndex = GetCloneIndex();
+        //Debug.Log("Clone index " + cloneIndex);
+
+        localWalletAddress = GenerateLocalWalletAddress(cloneIndex); // Read stored address or generate a new one, one address per ParrelSync clone
+        Debug.Log("Mock address for client is " + localWalletAddress);
+
+        return localWalletAddress;
+    }
+
     public int GetCloneIndex() // 0 if not clone, 1 if clone
     {
         string[] args = System.Environment.GetCommandLineArgs();
-        Debug.Log("Command line args:");
+        //Debug.Log("Command line args:");
         foreach (string arg in args)
         {
-            Debug.Log("Command line: " + arg);
+            //Debug.Log("Command line: " + arg);
             if (arg.ToLower().Contains("clone"))
             {
                 return 1;
@@ -194,4 +231,6 @@ public class MultiplayerChat : NetworkBehaviour
         }
         return 0;
     }
+
+    #endregion
 }
