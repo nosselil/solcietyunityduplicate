@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Fusion.Addons.SimpleKCC;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +8,9 @@ namespace CMF
 	//This script controls the character's animation by passing velocity values and other information ('isGrounded') to an animator component;
 	public class AnimationControl : MonoBehaviour {
 
-		Controller controller;
-		Animator animator;
+        public SimpleKCC KCC;
+        //Controller controller;
+        Animator animator;
 		Transform animatorTransform;
 		Transform tr;
 
@@ -24,7 +26,8 @@ namespace CMF
 
 		//Setup;
 		void Awake () {
-			controller = GetComponent<Controller>();
+			//controller = GetComponent<Controller>();
+			KCC = GetComponent<SimpleKCC>();
 			animator = GetComponentInChildren<Animator>();
 			animatorTransform = animator.transform;
 
@@ -35,23 +38,23 @@ namespace CMF
 		void OnEnable()
 		{
 			//Connect events to controller events;
-			controller.OnLand += OnLand;
-			controller.OnJump += OnJump;
+			//controller.OnLand += OnLand;
+			//controller.OnJump += OnJump;
 		}
 
 		//OnDisable;
 		void OnDisable()
 		{
 			//Disconnect events to prevent calls to disabled gameobjects;
-			controller.OnLand -= OnLand;
-			controller.OnJump -= OnJump;
+			//controller.OnLand -= OnLand;
+			//controller.OnJump -= OnJump;
 		}
 		
 		//Update;
 		void Update () {
 
 			//Get controller velocity;
-			Vector3 _velocity = controller.GetVelocity();
+			Vector3 _velocity = KCC.RealVelocity; //controller.GetVelocity();
 
 			//Split up velocity;
 			Vector3 _horizontalVelocity = VectorMath.RemoveDotVector(_velocity, tr.up);
@@ -73,7 +76,7 @@ namespace CMF
 			}
 
 			//Pass values to animator;
-			animator.SetBool("IsGrounded", controller.IsGrounded());
+			animator.SetBool("IsGrounded", KCC.IsGrounded /*controller.IsGrounded()*/);
 			animator.SetBool("IsStrafing", useStrafeAnimations);
 		}
 

@@ -1,4 +1,5 @@
 using CMF;
+using Starter.Platformer;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.AudioSettings;
@@ -35,16 +36,19 @@ public class PlayerSetup : MonoBehaviour
         cameraTransform.GetComponentInChildren<CameraDistanceRaycaster>().ignoreList[0] = GetComponent<CapsuleCollider>();
         
         // Character keyboard input
-
         CharacterKeyboardInput characterKeyboardInput = GetComponent<CharacterKeyboardInput>();        
         characterKeyboardInput.joystick = mobileUI.Find("JoyStickBase").GetComponent<Joystick>();
         characterKeyboardInput.jumpButton = mobileUI.Find("JumpBtn").GetComponent<Button>();
         characterKeyboardInput.interactBtn = mobileUI.Find("InteractBtn").GetComponent<Button>();
         characterKeyboardInput.thirdPersonCameraController = cameraTransform.GetComponentInChildren<ThirdPersonCameraController>();
 
+        // Player
+        GetComponent<Starter.Platformer.Player>().cameraTransform = FindChildWithTag(cameraTransform, "CameraControls"); // TODO: Proper namespace referencing
+        // CameraControls-tagged object is not actually the object that has the camera controls, but its rotation is the same as the camera's so we can use its transform
+
         // Advanced Walker Controller
-        AdvancedWalkerController advancedWalkerController = GetComponent<AdvancedWalkerController>();
-        advancedWalkerController.cameraTransform = FindChildWithTag(cameraTransform, "CameraControls");
+        //AdvancedWalkerController advancedWalkerController = GetComponent<AdvancedWalkerController>();
+        //advancedWalkerController.cameraTransform = FindChildWithTag(cameraTransform, "CameraControls");
 
         #endregion
 
