@@ -41,6 +41,9 @@ TagManager:
   - LocalPlayerChatCanvas
   - LocalPlayerCamera
   - NetworkedPlayer
+  - CinemachineTarget
+  - Jumper
+  - CameraControls
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 using CMF;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.AudioSettings;
 
 public class PlayerSetup : MonoBehaviour
@@ -28,6 +29,19 @@ public class PlayerSetup : MonoBehaviour
         // Camera
         cameraTransform.GetComponent<SmoothPosition>().target = transform;
         cameraTransform.GetComponent<SmoothRotation>().target = transform;
+        cameraTransform.GetComponentInChildren<CameraDistanceRaycaster>().ignoreList[0] = GetComponent<CapsuleCollider>();
+        
+        // Character keyboard input
+
+        CharacterKeyboardInput characterKeyboardInput = GetComponent<CharacterKeyboardInput>();        
+        characterKeyboardInput.joystick = mobileUI.Find("JoyStickBase").GetComponent<Joystick>();
+        characterKeyboardInput.jumpButton = mobileUI.Find("JumpBtn").GetComponent<Button>();
+        characterKeyboardInput.interactBtn = mobileUI.Find("InteractBtn").GetComponent<Button>();
+        characterKeyboardInput.thirdPersonCameraController = cameraTransform.GetComponentInChildren<ThirdPersonCameraController>();
+
+        // Advanced Walker Controller
+        AdvancedWalkerController advancedWalkerController = GetComponent<AdvancedWalkerController>();
+        advancedWalkerController.cameraTransform = FindChildWithTag(cameraTransform, "CameraControls");
 
         Debug.Log("SMOOTH: cameraTransform.smoothPosition GO: " + cameraTransform.gameObject.name + ", target transform: " + cameraTransform.GetComponent<SmoothPosition>().target + " current object name: " + gameObject.name);
         Debug.Log("SMOOTH: cameraTransform.smoothRotation GO: " + cameraTransform.gameObject.name + " target transform: " + cameraTransform.GetComponent<SmoothRotation>().target + ", current object name: " + gameObject.name);
@@ -41,7 +55,18 @@ public class PlayerSetup : MonoBehaviour
 
     }
 
-
+    public Transform FindChildWithTag(Transform parent, string tag)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.CompareTag(tag))
+                return child;
+            Transform result = FindChildWithTag(child, tag);
+            if (result != null)
+                return result;
+        }
+        return null;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

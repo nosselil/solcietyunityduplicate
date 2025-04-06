@@ -94,12 +94,12 @@ using System.Net.Http;
        isMobile = false;
         //    deviceText.text = "NOT MB";
         }
-#else
-            deviceTxt.gameObject.SetActive(false);
+#else            
             isMobile = false;
-            //    deviceText.text = "NOT MB";
+            deviceTxt.gameObject.SetActive(false);
+        //    deviceText.text = "NOT MB";
 #endif
-        }
+    }
 
         #endregion
 

@@ -56,6 +56,8 @@ namespace CMF
 		void Awake () {
 			tr = transform;
 
+			ignoreList = new Collider[1]; // Initialize this via code to prevent errors before the player is initialized and its collider linked to the camera
+
             //Setup array to store ignore list layers;
             ignoreListLayers = new int[ignoreList.Length];
 
