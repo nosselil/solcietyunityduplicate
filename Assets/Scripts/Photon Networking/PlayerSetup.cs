@@ -26,6 +26,9 @@ public class PlayerSetup : MonoBehaviour
 
         // Link these to the local player
 
+        // Core dependencies are used in all scenes
+        #region Core Depedencies
+
         // Camera
         cameraTransform.GetComponent<SmoothPosition>().target = transform;
         cameraTransform.GetComponent<SmoothRotation>().target = transform;
@@ -42,6 +45,30 @@ public class PlayerSetup : MonoBehaviour
         // Advanced Walker Controller
         AdvancedWalkerController advancedWalkerController = GetComponent<AdvancedWalkerController>();
         advancedWalkerController.cameraTransform = FindChildWithTag(cameraTransform, "CameraControls");
+
+        #endregion
+
+        // The following dependencies are only used in certain scenes, and will have to be assigned to the "DependencyContainer" component under LocalPlayerUtilities object
+        #region Scene-Specific Dependencies 
+
+        DependencyContainer dependencyContainer = coreUtils.GetComponentInChildren<DependencyContainer>();
+
+        // NFT Interaction
+        NFTInteraction nftInteraction = GetComponent<NFTInteraction>();
+        nftInteraction.popupPanel = dependencyContainer.popupPanel;
+        nftInteraction.artistText = dependencyContainer.artistText;
+        nftInteraction.artworkText = dependencyContainer.artworkText;
+        nftInteraction.artworkText2 = dependencyContainer.artworkText2;
+        nftInteraction.artworkImage = dependencyContainer.artworkImage;
+        nftInteraction.buyNFTfromGalleryScript = dependencyContainer.buyNFTfromGalleryScript;
+
+        // TextMeshFader
+        TextMeshFader textMeshFader = GetComponent<TextMeshFader>();
+        textMeshFader.textMeshes = dependencyContainer.textMeshes;
+
+        #endregion
+
+        //nftInteraction
 
         Debug.Log("SMOOTH: cameraTransform.smoothPosition GO: " + cameraTransform.gameObject.name + ", target transform: " + cameraTransform.GetComponent<SmoothPosition>().target + " current object name: " + gameObject.name);
         Debug.Log("SMOOTH: cameraTransform.smoothRotation GO: " + cameraTransform.gameObject.name + " target transform: " + cameraTransform.GetComponent<SmoothRotation>().target + ", current object name: " + gameObject.name);
