@@ -101,9 +101,9 @@ namespace Starter.Platformer
         }
 
         public override void Render()
-        {
-            //Animator.SetFloat(_animIDSpeed, KCC.RealSpeed);
-            //Animator.SetBool(_animIDGrounded, KCC.IsGrounded);
+        {            
+            Animator.SetFloat(_animIDSpeed, KCC.RealSpeed);
+            Animator.SetBool(_animIDGrounded, KCC.IsGrounded);
 
             //FootstepSound.enabled = KCC.IsGrounded && KCC.RealSpeed > 1f;
             //FootstepSound.pitch = KCC.RealSpeed > SprintSpeed - 1 ? 1.5f : 1f;
@@ -116,7 +116,7 @@ namespace Starter.Platformer
 
         private void Awake()
         {
-            //AssignAnimationIDs();
+            AssignAnimationIDs();
         }
 
         private void LateUpdate()
@@ -138,53 +138,57 @@ namespace Starter.Platformer
 
             if (KCC.IsGrounded && input.Jump)
             {
-                // Set world space jump vector
+                // Set world space jump vector.
                 jumpImpulse = JumpImpulse;
                 _isJumping = true;
             }
 
-            // It feels better when the player falls quicker
+            // Adjust gravity based on whether the player is rising or falling.
             KCC.SetGravity(KCC.RealVelocity.y >= 0f ? UpGravity : DownGravity);
 
             float speed = input.Sprint ? SprintSpeed : WalkSpeed;
 
-            //Debug.Log("CAMERA MAIN: " + Camera.main.name);
-            var lookRotation = Quaternion.Euler(0f, cameraTransform.eulerAngles.y, 0f); //Quaternion.Euler(0f, input.LookRotation.y, 0f);
+            var lookRotation = Quaternion.Euler(0f, input.LookRotation.y, 0f);
 
-            // Calculate correct move direction from input (rotated based on camera look)
-            var moveDirection = lookRotation * new Vector3(input.MoveDirection.x, 0f, input.MoveDirection.y);
-            var desiredMoveVelocity = moveDirection * speed;
+            // Calculate movement direction using input values.
+            //Vector3 moveDirection = cameraForward * input.MoveDirection.y + cameraRight * input.MoveDirection.x;
+
+
+            // Calculate movement direction using the camera's forward and right vectors.
+            // Here, input.MoveDirection.y maps to forward/backward and input.MoveDirection.x maps to right/left.
+            var moveDirection = lookRotation * new Vector3(input.MoveDirection.x, 0f, input.MoveDirection.y);            
+            Vector3 desiredMoveVelocity = moveDirection * speed;
 
             float acceleration;
             if (desiredMoveVelocity == Vector3.zero)
             {
-                // No desired move velocity - we are stopping
+                // If there's no input, use deceleration.
                 acceleration = KCC.IsGrounded ? GroundDeceleration : AirDeceleration;
             }
             else
             {
-                // Rotate the character towards move direction over time
-                var currentRotation = KCC.TransformRotation;
-                var targetRotation = Quaternion.LookRotation(moveDirection);
-                var nextRotation = Quaternion.Lerp(currentRotation, targetRotation, RotationSpeed * Runner.DeltaTime);
-
+                // Rotate the character smoothly towards the move direction.
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+                Quaternion nextRotation = Quaternion.Lerp(KCC.TransformRotation, targetRotation, RotationSpeed * Runner.DeltaTime);
                 KCC.SetLookRotation(nextRotation.eulerAngles);
 
                 acceleration = KCC.IsGrounded ? GroundAcceleration : AirAcceleration;
             }
 
+            // Smoothly interpolate to the desired velocity.
             _moveVelocity = Vector3.Lerp(_moveVelocity, desiredMoveVelocity, acceleration * Runner.DeltaTime);
 
+            // Move the character controller with the calculated velocity and any jump impulse.
             KCC.Move(_moveVelocity, jumpImpulse);
-
         }
 
-        /*private void AssignAnimationIDs()
+
+        private void AssignAnimationIDs()
         {
             _animIDSpeed = Animator.StringToHash("Speed");
             _animIDGrounded = Animator.StringToHash("Grounded");
-        }*/
+        }
 
-        
+
     }
 }

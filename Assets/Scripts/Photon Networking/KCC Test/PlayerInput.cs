@@ -48,8 +48,8 @@ namespace Starter.Platformer
 			// Accumulate input from Keyboard/Mouse. Input accumulation is mandatory (at least for look rotation here) as Update can be
 			// called multiple times before next FixedUpdateNetwork is called - common if rendering speed is faster than Fusion simulation.
 
-			//var lookRotationDelta = new Vector2(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X"));
-			//_input.LookRotation = ClampLookRotation(_input.LookRotation + lookRotationDelta);
+			var lookRotationDelta = new Vector2(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X"));
+			_input.LookRotation = ClampLookRotation(_input.LookRotation + lookRotationDelta);
 
 			var moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 			_input.MoveDirection = moveDirection.normalized;
@@ -60,10 +60,10 @@ namespace Starter.Platformer
 			Debug.Log("KCC: Move direction: " + _input.MoveDirection + ", jump: " + _input.Jump);
 		}
 
-		/*private Vector2 ClampLookRotation(Vector2 lookRotation)
+		private Vector2 ClampLookRotation(Vector2 lookRotation)
 		{
 			lookRotation.x = Mathf.Clamp(lookRotation.x, -30f, 70f);
 			return lookRotation;
-		}*/
+		}
 	}
 }
