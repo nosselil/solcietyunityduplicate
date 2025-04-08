@@ -16,7 +16,7 @@ public class LocalChatWindowController : MonoBehaviour
     [SerializeField] GameObject chatWindowTabParent;
     [SerializeField] GameObject privateChatWindowTabPrefab;
 
-    [SerializeField] GameObject privateChatRespondentSelectionPopUp;
+    [SerializeField] GameObject privateChatRecipientSelectionPopUp;
 
     [SerializeField] TextMeshProUGUI fullChatText;
 
@@ -34,17 +34,17 @@ public class LocalChatWindowController : MonoBehaviour
         chatWindowPlayerIds.Add("public"); // First tab is always the public chat
         activeChatWindowIndex = 0;
 
-        OpenPrivateChatRespondentSelectionPopUp(false); // Close this at first
+        OpenPrivateChatRecipientSelectionPopUp(false); // Close this at first
         ActivateCurrentChatWindow();
     }
 
     // Bring up a pop-up that lists the players who you want to chat with    
-    public void OpenPrivateChatRespondentSelectionPopUp(bool active)
+    public void OpenPrivateChatRecipientSelectionPopUp(bool active)
     {        
-        privateChatRespondentSelectionPopUp.SetActive(active);
+        privateChatRecipientSelectionPopUp.SetActive(active);
 
         if (active)
-            privateChatRespondentSelectionPopUp.GetComponent<PrivateChatRespondentSelectionPopUp>().GenerateRespondentButtons();
+            privateChatRecipientSelectionPopUp.GetComponent<PrivateChatRecipientSelectionPopUp>().GenerateRecipientButtons();
         
     }
 
@@ -59,12 +59,12 @@ public class LocalChatWindowController : MonoBehaviour
         ActivateCurrentChatWindow(); // Fetch the texts for the current window when this is re-opened
     }
 
-    public void StartNewPrivateChat(string respondentName)
+    public void StartNewPrivateChat(string recipientName)
     {
-        AddNewPrivateChatWindow(respondentName);
+        AddNewPrivateChatWindow(recipientName);
         //SetActiveChatWindow
         //Set chatWindowText, if not done in setActiveChatWindow
-        OpenPrivateChatRespondentSelectionPopUp(false); // Close the selection pop-up
+        OpenPrivateChatRecipientSelectionPopUp(false); // Close the selection pop-up
     }
 
     public string GetActivePrivateChatWindowPlayerId()
@@ -97,7 +97,7 @@ public class LocalChatWindowController : MonoBehaviour
         Button button = newPrivateChatWindowTab.GetComponent<Button>();
         button.onClick.AddListener(() =>
         {
-            Debug.Log("Respondent tab clicked, sibling index: " + siblingIndex);
+            Debug.Log("Recipient tab clicked, sibling index: " + siblingIndex);
             ActivateChatWindow(siblingIndex);
         });
         

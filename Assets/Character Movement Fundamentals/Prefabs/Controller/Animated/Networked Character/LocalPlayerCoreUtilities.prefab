@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 7331332519975947913}
   - component: {fileID: 5248582728754627885}
   m_Layer: 0
-  m_Name: PrivateChatRespondentSelectionPopUp
+  m_Name: PrivateChatRecipientSelectionPopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,9 +302,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc692d8e6b6cc545ad354532e2cf2b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respondentButtonListParent: {fileID: 6738215817839570602}
-  noRespondentsAvailableText: {fileID: 5484791181724512830}
-  respondentButtonPrefab: {fileID: 668731398709777765, guid: 9f1fd86cb710b5a4e9de7147d30ca6a8, type: 3}
+  recipientButtonListParent: {fileID: 6738215817839570602}
+  noRecipientsAvailableText: {fileID: 5484791181724512830}
+  recipientButtonPrefab: {fileID: 668731398709777765, guid: 9f1fd86cb710b5a4e9de7147d30ca6a8, type: 3}
 --- !u!114 &5248582728754627885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +458,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1767116183287255892}
         m_TargetAssemblyTypeName: LocalChatWindowController, Assembly-CSharp
-        m_MethodName: OpenPrivateChatRespondentSelectionPopUp
+        m_MethodName: OpenPrivateChatRecipientSelectionPopUp
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -938,7 +938,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1767116183287255892}
         m_TargetAssemblyTypeName: LocalChatWindowController, Assembly-CSharp
-        m_MethodName: OpenPrivateChatRespondentSelectionPopUp
+        m_MethodName: OpenPrivateChatRecipientSelectionPopUp
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2136,7 +2136,7 @@ GameObject:
   - component: {fileID: 2834535347960470375}
   - component: {fileID: 381134963317594223}
   m_Layer: 0
-  m_Name: RespondentButtonList
+  m_Name: RecipientButtonList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2280,7 +2280,7 @@ MonoBehaviour:
   activeChatWindowIndex: 0
   chatWindowTabParent: {fileID: 15119965776524845}
   privateChatWindowTabPrefab: {fileID: 9175936887153079320, guid: 64258883bdb3be34d8e17fdbe4c62518, type: 3}
-  privateChatRespondentSelectionPopUp: {fileID: 801167241268479815}
+  privateChatRecipientSelectionPopUp: {fileID: 801167241268479815}
   fullChatText: {fileID: 974879442459224728}
   chatWindowPlayerIds: []
 --- !u!223 &6694622559969598355
@@ -2526,7 +2526,7 @@ GameObject:
   - component: {fileID: 4908161608213255524}
   - component: {fileID: 2773723480982242498}
   m_Layer: 0
-  m_Name: SelectRespondentText
+  m_Name: SelectRecipientText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

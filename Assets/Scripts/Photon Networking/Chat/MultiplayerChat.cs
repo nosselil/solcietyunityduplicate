@@ -55,7 +55,7 @@ public class MultiplayerChat : NetworkBehaviour
         if (NetworkController.Instance == null)
             return;
 
-        if (NetworkController.Instance.localPlayerSpawned && (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))) /*Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))*/
+        if (NetworkController.Instance.localPlayerSpawned && Input.GetKeyDown(KeyCode.Tab)) /*Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))*/
         {
             Debug.Log("CHAT: Toggle chat parent active");
             chatParent.SetActive(!chatParent.activeInHierarchy); // Toggle chat parent activity
@@ -82,7 +82,7 @@ public class MultiplayerChat : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             // Create a shortened version of the wallet address.
-            string shortenedAddress = ShortenWalletAddress(localWalletAddress);
+            string shortenedAddress = WalletUtilities.ShortenWalletAddress(localWalletAddress);
             // Include the local player id (for debug purposes).
             int playerId = Runner.LocalPlayer.PlayerId;
             string newMessage = shortenedAddress + ": " + chatMessageInputText.text;
@@ -199,18 +199,6 @@ public class MultiplayerChat : NetworkBehaviour
     }*/
 
     #region helpers
-
-    // Helper method to shorten a wallet address.
-    private string ShortenWalletAddress(string walletAddress)
-    {
-        if (string.IsNullOrEmpty(walletAddress) || walletAddress.Length <= 10)
-            return walletAddress;
-
-        // Get the first 5 characters and the last 3 characters.
-        string firstPart = walletAddress.Substring(0, 5);
-        string lastPart = walletAddress.Substring(walletAddress.Length - 3);
-        return firstPart + ".." + lastPart;
-    }
 
     public string GenerateLocalWalletAddress(int mockWalletKey = 0) // TODO: Remove when done with testing
     {

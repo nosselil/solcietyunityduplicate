@@ -1,4 +1,5 @@
 using Fusion;
+using Starter;
 using UnityEngine;
 
 public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Originally SimulationBehaviour
@@ -27,13 +28,17 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
 
             // Generate and assign a mock wallet address for the local player.
             string localWalletAddress = MultiplayerChat.Instance.AssignMockWalletAddress();
-            Debug.Log("WALLET: Generated local wallet address: " + localWalletAddress);
-
+            
             // Set the local wallet address on the player's attributes.
             PlayerAttributes attributes = go.GetComponent<PlayerAttributes>();
             if (attributes != null)
             {
                 attributes.LocalWalletAddress = localWalletAddress;
+                //attributes.Nickname = WalletUtilities.ShortenWalletAddress(localWalletAddress); // NOTE: We're currently using separate variables for these, since we may later on have a nickname through Solana Name Service, which
+                // is separate from the walletAddress
+                //attributes.CapColorIndex = player.PlayerId - 1; // Or call SetCapColorIndex(..) if you have additional logic.
+                attributes.SetCapColorIndex(player.PlayerId - 1);
+                Debug.Log("CAP: Set nickname and cap color index (" + (player.PlayerId - 1) + ")");                
             }
             else
             {

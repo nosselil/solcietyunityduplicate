@@ -45,10 +45,9 @@ namespace Starter.Platformer
         [Header("VFX")]
         public ParticleSystem DustParticles;
 
-        [Networked, HideInInspector, Capacity(24)] //, OnChangedRender(nameof(OnNicknameChanged))]
-        public string Nickname { get; set; }
-        [Networked, HideInInspector]
-        public int CollectedCoins { get; set; }
+
+        //[Networked, HideInInspector]
+        //public int CollectedCoins { get; set; }
 
         [Networked]
         private NetworkBool _isJumping { get; set; }
@@ -69,10 +68,10 @@ namespace Starter.Platformer
 
             _moveVelocity = Vector3.zero;
 
-            if (resetCoins)
+            /*if (resetCoins)
             {
                 CollectedCoins = 0;
-            }
+            }*/
         }
 
         public override void Spawned()
@@ -81,7 +80,7 @@ namespace Starter.Platformer
             {                
 
                 // Set player nickname that is saved in UIGameMenu
-                Nickname = PlayerPrefs.GetString("PlayerName");
+               // Nickname = PlayerPrefs.GetString("PlayerName");
             }
 
             // In case the nickname is already changed,
@@ -164,10 +163,6 @@ namespace Starter.Platformer
             float speed = input.Sprint ? SprintSpeed : WalkSpeed;
 
             var lookRotation = Quaternion.Euler(0f, input.LookRotation.y, 0f);
-
-            // Calculate movement direction using input values.
-            //Vector3 moveDirection = cameraForward * input.MoveDirection.y + cameraRight * input.MoveDirection.x;
-
 
             // Calculate movement direction using the camera's forward and right vectors.
             // Here, input.MoveDirection.y maps to forward/backward and input.MoveDirection.x maps to right/left.

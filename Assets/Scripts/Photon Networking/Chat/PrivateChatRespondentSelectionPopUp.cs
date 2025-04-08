@@ -2,12 +2,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PrivateChatRespondentSelectionPopUp : MonoBehaviour
+public class PrivateChatRecipientSelectionPopUp : MonoBehaviour
 {
-    [SerializeField] GameObject respondentButtonListParent;
-    [SerializeField] GameObject noRespondentsAvailableText;
+    [SerializeField] GameObject recipientButtonListParent;
+    [SerializeField] GameObject noRecipientsAvailableText;
 
-    [SerializeField] GameObject respondentButtonPrefab; // TODO: Object pooling could be used to prevent instantion but doesn't optimize that much
+    [SerializeField] GameObject recipientButtonPrefab; // TODO: Object pooling could be used to prevent instantion but doesn't optimize that much
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,72 +21,72 @@ public class PrivateChatRespondentSelectionPopUp : MonoBehaviour
         
     }
 
-    public void GenerateRespondentButtons()
+    public void GenerateRecipientButtons()
     {
         // Clear previous buttons.
-        foreach (Transform child in respondentButtonListParent.transform)
+        foreach (Transform child in recipientButtonListParent.transform)
             Destroy(child.gameObject);
 
-        string[] respondents = MultiplayerChat.Instance.GetActivePlayerList();
+        string[] recipients = MultiplayerChat.Instance.GetActivePlayerList();
 
-        // If there are no respondents (other than ourselves), show "no respondents available" text.
-        // Note: respondents array includes the local wallet as well.
-        if (respondents.Length <= 1)
+        // If there are no recipients (other than ourselves), show "no recipients available" text.
+        // Note: recipients array includes the local wallet as well.
+        if (recipients.Length <= 1)
         {
-            noRespondentsAvailableText.SetActive(true);
+            noRecipientsAvailableText.SetActive(true);
             return;
         }
 
         int buttonsCreated = 0;
-        noRespondentsAvailableText.SetActive(false);
+        noRecipientsAvailableText.SetActive(false);
 
-        // Loop through each respondent in the list
-        foreach (string respondent in respondents)
+        // Loop through each recipient in the list
+        foreach (string recipient in recipients)
         {
             // Skip creating a button for the local player
-            if (respondent == MultiplayerChat.Instance.localWalletAddress || MultiplayerChat.Instance.chatMessages.ContainsKey(respondent))
+            if (recipient == MultiplayerChat.Instance.localWalletAddress || MultiplayerChat.Instance.chatMessages.ContainsKey(recipient))
                 continue;
             
-            // Instantiate a new respondent button.
-            GameObject newRespondentButtonGO = Instantiate(respondentButtonPrefab);
-            newRespondentButtonGO.transform.SetParent(respondentButtonListParent.transform, false);
+            // Instantiate a new recipient button.
+            GameObject newRecipientButtonGO = Instantiate(recipientButtonPrefab);
+            newRecipientButtonGO.transform.SetParent(recipientButtonListParent.transform, false);
 
-            // Set the button's text to the respondent's wallet address.
-            TextMeshProUGUI buttonText = newRespondentButtonGO.GetComponentInChildren<TextMeshProUGUI>();          
-            buttonText.text = respondent;
+            // Set the button's text to the recipient's wallet address.
+            TextMeshProUGUI buttonText = newRecipientButtonGO.GetComponentInChildren<TextMeshProUGUI>();          
+            buttonText.text = recipient;
             
 
-            // Dynamically bind OnRespondentButtonClicked() to the button's OnClick event
-            Button button = newRespondentButtonGO.GetComponent<Button>();
+            // Dynamically bind OnRecipientButtonClicked() to the button's OnClick event
+            Button button = newRecipientButtonGO.GetComponent<Button>();
             button.onClick.AddListener(() =>
             {
-                OnRespondentButtonClicked();
+                OnRecipientButtonClicked();
             });
 
             buttonsCreated++;
         }
 
-        // If no buttons were created, then show "no respondents available" text
+        // If no buttons were created, then show "no recipients available" text
         if (buttonsCreated == 0)        
-            noRespondentsAvailableText.SetActive(true);        
+            noRecipientsAvailableText.SetActive(true);        
     }
 
 
-    public void OnRespondentButtonClicked()
+    public void OnRecipientButtonClicked()
     {
-        Debug.Log("OnRespondentButtonClicked triggered.");
+        Debug.Log("OnRecipientButtonClicked triggered.");
         // Get the text component from this button's children.
         TextMeshProUGUI buttonText = GetComponentInChildren<TextMeshProUGUI>();
         if (buttonText != null)
         {
             Debug.Log("Text component found on button: " + buttonText.text);
-            string respondentName = buttonText.text;
-            Debug.Log("Respondent name extracted: " + respondentName);
-            LocalChatWindowController.Instance.StartNewPrivateChat(respondentName);
+            string recipientName = buttonText.text;
+            Debug.Log("Recipient name extracted: " + recipientName);
+            LocalChatWindowController.Instance.StartNewPrivateChat(recipientName);
         }
         else
         {
-            Debug.LogWarning("OnRespondentButtonClicked: No TextMeshProUGUI component found on button's children.");
+            Debug.LogWarning("OnRecipientButtonClicked: No TextMeshProUGUI component found on button's children.");
         }
     }
 
