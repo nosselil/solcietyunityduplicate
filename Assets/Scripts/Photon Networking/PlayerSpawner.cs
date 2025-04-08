@@ -10,10 +10,12 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
     {        
         if (player == Runner.LocalPlayer)
         {
+            NetworkController.Instance.localPlayerSpawned = true; // True for this scene
+
             Vector3 localSpawnPosition = new Vector3(-38, -10, 70);
             Debug.Log("The set local spawn position is " + localSpawnPosition);
 
-            NetworkObject spawnedObject = Runner.Spawn(PlayerPrefab, localSpawnPosition, Quaternion.identity, Runner.LocalPlayer);
+            NetworkObject spawnedObject = Runner.Spawn(PlayerPrefab, localSpawnPosition, Quaternion.Euler(new Vector3(0, 180, 0)), Runner.LocalPlayer);
             Runner.SetPlayerObject(player, spawnedObject.gameObject.GetComponent<NetworkObject>());
             Debug.Log("Spawn player at position " + localSpawnPosition);
 

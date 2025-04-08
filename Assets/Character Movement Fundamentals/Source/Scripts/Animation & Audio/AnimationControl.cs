@@ -80,7 +80,7 @@ namespace CMF
 			animator.SetBool("IsStrafing", useStrafeAnimations);
 		}
 
-		void OnLand(Vector3 _v)
+		public void OnLand(Vector3 _v)
 		{
 			//Only trigger animation if downward velocity exceeds threshold;
 			if(VectorMath.GetDotProduct(_v, tr.up) > -landVelocityThreshold)

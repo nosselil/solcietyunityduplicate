@@ -12,9 +12,9 @@ using UnityEngine.UI;
 public class MultiplayerChat : NetworkBehaviour
 {
     // Dictionary where the key is a string:
-    // "" or "public" for public chat messages,
+    // "public" for public chat messages,
     // Other keys are associated with players' wallet ids
-    private Dictionary<string, List<string>> chatMessages = new ();
+    public Dictionary<string, List<string>> chatMessages = new ();
 
     //    Dictionary<int, string> playerWallets = new();
 
@@ -44,8 +44,6 @@ public class MultiplayerChat : NetworkBehaviour
         return PlayerWallets.ToArray();
     }
 
-
-
     void SetChatActive(bool active)
     {
         chatParent.SetActive(active);
@@ -53,8 +51,11 @@ public class MultiplayerChat : NetworkBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) /*Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))*/
+    {
+        if (NetworkController.Instance == null)
+            return;
+
+        if (NetworkController.Instance.localPlayerSpawned && (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))) /*Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))*/
         {
             Debug.Log("CHAT: Toggle chat parent active");
             chatParent.SetActive(!chatParent.activeInHierarchy); // Toggle chat parent activity
@@ -89,48 +90,75 @@ public class MultiplayerChat : NetworkBehaviour
             Debug.Log("CHAT: ENTER PRESSED, sending message: " + newMessage);
 
             // For a public message, use the reserved key "public".
-            SendChatMessageRpc(newMessage, "public");
+            if (LocalChatWindowController.Instance.activeChatWindowIndex == 0)
+                SendChatMessageRpc(newMessage, "public", localWalletAddress);
+            else // Send a private message
+            {
+                // Add this message to our own message list
+                string targetWalletAddress = LocalChatWindowController.Instance.GetActivePrivateChatWindowPlayerId();
+                
+                // This must be initialized, since we must have had the window open to be able to send the message in the first place
+                chatMessages[targetWalletAddress].Add(newMessage);
 
-            // To send a private message, call with the target wallet address instead:
-            // SendChatMessageRpc(newMessage, targetWalletAddress);
-        }
-        
+                SendChatMessageRpc(newMessage, targetWalletAddress, localWalletAddress);
+            }
+        }        
     }
 
     // RPC: Called on all clients to update messages for a given conversation.
     // targetWalletAddress: "public" for public messages, or a specific wallet address for a private conversation.
     [Rpc(RpcSources.All, RpcTargets.All)]
-    void SendChatMessageRpc(string newMessage, string targetWalletAddress, RpcInfo info = default)
+    void SendChatMessageRpc(string newMessage, string targetWalletAddress, string senderWalletAddress, RpcInfo info = default)
     {
         Debug.Log("CHAT: SendChatMessageRpc called with message: " + newMessage +
-                  " for target wallet: " + targetWalletAddress +
+                  " for target wallet: " + targetWalletAddress + ", with sender address " + senderWalletAddress + 
                   ". Source: " + info.Source + " | IsInvokeLocal: " + info.IsInvokeLocal);
 
         // If it's a public message, update the public conversation.
-        if (targetWalletAddress == "public" || string.IsNullOrEmpty(targetWalletAddress))
-        {
-            chatMessages["public"].Add(newMessage);
-            LocalChatWindowController.Instance.SetChatText(chatMessages["public"]);
-                //fullChatText.text = string.Join("\n", chatMessages["public"].ToArray());            
-        }
+        if (targetWalletAddress == "public")        
+            chatMessages["public"].Add(newMessage);                                
         else
         {
-            // For private messages, only add if the local wallet address matches the target.
+            // For private messages, only add the message if the local wallet address matches the target.
             if (localWalletAddress == targetWalletAddress)
             {
-                if (!chatMessages.ContainsKey(targetWalletAddress))
-                {
-                    chatMessages[targetWalletAddress] = new List<string>();
-                }
-                chatMessages[targetWalletAddress].Add(newMessage);
-                Debug.Log("CHAT: Private message received for wallet " + targetWalletAddress);
+                // Add the message to the chat messages sent by this sender
+                if (!chatMessages.ContainsKey(senderWalletAddress))
+                    chatMessages[senderWalletAddress] = new List<string>();
+
+                // In case the chat window doesn't have a tab for this recipient yet, we'll create a tab, but we don't want to set it as the active tab
+                if (!LocalChatWindowController.Instance.chatWindowPlayerIds.Contains(senderWalletAddress))
+                    LocalChatWindowController.Instance.AddNewPrivateChatWindow(senderWalletAddress, false); 
+
+                // TODO: Ideally, this could also be highlighted in some way to notice better that we've got a new message
+
+                chatMessages[senderWalletAddress].Add(newMessage);
+                Debug.Log("CHAT: Private message received for wallet " + senderWalletAddress);
             }
+            else
+                Debug.Log("CHAT: The local Wallet address " + localWalletAddress + " does not match the target wallet address " + targetWalletAddress);
         }
+
+        string activeChatWindowRecipientId = LocalChatWindowController.Instance.GetActiveChatWindowRecipientId();
+
+        // If we currently have the window that received the new message open, update the text immediately.
+        // If we're the sender, then it must be that we have the chat window open (unless there's considerable lag in the RPC call). But even in this case, we just update the other chat window we've opened,
+        // so no harm done here.
+        
+        if (info.IsInvokeLocal || (activeChatWindowRecipientId == "public" && targetWalletAddress == "public") || (activeChatWindowRecipientId == senderWalletAddress))
+        {
+            Debug.Log("CHAT: Update currently active chat window");
+                //"The active chat window recipient id " + LocalChatWindowController.Instance.GetActiveChatWindowRecipientId() + " matches sender wallet address " + senderWalletAddress);
+            LocalChatWindowController.Instance.SetCurrentChatWindowText();
+        }
+        else
+            Debug.Log("CHAT: Don't update the active chat window, currently active window recipient id does not match sender wallet address");
+             
     }
 
     public void UpdateWalletAddressCollection()
     {
-        GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("NetworkedPlayer");
+        GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject playerObject in playerObjects)
         {
             // Assume every spawned player object has a PlayerAttributes component.

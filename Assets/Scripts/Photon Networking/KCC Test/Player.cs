@@ -2,6 +2,7 @@ using UnityEngine;
 using Fusion;
 using Fusion.Addons.SimpleKCC;
 using UnityEngine.InputSystem;
+using CMF;
 
 namespace Starter.Platformer
 {
@@ -10,7 +11,8 @@ namespace Starter.Platformer
     /// </summary>
     public sealed class Player : NetworkBehaviour
     {
-        public Transform cameraTransform;
+        //public Transform cameraTransform;        
+        [SerializeField] AnimationControl animationControl;        
 
         [Header("References")]
         public SimpleKCC KCC;
@@ -56,7 +58,9 @@ namespace Starter.Platformer
         private int _animIDGrounded;
 
         private Vector3 _moveVelocity;
-        
+
+
+        private bool previouslyGrounded = false; // Used to keep track of when we land
 
         public void Respawn(Vector3 position, bool resetCoins)
         {
@@ -87,23 +91,36 @@ namespace Starter.Platformer
 
         public override void FixedUpdateNetwork()
         {
-            Debug.Log("KCC: PLAYER.CS Fixed Update Network, process player input");
+            //if (LocalChatWindowController.Instance.IsChatWindowActive)
+            //    return;
 
             ProcessInput(PlayerInput.CurrentInput);
+            
+            if (!previouslyGrounded && KCC.IsGrounded)
+            {
+                Debug.Log("LAND: Player just landed with velocity " + KCC.RealVelocity);
+                animationControl.OnLand(KCC.RealVelocity);
+            }
 
             if (KCC.IsGrounded)
             {
+                //Debug.Log("KCC: Player.cs Stop jumping");
+                
                 // Stop jumping
                 _isJumping = false;
             }
 
             PlayerInput.ResetInput();
+
+            previouslyGrounded = KCC.IsGrounded;
         }
 
         public override void Render()
         {            
-            Animator.SetFloat(_animIDSpeed, KCC.RealSpeed);
-            Animator.SetBool(_animIDGrounded, KCC.IsGrounded);
+            //Animator.SetFloat(_animIDSpeed, KCC.RealSpeed);
+            //Animator.SetBool(_animIDGrounded, KCC.IsGrounded);
+
+
 
             //FootstepSound.enabled = KCC.IsGrounded && KCC.RealSpeed > 1f;
             //FootstepSound.pitch = KCC.RealSpeed > SprintSpeed - 1 ? 1.5f : 1f;
@@ -116,7 +133,7 @@ namespace Starter.Platformer
 
         private void Awake()
         {
-            AssignAnimationIDs();
+            AssignAnimationIDs();            
         }
 
         private void LateUpdate()
@@ -125,11 +142,9 @@ namespace Starter.Platformer
             if (HasStateAuthority == false)
                 return;
 
-
-
             // Update camera pivot and transfer properties from camera handle to Main Camera.
-            //CameraPivot.rotation = Quaternion.Euler(PlayerInput.CurrentInput.LookRotation);
-            //Camera.main.transform.SetPositionAndRotation(CameraHandle.position, CameraHandle.rotation);
+            CameraPivot.rotation = Quaternion.Euler(PlayerInput.CurrentInput.LookRotation);
+            Camera.main.transform.SetPositionAndRotation(CameraHandle.position, CameraHandle.rotation);
         }
 
         private void ProcessInput(GameplayInput input)

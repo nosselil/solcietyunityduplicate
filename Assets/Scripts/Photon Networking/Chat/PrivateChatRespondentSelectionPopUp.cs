@@ -23,52 +23,54 @@ public class PrivateChatRespondentSelectionPopUp : MonoBehaviour
 
     public void GenerateRespondentButtons()
     {
-        // Clear the previous button list
-        foreach (Transform child in respondentButtonListParent.transform)        
+        // Clear previous buttons.
+        foreach (Transform child in respondentButtonListParent.transform)
             Destroy(child.gameObject);
-        
+
         string[] respondents = MultiplayerChat.Instance.GetActivePlayerList();
 
-        // If there are no respondents (other than ourselves), show the "no respondents available" text.
+        // If there are no respondents (other than ourselves), show "no respondents available" text.
+        // Note: respondents array includes the local wallet as well.
         if (respondents.Length <= 1)
         {
             noRespondentsAvailableText.SetActive(true);
+            return;
         }
-        else
+
+        int buttonsCreated = 0;
+        noRespondentsAvailableText.SetActive(false);
+
+        // Loop through each respondent in the list
+        foreach (string respondent in respondents)
         {
-            noRespondentsAvailableText.SetActive(false);
+            // Skip creating a button for the local player
+            if (respondent == MultiplayerChat.Instance.localWalletAddress || MultiplayerChat.Instance.chatMessages.ContainsKey(respondent))
+                continue;
+            
+            // Instantiate a new respondent button.
+            GameObject newRespondentButtonGO = Instantiate(respondentButtonPrefab);
+            newRespondentButtonGO.transform.SetParent(respondentButtonListParent.transform, false);
 
-            // Loop through each respondent in the list.
-            foreach (string respondent in respondents)
+            // Set the button's text to the respondent's wallet address.
+            TextMeshProUGUI buttonText = newRespondentButtonGO.GetComponentInChildren<TextMeshProUGUI>();          
+            buttonText.text = respondent;
+            
+
+            // Dynamically bind OnRespondentButtonClicked() to the button's OnClick event
+            Button button = newRespondentButtonGO.GetComponent<Button>();
+            button.onClick.AddListener(() =>
             {
-                if (respondent == MultiplayerChat.Instance.localWalletAddress) // Skip creating a buttons for the local player
-                    continue;
+                OnRespondentButtonClicked();
+            });
 
-                GameObject newRespondentButtonGO = Instantiate(respondentButtonPrefab);
-                
-                newRespondentButtonGO.transform.SetParent(respondentButtonListParent.transform);
-                
-                TextMeshProUGUI buttonText = newRespondentButtonGO.GetComponentInChildren<TextMeshProUGUI>();
-                if (buttonText != null)                
-                    buttonText.text = respondent;
-
-                Button button = newRespondentButtonGO.GetComponent<Button>();
-                if (button != null)
-                {
-                    Debug.Log("Button component found on respondent button prefab. Adding click listener.");
-                    button.onClick.AddListener(() =>
-                    {
-                        Debug.Log("Respondent button clicked. Calling OnRespondentButtonClicked.");
-                        OnRespondentButtonClicked();
-                    });
-                }
-                else
-                {
-                    Debug.LogWarning("Button component not found on respondent button prefab.");
-                }
-            }
+            buttonsCreated++;
         }
+
+        // If no buttons were created, then show "no respondents available" text
+        if (buttonsCreated == 0)        
+            noRespondentsAvailableText.SetActive(true);        
     }
+
 
     public void OnRespondentButtonClicked()
     {

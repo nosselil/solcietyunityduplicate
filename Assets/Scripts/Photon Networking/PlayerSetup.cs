@@ -31,24 +31,27 @@ public class PlayerSetup : MonoBehaviour
         #region Core Depedencies
 
         // Camera
-        cameraTransform.GetComponent<SmoothPosition>().target = transform;
+        /*cameraTransform.GetComponent<SmoothPosition>().target = transform;
         cameraTransform.GetComponent<SmoothRotation>().target = transform;
-        cameraTransform.GetComponentInChildren<CameraDistanceRaycaster>().ignoreList[0] = GetComponent<CapsuleCollider>();
+        cameraTransform.GetComponentInChildren<CameraDistanceRaycaster>().ignoreList[0] = GetComponent<CapsuleCollider>();*/
         
         // Character keyboard input
         CharacterKeyboardInput characterKeyboardInput = GetComponent<CharacterKeyboardInput>();        
         characterKeyboardInput.joystick = mobileUI.Find("JoyStickBase").GetComponent<Joystick>();
         characterKeyboardInput.jumpButton = mobileUI.Find("JumpBtn").GetComponent<Button>();
         characterKeyboardInput.interactBtn = mobileUI.Find("InteractBtn").GetComponent<Button>();
-        characterKeyboardInput.thirdPersonCameraController = cameraTransform.GetComponentInChildren<ThirdPersonCameraController>();
+        //characterKeyboardInput.thirdPersonCameraController = cameraTransform.GetComponentInChildren<ThirdPersonCameraController>();
 
         // Player
-        GetComponent<Starter.Platformer.Player>().cameraTransform = FindChildWithTag(cameraTransform, "CameraControls"); // TODO: Proper namespace referencing
+        //GetComponent<Starter.Platformer.Player>().cameraTransform = FindChildWithTag(cameraTransform, "CameraControls"); // TODO: Proper namespace referencing
         // CameraControls-tagged object is not actually the object that has the camera controls, but its rotation is the same as the camera's so we can use its transform
 
         // Advanced Walker Controller
         //AdvancedWalkerController advancedWalkerController = GetComponent<AdvancedWalkerController>();
         //advancedWalkerController.cameraTransform = FindChildWithTag(cameraTransform, "CameraControls");
+
+        // Chat
+                    
 
         #endregion
 
@@ -74,8 +77,8 @@ public class PlayerSetup : MonoBehaviour
 
         //nftInteraction
 
-        Debug.Log("SMOOTH: cameraTransform.smoothPosition GO: " + cameraTransform.gameObject.name + ", target transform: " + cameraTransform.GetComponent<SmoothPosition>().target + " current object name: " + gameObject.name);
-        Debug.Log("SMOOTH: cameraTransform.smoothRotation GO: " + cameraTransform.gameObject.name + " target transform: " + cameraTransform.GetComponent<SmoothRotation>().target + ", current object name: " + gameObject.name);
+        //Debug.Log("SMOOTH: cameraTransform.smoothPosition GO: " + cameraTransform.gameObject.name + ", target transform: " + cameraTransform.GetComponent<SmoothPosition>().target + " current object name: " + gameObject.name);
+        //Debug.Log("SMOOTH: cameraTransform.smoothRotation GO: " + cameraTransform.gameObject.name + " target transform: " + cameraTransform.GetComponent<SmoothRotation>().target + ", current object name: " + gameObject.name);
 
         // Chat Canvas doesn't require any additional setup
 
