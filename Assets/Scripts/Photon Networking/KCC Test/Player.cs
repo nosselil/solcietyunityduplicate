@@ -3,6 +3,7 @@ using Fusion;
 using Fusion.Addons.SimpleKCC;
 using UnityEngine.InputSystem;
 using CMF;
+using UnityEngine.SceneManagement;
 
 namespace Starter.Platformer
 {
@@ -60,6 +61,15 @@ namespace Starter.Platformer
 
 
         private bool previouslyGrounded = false; // Used to keep track of when we land
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.LeftControl))                                                            
+                SceneManager.LoadScene("mainGallery");
+
+            if (Input.GetKeyDown(KeyCode.Q))
+                SceneManager.LoadScene("mainStartingarea");
+        }
 
         public void Respawn(Vector3 position, bool resetCoins)
         {

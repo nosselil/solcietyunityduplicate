@@ -81,28 +81,36 @@ public class MultiplayerChat : NetworkBehaviour
         // Check for Enter key press (may be frame-dependent)
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            // Create a shortened version of the wallet address.
-            string shortenedAddress = WalletUtilities.ShortenWalletAddress(localWalletAddress);
-            // Include the local player id (for debug purposes).
-            int playerId = Runner.LocalPlayer.PlayerId;
-            string newMessage = shortenedAddress + ": " + chatMessageInputText.text;
-            chatMessageInputText.text = ""; // Reset the input field
-            Debug.Log("CHAT: ENTER PRESSED, sending message: " + newMessage);
-
-            // For a public message, use the reserved key "public".
-            if (LocalChatWindowController.Instance.activeChatWindowIndex == 0)
-                SendChatMessageRpc(newMessage, "public", localWalletAddress);
-            else // Send a private message
-            {
-                // Add this message to our own message list
-                string targetWalletAddress = LocalChatWindowController.Instance.GetActivePrivateChatWindowPlayerId();
-                
-                // This must be initialized, since we must have had the window open to be able to send the message in the first place
-                chatMessages[targetWalletAddress].Add(newMessage);
-
-                SendChatMessageRpc(newMessage, targetWalletAddress, localWalletAddress);
-            }
+            PrepareMessageForSending();
         }        
+    }
+
+    public void PrepareMessageForSending()
+    {
+        if (chatMessageInputText.text == "") // Don't send an empty message
+            return;
+
+        // Create a shortened version of the wallet address.
+        string shortenedAddress = WalletUtilities.ShortenWalletAddress(localWalletAddress);
+        // Include the local player id (for debug purposes).
+        int playerId = Runner.LocalPlayer.PlayerId;
+        string newMessage = shortenedAddress + ": " + chatMessageInputText.text;
+        chatMessageInputText.text = ""; // Reset the input field
+        Debug.Log("CHAT: ENTER PRESSED, sending message: " + newMessage);
+
+        // For a public message, use the reserved key "public".
+        if (LocalChatWindowController.Instance.activeChatWindowIndex == 0)
+            SendChatMessageRpc(newMessage, "public", localWalletAddress);
+        else // Send a private message
+        {
+            // Add this message to our own message list
+            string targetWalletAddress = LocalChatWindowController.Instance.GetActivePrivateChatWindowPlayerId();
+
+            // This must be initialized, since we must have had the window open to be able to send the message in the first place
+            chatMessages[targetWalletAddress].Add(newMessage);
+
+            SendChatMessageRpc(newMessage, targetWalletAddress, localWalletAddress);
+        }
     }
 
     // RPC: Called on all clients to update messages for a given conversation.

@@ -31,8 +31,12 @@ public class InteractableItem : MonoBehaviour
 
     void Update()
     {
+        if (LocalChatWindowController.Instance == null || LocalChatWindowController.Instance.IsChatWindowActive)        
+            return;
+
         if (player == null)
-        {
+        {            
+            player = GameObject.FindGameObjectWithTag("Player")?.transform; // Safe null check // TODO: Refactor later on, will work for now
             Debug.LogError("Player not found! Make sure the player has the tag 'Player'.");
             return;
         }

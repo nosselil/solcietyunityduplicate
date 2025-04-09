@@ -15,6 +15,8 @@ public class PlayerAttributes : NetworkBehaviour
     [SerializeField] private Texture2D[] capMaterialTextures;
     [SerializeField] private Renderer capRenderer;
 
+    private const string PLAYER_PREFS_CAP_COLOR_INDEX_KEY = "capColor";
+
     public override void Spawned()
     {
         Debug.Log("NICK: PlayerAttributes.cs");
@@ -38,10 +40,17 @@ public class PlayerAttributes : NetworkBehaviour
         nameplate.SetNickname(Nickname);
     }
 
-    public void SetCapColorIndex(int capColorIndex)
+    public void SetCapColorIndex()//int capColorIndex)
     {
         Debug.Log("CAP: Set cap color index");
-        CapColorIndex = capColorIndex;
+        CapColorIndex = PlayerPrefs.GetInt(PLAYER_PREFS_CAP_COLOR_INDEX_KEY, -1);
+
+        if (CapColorIndex == -1) // Has not been set yet
+        {
+            CapColorIndex = Random.Range(0, capMaterialTextures.Length);
+            PlayerPrefs.SetInt(PLAYER_PREFS_CAP_COLOR_INDEX_KEY, CapColorIndex);
+        }
+
         OnCapColorIndexChanged(); // Manually triggering here as well to ensure all clients execute this
     }
 

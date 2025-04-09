@@ -48,6 +48,11 @@ public class LocalChatWindowController : MonoBehaviour
         
     }
 
+    public void SendChatMessage()
+    {        
+        MultiplayerChat.Instance.PrepareMessageForSending();
+    }
+
     public void ActivateChatWindow(int chatWindowIndex)
     {
         activeChatWindowIndex = chatWindowIndex;
