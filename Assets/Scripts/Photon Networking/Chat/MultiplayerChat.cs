@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 public class MultiplayerChat : NetworkBehaviour
@@ -52,6 +53,13 @@ public class MultiplayerChat : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Debug.Log("CHAT: Network controller instance " + NetworkController.Instance);
+            Debug.Log("CHAT: Local player spawned: " + NetworkController.Instance.localPlayerSpawned);
+        }
+
+        
         if (NetworkController.Instance == null)
             return;
 
@@ -61,7 +69,7 @@ public class MultiplayerChat : NetworkBehaviour
             chatParent.SetActive(!chatParent.activeInHierarchy); // Toggle chat parent activity
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             Debug.Log("Printing networked hashset contents:");
             foreach (string wallet in PlayerWallets)

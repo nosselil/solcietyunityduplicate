@@ -47,6 +47,7 @@ public class PlayerAttributes : NetworkBehaviour
 
         if (CapColorIndex == -1) // Has not been set yet
         {
+            Random.InitState((int)System.DateTime.Now.Ticks); // Seed the RNG for better randomness
             CapColorIndex = Random.Range(0, capMaterialTextures.Length);
             PlayerPrefs.SetInt(PLAYER_PREFS_CAP_COLOR_INDEX_KEY, CapColorIndex);
         }

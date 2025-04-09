@@ -22,7 +22,7 @@ public class ProximityTrigger : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Player not found! Ensure the player is tagged 'Player'.");
+            Debug.LogWarning("Player not found! Ensure the player is tagged 'Player'.");
         }
 
         // Log initial state

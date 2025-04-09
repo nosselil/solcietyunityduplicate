@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4303751687692386400}
   - component: {fileID: 3338959322471659304}
   - component: {fileID: 6616235046430861858}
+  - component: {fileID: 2963548019450773870}
   - component: {fileID: 8152644042575017012}
   m_Layer: 0
   m_Name: Prototype Runner
@@ -58,6 +59,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1199893898, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2963548019450773870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2432974853574557356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b50466e2b746524ca49e1dcf7a4c8ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8152644042575017012
@@ -244,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5910690cf4e12fd4d93bd5682d33f95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingNewScene: 0
   localPlayerSpawned: 0
 --- !u!114 &4655690728542616405
 MonoBehaviour:
@@ -276,6 +290,7 @@ GameObject:
   - component: {fileID: 5169582102399740202}
   - component: {fileID: 1384130196195480554}
   - component: {fileID: 5533293684542803008}
+  - component: {fileID: 3877861302464132549}
   m_Layer: 0
   m_Name: Prototype Network Start
   m_TagString: Untagged
@@ -336,3 +351,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnableHotkeys: 0
   BaseSkin: {fileID: 11400000, guid: e59b35dfeb4b6f54e9b2791b2a40a510, type: 2}
+--- !u!114 &3877861302464132549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8563291614754355232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b50466e2b746524ca49e1dcf7a4c8ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

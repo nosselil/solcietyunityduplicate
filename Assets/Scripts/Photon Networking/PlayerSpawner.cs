@@ -1,5 +1,6 @@
 using Fusion;
 using Starter;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Originally SimulationBehaviour
@@ -27,7 +28,14 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
             setup.SetupPlayer();
 
             // Generate and assign a mock wallet address for the local player.
-            string localWalletAddress = MultiplayerChat.Instance.AssignMockWalletAddress();
+            string localWalletAddress;
+
+            Debug.Log("WALLET ADDRESS: in wallet manager instance is " + WalletManager.instance.walletAddress);
+
+            if (WalletManager.instance && !string.IsNullOrEmpty(WalletManager.instance.walletAddress))
+                localWalletAddress = WalletManager.instance.walletAddress;
+            else
+                localWalletAddress = MultiplayerChat.Instance.AssignMockWalletAddress();
             
             // Set the local wallet address on the player's attributes.
             PlayerAttributes attributes = go.GetComponent<PlayerAttributes>();
@@ -44,6 +52,13 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
                 Debug.LogWarning("PlayerAttributes component not found on player object.");
             }
         }
+        else
+        {
+            // Disable the ProximitySelection of the non-local players. Since the object may not be ready yet, we use a coroutine to poll the availability of the object
+
+            Debug.Log("PROXIMITY: ProximitySelector disabled. Starting coroutine to monitor it.");
+            //StartCoroutine(WaitForAndDisableProximitySelector(player));            
+        }
 
         Debug.Log("ROOM: current room is " +  Runner.SessionInfo?.Name);
 
@@ -54,6 +69,33 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
         // NOTE: This won't have effect unless we're the state authority, but this is called here since SimulationBehaviour can't be used to separate who is the authority and who is not
         //Runner.GetPlayerObject(Runner.LocalPlayer).GetComponent<PlayerAttributes>().UpdateNetworkedWalletAddressDictionary();
     }
+
+    private IEnumerator WaitForAndDisableProximitySelector(PlayerRef player)
+    {
+        NetworkObject netObj = null;
+        // Wait until the player's network object becomes available.
+        while (netObj == null)
+        {
+            netObj = Runner.GetPlayerObject(player);
+            if (netObj == null)
+            {
+                Debug.Log("Waiting for non-local player's network object...");
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+
+        // Once available, get the ProximitySelector component.
+        var proxSelector = netObj.gameObject.GetComponentInChildren<PixelCrushers.DialogueSystem.ProximitySelector>();
+        if (proxSelector != null)
+        {
+            proxSelector.enabled = false;
+            Debug.Log($"PROXIMITY: Non-local player's ProximitySelector disabled for player {player.PlayerId}");
+        }
+
+        yield break;
+    }
+
+
 
     void UpdateWalletIdCollection()
     {

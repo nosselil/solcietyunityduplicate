@@ -258,7 +258,7 @@ namespace PixelCrushers.DialogueSystem
 
         protected void OnSelectedUsableObject(Usable usable)
         {
-            Debug.LogError("OnSelectedUsableObject");
+            //Debug.LogError("OnSelectedUsableObject");
 
             if (SelectedUsableObject != null) SelectedUsableObject(usable);
             onSelectedUsable.Invoke(usable);
@@ -270,7 +270,7 @@ namespace PixelCrushers.DialogueSystem
 
         protected void OnDeselectedUsableObject(Usable usable)
         {
-            Debug.LogError("OnDeselectedUsableObject");
+            //Debug.LogError("OnDeselectedUsableObject");
             if (DeselectedUsableObject != null) DeselectedUsableObject(usable);
             onDeselectedUsable.Invoke(usable);
             if (usable != null)
@@ -288,16 +288,12 @@ namespace PixelCrushers.DialogueSystem
         /// Calls OnUse on the current selection.
         /// </summary>
         public virtual void UseCurrentSelection()
-        {
-            //if (/*NetworkController.Instance.loadingNewScene*/) // Disable interactions when we're loading a new scene
-             //   return;
-
-         
+        {         
             if ((currentUsable != null) && currentUsable.enabled && (currentUsable.gameObject != null) && (Time.time >= timeToEnableUseButton))
             {
                 Debug.Log("INTERACT: Use Usable within promiximityselector.cs");
 
-                Debug.LogError("UseCurrentSelection");
+                //Debug.LogError("UseCurrentSelection");
                 currentUsable.OnUseUsable();
                 if (currentUsable != null)
                 {
@@ -322,7 +318,7 @@ namespace PixelCrushers.DialogueSystem
         /// </returns>
         protected virtual bool IsUseButtonDown()
         {
-            Debug.LogError("IsUseButtonDown");
+            //Debug.LogError("IsUseButtonDown");
             if (DialogueManager.IsDialogueSystemInputDisabled()) return false;
             if (enableTouch && IsTouchDown()) return true;
             return ((useKey != KeyCode.None) && InputDeviceManager.IsKeyDown(useKey))
@@ -333,7 +329,7 @@ namespace PixelCrushers.DialogueSystem
         {
             if (Input.touchCount >= 1)
             {
-                Debug.LogError("IsTouchDown");
+                //Debug.LogError("IsTouchDown");
                 foreach (Touch touch in Input.touches)
                 {
                     Vector2 screenPosition = new Vector2(touch.position.x, Screen.height - touch.position.y);
@@ -453,7 +449,7 @@ namespace PixelCrushers.DialogueSystem
         {
             if (usable == currentUsable) return;
 
-            Debug.LogError("SetCurrentUsable");
+            //Debug.LogError("SetCurrentUsable");
             if (currentUsable != null)
             {
                 currentUsable.disabled -= OnUsableDisabled;

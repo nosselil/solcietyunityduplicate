@@ -50,8 +50,15 @@ using System.Net.Http;
         [HideInInspector]
         public ScrollRect scrollrect;
 
+        public string PLAYER_PREFS_TUTORIAL_COMPLETED_KEY = "tutorialCompleted"; // TODO: Place this elsewhere, but since the WalletManager is also instantiated in the beginning of the game
+                                                                                        // and the logic is done only once, we can handle this in the awake method
+
+        public bool tutorialCompleted = false; // if true, we'll be taken directly to the main Hub once the game begins
+
         void Awake()
         {
+            tutorialCompleted = PlayerPrefs.GetInt(PLAYER_PREFS_TUTORIAL_COMPLETED_KEY, 0) == 1;
+
             wagerAmount = 0.1f;
             if (instance == null)
             {
@@ -96,7 +103,8 @@ using System.Net.Http;
         }
 #else            
             isMobile = false;
-            deviceTxt.gameObject.SetActive(false);
+            if (deviceTxt != null)
+                deviceTxt.gameObject.SetActive(false);
         //    deviceText.text = "NOT MB";
 #endif
     }

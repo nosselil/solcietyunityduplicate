@@ -64,7 +64,7 @@ public class NFTInteraction : MonoBehaviour
             Material material = renderer.material; // Get the material of the mesh
             Texture texture = material.mainTexture; // Get the main texture from the material
 
-            if (texture != null)
+            if (texture != null && artworkImage != null)
             {
                 // Display the texture on the RawImage
                 artworkImage.texture = texture;
@@ -96,14 +96,17 @@ public class NFTInteraction : MonoBehaviour
             artworkText.text = metadata;
             artworkText2.text = metadata;
             artistText.text = nftArtist;
-            popupPanel.SetActive(true);
+
+            if (popupPanel != null)
+                popupPanel.SetActive(true);
        
     }
 
 
     public void ClosePopup()
     {
-        popupPanel.SetActive(false);
+        if (popupPanel != null)
+            popupPanel.SetActive(false);
        // currentMetadata = null; // Reset metadata
     }
 }

@@ -95793,7 +95793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1794630394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95821,6 +95821,8 @@ MonoBehaviour:
   heliusApiKey: 
   cluster: 0
   scrollrect: {fileID: 0}
+  PLAYER_PREFS_TUTORIAL_COMPLETED_KEY: tutorialCompleted
+  tutorialCompleted: 0
   isMobile: 0
   deviceTxt: {fileID: 0}
 --- !u!4 &1794630395

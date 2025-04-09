@@ -82,6 +82,9 @@ namespace Knife.Portal
 
         private void Update()
         {
+            if (playerCamera == null) // camera loss may happen during scene switching
+                return;
+
             var localPosition1 = portalRoot1.InverseTransformPoint(playerCamera.transform.position);
             var localRotation1 = Quaternion.Inverse(portalRoot1.rotation) * playerCamera.transform.rotation;
 
