@@ -1,13 +1,11 @@
 // Copyright (c) Pixel Crushers. All rights reserved.
 
+using Fusion;
 using PixelCrushers.DialogueSystem.UnityGUI;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
-
-
-
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -291,9 +289,14 @@ namespace PixelCrushers.DialogueSystem
         /// </summary>
         public virtual void UseCurrentSelection()
         {
+            //if (/*NetworkController.Instance.loadingNewScene*/) // Disable interactions when we're loading a new scene
+             //   return;
+
          
             if ((currentUsable != null) && currentUsable.enabled && (currentUsable.gameObject != null) && (Time.time >= timeToEnableUseButton))
             {
+                Debug.Log("INTERACT: Use Usable within promiximityselector.cs");
+
                 Debug.LogError("UseCurrentSelection");
                 currentUsable.OnUseUsable();
                 if (currentUsable != null)

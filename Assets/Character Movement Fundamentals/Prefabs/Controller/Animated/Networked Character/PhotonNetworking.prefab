@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 287669863
+  SortKey: 4185061104
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
@@ -206,6 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4728324593937363268}
   - component: {fileID: 8692758224808551316}
+  - component: {fileID: 4655690728542616405}
   m_Layer: 0
   m_Name: PhotonNetworking
   m_TagString: Untagged
@@ -244,6 +245,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localPlayerSpawned: 0
+--- !u!114 &4655690728542616405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061955932501539900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 2394316510
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects:
+  - {fileID: 5732479481431609701}
+  NetworkedBehaviours:
+  - {fileID: 8692758224808551316}
+  ForceRemoteRenderTimeframe: 0
 --- !u!1 &8563291614754355232
 GameObject:
   m_ObjectHideFlags: 0

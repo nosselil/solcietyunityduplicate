@@ -44911,7 +44911,7 @@ MonoBehaviour:
   anotherQuestEntryNumber: 1
   anotherQuestEntryState: 0
   luaCode: 
-  sequence: LoadLevel(mainGallery)
+  sequence: 
   sequenceSpeaker: {fileID: 4575840845707349}
   sequenceListener: {fileID: 0}
   waitOneFrameOnStartOrEnable: 1
@@ -44954,7 +44954,19 @@ MonoBehaviour:
   setAnimatorStateActions: []
   onExecute:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 711007824970996005}
+        m_TargetAssemblyTypeName: NetworkController, Assembly-CSharp
+        m_MethodName: SwitchRoomAndScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: mainGallery
+          m_BoolArgument: 0
+        m_CallState: 2
   useConversationTitlePicker: 1
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
@@ -125754,6 +125766,10 @@ PrefabInstance:
       propertyPath: chatMessageInputText
       value: 
       objectReference: {fileID: 1440596931}
+    - target: {fileID: 4655690728542616405, guid: 9223ecc530dd9c549ad1e0ff57237460, type: 3}
+      propertyPath: SortKey
+      value: 2791892565
+      objectReference: {fileID: 0}
     - target: {fileID: 4728324593937363268, guid: 9223ecc530dd9c549ad1e0ff57237460, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -125794,6 +125810,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5732479481431609701, guid: 9223ecc530dd9c549ad1e0ff57237460, type: 3}
+      propertyPath: SortKey
+      value: 287669863
+      objectReference: {fileID: 0}
     - target: {fileID: 7061955932501539900, guid: 9223ecc530dd9c549ad1e0ff57237460, type: 3}
       propertyPath: m_Name
       value: PhotonNetworking
@@ -125803,6 +125823,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9223ecc530dd9c549ad1e0ff57237460, type: 3}
+--- !u!114 &711007824970996005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8692758224808551316, guid: 9223ecc530dd9c549ad1e0ff57237460, type: 3}
+  m_PrefabInstance: {fileID: 711007824970996004}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5910690cf4e12fd4d93bd5682d33f95d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &919132147519479220
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,6 +57,7 @@ public class InteractableItem : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
+                Debug.Log("INTERACT: E key pressed");
                 Interact();
             }
         }
@@ -83,6 +84,8 @@ public class InteractableItem : MonoBehaviour
         }
 
         Debug.Log("Interacting... Loading scene: " + sceneToLoad + gameObject.name);
+        //Debug.Log("INTERACT");
+        //NetworkController.Instance.SwitchRoomAndScene("mainGallery");
         SceneManager.LoadSceneAsync(sceneToLoad); // Asynchronous loading
     }
 
