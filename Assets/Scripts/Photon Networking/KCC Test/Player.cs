@@ -64,11 +64,36 @@ namespace Starter.Platformer
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.LeftControl))                                                            
-                SceneManager.LoadScene("mainGallery");
+            // TODO: 
 
-            if (Input.GetKeyDown(KeyCode.Q))
-                SceneManager.LoadScene("mainStartingarea");
+            if (Input.GetKeyDown(KeyCode.F1))
+                SwitchRoomAndScene("mainStartingarea");
+
+            if (Input.GetKeyDown(KeyCode.F2))
+                SwitchRoomAndScene("mainGallery");
+            //SceneManager.LoadScene("mainGallery");
+
+            if (Input.GetKeyDown(KeyCode.F3))
+                SwitchRoomAndScene("MainHub");
+
+            if (Input.GetKeyDown(KeyCode.F4))
+                SwitchRoomAndScene("mainGalleryMultiplayer");
+
+        }
+
+        public async void SwitchRoomAndScene(string newSceneName)
+        {
+            // This will disconnect from the current session and clean up networked objects.
+            if (Runner != null)
+            {
+                await Runner.Shutdown();
+            }
+
+            // Now load the new scene.
+            SceneManager.LoadScene(newSceneName);
+
+            // Optionally, after the scene has loaded (e.g., using a scene loaded callback),
+            // you can initialize a new runner and pass in new StartGameArgs with SessionName set to newRoomName.
         }
 
         public void Respawn(Vector3 position, bool resetCoins)

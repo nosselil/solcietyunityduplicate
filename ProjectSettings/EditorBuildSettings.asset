@@ -9,17 +9,20 @@ EditorBuildSettings:
     path: Assets/Scenes/PhotonTestScene.unity
     guid: 828bbc70237cd49459b4c8e14e1816ea
   - enabled: 1
-    path: Assets/Scenes/Main menu.unity
+    path: Assets/Scenes/Core/Main menu.unity
     guid: ee6749a40950b4925af6242f126a8546
   - enabled: 1
-    path: Assets/Scenes/mainStartingarea.unity
+    path: Assets/Scenes/Core/mainStartingarea.unity
     guid: b52569661c1314df9b283d76d7479632
   - enabled: 1
-    path: Assets/Scenes/mainGallery.unity
+    path: Assets/Scenes/Core/mainGallery.unity
     guid: 59c40ef876010456e86b251da4943906
   - enabled: 1
-    path: Assets/Scenes/mh/MainHub.unity
+    path: Assets/Scenes/Core/MainHub.unity
     guid: 901e7b6e15e134634ae27df155cd4983
+  - enabled: 1
+    path: Assets/Scenes/Core/mainGalleryMultiplayer.unity
+    guid: 7512e4cd3e623654997d9bcbb213903a
   - enabled: 1
     path: Assets/Scenes/mh/wager.unity
     guid: e1c364e494623460a90931ae7dd55143
