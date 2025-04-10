@@ -20,8 +20,8 @@ namespace UltimateClean
         protected void Start()
         {
             GameObject GUICanvas = GameObject.Find("GUI");
-            if (GUICanvas != null)
-                m_canvas = GUICanvas.GetComponent<Canvas>();
+            /*if (GUICanvas != null)
+                m_canvas = GUICanvas.GetComponent<Canvas>();*/
         }
 
         public virtual void OpenPopupWAGER()

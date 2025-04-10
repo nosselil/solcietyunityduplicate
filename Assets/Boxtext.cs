@@ -19,8 +19,8 @@ public class TextMeshFader : MonoBehaviour
         bool isPlayerNear = playerDistance <= fadeDistance;
 
         // Null guard in case this hasn't been initialized for the current scene
-        if (textMeshes == null)
-            return;
+        /*if (textMeshes == null)
+            return;*/
 
         // Adjust the alpha of all TextMesh objects
         foreach (GameObject textMeshObj in textMeshes)
@@ -43,8 +43,8 @@ public class TextMeshFader : MonoBehaviour
     {
         float closestDistance = float.MaxValue;
 
-        if (textMeshes == null)
-            return Mathf.Infinity;
+        /*if (textMeshes == null)
+            return Mathf.Infinity;*/
 
         foreach (GameObject textMeshObj in textMeshes)
         {
