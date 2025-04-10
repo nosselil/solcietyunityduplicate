@@ -21,9 +21,13 @@ namespace Starter.Platformer
 		public float InitialLookRotation = 18f;
         public float LookRotationMultiplier = 3.0f;
 
-		/*[HideInInspector]*/ public Joystick joystick; // Reference to the mobile joystick
-		private Vector2 mobileLookDirection;
-		private Vector2 mobileMoveDirection;
+        // Sensitivity for mobile touch-look rotation.
+        public float mobileLookSensitivity = 0.08f;
+
+        /*[HideInInspector]*/
+        public Joystick joystick; // Reference to the mobile joystick
+		//private Vector2 mobileLookDirection;
+		//private Vector2 mobileMoveDirection;
 		private bool mobileJumpPressed;
 
 		//[SerializeField] float maxCameraYaw, minCameraYaw
@@ -47,25 +51,29 @@ namespace Starter.Platformer
 
 		private void Update()
 		{
+			Debug.Log("PLAYER INPUT: wallet manager is mobile: " + WalletManager.instance.isMobile);
+
 			//Debug.Log("KCC: PlayerInput, cursor lockstate " + Cursor.lockState);
 
 			if (LocalChatWindowController.Instance.IsChatWindowActive) // don't allow input gathering if chat is open
 				return;
 
-			// Accumulate input only if the cursor is locked.
-			//if (Cursor.lockState != CursorLockMode.Locked)
-			//	return;
+            // Accumulate input only if the cursor is locked.
+            //if (Cursor.lockState != CursorLockMode.Locked)
+            //	return;
 
-			// Accumulate input from Keyboard/Mouse. Input accumulation is mandatory (at least for look rotation here) as Update can be
-			// called multiple times before next FixedUpdateNetwork is called - common if rendering speed is faster than Fusion simulation.
+            // Accumulate input from Keyboard/Mouse. Input accumulation is mandatory (at least for look rotation here) as Update can be
+            // called multiple times before next FixedUpdateNetwork is called - common if rendering speed is faster than Fusion simulation.
 
-			var lookRotationDelta = new Vector2(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X")) * LookRotationMultiplier;
-			_input.LookRotation = ClampLookRotation(_input.LookRotation + lookRotationDelta);
+            Vector2 lookRotationDelta = !WalletManager.instance.isMobile ? new Vector2(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X")) * LookRotationMultiplier
+				: GetMobileLookRotationDelta();
+
+            _input.LookRotation = ClampLookRotation(_input.LookRotation + lookRotationDelta);
 			
 			var moveDirection = !WalletManager.instance.isMobile ? new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) : 
 				new Vector2(joystick.GetHorizontal(), joystick.GetVertical());
 
-			Debug.Log("MOBILE: Joystick: hor " + joystick.GetHorizontal() + " ver: " + joystick.GetVertical());
+			//Debug.Log("MOBILE: Joystick: hor " + joystick.GetHorizontal() + " ver: " + joystick.GetVertical());
 
 			_input.MoveDirection =  moveDirection.normalized;
 
@@ -85,7 +93,19 @@ namespace Starter.Platformer
 		}
 
         #region Mobile Input Detection
-		public void SetMobileUIJumpPressed()
+
+        private Vector2 GetMobileLookRotationDelta()
+        {
+            if (Input.touchCount > 0)
+            {
+                // Use the deltaPosition of the first touch.
+                Touch touch = Input.GetTouch(0);
+                return new Vector2(-touch.deltaPosition.y, touch.deltaPosition.x) * mobileLookSensitivity;
+            }
+            return Vector2.zero;
+        }
+
+        public void SetMobileUIJumpPressed()
 		{
 			mobileJumpPressed = true;
 		}
