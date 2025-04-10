@@ -50578,6 +50578,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097297549}
   m_CullTransparentMesh: 0
+--- !u!1 &1098577569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1098577571}
+  - component: {fileID: 1098577570}
+  m_Layer: 0
+  m_Name: WalletManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1098577570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098577569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c489c4331b23147aafd4d1866a7220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractBtn: {fileID: 0}
+  walletAddress: 
+  latestTransactions: []
+  latestTransaction: 
+  Balance: 0
+  npcMnemonic: 
+  NEWnpcMnemonic: opinion firm immense token digital list there west cherry when
+    monitor piece
+  OLDnpcMnemonic: miss gate front unique liberty gap bind choice lumber clown loan
+    absorb
+  currentNetwork: 1
+  wagerAmount: 0
+  heliusApiKey: 
+  cluster: 0
+  scrollrect: {fileID: 0}
+  PLAYER_PREFS_TUTORIAL_COMPLETED_KEY: tutorialCompleted
+  tutorialCompleted: 0
+  isMobile: 1
+  deviceTxt: {fileID: 0}
+--- !u!4 &1098577571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098577569}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 260.6867, y: 232.94865, z: 1.1988924}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1100054381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85274,69 +85337,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1788365740}
   m_CullTransparentMesh: 0
---- !u!1 &1794630393
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1794630395}
-  - component: {fileID: 1794630394}
-  m_Layer: 0
-  m_Name: WalletManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1794630394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794630393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08c489c4331b23147aafd4d1866a7220, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InteractBtn: {fileID: 0}
-  walletAddress: 
-  latestTransactions: []
-  latestTransaction: 
-  Balance: 0
-  npcMnemonic: 
-  NEWnpcMnemonic: opinion firm immense token digital list there west cherry when
-    monitor piece
-  OLDnpcMnemonic: miss gate front unique liberty gap bind choice lumber clown loan
-    absorb
-  currentNetwork: 1
-  wagerAmount: 0
-  heliusApiKey: 
-  cluster: 0
-  scrollrect: {fileID: 0}
-  PLAYER_PREFS_TUTORIAL_COMPLETED_KEY: tutorialCompleted
-  tutorialCompleted: 0
-  isMobile: 0
-  deviceTxt: {fileID: 0}
---- !u!4 &1794630395
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794630393}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 260.6867, y: 232.94865, z: 1.1988924}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1795061440
 GameObject:
   m_ObjectHideFlags: 0
@@ -116447,4 +116447,4 @@ SceneRoots:
   - {fileID: 26761853}
   - {fileID: 711007824970996004}
   - {fileID: 6723070492641474750}
-  - {fileID: 1794630395}
+  - {fileID: 1098577571}

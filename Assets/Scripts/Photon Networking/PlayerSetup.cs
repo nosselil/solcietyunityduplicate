@@ -34,12 +34,32 @@ public class PlayerSetup : MonoBehaviour
         /*cameraTransform.GetComponent<SmoothPosition>().target = transform;
         cameraTransform.GetComponent<SmoothRotation>().target = transform;
         cameraTransform.GetComponentInChildren<CameraDistanceRaycaster>().ignoreList[0] = GetComponent<CapsuleCollider>();*/
+
+        // Mobile UI
+        Debug.Log("MOBILE: WalletManager is mobile: " + WalletManager.instance.isMobile);
+
+        if (WalletManager.instance.isMobile)
+        {
+            Button jumpButton = mobileUI.Find("JumpBtn").GetComponent<Button>();
+            Button interactButton = mobileUI.Find("InteractBtn").GetComponent<Button>();
+            PlayerInput playerInput = GetComponent<PlayerInput>();
+            PixelCrushers.DialogueSystem.ProximitySelector proximitySelector = GetComponentInChildren<PixelCrushers.DialogueSystem.ProximitySelector>();
+
+            playerInput.joystick = mobileUI.Find("JoyStickBase").GetComponent<Joystick>();
+            jumpButton.onClick.AddListener(() => playerInput.SetMobileUIJumpPressed());
+            interactButton.onClick.AddListener(() => proximitySelector.OnMobileInteractButtonPressed());
+            proximitySelector.mobileInteractButton = interactButton; // Set a reference to the interact button so that it will correctly activate when we come close to interactable objects
+        }
+        else
+            mobileUI.gameObject.SetActive(false);
+
         
+
         // Character keyboard input
-        CharacterKeyboardInput characterKeyboardInput = GetComponent<CharacterKeyboardInput>();        
+        /*CharacterKeyboardInput characterKeyboardInput = GetComponent<CharacterKeyboardInput>();        
         characterKeyboardInput.joystick = mobileUI.Find("JoyStickBase").GetComponent<Joystick>();
         characterKeyboardInput.jumpButton = mobileUI.Find("JumpBtn").GetComponent<Button>();
-        characterKeyboardInput.interactBtn = mobileUI.Find("InteractBtn").GetComponent<Button>();
+        characterKeyboardInput.interactBtn = mobileUI.Find("InteractBtn").GetComponent<Button>();*/
         //characterKeyboardInput.thirdPersonCameraController = cameraTransform.GetComponentInChildren<ThirdPersonCameraController>();
 
         // Player
@@ -62,16 +82,20 @@ public class PlayerSetup : MonoBehaviour
 
         // NFT Interaction
         NFTInteraction nftInteraction = GetComponent<NFTInteraction>();
-        nftInteraction.popupPanel = dependencyContainer.popupPanel;
-        nftInteraction.artistText = dependencyContainer.artistText;
-        nftInteraction.artworkText = dependencyContainer.artworkText;
-        nftInteraction.artworkText2 = dependencyContainer.artworkText2;
-        nftInteraction.artworkImage = dependencyContainer.artworkImage;
-        nftInteraction.buyNFTfromGalleryScript = dependencyContainer.buyNFTfromGalleryScript;
+        if (nftInteraction != null)
+        {
+            nftInteraction.popupPanel = dependencyContainer.popupPanel;
+            nftInteraction.artistText = dependencyContainer.artistText;
+            nftInteraction.artworkText = dependencyContainer.artworkText;
+            nftInteraction.artworkText2 = dependencyContainer.artworkText2;
+            nftInteraction.artworkImage = dependencyContainer.artworkImage;
+            nftInteraction.buyNFTfromGalleryScript = dependencyContainer.buyNFTfromGalleryScript;
+        }
 
         // TextMeshFader
         TextMeshFader textMeshFader = GetComponent<TextMeshFader>();
-        textMeshFader.textMeshes = dependencyContainer.textMeshes;
+        if (textMeshFader != null)
+            textMeshFader.textMeshes = dependencyContainer.textMeshes;
 
         #endregion
 

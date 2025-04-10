@@ -4,6 +4,7 @@ using Fusion;
 using PixelCrushers.DialogueSystem.UnityGUI;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -45,6 +46,8 @@ namespace PixelCrushers.DialogueSystem
             public float height = 64f;
     
         }
+
+        public Button mobileInteractButton;
 
         /// <summary>
         /// If <c>true</c>, uses a default OnGUI to display a selection message and
@@ -279,8 +282,9 @@ namespace PixelCrushers.DialogueSystem
             }
         }
 
-        public void InteractBtn()
+        public void OnMobileInteractButtonPressed()
         {
+            Debug.Log("MOBILE: Interact button pressed (prox selector)");
             UseCurrentSelection();
         }
 
@@ -446,7 +450,7 @@ namespace PixelCrushers.DialogueSystem
         }
        
         public virtual void SetCurrentUsable(Usable usable)
-        {
+        {            
             if (usable == currentUsable) return;
 
             //Debug.LogError("SetCurrentUsable");
@@ -467,11 +471,19 @@ namespace PixelCrushers.DialogueSystem
                 usable.disabled += OnUsableDisabled; 
                 currentHeading = currentUsable.GetName();
                 currentUseMessage = DialogueManager.GetLocalizedText(string.IsNullOrEmpty(currentUsable.overrideUseMessage) ? defaultUseMessage : currentUsable.overrideUseMessage);
+                //Debug.Log("MOBILE: Current usable is not null (SET)");
+                if (mobileInteractButton != null)
+                    mobileInteractButton.interactable = true;
+
             }
             else
             {
+                //Debug.Log("MOBILE: Current usable null");
+                
                 currentHeading = string.Empty;
                 currentUseMessage = string.Empty;
+                if (mobileInteractButton != null)
+                    mobileInteractButton.interactable = false;
             }
         }
 

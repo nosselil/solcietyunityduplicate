@@ -8,7 +8,7 @@ namespace CMF
 	//This script controls the character's animation by passing velocity values and other information ('isGrounded') to an animator component;
 	public class AnimationControl : MonoBehaviour {
 
-        public SimpleKCC KCC;
+        [HideInInspector] public SimpleKCC KCC;
         //Controller controller;
         Animator animator;
 		Transform animatorTransform;

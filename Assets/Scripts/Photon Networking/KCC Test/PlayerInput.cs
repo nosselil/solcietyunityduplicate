@@ -21,6 +21,11 @@ namespace Starter.Platformer
 		public float InitialLookRotation = 18f;
         public float LookRotationMultiplier = 3.0f;
 
+		/*[HideInInspector]*/ public Joystick joystick; // Reference to the mobile joystick
+		private Vector2 mobileLookDirection;
+		private Vector2 mobileMoveDirection;
+		private bool mobileJumpPressed;
+
 		//[SerializeField] float maxCameraYaw, minCameraYaw
 
         public GameplayInput CurrentInput => _input;
@@ -32,7 +37,7 @@ namespace Starter.Platformer
 			_input.MoveDirection = default;
 			_input.Jump = false;
 			_input.Sprint = false;
-		}
+		}		
 
 		private void Start()
 		{
@@ -56,12 +61,19 @@ namespace Starter.Platformer
 
 			var lookRotationDelta = new Vector2(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X")) * LookRotationMultiplier;
 			_input.LookRotation = ClampLookRotation(_input.LookRotation + lookRotationDelta);
+			
+			var moveDirection = !WalletManager.instance.isMobile ? new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) : 
+				new Vector2(joystick.GetHorizontal(), joystick.GetVertical());
 
-			var moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-			_input.MoveDirection = moveDirection.normalized;
+			Debug.Log("MOBILE: Joystick: hor " + joystick.GetHorizontal() + " ver: " + joystick.GetVertical());
 
-			_input.Jump |= Input.GetButtonDown("Jump");
+			_input.MoveDirection =  moveDirection.normalized;
+
+			_input.Jump |= !WalletManager.instance.isMobile ? Input.GetButtonDown("Jump") : mobileJumpPressed;
 			//_input.Sprint |= Input.GetButton("Sprint");
+
+			if (WalletManager.instance.isMobile)
+				mobileJumpPressed = false; // Mark this as consumed
 
 			//Debug.Log("KCC: Move direction: " + _input.MoveDirection + ", jump: " + _input.Jump);
 		}
@@ -71,5 +83,12 @@ namespace Starter.Platformer
 			lookRotation.x = Mathf.Clamp(lookRotation.x, -25f, 60f); //-30f, 70f);
 			return lookRotation;
 		}
-	}
+
+        #region Mobile Input Detection
+		public void SetMobileUIJumpPressed()
+		{
+			mobileJumpPressed = true;
+		}
+        #endregion
+    }
 }

@@ -870,6 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4650acabe1d6aa6429e42554f1f0feb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KCC: {fileID: 0}
   useStrafeAnimations: 0
   landVelocityThreshold: 5
 --- !u!114 &114255029588176102
@@ -1454,7 +1455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3666895604637601119, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5807100225980209653, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
       propertyPath: m_Pivot.x
