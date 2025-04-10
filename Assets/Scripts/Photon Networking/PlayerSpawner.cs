@@ -57,7 +57,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
             // Disable the ProximitySelection of the non-local players. Since the object may not be ready yet, we use a coroutine to poll the availability of the object
 
             Debug.Log("PROXIMITY: ProximitySelector disabled. Starting coroutine to monitor it.");
-            //StartCoroutine(WaitForAndDisableProximitySelector(player));            
+            StartCoroutine(WaitForAndDisableProximitySelector(player));            
         }
 
         Debug.Log("ROOM: current room is " +  Runner.SessionInfo?.Name);

@@ -75,7 +75,7 @@ using System.Net.Http;
 
 
         #region DeviceDetectoin
-        public bool isMobile = false;
+        public bool isMobile = true;
         public Text deviceTxt;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -103,7 +103,7 @@ using System.Net.Http;
         //    deviceText.text = "NOT MB";
         }
 #else            
-            isMobile = false; // For debug purposes 
+            isMobile = false; // true for debug purposes 
             if (deviceTxt != null)
                 deviceTxt.gameObject.SetActive(false);
         //    deviceText.text = "NOT MB";
