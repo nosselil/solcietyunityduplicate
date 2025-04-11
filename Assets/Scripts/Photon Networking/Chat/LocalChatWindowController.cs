@@ -59,8 +59,8 @@ public class LocalChatWindowController : MonoBehaviour
         ActivateCurrentChatWindow();
     }
 
-    public void OnEnabled()
-    {
+    public void OnEnable()
+    {        
         ActivateCurrentChatWindow(); // Fetch the texts for the current window when this is re-opened
     }
 
@@ -131,8 +131,6 @@ public class LocalChatWindowController : MonoBehaviour
         
         Debug.Log("CHAT: Full chat text is now: " + fullChatText.text);
     }
-
-
 
     void ActivateCurrentChatWindow()
     {

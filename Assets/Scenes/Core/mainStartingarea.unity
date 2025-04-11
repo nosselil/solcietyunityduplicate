@@ -113958,6 +113958,14 @@ PrefabInstance:
       propertyPath: chatMessageInputText
       value: 
       objectReference: {fileID: 1440596931}
+    - target: {fileID: 3338959322471659304, guid: 9223ecc530dd9c549ad1e0ff57237460, type: 3}
+      propertyPath: spawnRotation.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338959322471659304, guid: 9223ecc530dd9c549ad1e0ff57237460, type: 3}
+      propertyPath: initialCameraYRotation
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 4655690728542616405, guid: 9223ecc530dd9c549ad1e0ff57237460, type: 3}
       propertyPath: SortKey
       value: 2791892565

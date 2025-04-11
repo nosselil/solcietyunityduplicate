@@ -8,7 +8,7 @@ public class PlayerSetup : MonoBehaviour
 {
     Transform mobileUI = null, chatCanvas = null, cameraTransform = null;
 
-    public void SetupPlayer()
+    public void SetupPlayer(float initialLookRotationY = 180f)
     {
         Debug.Log("SMOOTH: Setup player called");
         // Find the local player core utilities, such as camera, chat window and mobile UI
@@ -34,6 +34,8 @@ public class PlayerSetup : MonoBehaviour
         /*cameraTransform.GetComponent<SmoothPosition>().target = transform;
         cameraTransform.GetComponent<SmoothRotation>().target = transform;
         cameraTransform.GetComponentInChildren<CameraDistanceRaycaster>().ignoreList[0] = GetComponent<CapsuleCollider>();*/
+
+        GetComponent<PlayerInput>().InitialLookRotationY = initialLookRotationY;
 
         // Mobile UI
         Debug.Log("MOBILE: WalletManager is mobile: " + WalletManager.instance.isMobile);

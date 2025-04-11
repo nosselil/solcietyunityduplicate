@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 public class NetworkController : NetworkBehaviour
 {
     public static NetworkController Instance;
-    public bool loadingNewScene = false;
+    [HideInInspector] public bool loadingNewScene = false;
 
     [HideInInspector] public bool localPlayerSpawned = false;
 

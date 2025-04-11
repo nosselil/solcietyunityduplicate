@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 
 namespace CMF
 {
 	//This script moves a rigidbody along a set of waypoints;
 	//It also moves any controllers on top along with it;
-	public class MovingPlatform : MonoBehaviour {
+	public class MovingPlatform : NetworkBehaviour {
 
 		//Movement speed;
 		public float movementSpeed = 10f;
@@ -61,11 +62,46 @@ namespace CMF
 			while(true)
 			{
 				yield return _instruction;
-				MovePlatform();
+				//MovePlatform();
 			}
 		}
 
-		void MovePlatform () {
+        public override void FixedUpdateNetwork()
+        {
+            // Calculate a vector from the current position to the waypoint.
+            Vector3 toCurrentWaypoint = currentWaypoint.position - transform.position;
+
+            // Get normalized movement direction.
+            Vector3 movement = toCurrentWaypoint.normalized;
+
+            // Calculate movement for this simulation tick using Runner.DeltaTime.
+            movement *= movementSpeed * Runner.DeltaTime;
+
+            // If the movement for this tick is greater than or equal to the remaining distance,
+            // or there's no movement, snap to the waypoint and update to the next waypoint.
+            if (movement.magnitude >= toCurrentWaypoint.magnitude || movement.magnitude == 0f)
+            {
+                r.transform.position = currentWaypoint.position;
+                UpdateWaypoint();
+            }
+            else
+            {
+                r.transform.position += movement;
+            }
+
+            // If no triggerArea is defined, exit early.
+            if (triggerArea == null)
+                return;
+
+            // Move all rigidbodies in the trigger area by the same movement vector.
+            for (int i = 0; i < triggerArea.rigidbodiesInTriggerArea.Count; i++)
+            {
+                triggerArea.rigidbodiesInTriggerArea[i].MovePosition(triggerArea.rigidbodiesInTriggerArea[i].position + movement);
+            }
+        }
+
+
+        void MovePlatform () {
 
 			//If no waypoints have been assigned, return;
 			if(waypoints.Count <= 0)

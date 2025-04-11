@@ -14,7 +14,7 @@ public class Toast : MonoBehaviour
     }
 
     private IEnumerator ShowToastCor(string text, int duration)
-    {
+    {        
         // Store the original color
         var originalColor = txt.color;
 

@@ -19,6 +19,7 @@ namespace Starter.Platformer
 	public sealed class PlayerInput : MonoBehaviour
 	{
 		public float InitialLookRotation = 18f;
+		public float InitialLookRotationY = 180f; // 270 in main hub
         public float LookRotationMultiplier = 3.0f;
 
         // Sensitivity for mobile touch-look rotation.
@@ -46,7 +47,8 @@ namespace Starter.Platformer
 		private void Start()
 		{
 			// Set initial camera rotation
-			_input.LookRotation = new Vector2(InitialLookRotation, 180f); // 0
+			_input.LookRotation = new Vector2(InitialLookRotation, InitialLookRotationY); // 0
+			//Debug.Log("PLAYER INPUT: ")
 		}
 
 		private void Update()

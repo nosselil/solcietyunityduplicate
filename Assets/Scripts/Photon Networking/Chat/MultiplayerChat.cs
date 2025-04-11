@@ -3,6 +3,7 @@ using Fusion.Photon.Realtime;
 using Language.Lua;
 using NUnit.Framework;
 using Solana.Unity.Soar.Types;
+using Starter;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -40,6 +41,12 @@ public class MultiplayerChat : NetworkBehaviour
         chatMessages["public"] = new List<string>();
     }
 
+    public void ActivateInputField()
+    {
+        Debug.Log("CHAT INPUT: Activate Input field");
+        chatMessageInputText.ActivateInputField();
+    }
+
     public string[] GetActivePlayerList() // Used with private chats
     {
         return PlayerWallets.ToArray();
@@ -67,6 +74,9 @@ public class MultiplayerChat : NetworkBehaviour
         {
             Debug.Log("CHAT: Toggle chat parent active");
             chatParent.SetActive(!chatParent.activeInHierarchy); // Toggle chat parent activity
+
+            if (chatParent.activeInHierarchy)
+                ActivateInputField();
         }
 
         if (Input.GetKeyDown(KeyCode.T))
@@ -119,6 +129,8 @@ public class MultiplayerChat : NetworkBehaviour
 
             SendChatMessageRpc(newMessage, targetWalletAddress, localWalletAddress);
         }
+
+        ActivateInputField(); // Re-activate the input field so that you don't need to select the box again to type in a new message
     }
 
     // RPC: Called on all clients to update messages for a given conversation.
@@ -131,8 +143,37 @@ public class MultiplayerChat : NetworkBehaviour
                   ". Source: " + info.Source + " | IsInvokeLocal: " + info.IsInvokeLocal);
 
         // If it's a public message, update the public conversation.
-        if (targetWalletAddress == "public")        
-            chatMessages["public"].Add(newMessage);                                
+        if (targetWalletAddress == "public")
+        {
+            chatMessages["public"].Add(newMessage);
+            
+            // Find the correct speech bubble to display the message content in
+            // info.Source gives you the PlayerRef of the client that sent this RPC
+            PlayerRef senderRef = info.Source;            
+
+            NetworkObject senderNetworkObject = Runner.GetPlayerObject(senderRef);
+
+            Debug.Log("CHAT BUBBLE: sender ref " + senderRef + ", associated player object: " + senderNetworkObject.name
+                + ", address (local address in attributes): " + senderNetworkObject.GetComponent<PlayerAttributes>().LocalWalletAddress);
+
+            if (senderNetworkObject != null)
+            {
+                Debug.Log("CHAT BUBBLE: Network object is not null");
+                SpeechBubble senderSpeechBubble = senderNetworkObject.GetComponentInChildren<SpeechBubble>();
+                if (senderSpeechBubble != null)
+                {
+                    Debug.Log("CHAT BUBBLE: Speech bubble not null");
+
+                    // Insert the message without the sender name to the speech bubble
+                    int colonIndex = newMessage.IndexOf(": ");
+                    if (colonIndex >= 0 && colonIndex + 2 < newMessage.Length)
+                    {
+                        string messageToDisplay = newMessage.Substring(colonIndex + 2);
+                        senderSpeechBubble.DisplaySpeechBubbleAnimation(messageToDisplay);
+                    }
+                }               
+            }            
+        }
         else
         {
             // For private messages, only add the message if the local wallet address matches the target.
@@ -144,7 +185,7 @@ public class MultiplayerChat : NetworkBehaviour
 
                 // In case the chat window doesn't have a tab for this recipient yet, we'll create a tab, but we don't want to set it as the active tab
                 if (!LocalChatWindowController.Instance.chatWindowPlayerIds.Contains(senderWalletAddress))
-                    LocalChatWindowController.Instance.AddNewPrivateChatWindow(senderWalletAddress, false); 
+                    LocalChatWindowController.Instance.AddNewPrivateChatWindow(senderWalletAddress, false);
 
                 // TODO: Ideally, this could also be highlighted in some way to notice better that we've got a new message
 

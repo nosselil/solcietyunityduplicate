@@ -1,13 +1,16 @@
 using Fusion;
 using Starter;
 using System.Collections;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Originally SimulationBehaviour
 {
     public GameObject PlayerPrefab;
     [SerializeField] Vector3 spawnPosition;
-
+    [SerializeField] Vector3 spawnRotation; // (0, 180, 0) for most scenes
+    [SerializeField] float initialCameraYRotation;
+ 
     public void PlayerJoined(PlayerRef player)
     {        
         if (player == Runner.LocalPlayer)
@@ -17,7 +20,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
             //Vector3 localSpawnPosition = new Vector3(-38, -10, 70);
            // Debug.Log("The set local spawn position is " + localSpawnPosition);
 
-            NetworkObject spawnedObject = Runner.Spawn(PlayerPrefab, spawnPosition, Quaternion.Euler(new Vector3(0, 180, 0)), Runner.LocalPlayer);
+            NetworkObject spawnedObject = Runner.Spawn(PlayerPrefab, spawnPosition, Quaternion.Euler(spawnRotation), Runner.LocalPlayer);
             Runner.SetPlayerObject(player, spawnedObject.gameObject.GetComponent<NetworkObject>());
             Debug.Log("Spawn player at position " + spawnPosition);
 
@@ -25,7 +28,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
             PlayerSetup setup = go.GetComponent<PlayerSetup>();
 
             Debug.Log("SETUP: Calling setupPlayer for player " + player.PlayerId);
-            setup.SetupPlayer();
+            setup.SetupPlayer(initialCameraYRotation);
 
             // Generate and assign a mock wallet address for the local player.
             string localWalletAddress;
