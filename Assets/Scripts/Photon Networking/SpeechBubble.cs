@@ -30,10 +30,7 @@ namespace Starter
         }
 
         public void DisplaySpeechBubbleAnimation(string message)
-        {
-            Debug.Log("CHAT BUBBLE: Start the speech bubble animations");
-            //Debug.Break();
-            
+        {            
             speechText.text = message;
 
             if (speechBubbleCoroutine != null)
@@ -45,9 +42,6 @@ namespace Starter
 
         IEnumerator DisplayingSpeechBubbleAnimations()
         {
-
-            Debug.Log("CHAT BUBBLE: Start the coroutine");
-            //yield return new WaitForSeconds(0.05f);
             speechBubbleContainer.gameObject.SetActive(true);
             animator.Play("FadeIn", 0, 0);            
             yield return new WaitForSeconds(speechBubbleDisplayTime);

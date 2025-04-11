@@ -107,9 +107,11 @@ public class MultiplayerChat : NetworkBehaviour
     {
         if (chatMessageInputText.text == "") // Don't send an empty message
             return;
-
+        
         // Create a shortened version of the wallet address.
         string shortenedAddress = WalletUtilities.ShortenWalletAddress(localWalletAddress);
+
+        Debug.Log("PREPARE SEND: Local wallet address is " + localWalletAddress + ", shortened version is " + shortenedAddress);
         // Include the local player id (for debug purposes).
         int playerId = Runner.LocalPlayer.PlayerId;
         string newMessage = shortenedAddress + ": " + chatMessageInputText.text;

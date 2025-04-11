@@ -34,6 +34,13 @@ public class PlayerAttributes : NetworkBehaviour
         // TODO: Logic could probably be cleaned up a little bit
     }
 
+    /*private void OnLocalWalletAddressChanged()
+        
+    {
+
+    }*/
+
+
     private void OnNicknameChanged()
     {
         Debug.Log("NICK: OnNicknameChanged");

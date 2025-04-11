@@ -1,7 +1,6 @@
 using Fusion;
 using Starter;
 using System.Collections;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Originally SimulationBehaviour
@@ -26,25 +25,30 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
 
             GameObject go = spawnedObject.gameObject;
             PlayerSetup setup = go.GetComponent<PlayerSetup>();
-
-            Debug.Log("SETUP: Calling setupPlayer for player " + player.PlayerId);
+            
             setup.SetupPlayer(initialCameraYRotation);
 
             // Generate and assign a mock wallet address for the local player.
             string localWalletAddress;
 
-            Debug.Log("WALLET ADDRESS: in wallet manager instance is " + WalletManager.instance.walletAddress);
+            Debug.Log("PREPARE TO SEND: in wallet manager instance is " + WalletManager.instance.walletAddress);
 
             if (WalletManager.instance && !string.IsNullOrEmpty(WalletManager.instance.walletAddress))
+            {
                 localWalletAddress = WalletManager.instance.walletAddress;
+                MultiplayerChat.Instance.localWalletAddress = localWalletAddress;
+            }
             else
                 localWalletAddress = MultiplayerChat.Instance.AssignMockWalletAddress();
-            
+                        
             // Set the local wallet address on the player's attributes.
             PlayerAttributes attributes = go.GetComponent<PlayerAttributes>();
             if (attributes != null)
-            {
+            {                
                 attributes.LocalWalletAddress = localWalletAddress;
+
+                Debug.Log("PREPARE TO SEND: Player attributes local address changed to " + attributes.LocalWalletAddress);
+
                 //attributes.Nickname = WalletUtilities.ShortenWalletAddress(localWalletAddress); // NOTE: We're currently using separate variables for these, since we may later on have a nickname through Solana Name Service, which
                 // is separate from the walletAddress                
                 attributes.SetCapColorIndex(); //player.PlayerId - 1);

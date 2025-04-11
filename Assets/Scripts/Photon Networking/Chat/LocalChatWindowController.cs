@@ -118,6 +118,9 @@ public class LocalChatWindowController : MonoBehaviour
 
     public void SetCurrentChatWindowText()
     {
+        if (chatWindowPlayerIds.Count == 0)
+            return;
+
         string currentWindowRecipientId = chatWindowPlayerIds[activeChatWindowIndex];
         Debug.Log("CHAT: Current window recipient id is " + currentWindowRecipientId);
 

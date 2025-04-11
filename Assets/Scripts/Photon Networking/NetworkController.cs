@@ -12,11 +12,24 @@ public class NetworkController : NetworkBehaviour
 
     [HideInInspector] public bool localPlayerSpawned = false;
 
+    [SerializeField] GameObject disconnectionPopUp;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Instance = this;
+        disconnectionPopUp.SetActive(false);
         loadingNewScene = false;
+    }
+
+    public void DisplayDisconnectionPopUp()
+    {
+        disconnectionPopUp.SetActive(true);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 
     // Update is called once per frame
