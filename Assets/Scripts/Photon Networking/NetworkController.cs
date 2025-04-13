@@ -20,6 +20,8 @@ public class NetworkController : NetworkBehaviour
         Instance = this;
         disconnectionPopUp.SetActive(false);
         loadingNewScene = false;
+
+        GetComponentInChildren<NetworkEvents>().OnShutdown.AddListener(OnRunnerShutdown);
     }
 
     public void DisplayDisconnectionPopUp()
@@ -27,6 +29,7 @@ public class NetworkController : NetworkBehaviour
         disconnectionPopUp.SetActive(true);
     }
 
+    
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("Main Menu");
@@ -36,6 +39,12 @@ public class NetworkController : NetworkBehaviour
     void Update()
     {
 
+    }
+
+    public void OnRunnerShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
+    {
+        Debug.Log("SHUTDOWN: Shutdown triggered. Reason: " + shutdownReason);
+        // Your logic to handle the shutdown.
     }
 
     /*public void SwitchScene(string newSceneName)

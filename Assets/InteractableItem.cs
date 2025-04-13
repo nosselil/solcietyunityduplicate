@@ -31,7 +31,11 @@ public class InteractableItem : MonoBehaviour
 
     void Update()
     {
-        if (LocalChatWindowController.Instance == null || LocalChatWindowController.Instance.IsChatWindowActive)        
+        //Debug.Log("InteractableItem: chat input active: " + MultiplayerChat.Instance.IsChatInputActive);
+
+        // NOTE: I don't think the actual E key check is actually done here, but in ProximitySelector instead
+        //if (LocalChatWindowController.Instance == null || LocalChatWindowController.Instance.IsChatWindowActive)        
+        if (MultiplayerChat.Instance == null || MultiplayerChat.Instance.IsChatInputActive)
             return;
 
         if (player == null)

@@ -292,7 +292,8 @@ namespace PixelCrushers.DialogueSystem
         /// Calls OnUse on the current selection.
         /// </summary>
         public virtual void UseCurrentSelection()
-        {         
+        {
+
             if ((currentUsable != null) && currentUsable.enabled && (currentUsable.gameObject != null) && (Time.time >= timeToEnableUseButton))
             {
                 Debug.Log("INTERACT: Use Usable within promiximityselector.cs");

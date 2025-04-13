@@ -53,11 +53,11 @@ namespace Starter.Platformer
 
 		private void Update()
 		{
-			Debug.Log("PLAYER INPUT: wallet manager is mobile: " + WalletManager.instance.isMobile);
+			//Debug.Log("PLAYER INPUT: wallet manager is mobile: " + WalletManager.instance.isMobile);
 
 			//Debug.Log("KCC: PlayerInput, cursor lockstate " + Cursor.lockState);
 
-			if (LocalChatWindowController.Instance.IsChatWindowActive) // don't allow input gathering if chat is open
+			if (MultiplayerChat.Instance.IsChatInputActive) //LocalChatWindowController.Instance.IsChatWindowActive) // don't allow input gathering if chat is open
 				return;
 
             // Accumulate input only if the cursor is locked.
