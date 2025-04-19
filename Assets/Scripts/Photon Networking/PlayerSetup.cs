@@ -42,15 +42,24 @@ public class PlayerSetup : MonoBehaviour
 
         if (WalletManager.instance.isMobile)
         {
+            //mobileUI.gameObject.SetActive(true);
             Button jumpButton = mobileUI.Find("JumpBtn").GetComponent<Button>();
-            Button interactButton = mobileUI.Find("InteractBtn").GetComponent<Button>();
+            //Button interactButton = mobileUI.Find("InteractBtn").GetComponent<Button>();
+            Button chatButton = mobileUI.Find("ChatBtn").GetComponent<Button>();
+
             PlayerInput playerInput = GetComponent<PlayerInput>();
             PixelCrushers.DialogueSystem.ProximitySelector proximitySelector = GetComponentInChildren<PixelCrushers.DialogueSystem.ProximitySelector>();
+            proximitySelector.defaultUseMessage = "(Double tap to interact)";
+
 
             playerInput.joystick = mobileUI.Find("JoyStickBase").GetComponent<Joystick>();
             jumpButton.onClick.AddListener(() => playerInput.SetMobileUIJumpPressed());
-            interactButton.onClick.AddListener(() => proximitySelector.OnMobileInteractButtonPressed());
-            proximitySelector.mobileInteractButton = interactButton; // Set a reference to the interact button so that it will correctly activate when we come close to interactable objects
+
+            chatButton.onClick.AddListener(() => MultiplayerChat.Instance.ToggleChatParent());
+
+            // NOTE: Put these back if you want to restore the interact button which we've now replaced with the chat button
+            //interactButton.onClick.AddListener(() => proximitySelector.OnMobileInteractButtonPressed());
+            //proximitySelector.mobileInteractButton = interactButton; // Set a reference to the interact button so that it will correctly activate when we come close to interactable objects
         }
         else
             mobileUI.gameObject.SetActive(false);
@@ -82,7 +91,7 @@ public class PlayerSetup : MonoBehaviour
 
         DependencyContainer dependencyContainer = coreUtils.GetComponentInChildren<DependencyContainer>();
 
-        // NFT Interaction
+        // NFT Interaction (used in gallery scenes)
         NFTInteraction nftInteraction = GetComponent<NFTInteraction>();
         if (nftInteraction != null)
         {
@@ -92,7 +101,23 @@ public class PlayerSetup : MonoBehaviour
             nftInteraction.artworkText2 = dependencyContainer.artworkText2;
             nftInteraction.artworkImage = dependencyContainer.artworkImage;
             nftInteraction.buyNFTfromGalleryScript = dependencyContainer.buyNFTfromGalleryScript;
-        }
+
+            // Now find the ArtContainer and hook up the onUse event on every Usable below it:
+            GameObject artContainer = GameObject.FindGameObjectWithTag("ArtContainer");
+            if (artContainer != null)
+            {
+                // This will grab Usable components on all children (recursively).
+                PixelCrushers.DialogueSystem.Wrappers.Usable[] usables = artContainer.GetComponentsInChildren<PixelCrushers.DialogueSystem.Wrappers.Usable>(includeInactive: true);
+                foreach (var usable in usables)
+                {
+                    if (usable.events != null)
+                    {
+                        // Add the ShowNftDetailsPopup callback to the onUse UnityEvent.
+                        usable.events.onUse.AddListener(nftInteraction.ShowNftDetailsPopup);
+                    }
+                }
+            }
+        }    
 
         // TextMeshFader
         TextMeshFader textMeshFader = GetComponent<TextMeshFader>();

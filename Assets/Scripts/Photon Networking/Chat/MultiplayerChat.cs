@@ -72,14 +72,9 @@ public class MultiplayerChat : NetworkBehaviour
         if (NetworkController.Instance == null)
             return;
 
-        if (NetworkController.Instance.localPlayerSpawned && Input.GetKeyDown(KeyCode.Tab)) /*Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))*/
-        {
-            Debug.Log("CHAT: Toggle chat parent active");
-            chatParent.SetActive(!chatParent.activeInHierarchy); // Toggle chat parent activity
-
-            if (chatParent.activeInHierarchy)
-                ActivateInputField();
-        }
+        if (Input.GetKeyDown(KeyCode.Tab)) /*Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))*/        
+            ToggleChatParent();
+        
 
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -92,6 +87,18 @@ public class MultiplayerChat : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.U))
             UpdateWalletAddressCollection(); // Make sure each client has an updated copy of the wallet addresses
+    }
+
+    public void ToggleChatParent()
+    {
+        if (NetworkController.Instance.localPlayerSpawned)
+        {
+            Debug.Log("CHAT: Toggle chat parent active");
+            chatParent.SetActive(!chatParent.activeInHierarchy); // Toggle chat parent activity
+
+            if (chatParent.activeInHierarchy)
+                ActivateInputField();
+        }
     }
 
     public void OnInputFinished()

@@ -115589,6 +115589,30 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: LocalChatWindowController, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 2500572177069000608, guid: d6d9fac397346394b985b423a17560d4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.80393
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500572177069000608, guid: d6d9fac397346394b985b423a17560d4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 73.80423
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500572177069000608, guid: d6d9fac397346394b985b423a17560d4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000004317323
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500572177069000608, guid: d6d9fac397346394b985b423a17560d4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000006837968
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500572177069000608, guid: d6d9fac397346394b985b423a17560d4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.98768836
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500572177069000608, guid: d6d9fac397346394b985b423a17560d4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.15643448
+      objectReference: {fileID: 0}
     - target: {fileID: 6674015130327778691, guid: d6d9fac397346394b985b423a17560d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -115638,6 +115662,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7420943166147145251, guid: d6d9fac397346394b985b423a17560d4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420943166147145251, guid: d6d9fac397346394b985b423a17560d4, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -115651,6 +115679,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8164760733175066924, guid: d6d9fac397346394b985b423a17560d4, type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164760733175066924, guid: d6d9fac397346394b985b423a17560d4, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8164760733175066924, guid: d6d9fac397346394b985b423a17560d4, type: 3}

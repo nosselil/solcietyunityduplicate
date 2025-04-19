@@ -77,6 +77,12 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
         //Runner.GetPlayerObject(Runner.LocalPlayer).GetComponent<PlayerAttributes>().UpdateNetworkedWalletAddressDictionary();
     }
 
+    void Update()
+    {
+        if (Runner != null)
+        Debug.Log("PHOTON: Current room: " + Runner.SessionInfo.Name + ", current game mode: " + Runner.GameMode);        
+    }
+
     private IEnumerator WaitForAndDisableProximitySelector(PlayerRef player)
     {
         NetworkObject netObj = null;

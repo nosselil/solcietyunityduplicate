@@ -56,7 +56,7 @@ namespace InsaneSystems.RTSStarterKit
 		{
 			if (startLoading)
 			{
-				SceneManager.LoadScene(MatchSettings.currentMatchSettings.selectedMap.mapSceneName);
+				SceneManager.LoadScene("MiniGame"); /*MatchSettings.currentMatchSettings.selectedMap.mapSceneName); */
 				startLoading = false;
 			}
 		}

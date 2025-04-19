@@ -29,9 +29,12 @@ public class NFTInteraction : MonoBehaviour
 }
    private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("ART: Entered trigger");
+
         NFTMetadataHolder metadataHolder = other.gameObject.GetComponent<NFTMetadataHolder>();
         if (metadataHolder != null)
         {
+            Debug.Log("ART: Metadata holder is present");
             currentMetadata = metadataHolder.nftName; // Store metadata
             nftArtist = metadataHolder.artistName;
             // Get the mint address directly from the NFTMetadataHolder

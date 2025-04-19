@@ -58,6 +58,8 @@ using System.Net.Http;
 
         void Awake()
         {
+            Application.runInBackground = true;
+
             tutorialCompleted = PlayerPrefs.GetInt(PLAYER_PREFS_TUTORIAL_COMPLETED_KEY, 0) == 1;
 
             wagerAmount = 0.1f;
@@ -102,8 +104,8 @@ using System.Net.Http;
        isMobile = false;
         //    deviceText.text = "NOT MB";
         }
-#else            
-            isMobile = false; // true for debug purposes 
+#else
+        isMobile = true; // false //for debug purposes 
             if (deviceTxt != null)
                 deviceTxt.gameObject.SetActive(false);
         //    deviceText.text = "NOT MB";

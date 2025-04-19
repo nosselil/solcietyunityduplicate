@@ -16,7 +16,7 @@ public class PlayerMovement : NetworkBehaviour
     private bool _jumpPressed;
 
     // Detect jump input in Update (called every frame)
-    void Update()
+    private void Update()
     {
         if (Input.GetButtonDown("Jump"))
         {

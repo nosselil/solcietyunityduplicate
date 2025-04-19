@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/mh/wager.unity
     guid: e1c364e494623460a90931ae7dd55143
   - enabled: 1
-    path: Assets/Scenes/Minigame/Demo.unity
+    path: Assets/Scenes/Minigame/MiniGame.unity
     guid: ea8a8838ad22f4d08853073bbe503ca7
   - enabled: 1
     path: Assets/Scenes/Minigame/punicLobby.unity

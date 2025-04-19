@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using PixelCrushers.DialogueSystem;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -37,6 +38,10 @@ namespace Knife.Portal
             {
                 Debug.LogErrorFormat("portalViewCamera {0} must be child of portalRoot2 {1}", portalViewCamera.name, portalRoot2.name);
             }
+
+            // Override the use message if we're on mobile
+            if (WalletManager.instance.isMobile)
+                GetComponent<Usable>().overrideUseMessage = "(Double tap to travel)";
 
             CreateRT();
         }
