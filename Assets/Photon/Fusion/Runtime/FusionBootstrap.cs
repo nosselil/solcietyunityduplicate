@@ -654,9 +654,12 @@ namespace Fusion {
       }
 
       Debug.Log("FUSION BOOTSTRAP: Starting a game scene with default room name: " + DefaultRoomName);
-        
-            NetworkProjectConfig config = new();
-            config.Network.ConnectionTimeout = 300;
+
+            /*// Preserves your Spawnable Prefabs list
+            var config = NetworkProjectConfig.Global;            
+
+            // now tweak any network settings
+            config.Network.ConnectionTimeout = 300;*/
 
             return runner.StartGame(new StartGameArgs {
         GameMode       = gameMode,
@@ -667,7 +670,7 @@ namespace Fusion {
         SceneManager   = sceneManager,
         Updater        = updater,
         ObjectProvider = objectProvider,
-        Config         = config,
+        //Config         = config,
       });
     }
     

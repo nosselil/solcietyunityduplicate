@@ -14,7 +14,7 @@ public class NetworkController : NetworkBehaviour
 
     [HideInInspector] public bool localPlayerSpawned = false;
 
-    [SerializeField] GameObject disconnectionPopUp;
+    //[SerializeField] GameObject disconnectionPopUp;
 
     public int maxPlayersPerReplica = 32;
 
@@ -24,15 +24,15 @@ public class NetworkController : NetworkBehaviour
     void Start()
     {
         Instance = this;
-        disconnectionPopUp.SetActive(false);
+        //disconnectionPopUp.SetActive(false);
         loadingNewScene = false;
 
         //localPlayerExistencePollingCoroutine = 
-            StartCoroutine(PollLocalPlayerExistence());
-        GetComponentInChildren<NetworkEvents>().OnShutdown.AddListener(OnRunnerShutdown);
+            //StartCoroutine(PollLocalPlayerExistence());
+        //GetComponentInChildren<NetworkEvents>().OnShutdown.AddListener(OnRunnerShutdown);
     }
 
-    IEnumerator PollLocalPlayerExistence()
+    /*IEnumerator PollLocalPlayerExistence()
     {
         float pollInterval = 3f;
 
@@ -44,16 +44,16 @@ public class NetworkController : NetworkBehaviour
 
             if (Runner != null)
             {
-                if (Runner.GetPlayerObject(Runner.LocalPlayer) == null)
+                if (Runner.State == NetworkRunner.States.Shutdown && Runner.GetPlayerObject(Runner.LocalPlayer) == null)
                 {
                     // The local player doesn't exist anymore, so display disconnection pop-up (that will take us back to the main menu)
-                    DisplayDisconnectionPopUp();
+                    //DisplayDisconnectionPopUp();
                     Debug.Log("DISCONNECT: Local player doesn't exist any more");
                     yield break;
                 }
                 else if (!Runner.IsRunning || !Runner.IsConnectedToServer || Runner.CurrentConnectionType == ConnectionType.None)
                 {
-                    DisplayDisconnectionPopUp();
+                    //DisplayDisconnectionPopUp();
                     Debug.Log("DISCONNECT: Runner is not running, connected to server or the connection type is none");
                     yield break;
                 }
@@ -61,18 +61,18 @@ public class NetworkController : NetworkBehaviour
 
             yield return new WaitForSeconds(pollInterval);            
         }
-    }
+    }*/
 
-    public void DisplayDisconnectionPopUp()
+    /*public void DisplayDisconnectionPopUp()
     {
-        disconnectionPopUp.SetActive(true);
-    }
+        //disconnectionPopUp.SetActive(true);
+    }*/
 
     
-    public void ReturnToMainMenu()
+    /*public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("Main Menu");
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
@@ -103,6 +103,7 @@ public class NetworkController : NetworkBehaviour
 
         loadingNewScene = true; // A flag that will prevent the player from interacting or moving // TODO: Does not currently do much
 
+
         // Disable interactions when new scene is loading
         Runner.GetPlayerObject(Runner.LocalPlayer).GetComponentInChildren<PixelCrushers.DialogueSystem.ProximitySelector>().enabled = false;
         
@@ -114,6 +115,12 @@ public class NetworkController : NetworkBehaviour
 
         // Now load the new scene.
         SceneManager.LoadScene(newSceneName);        
+    }
+
+    public void OnDestroy()
+    {
+        Debug.Log("DISCONNECT: NetworkController destroyed");
+        //SceneManager.LoadScene("Main Menu");
     }
 }
 

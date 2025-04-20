@@ -4,6 +4,7 @@ using Fusion.Addons.SimpleKCC;
 using UnityEngine.InputSystem;
 using CMF;
 using UnityEngine.SceneManagement;
+using static Unity.Collections.Unicode;
 
 namespace Starter.Platformer
 {
@@ -219,6 +220,20 @@ namespace Starter.Platformer
             _animIDGrounded = Animator.StringToHash("Grounded");
         }
 
+
+        private void OnDestroy()
+        {
+            /*Debug.Log("DISCONNECT: OnDestroy, runner state is " + Runner.State);
+
+            if (HasInputAuthority && Runner.State == NetworkRunner.States.Shutdown)
+            {
+                Debug.Log("DISCONNECT: Local player has left and network state is shutdown, return to main menu");
+                // TODO: Pop up?
+                SceneManager.LoadScene("Main Menu");
+            }
+            else
+                Debug.Log("DISCONNECT: Local player has been destroyed, no returns since this is not a network condition");*/
+        }
 
     }
 }

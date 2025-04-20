@@ -46,6 +46,7 @@ TagManager:
   - CameraControls
   - ArtContainer
   - LocalPlayerLoadingScreen
+  - LocalPlayerDisconnectionHandler
   layers:
   - Default
   - TransparentFX

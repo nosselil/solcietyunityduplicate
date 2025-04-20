@@ -6,11 +6,11 @@ using static UnityEngine.AudioSettings;
 
 public class PlayerSetup : MonoBehaviour
 {
-    Transform mobileUI = null, chatCanvas = null, cameraTransform = null, loadingScreen = null;
+    Transform mobileUI = null, chatCanvas = null, cameraTransform = null, loadingScreen = null, disconnectionHandler = null;
 
     public void SetupPlayer(float initialLookRotationY = 180f)
     {
-        Debug.Log("SMOOTH: Setup player called");
+        //Debug.Log("SMOOTH: Setup player called");
         // Find the local player core utilities, such as camera, chat window and mobile UI
 
         GameObject coreUtils = GameObject.FindGameObjectWithTag("LocalPlayerCoreUtilities");
@@ -25,6 +25,8 @@ public class PlayerSetup : MonoBehaviour
                 cameraTransform = child;
             else if (child.CompareTag("LocalPlayerLoadingScreen"))
                 loadingScreen = child;
+            else if (child.CompareTag("LocalPlayerDisconnectionHandler"))
+                disconnectionHandler = child;
         }
 
         // Link these to the local player
@@ -68,7 +70,14 @@ public class PlayerSetup : MonoBehaviour
 
 
         Invoke("DeactivateLoadingScreen", 0.5f);
-        
+
+        // Disconnection Handler
+        DisconnectionController disconnectionController = disconnectionHandler.GetComponent<DisconnectionController>();
+        disconnectionController.localPlayerGO = gameObject;
+        disconnectionController.playerSpawnedInScene = true;
+
+        Debug.Log("DISCONNECT: Player setup called, set up player spawned in scene");
+
 
         // Character keyboard input
         /*CharacterKeyboardInput characterKeyboardInput = GetComponent<CharacterKeyboardInput>();        
@@ -86,7 +95,10 @@ public class PlayerSetup : MonoBehaviour
         //advancedWalkerController.cameraTransform = FindChildWithTag(cameraTransform, "CameraControls");
 
         // Chat
-                    
+
+
+
+
 
         #endregion
 
