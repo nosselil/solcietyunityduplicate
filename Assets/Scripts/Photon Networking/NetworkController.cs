@@ -3,6 +3,8 @@ using static Unity.Collections.Unicode;
 using UnityEngine.SceneManagement;
 using Fusion;
 using System.Threading.Tasks;
+using System.Collections;
+using Unity.VisualScripting;
 
 
 public class NetworkController : NetworkBehaviour
@@ -14,6 +16,10 @@ public class NetworkController : NetworkBehaviour
 
     [SerializeField] GameObject disconnectionPopUp;
 
+    public int maxPlayersPerReplica = 32;
+
+    //private Coroutine localPlayerExistencePollingCoroutine = null;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,7 +27,40 @@ public class NetworkController : NetworkBehaviour
         disconnectionPopUp.SetActive(false);
         loadingNewScene = false;
 
+        //localPlayerExistencePollingCoroutine = 
+            StartCoroutine(PollLocalPlayerExistence());
         GetComponentInChildren<NetworkEvents>().OnShutdown.AddListener(OnRunnerShutdown);
+    }
+
+    IEnumerator PollLocalPlayerExistence()
+    {
+        float pollInterval = 3f;
+
+        yield return new WaitForSeconds(5f); // Wait a moment for the player instantiation to happen properly
+
+        while (true)
+        {
+            Debug.Log("DISCONNECT: Local player still exists");
+
+            if (Runner != null)
+            {
+                if (Runner.GetPlayerObject(Runner.LocalPlayer) == null)
+                {
+                    // The local player doesn't exist anymore, so display disconnection pop-up (that will take us back to the main menu)
+                    DisplayDisconnectionPopUp();
+                    Debug.Log("DISCONNECT: Local player doesn't exist any more");
+                    yield break;
+                }
+                else if (!Runner.IsRunning || !Runner.IsConnectedToServer || Runner.CurrentConnectionType == ConnectionType.None)
+                {
+                    DisplayDisconnectionPopUp();
+                    Debug.Log("DISCONNECT: Runner is not running, connected to server or the connection type is none");
+                    yield break;
+                }
+            }
+
+            yield return new WaitForSeconds(pollInterval);            
+        }
     }
 
     public void DisplayDisconnectionPopUp()
@@ -38,7 +77,10 @@ public class NetworkController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Debug.Log("DISCONNECT: Network controller still exists");
+        }
     }
 
     public void OnRunnerShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
@@ -46,11 +88,6 @@ public class NetworkController : NetworkBehaviour
         Debug.Log("SHUTDOWN: Shutdown triggered. Reason: " + shutdownReason);
         // Your logic to handle the shutdown.
     }
-
-    /*public void SwitchScene(string newSceneName)
-    {
-        //await SwitchRoomAndScene(newSceneName);
-    }*/
 
     public async void SwitchRoomAndScene(string newSceneName)
     {
@@ -68,9 +105,7 @@ public class NetworkController : NetworkBehaviour
 
         // Disable interactions when new scene is loading
         Runner.GetPlayerObject(Runner.LocalPlayer).GetComponentInChildren<PixelCrushers.DialogueSystem.ProximitySelector>().enabled = false;
-
-        //Debug.Break();
-
+        
         // This will disconnect from the current session and clean up networked objects.
         if (Runner != null)
         {

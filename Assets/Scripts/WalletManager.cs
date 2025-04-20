@@ -56,6 +56,9 @@ using System.Net.Http;
         [HideInInspector]
         public bool tutorialCompleted = false; // if true, we'll be taken directly to the main Hub once the game begins
 
+        //public int worldReplicaId = -1; // TODO: Another variable for which we want persistence, but this isn't really the best place for that. But keep it here for now since WalletManager
+        // will provide the persistence we need
+
         void Awake()
         {
             Application.runInBackground = true;
@@ -105,7 +108,7 @@ using System.Net.Http;
         //    deviceText.text = "NOT MB";
         }
 #else
-        isMobile = true; // false //for debug purposes 
+        isMobile = false; // false //for debug purposes 
             if (deviceTxt != null)
                 deviceTxt.gameObject.SetActive(false);
         //    deviceText.text = "NOT MB";

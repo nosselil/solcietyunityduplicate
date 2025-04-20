@@ -45,6 +45,7 @@ TagManager:
   - Jumper
   - CameraControls
   - ArtContainer
+  - LocalPlayerLoadingScreen
   layers:
   - Default
   - TransparentFX

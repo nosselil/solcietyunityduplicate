@@ -84,7 +84,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
-    - _HueOffset: 0
+    - _HueOffset: 1
     - _LineMul: 4.26
     - _LinePower: 2.94
     - _LineSub: 2.51

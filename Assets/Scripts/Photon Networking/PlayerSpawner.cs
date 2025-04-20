@@ -1,6 +1,7 @@
-using Fusion;
+﻿using Fusion;
 using Starter;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Originally SimulationBehaviour
@@ -9,7 +10,9 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
     [SerializeField] Vector3 spawnPosition;
     [SerializeField] Vector3 spawnRotation; // (0, 180, 0) for most scenes
     [SerializeField] float initialCameraYRotation;
- 
+
+    private bool runnerInfoKeyPressed = false;
+    
     public void PlayerJoined(PlayerRef player)
     {        
         if (player == Runner.LocalPlayer)
@@ -32,6 +35,16 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
             string localWalletAddress;
 
             Debug.Log("PREPARE TO SEND: in wallet manager instance is " + WalletManager.instance.walletAddress);
+
+            if (WalletManager.instance != null && WalletManager.instance.worldReplicaId == -1)
+            {
+                // How many players are in the session right now?
+                int totalPlayers = Runner.ActivePlayers.Count();
+                // Bucket them: players 1–64 → 1, 65–128 → 2, etc. (assuming 64 players is the max per replica)
+                int replicaId = ((totalPlayers - 1) / NetworkController.Instance.maxPlayersPerReplica) + 1;
+                WalletManager.instance.worldReplicaId = replicaId;
+                Debug.Log($"WORLD REPLICA: Assigned worldReplicaId = {replicaId} (player #{totalPlayers})");
+            }
 
             if (WalletManager.instance && !string.IsNullOrEmpty(WalletManager.instance.walletAddress))
             {
@@ -79,8 +92,23 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
 
     void Update()
     {
-        if (Runner != null)
-        Debug.Log("PHOTON: Current room: " + Runner.SessionInfo.Name + ", current game mode: " + Runner.GameMode);        
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            runnerInfoKeyPressed = true;
+        }
+    }
+
+    public override void FixedUpdateNetwork()
+    {
+        if (runnerInfoKeyPressed)
+        {
+            if (Runner != null)
+                Debug.Log("ROOM: Current room: " + Runner.SessionInfo.Name + ", current game mode: " + Runner.GameMode);
+            else
+                Debug.Log("ROOM: Runner is null, can't get room or game mode info");
+
+            runnerInfoKeyPressed = false;
+        }
     }
 
     private IEnumerator WaitForAndDisableProximitySelector(PlayerRef player)
@@ -102,7 +130,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
         if (proxSelector != null)
         {
             proxSelector.enabled = false;
-            Debug.Log($"PROXIMITY: Non-local player's ProximitySelector disabled for player {player.PlayerId}");
+            //Debug.Log($"PROXIMITY: Non-local player's ProximitySelector disabled for player {player.PlayerId}");
         }
 
         yield break;
@@ -112,7 +140,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
 
     void UpdateWalletIdCollection()
     {
-        Debug.Log("ON PLAYER JOINED: Invoked collection update");
+        //Debug.Log("ON PLAYER JOINED: Invoked collection update");
 
         MultiplayerChat.Instance.UpdateWalletAddressCollection(); // Make sure each client has an updated copy of the wallet addresses
     }

@@ -19,7 +19,7 @@ public class PlayerAttributes : NetworkBehaviour
 
     public override void Spawned()
     {
-        Debug.Log("NICK: PlayerAttributes.cs");
+        //Debug.Log("NICK: PlayerAttributes.cs");
 
         Invoke("SetNickname", 0.1f); // Wait for the player spawner initialization to finish, then assign the nick name to the newly spawned player. Since Nickname is a networked property, all players will
         // see the nickname               
@@ -43,13 +43,13 @@ public class PlayerAttributes : NetworkBehaviour
 
     private void OnNicknameChanged()
     {
-        Debug.Log("NICK: OnNicknameChanged");
+        //Debug.Log("NICK: OnNicknameChanged");
         nameplate.SetNickname(Nickname);
     }
 
     public void SetCapColorIndex()//int capColorIndex)
     {
-        Debug.Log("CAP: Set cap color index");
+        //Debug.Log("CAP: Set cap color index");
         CapColorIndex = PlayerPrefs.GetInt(PLAYER_PREFS_CAP_COLOR_INDEX_KEY, -1);
 
         if (CapColorIndex == -1) // Has not been set yet
@@ -64,18 +64,18 @@ public class PlayerAttributes : NetworkBehaviour
 
     private void OnCapColorIndexChanged()
     {
-        Debug.Log("CAP: OnCapColorIndexChanged triggered, CapColorIndex = " + CapColorIndex);
+        //Debug.Log("CAP: OnCapColorIndexChanged triggered, CapColorIndex = " + CapColorIndex);
 
         // Calculate a valid index using modulo to ensure we don't go out-of-bounds.
         int validIndex = Mathf.Abs(CapColorIndex) % capMaterialTextures.Length;
-        Debug.Log("CAP: Valid texture index = " + validIndex);
+        //Debug.Log("CAP: Valid texture index = " + validIndex);
 
         // Instantiate a new instance of the base cap material (so that changes only affect this instance).
         Material newCapMaterial = Instantiate(capMaterial);
         newCapMaterial.mainTexture = capMaterialTextures[validIndex];
 
         capRenderer.material = newCapMaterial;
-        Debug.Log("CAP: Assigned new cap material with texture index " + validIndex);
+        //Debug.Log("CAP: Assigned new cap material with texture index " + validIndex);
 
     }
 }

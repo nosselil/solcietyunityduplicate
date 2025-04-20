@@ -117,7 +117,7 @@ namespace Starter.Platformer
             
             if (!previouslyGrounded && KCC.IsGrounded)
             {
-                Debug.Log("LAND: Player just landed with velocity " + KCC.RealVelocity);
+                //Debug.Log("LAND: Player just landed with velocity " + KCC.RealVelocity);
                 animationControl.OnLand(KCC.RealVelocity);
             }
 

@@ -8,7 +8,7 @@ namespace Fusion {
   using System.Collections.Generic;
   using System.Linq;
   using Statistics;
-  using UnityEngine.Serialization;
+  using UnityEngine.Serialization;    
 
 #if UNITY_EDITOR
   using UnityEditor;
@@ -653,15 +653,21 @@ namespace Fusion {
         sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
       }
 
-      return runner.StartGame(new StartGameArgs {
+      Debug.Log("FUSION BOOTSTRAP: Starting a game scene with default room name: " + DefaultRoomName);
+        
+            NetworkProjectConfig config = new();
+            config.Network.ConnectionTimeout = 300;
+
+            return runner.StartGame(new StartGameArgs {
         GameMode       = gameMode,
         Address        = address,
         Scene          = sceneInfo,
         SessionName    = DefaultRoomName,
-        OnGameStarted    = onGameStarted,
+        OnGameStarted  = onGameStarted,
         SceneManager   = sceneManager,
         Updater        = updater,
         ObjectProvider = objectProvider,
+        Config         = config,
       });
     }
     

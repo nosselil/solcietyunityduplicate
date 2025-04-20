@@ -29,7 +29,7 @@ public class NFTInteraction : MonoBehaviour
 }
    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ART: Entered trigger");
+        //Debug.Log("ART: Entered trigger");
 
         NFTMetadataHolder metadataHolder = other.gameObject.GetComponent<NFTMetadataHolder>();
         if (metadataHolder != null)

@@ -6,7 +6,7 @@ using static UnityEngine.AudioSettings;
 
 public class PlayerSetup : MonoBehaviour
 {
-    Transform mobileUI = null, chatCanvas = null, cameraTransform = null;
+    Transform mobileUI = null, chatCanvas = null, cameraTransform = null, loadingScreen = null;
 
     public void SetupPlayer(float initialLookRotationY = 180f)
     {
@@ -23,6 +23,8 @@ public class PlayerSetup : MonoBehaviour
                 chatCanvas = child;
             else if (child.CompareTag("LocalPlayerCamera"))
                 cameraTransform = child;
+            else if (child.CompareTag("LocalPlayerLoadingScreen"))
+                loadingScreen = child;
         }
 
         // Link these to the local player
@@ -64,6 +66,8 @@ public class PlayerSetup : MonoBehaviour
         else
             mobileUI.gameObject.SetActive(false);
 
+
+        Invoke("DeactivateLoadingScreen", 0.5f);
         
 
         // Character keyboard input
@@ -138,6 +142,11 @@ public class PlayerSetup : MonoBehaviour
 
         Debug.Log("Player setup completed.");
 
+    }
+
+    private void DeactivateLoadingScreen()
+    {
+        loadingScreen.gameObject.SetActive(false); // If the player setup scripts gets triggered, it means that our player must have spawned and the loading has been completed
     }
 
     public Transform FindChildWithTag(Transform parent, string tag)
