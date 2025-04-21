@@ -10,7 +10,7 @@ using Unity.VisualScripting;
 public class NetworkController : NetworkBehaviour
 {
     public static NetworkController Instance;
-    [HideInInspector] public bool loadingNewScene = false;
+    //[HideInInspector] public bool loadingNewScene = false;
 
     [HideInInspector] public bool localPlayerSpawned = false;
 
@@ -25,7 +25,7 @@ public class NetworkController : NetworkBehaviour
     {
         Instance = this;
         //disconnectionPopUp.SetActive(false);
-        loadingNewScene = false;
+        //loadingNewScene = false;
 
         //localPlayerExistencePollingCoroutine = 
             //StartCoroutine(PollLocalPlayerExistence());
@@ -101,8 +101,8 @@ public class NetworkController : NetworkBehaviour
             PlayerPrefs.SetInt(WalletManager.instance.PLAYER_PREFS_TUTORIAL_COMPLETED_KEY, 1); // mark tutorial as completed
         }
 
-        loadingNewScene = true; // A flag that will prevent the player from interacting or moving // TODO: Does not currently do much
-
+        DisconnectionController.Instance.loadingNewScene = true; // A flag that will prevent disconnection pop-ups from happening when we're in the middle of loading a new scene
+        
 
         // Disable interactions when new scene is loading
         Runner.GetPlayerObject(Runner.LocalPlayer).GetComponentInChildren<PixelCrushers.DialogueSystem.ProximitySelector>().enabled = false;

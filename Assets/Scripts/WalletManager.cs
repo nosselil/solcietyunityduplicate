@@ -61,6 +61,8 @@ using System.Net.Http;
 
         void Awake()
         {
+            //Debug.Log("CLIPBOARD: " + ClipboardUtilities.Test());
+
             Application.runInBackground = true;
 
             tutorialCompleted = PlayerPrefs.GetInt(PLAYER_PREFS_TUTORIAL_COMPLETED_KEY, 0) == 1;

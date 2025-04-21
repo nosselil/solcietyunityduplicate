@@ -41,6 +41,7 @@ namespace Solana.Unity.SDK.Example
 
         public SimpleScreenManager parentManager;
     public TextMeshProUGUI publicKey_txt;
+        public TMP_InputField publicKeyInputField;
 
         private CancellationTokenSource _stopTask;
         private List<TokenItem> _instantiatedTokens = new();
@@ -51,6 +52,9 @@ namespace Solana.Unity.SDK.Example
         {
 
             publicKey_txt.text = Web3.Instance.WalletBase.Account.PublicKey;
+
+            Debug.Log("WALLET SCREEN: Input public key text to input field");
+            publicKeyInputField.text = Web3.Instance.WalletBase.Account.PublicKey;
 
             refreshBtn.onClick.AddListener(RefreshWallet);
 

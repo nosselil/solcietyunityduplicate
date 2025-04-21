@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using codebase.utility;
 using Solana.Unity.Rpc.Types;
 using Solana.Unity.SDK;
+using UnityEditor;
 
 // ReSharper disable once CheckNamespace
 
@@ -15,6 +16,8 @@ public class ReceiveScreen : SimpleScreen
 
     public TextMeshProUGUI publicKey_txt;
     public RawImage qrCode_img;
+
+    public TMP_InputField publicKeyInputField;
 
     private void Start()
     {
@@ -42,7 +45,11 @@ public class ReceiveScreen : SimpleScreen
         CheckAndToggleAirdrop();
 
         GenerateQr();
-        publicKey_txt.text = Web3.Instance.WalletBase.Account.PublicKey;
+
+        Debug.Log("Show screen, address text in public key field currently: " + publicKey_txt);
+
+        publicKeyInputField.text = Web3.Instance.WalletBase.Account.PublicKey;
+        //publicKey_txt.text = Web3.Instance.WalletBase.Account.PublicKey;
     }
 
     private void CheckAndToggleAirdrop()
@@ -93,6 +100,11 @@ public class ReceiveScreen : SimpleScreen
 
     public void CopyPublicKeyToClipboard()
     {
+        Debug.Log("CLIPBOARD: Helper function called");
+        //ClipboardUtilities.PrepareCopy(Web3.Instance.WalletBase.Account.PublicKey.ToString());
+
+        //ClipboardUtilities.Copy(Web3.Instance.WalletBase.Account.PublicKey.ToString());
+        Debug.Log("CLIPBOARD: Clipboard utils found");
         Clipboard.Copy(Web3.Instance.WalletBase.Account.PublicKey.ToString());
         gameObject.GetComponent<Toast>()?.ShowToast("Public Key copied to clipboard", 3);
     }

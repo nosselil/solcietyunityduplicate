@@ -33,7 +33,7 @@ public class BuyNFTfromGallery : MonoBehaviour
     float requiredSol = 0.01f;
 
     private void Awake()
-    {
+    {        
         rpcClient = ClientFactory.GetClient(cluster);
         if (rpcClient == null)
         {
