@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 
 namespace Knife.Portal
@@ -13,6 +14,15 @@ namespace Knife.Portal
         [SerializeField] private PortalTransition[] portalTransitions;
 
         public UnityEvent OnOpenPortal;
+
+        private void Start()
+        {
+            if (SceneManager.GetActiveScene().name == "mainGalleryMultiplayer")
+            {
+                Debug.Log("GALLERY PORTAL: Open portal immediately");
+                OpenPortal();
+            }
+        }
 
         private void Update()
         {

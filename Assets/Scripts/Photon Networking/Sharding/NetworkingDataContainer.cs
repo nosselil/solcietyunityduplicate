@@ -9,6 +9,9 @@ public class NetworkingDataContainer : MonoBehaviour
     [HideInInspector]
     public int worldReplicaId = -1;
 
+    [HideInInspector]
+    public bool allowPlayerControlling = true; // Lock player controls when a dialogue box is active. NOTE: Not really a networking variable, so refactor once we've got more variables like this
+
     void Awake()
     {
         // If an instance already exists and it’s not this, destroy duplicate

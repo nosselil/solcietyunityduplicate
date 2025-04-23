@@ -10,10 +10,13 @@ public class DropdownClusterSelector : MonoBehaviour
 {
     void OnEnable()
     {
-        int rpcDefault = PlayerPrefs.GetInt("rpcCluster", 0);
+        // DEBUG: Instead of reading the cluster from player prefs, we just set it to DevNet for now
+        int rpcDefault = (int)RpcCluster.DevNet; // PlayerPrefs.GetInt("rpcCluster", 0);
         RpcNodeDropdownSelected(rpcDefault);
         Web3.OnWalletInstance += () => RpcNodeDropdownSelected(rpcDefault);
         GetComponent<TMP_Dropdown>().value = rpcDefault;
+
+        gameObject.SetActive(false); // DEBUG: For now, deactivate the dropdown to prevent selection
     }
 
     public void RpcNodeDropdownSelected(int value)

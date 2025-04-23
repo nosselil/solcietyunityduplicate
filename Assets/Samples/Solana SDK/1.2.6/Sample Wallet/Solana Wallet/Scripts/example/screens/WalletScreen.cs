@@ -40,8 +40,12 @@ namespace Solana.Unity.SDK.Example
         private Transform tokenContainer;
 
         public SimpleScreenManager parentManager;
-    public TextMeshProUGUI publicKey_txt;
+        public TextMeshProUGUI publicKey_txt;
+
+        // Input fields for copying
         public TMP_InputField publicKeyInputField;
+        public TMP_InputField privateKeyInputField;
+        public TMP_InputField mnemonicInputField;
 
         private CancellationTokenSource _stopTask;
         private List<TokenItem> _instantiatedTokens = new();
@@ -114,9 +118,20 @@ namespace Solana.Unity.SDK.Example
         {
             Loading.StopLoading();
             var hasPrivateKey = !string.IsNullOrEmpty(Web3.Instance.WalletBase?.Account.PrivateKey);
-            savePrivateKeyBtn.gameObject.SetActive(hasPrivateKey);
+            //savePrivateKeyBtn.gameObject.SetActive(hasPrivateKey);
+                        
+            privateKeyInputField.gameObject.SetActive(hasPrivateKey);
+
+            if (hasPrivateKey)
+                privateKeyInputField.text = Web3.Instance.WalletBase?.Account.PrivateKey;
+
             var hasMnemonics = !string.IsNullOrEmpty(Web3.Instance.WalletBase?.Mnemonic?.ToString());
-            saveMnemonicsBtn.gameObject.SetActive(hasMnemonics);
+            //saveMnemonicsBtn.gameObject.SetActive(hasMnemonics);
+            mnemonicInputField.gameObject.SetActive(hasMnemonics);
+
+            if (hasMnemonics)
+                mnemonicInputField.text = Web3.Instance.WalletBase?.Mnemonic?.ToString();
+
             Web3.OnBalanceChange += OnBalanceChange;
         }
 
@@ -139,7 +154,9 @@ namespace Solana.Unity.SDK.Example
         {
             if (!gameObject.activeSelf) return;
             if (string.IsNullOrEmpty(Web3.Instance.WalletBase.Account.PrivateKey?.ToString())) return;
+            
             Clipboard.Copy(Web3.Instance.WalletBase.Account.PrivateKey.ToString());
+
             gameObject.GetComponent<Toast>()?.ShowToast("Private Key copied to clipboard", 3);
         }
 
@@ -147,7 +164,9 @@ namespace Solana.Unity.SDK.Example
         {
             if (!gameObject.activeSelf) return;
             if (string.IsNullOrEmpty(Web3.Instance.WalletBase.Mnemonic?.ToString())) return;
+            
             Clipboard.Copy(Web3.Instance.WalletBase.Mnemonic.ToString());
+
             gameObject.GetComponent<Toast>()?.ShowToast("Mnemonics copied to clipboard", 3);
         }
 

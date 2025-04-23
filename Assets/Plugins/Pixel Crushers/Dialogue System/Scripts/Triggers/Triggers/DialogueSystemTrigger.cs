@@ -745,6 +745,8 @@ namespace PixelCrushers.DialogueSystem
 
         public void TryStart(Transform actor)
         {
+            Debug.Log("DIALOGUE: Try start");
+            //NetworkingDataContainer.Instance.allowPlayerControlling = false;
             TryStart(actor, actor);
         }
 
