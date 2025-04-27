@@ -59,11 +59,14 @@ namespace Starter.Platformer
                 Debug.Break();
             }
 
-            //Debug.Log("PLAYER INPUT: wallet manager is mobile: " + WalletManager.instance.isMobile);
+			//Debug.Log("PLAYER INPUT: wallet manager is mobile: " + WalletManager.instance.isMobile);
 
-            //Debug.Log("KCC: PlayerInput, cursor lockstate " + Cursor.lockState);
+			//Debug.Log("KCC: PlayerInput, cursor lockstate " + Cursor.lockState);
+			//Debug.Log("Net")
 
-            if (MultiplayerChat.Instance.IsChatInputActive) //LocalChatWindowController.Instance.IsChatWindowActive) // don't allow input gathering if chat is open
+			Debug.Log("DIALOGUE: allow player controlling is " + NetworkingDataContainer.Instance.allowPlayerControlling);
+
+            if (MultiplayerChat.Instance.IsChatInputActive || !NetworkingDataContainer.Instance.allowPlayerControlling) //LocalChatWindowController.Instance.IsChatWindowActive) // don't allow input gathering if chat is open
 				return;
 
             // Accumulate input only if the cursor is locked.

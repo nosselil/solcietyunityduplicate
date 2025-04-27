@@ -62,14 +62,14 @@ public class MultiplayerChat : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        /*if (Input.GetKeyDown(KeyCode.Tab))
         {
             Debug.Log("CHAT: Network controller instance " + NetworkController.Instance);
             Debug.Log("CHAT: Local player spawned: " + NetworkController.Instance.localPlayerSpawned);
-        }
+        }*/
 
         
-        if (NetworkController.Instance == null)
+        if (NetworkController.Instance == null || NetworkingDataContainer.Instance == null || !NetworkingDataContainer.Instance.allowPlayerControlling)
             return;
 
         if (Input.GetKeyDown(KeyCode.Tab)) /*Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))*/        

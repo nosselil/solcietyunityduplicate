@@ -8,6 +8,7 @@ using codebase.utility;
 using Cysharp.Threading.Tasks;
 using Solana.Unity.Extensions;
 using Solana.Unity.Rpc.Types;
+using System;
 
 // ReSharper disable once CheckNamespace
 
@@ -33,6 +34,12 @@ namespace Solana.Unity.SDK.Example
         private Button saveMnemonicsBtn;
         [SerializeField]
         private Button savePrivateKeyBtn;
+
+        [SerializeField]
+        private GameObject saveMnemonicsPopUp;
+
+        [SerializeField]
+        private GameObject savePrivateKeyPopUp;
 
         [SerializeField]
         private GameObject tokenItem;
@@ -90,12 +97,34 @@ namespace Solana.Unity.SDK.Example
                     parentManager.ShowScreen(this, "[Connect_Wallet_Screen]");
             });
 
-            savePrivateKeyBtn.onClick.AddListener(SavePrivateKeyOnClick);
-            saveMnemonicsBtn.onClick.AddListener(SaveMnemonicsOnClick);
+            savePrivateKeyBtn.onClick.AddListener(OpenPrivateKeyPopUp); // SavePrivateKeyOnClick
+            saveMnemonicsBtn.onClick.AddListener(OpenMnemonicsPopUp); // SaveMnemonicsOnClick
 
             _stopTask = new CancellationTokenSource();
 
             Web3.OnWalletChangeState += OnWalletChangeState;
+        }
+
+        // TODO: Group the open/close into a single function with boolean parameter
+
+        private void OpenPrivateKeyPopUp()
+        {
+            savePrivateKeyPopUp.SetActive(true);                        
+        }
+
+        public void ClosePrivateKeyPopUp()
+        {
+            savePrivateKeyPopUp.SetActive(false);
+        }
+
+        private void OpenMnemonicsPopUp()
+        {
+            saveMnemonicsPopUp.SetActive(true);
+        }
+
+        public void CloseMnemonicsPopUp()
+        {
+            saveMnemonicsPopUp.SetActive(false);
         }
 
         private void OnWalletChangeState()
@@ -150,7 +179,7 @@ namespace Solana.Unity.SDK.Example
             Web3.OnBalanceChange -= OnBalanceChange;
         }
 
-        private void SavePrivateKeyOnClick()
+        public void SavePrivateKeyOnClick()
         {
             if (!gameObject.activeSelf) return;
             if (string.IsNullOrEmpty(Web3.Instance.WalletBase.Account.PrivateKey?.ToString())) return;
@@ -160,7 +189,7 @@ namespace Solana.Unity.SDK.Example
             gameObject.GetComponent<Toast>()?.ShowToast("Private Key copied to clipboard", 3);
         }
 
-        private void SaveMnemonicsOnClick()
+        public void SaveMnemonicsOnClick()
         {
             if (!gameObject.activeSelf) return;
             if (string.IsNullOrEmpty(Web3.Instance.WalletBase.Mnemonic?.ToString())) return;

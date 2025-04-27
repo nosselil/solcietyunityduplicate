@@ -9,7 +9,7 @@ using static Unity.Collections.Unicode;
 namespace Starter.Platformer
 {
     /// <summary>
-    /// Main player scrip - controls player movement and animations.
+    /// Main player script - controls player movement and animations.
     /// </summary>
     public sealed class Player : NetworkBehaviour
     {

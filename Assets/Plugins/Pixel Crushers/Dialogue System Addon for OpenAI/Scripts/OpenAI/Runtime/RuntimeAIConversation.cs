@@ -249,6 +249,8 @@ namespace PixelCrushers.DialogueSystem.OpenAIAddon
 
         protected virtual void OnClickedGoodbye()
         {
+            Debug.Log("DIALOGUE: Goodbye button clicked");
+
             DialogueManager.instance.isAlternateConversationActive = false;
             SetGoodbyeButton(false);
             Settings.ChatInputField.CancelTextInput();
@@ -329,6 +331,8 @@ namespace PixelCrushers.DialogueSystem.OpenAIAddon
                 Debug.LogWarning("Dialogue System: Freeform text input conversations require a chat model such as GPT-3.5. Change the RuntimeAIConversationSettings component's Model dropdown.");
                 return;
             }
+            Debug.Log("DIALOGUE: AI conversation started");
+
             DialogueManager.instance.isAlternateConversationActive = true;
             SetupTextInputButtons();
             SetGoodbyeButton(false);

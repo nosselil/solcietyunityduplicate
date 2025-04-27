@@ -20,6 +20,10 @@ namespace PixelCrushers.DialogueSystem
     [AddComponentMenu("")] // Use wrapper.
     public class DialogueSystemTrigger : MonoBehaviour
     {
+        #region Custom Variables, Solciety-Specific
+        public static event Action OnConversationStarted;
+        public static event Action OnConversationEnded;
+        #endregion
 
         #region Serialized Variables
 
@@ -511,6 +515,9 @@ namespace PixelCrushers.DialogueSystem
         // They handle monitoring distance, showCursorDuringConversation and pauseGameDuringConversation.
         private void OnConversationStartAnywhere(Transform actor)
         {
+            Debug.Log("DIALOGUE: Start conversation");
+            OnConversationStarted?.Invoke();
+
             DialogueManager.instance.conversationStarted -= OnConversationStartAnywhere;
             if (showCursorDuringConversation)
             {
@@ -535,6 +542,9 @@ namespace PixelCrushers.DialogueSystem
 
         private void OnConversationEndAnywhere(Transform actor)
         {
+            Debug.Log("DIALOGUE: Stop active conversation");
+            OnConversationEnded?.Invoke();
+
             var didMyConversationEnd = !DialogueManager.allowSimultaneousConversations ||
                 (activeConversation == null) || !activeConversation.conversationController.isActive;
             if (didMyConversationEnd)
@@ -745,7 +755,8 @@ namespace PixelCrushers.DialogueSystem
 
         public void TryStart(Transform actor)
         {
-            Debug.Log("DIALOGUE: Try start");
+            //Debug.Log("DIALOGUE: Try start"); // NOTE: Check that this doesn't also happen with other events like checking the artworks
+            
             //NetworkingDataContainer.Instance.allowPlayerControlling = false;
             TryStart(actor, actor);
         }
@@ -1102,7 +1113,7 @@ namespace PixelCrushers.DialogueSystem
         }
 
         protected virtual void StopActiveConversation()
-        {
+        {            
             if (activeConversation != null && activeConversation.conversationController != null)
             {
                 activeConversation.conversationController.Close();

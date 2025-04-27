@@ -1,3 +1,4 @@
+using PixelCrushers.DialogueSystem;
 using UnityEngine;
 
 public class NetworkingDataContainer : MonoBehaviour
@@ -14,7 +15,7 @@ public class NetworkingDataContainer : MonoBehaviour
 
     void Awake()
     {
-        // If an instance already exists and it’s not this, destroy duplicate
+        // If an instance already exists and it's not this, destroy duplicate
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -24,5 +25,24 @@ public class NetworkingDataContainer : MonoBehaviour
         // Claim singleton and make persistent
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        DialogueSystemTrigger.OnConversationStarted += HandleConversationStarted;
+        DialogueSystemTrigger.OnConversationEnded += HandleConversationEnded;
+        Debug.Log("DIALOGUE: Subscribed to conversation started, allow player controlling: " + allowPlayerControlling);
+
     }
+
+    void HandleConversationStarted()
+    {
+        allowPlayerControlling = false; // This will prevent any further movement
+    }
+
+    void HandleConversationEnded()
+    {
+        allowPlayerControlling = true;
+    }
+
+    // TODO: Event subscription logic in OnSceneLoaded / Unloaded?
+
+    
 }
