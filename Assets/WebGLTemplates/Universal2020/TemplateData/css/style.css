@@ -1,0 +1,255 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    position: absolute; 
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    font-style: regular;
+    font-family: "Myriad Pro", Myriad, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #f0f0f1;
+}
+
+/* Main layout */
+.webgl-content, #loadingBlock, #errorBrowserBlock {
+    padding: 0px;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: #f0f0f1;
+}
+
+#gameContainer, canvas {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #f0f0f1;
+}
+
+#fullScreenButton {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    z-index: 1;
+    bottom: 5px;
+    right: 5px;
+    background-color: transparent;
+    background-image: url("../img/fullScreen_on.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30px 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.subtitle {
+    color: #1896a7;
+    font-size: 2.3vh;
+    padding-bottom: 2.3vh;
+    padding-top: 2.5vh;
+    display: block;
+    height: 20vh;
+    width: 40vw;
+    margin: auto;
+    text-align: center;
+}
+
+.logo {
+    height: 25vh;
+    width: auto;
+    display: block;
+    margin: auto;
+    margin-top: 2vh;
+}
+
+#loadingBlock, #errorBrowserBlock {
+    background-image: url("../img/background.png");
+    background-size: cover;
+}
+
+#emptyBar {
+    background: url("../img/progressEmpty.png") no-repeat right;
+    float: right; 
+    width: 60%; 
+    height: 100%; 
+    display: inline-block;
+}
+
+#fullBar {
+    background: url("../img/progressFull.png") no-repeat right;
+    float: left; 
+    width: 40%; 
+    height: 100%; 
+    display: inline-block;
+}
+
+#progressBar, #warningBrowserBlock, #warningMobileBlock, #errorContent {
+    height: 25vh;
+    width: 40vw;
+    margin: auto;
+    text-align: center;
+}
+
+#progressBar {
+    height: 8vh;
+    color: #666666;
+    font-size: 4vh;
+}
+
+#warningBrowserBlock, #warningMobileBlock, #errorContent {
+    margin-top: 15vh;
+    color: #666666;
+    font-size: 2.3vh;
+}
+
+.browserIcons {
+    display: inline-flex;
+    margin-top: 2vh;
+}
+
+.browserIcons a {
+    width: 150px;
+}
+
+#errorContent {
+    font-size: 3vh;
+    margin-top: 5vh;
+}
+
+.centered {
+    height: 100%;
+    max-width: 770px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Minimum aspect ratio of 9:16 (portrait view) */
+@media (max-aspect-ratio: 9/16) {
+    .webgl-content, #loadingBlock, #errorBrowserBlock {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .keepRatio {
+        width: 100%;
+        padding-top: 177.78%; /* Aspect ratio for 9:16 */
+        position: relative;
+    }
+
+    .logo {
+        width: 30vw;
+    }
+
+    .subtitle, #progressBar, #warningBrowserBlock, #warningMobileBlock, #errorContent {
+        width: 80vw;
+    }
+    
+    #progressBar {
+        height: 6vw;
+        margin-top: 2vw;
+        font-size: 3vw;
+    }
+
+    #emptyBar, #fullBar {
+        height: 2vw;
+    }
+}
+
+/* Aspect ratio between 0.5625 (9:16) and 0.666 (2:3) */
+@media (min-aspect-ratio: 9/16) and (max-aspect-ratio: 2/3) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .keepRatio {
+        width: 100%;
+        height: auto;
+    }
+
+    .webgl-content, #gameContainer, canvas, #loadingBlock, #errorBrowserBlock {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .logo {
+        width: 30vw;
+        margin-top: 1vh;
+    }
+
+    .subtitle {
+        font-size: 2vw;
+        padding-bottom: 2vw;
+    }
+
+    .subtitle, #progressBar, #warningBrowserBlock, #warningMobileBlock, #errorContent {
+        width: 80vw;
+    }
+    
+    #progressBar {
+        height: 6vw;
+        margin-top: 2vw;
+        font-size: 3vw;
+    }
+
+    #emptyBar, #fullBar {
+        height: 2vw;
+    }
+
+    .browserIcons a {
+        width: 10vw;
+    }
+}
+
+/* Maximum aspect ratio of 2:3 (landscape) */
+@media (min-aspect-ratio: 2/3) {
+    body {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .keepRatio {
+        width: 66.67vh;
+        height: 100%;
+        margin: auto;
+    }
+
+    .webgl-content, #gameContainer, canvas, #loadingBlock, #errorBrowserBlock {
+        width: 66.67vh; /* Aspect ratio 2:3 */
+        height: 100%;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .logo {
+        width: 25vw;
+        margin-top: 1vh;
+    }
+
+    .subtitle {
+        font-size: 2.3vh;
+        height: 20vh;
+        padding-bottom: 2vh;
+    }
+
+    .subtitle, #progressBar, #warningBrowserBlock, #warningMobileBlock, #errorContent {
+        width: 60vw;
+    }
+
+    #progressBar {
+        height: 8vh;
+        margin-top: 2vw;
+        font-size: 4vh;
+    }
+
+    #emptyBar, #fullBar {
+        height: 2vh;
+    }
+}

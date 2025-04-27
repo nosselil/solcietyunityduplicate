@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f5a72c5dd0609264f8e4844f8ff2c5e4
+timeCreated: 1503935101
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 102704
+  packageName: Universal WebGL Template
+  packageVersion: 1.3.0
+  assetPath: Assets/WebGLTemplates/Universal2020/TemplateData/img/Logo.png
+  uploadId: 389582

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fef03c4815f28594eb755c7d0f9da554
+timeCreated: 1535705247
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 102704
+  packageName: Universal WebGL Template
+  packageVersion: 1.3.0
+  assetPath: Assets/WebGLTemplates/Universal2020/TemplateData/img/fullScreen_off.png
+  uploadId: 389582

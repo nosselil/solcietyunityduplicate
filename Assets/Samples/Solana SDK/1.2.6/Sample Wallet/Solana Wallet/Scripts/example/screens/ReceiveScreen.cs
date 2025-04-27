@@ -21,6 +21,8 @@ public class ReceiveScreen : SimpleScreen
 
     private void Start()
     {
+        publicKeyInputField.text = publicKeyInputField.text = Web3.Instance.WalletBase.Account.PublicKey;
+
         airdrop_btn.onClick.AddListener(RequestAirdrop);
 
         close_btn.onClick.AddListener(() =>

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0663e839ea9171b45937ee9f0552d8dd
+timeCreated: 1503672066
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 102704
+  packageName: Universal WebGL Template
+  packageVersion: 1.3.0
+  assetPath: Assets/WebGLTemplates/Universal2020/TemplateData/img/browser-safari.png
+  uploadId: 389582

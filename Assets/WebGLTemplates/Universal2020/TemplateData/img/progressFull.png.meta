@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8f5795c7013f9c54599e8357fd64c3e0
+timeCreated: 1503935101
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 102704
+  packageName: Universal WebGL Template
+  packageVersion: 1.3.0
+  assetPath: Assets/WebGLTemplates/Universal2020/TemplateData/img/progressFull.png
+  uploadId: 389582

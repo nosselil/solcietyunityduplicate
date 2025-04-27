@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 10fc2867a17826e47bb0def15009a585
+timeCreated: 1503663089
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 102704
+  packageName: Universal WebGL Template
+  packageVersion: 1.3.0
+  assetPath: Assets/WebGLTemplates/Universal2020/index.html
+  uploadId: 389582
