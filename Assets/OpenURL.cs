@@ -8,6 +8,9 @@ public class OpenURL : MonoBehaviour
     public void Open()
     {
         ExternalUrlOpener.OpenExternalLink(url); // NOTE: The parameter isn't currently taken into account, but since there's only one link to open, it doesn't matter.
-        //Application.OpenURL(url);
+                                                 //Application.OpenURL(url);
+
+        Debug.Log("URL OPEN: Safety measure: Allow player movement after opening the URL");
+        NetworkingDataContainer.Instance.allowPlayerControlling = true; // Put this here just in case the player gets stuck after opening the link
     }
 }

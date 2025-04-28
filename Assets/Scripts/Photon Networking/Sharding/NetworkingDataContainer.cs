@@ -1,8 +1,12 @@
 using PixelCrushers.DialogueSystem;
+using PixelCrushers.DialogueSystem.OpenAIAddon;
 using UnityEngine;
 
 public class NetworkingDataContainer : MonoBehaviour
 {
+    // TODO: NetworkingDataContainer is a bit of a misnomer. This class was originally intended to only hold network-specific persistent variables, but now it's a container of pretty much all kinds of
+    // persistent variables. Perhaps "PersistentDataContainer" would be a more suitable name.
+
     // Static singleton instance
     public static NetworkingDataContainer Instance { get; private set; }
 
@@ -28,6 +32,10 @@ public class NetworkingDataContainer : MonoBehaviour
 
         DialogueSystemTrigger.OnConversationStarted += HandleConversationStarted;
         DialogueSystemTrigger.OnConversationEnded += HandleConversationEnded;
+
+        RuntimeAIConversation.OnConversationStarted += HandleConversationStarted;
+        RuntimeAIConversation.OnConversationEnded += HandleConversationEnded;
+
         Debug.Log("DIALOGUE: Subscribed to conversation started, allow player controlling: " + allowPlayerControlling);
 
     }

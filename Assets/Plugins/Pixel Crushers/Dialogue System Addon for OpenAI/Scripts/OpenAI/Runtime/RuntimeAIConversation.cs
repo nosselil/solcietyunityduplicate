@@ -16,6 +16,11 @@ namespace PixelCrushers.DialogueSystem.OpenAIAddon
     public class RuntimeAIConversation : MonoBehaviour
     {
 
+        #region Custom Variables, Solciety-Specific
+        public static event Action OnConversationStarted;
+        public static event Action OnConversationEnded;
+        #endregion
+
         [ActorPopup(true)]
         [SerializeField] private string actor;
 
@@ -250,6 +255,7 @@ namespace PixelCrushers.DialogueSystem.OpenAIAddon
         protected virtual void OnClickedGoodbye()
         {
             Debug.Log("DIALOGUE: Goodbye button clicked");
+            OnConversationEnded?.Invoke();
 
             DialogueManager.instance.isAlternateConversationActive = false;
             SetGoodbyeButton(false);
@@ -332,6 +338,7 @@ namespace PixelCrushers.DialogueSystem.OpenAIAddon
                 return;
             }
             Debug.Log("DIALOGUE: AI conversation started");
+            OnConversationStarted?.Invoke();
 
             DialogueManager.instance.isAlternateConversationActive = true;
             SetupTextInputButtons();

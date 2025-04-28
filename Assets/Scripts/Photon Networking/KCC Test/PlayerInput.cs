@@ -64,7 +64,7 @@ namespace Starter.Platformer
 			//Debug.Log("KCC: PlayerInput, cursor lockstate " + Cursor.lockState);
 			//Debug.Log("Net")
 
-			Debug.Log("DIALOGUE: allow player controlling is " + NetworkingDataContainer.Instance.allowPlayerControlling);
+			//Debug.Log("DIALOGUE: allow player controlling is " + NetworkingDataContainer.Instance.allowPlayerControlling);
 
             if (MultiplayerChat.Instance.IsChatInputActive || !NetworkingDataContainer.Instance.allowPlayerControlling) //LocalChatWindowController.Instance.IsChatWindowActive) // don't allow input gathering if chat is open
 				return;
