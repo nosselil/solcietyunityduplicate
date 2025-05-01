@@ -43,8 +43,8 @@ public class TextMeshFader : MonoBehaviour
     {
         float closestDistance = float.MaxValue;
 
-        if (textMeshes == null)
-            return Mathf.Infinity;
+        /*if (textMeshes == null)
+            return Mathf.Infinity;*/
 
         foreach (GameObject textMeshObj in textMeshes)
         {

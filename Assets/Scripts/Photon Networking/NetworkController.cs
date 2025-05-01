@@ -77,10 +77,10 @@ public class NetworkController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             Debug.Log("DISCONNECT: Network controller still exists");
-        }*/
+        }
     }
 
     public void OnRunnerShutdown(NetworkRunner runner, ShutdownReason shutdownReason)

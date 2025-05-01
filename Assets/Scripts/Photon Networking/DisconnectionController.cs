@@ -55,7 +55,7 @@ public class DisconnectionController : MonoBehaviour
 
         while (true)
         {
-            //Debug.Log("DISCONNECT: Local player still exists: playerSpawnedInScene " + playerSpawnedInScene + " localPlayerGO " + localPlayerGO + ", loading new scene: " + loadingNewScene);
+            Debug.Log("DISCONNECT: Local player still exists: playerSpawnedInScene " + playerSpawnedInScene + " localPlayerGO " + localPlayerGO + ", loading new scene: " + loadingNewScene);
 
             if (playerSpawnedInScene && localPlayerGO == null && loadingNewScene)
             {
