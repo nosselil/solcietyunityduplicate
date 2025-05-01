@@ -20,7 +20,7 @@ public class InteractableItem : MonoBehaviour
         }
         else
         {
-          //  Debug.LogError("Interaction Display TextMeshProUGUI is not assigned!");
+            Debug.LogError("Interaction Display TextMeshProUGUI is not assigned!");
         }
 
         if (string.IsNullOrEmpty(sceneToLoad))
@@ -31,16 +31,8 @@ public class InteractableItem : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("InteractableItem: chat input active: " + MultiplayerChat.Instance.IsChatInputActive);
-
-        // NOTE: I don't think the actual E key check is actually done here, but in ProximitySelector instead
-        //if (LocalChatWindowController.Instance == null || LocalChatWindowController.Instance.IsChatWindowActive)        
-        if (MultiplayerChat.Instance == null || MultiplayerChat.Instance.IsChatInputActive)
-            return;
-
         if (player == null)
-        {            
-            player = GameObject.FindGameObjectWithTag("Player")?.transform; // Safe null check // TODO: Refactor later on, will work for now
+        {
             Debug.LogError("Player not found! Make sure the player has the tag 'Player'.");
             return;
         }
@@ -61,7 +53,6 @@ public class InteractableItem : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("INTERACT: E key pressed");
                 Interact();
             }
         }
@@ -72,7 +63,6 @@ public class InteractableItem : MonoBehaviour
                 canInteract = false;
                 if (interactionDisplay != null)
                 {
-
                     interactionDisplay.gameObject.SetActive(false);
                 }
             }
@@ -83,13 +73,11 @@ public class InteractableItem : MonoBehaviour
     {
         if (string.IsNullOrEmpty(sceneToLoad))
         {
-            Debug.LogError("Scene to load is not set! Make sure 'Gallery' is in Build Settings. " +gameObject.name);
+            Debug.LogError("Scene to load is not set! Make sure 'Gallery' is in Build Settings.");
             return;
         }
 
-        Debug.Log("Interacting... Loading scene: " + sceneToLoad + gameObject.name);
-        //Debug.Log("INTERACT");
-        //NetworkController.Instance.SwitchRoomAndScene("mainGallery");
+        Debug.Log("Interacting... Loading scene: " + sceneToLoad);
         SceneManager.LoadSceneAsync(sceneToLoad); // Asynchronous loading
     }
 

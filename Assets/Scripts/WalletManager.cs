@@ -112,7 +112,7 @@ using System.Net.Http;
         //    deviceText.text = "NOT MB";
         }
 #else
-        isMobile = true; // false //for debug purposes 
+        isMobile = false; // false //for debug purposes 
             if (deviceTxt != null)
                 deviceTxt.gameObject.SetActive(false);
         //    deviceText.text = "NOT MB";
