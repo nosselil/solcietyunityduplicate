@@ -4574,7 +4574,7 @@ MonoBehaviour:
     monitor piece
   OLDnpcMnemonic: miss gate front unique liberty gap bind choice lumber clown loan
     absorb
-  currentNetwork: 1
+  currentNetwork: 2
   wagerAmount: 0
   heliusApiKey: 
   cluster: 0
@@ -10635,7 +10635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3211121489190443638, guid: 51b19f34b566aa04ea3325e5810f314c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -34
+      value: -121.20001
       objectReference: {fileID: 0}
     - target: {fileID: 3223504798570552524, guid: 51b19f34b566aa04ea3325e5810f314c, type: 3}
       propertyPath: m_MatchWidthOrHeight
@@ -11887,7 +11887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8019048541715416352, guid: 51b19f34b566aa04ea3325e5810f314c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8025503461597229241, guid: 51b19f34b566aa04ea3325e5810f314c, type: 3}
       propertyPath: m_AnchoredPosition.x
