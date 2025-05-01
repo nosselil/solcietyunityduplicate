@@ -3650,6 +3650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disconnectionPopUp: {fileID: 5031601397690830592}
   playerSpawnedInScene: 0
+  loadingNewScene: 0
   localPlayerGO: {fileID: 0}
 --- !u!223 &3380905434998030898
 Canvas:
@@ -3686,10 +3687,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3793,9 +3794,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1280, y: 1920}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.8
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3952,9 +3953,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1280, y: 1920}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.8
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4331,6 +4332,42 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1465105973495386832, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465105973495386832, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465105973495386832, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 2540063262684749153, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2540063262684749153, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2540063262684749153, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2540063262684749153, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2540063262684749153, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 254
+      objectReference: {fileID: 0}
+    - target: {fileID: 2540063262684749153, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 278
+      objectReference: {fileID: 0}
     - target: {fileID: 2790436854585284831, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -4440,6 +4477,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6598363944157232903, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598363944157232903, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598363944157232903, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
@@ -4450,6 +4495,14 @@ PrefabInstance:
     - target: {fileID: 6598363944157232903, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598363944157232903, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -414
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598363944157232903, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 344
       objectReference: {fileID: 0}
     - target: {fileID: 7041394112637086476, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
       propertyPath: m_Name
@@ -4482,6 +4535,26 @@ PrefabInstance:
     - target: {fileID: 7053015065010309328, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158601638895875953, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158601638895875953, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158601638895875953, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158601638895875953, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158601638895875953, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 431
       objectReference: {fileID: 0}
     - target: {fileID: 7275847395314437647, guid: e42f5a7a56e8a46ae87603f213a257eb, type: 3}
       propertyPath: m_fontAsset

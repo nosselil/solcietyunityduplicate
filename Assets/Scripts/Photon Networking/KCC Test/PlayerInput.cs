@@ -107,6 +107,9 @@ namespace Starter.Platformer
 
         private Vector2 GetMobileLookRotationDelta()
         {
+            if (NetworkingDataContainer.Instance == null || NetworkingDataContainer.Instance.usingMobileJoystick)
+                return Vector2.zero;
+
             if (Input.touchCount > 0)
             {
                 // Use the deltaPosition of the first touch.

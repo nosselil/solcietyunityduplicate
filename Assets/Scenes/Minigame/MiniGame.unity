@@ -19243,6 +19243,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114408267113463776, guid: e7a76d9688f758f41b418a438e4e803a, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114408267113463776, guid: e7a76d9688f758f41b418a438e4e803a, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114408267113463776, guid: e7a76d9688f758f41b418a438e4e803a, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 114408267113463776, guid: e7a76d9688f758f41b418a438e4e803a, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 224008683522533066, guid: e7a76d9688f758f41b418a438e4e803a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -59957,7 +59973,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114637484009804242}
   m_HandleRect: {fileID: 224742569274712866}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

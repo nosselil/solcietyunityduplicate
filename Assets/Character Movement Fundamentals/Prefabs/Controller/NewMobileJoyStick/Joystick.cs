@@ -11,8 +11,10 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("JOYSTICK: Pointer down at " + eventData.position);
+        //Debug.Log("JOYSTICK: Pointer down at " + eventData.position);
+        NetworkingDataContainer.Instance.usingMobileJoystick = true;
         OnDrag(eventData); // Start dragging immediately
+        
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -27,7 +29,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
         if (inputVector.magnitude < deadZoneThreshold)
             inputVector = Vector2.zero;
 
-        Debug.Log("JOYSTICK: Dragging, input vector " + inputVector);
+        //Debug.Log("JOYSTICK: Dragging, input vector " + inputVector);
 
         // Move the handle
         joystickHandle.anchoredPosition = inputVector * (radius * 0.6f);
@@ -37,18 +39,19 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
     {
         inputVector = Vector2.zero;
         joystickHandle.anchoredPosition = Vector2.zero; // Reset handle position
+        NetworkingDataContainer.Instance.usingMobileJoystick = false;
     }
 
     public float GetHorizontal()
     {
-        Debug.Log("JOYSTICK: horizontal input: " + inputVector.x);
+        //Debug.Log("JOYSTICK: horizontal input: " + inputVector.x);
 
         return inputVector.x;
     }
 
     public float GetVertical()
     {
-        Debug.Log("JOYSTICK: vertical input: " + inputVector.y);
+        //Debug.Log("JOYSTICK: vertical input: " + inputVector.y);
         return inputVector.y;
     }
 }
