@@ -32,9 +32,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/mh/therealyourhome.unity
     guid: a2275fe84726a4bb999833932582510d
-  - enabled: 1
-    path: Assets/Scenes/Core/Monkeydaoroom.unity
-    guid: d8518c799770142f68711132c0bf2daa
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0
