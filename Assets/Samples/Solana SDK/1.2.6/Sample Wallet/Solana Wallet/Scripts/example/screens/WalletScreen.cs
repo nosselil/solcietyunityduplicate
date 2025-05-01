@@ -64,7 +64,7 @@ namespace Solana.Unity.SDK.Example
 
             publicKey_txt.text = Web3.Instance.WalletBase.Account.PublicKey;
 
-            Debug.Log("WALLET SCREEN: Input public key text to input field");
+            //Debug.Log("WALLET SCREEN: Input public key text to input field");
             publicKeyInputField.text = Web3.Instance.WalletBase.Account.PublicKey;
 
             refreshBtn.onClick.AddListener(RefreshWallet);

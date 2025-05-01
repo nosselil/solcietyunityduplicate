@@ -33,7 +33,7 @@ public class InteractableItem : MonoBehaviour
     {
         if (player == null)
         {
-            Debug.LogError("Player not found! Make sure the player has the tag 'Player'.");
+            //Debug.LogError("Player not found! Make sure the player has the tag 'Player'.");
             return;
         }
 
