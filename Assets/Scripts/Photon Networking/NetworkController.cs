@@ -91,6 +91,8 @@ public class NetworkController : NetworkBehaviour
 
     public async void SwitchRoomAndScene(string newSceneName)
     {
+        Debug.Log("SWITCH ROOM CALLED");
+
         if (WalletManager.instance)
             Debug.Log("TUTORIAL: New scene name is " +  newSceneName + ", wallet manager tut completed: " + WalletManager.instance.tutorialCompleted);        
 
