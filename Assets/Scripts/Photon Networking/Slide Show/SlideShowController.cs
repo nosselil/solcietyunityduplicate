@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class SlideShowController : NetworkBehaviour
 {
     [Networked, HideInInspector]
-    public PlayerRef ControllingPlayer { get; set; }    // who may change slides
+    public PlayerRef ControllingPlayer { get ; set; }    // who may change slides
 
     bool initialized = false;
 
@@ -23,6 +23,12 @@ public class SlideShowController : NetworkBehaviour
     [SerializeField]
     Renderer slideRenderer;                             // display target
 
+    [SerializeField]
+    SlideShowControllerInteractionArea interactionArea;
+
+    [SerializeField]
+    GameObject projectorControlGUI, setupControlGUI, presentationControlGUI, projectorImageGO;
+
     public override void Spawned()
     {
         ControllingPlayer = PlayerRef.None;             // no controller at start
@@ -33,6 +39,8 @@ public class SlideShowController : NetworkBehaviour
 
         Debug.Log("PROJECTOR: Spawned");
 
+        projectorImageGO.SetActive(false);
+
         initialized = true;
     }
 
@@ -41,6 +49,15 @@ public class SlideShowController : NetworkBehaviour
         if (!initialized)
             return;
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (interactionArea.localPlayerInsideInteractionArea && ControllingPlayer == PlayerRef.None)
+            {
+                Debug.Log("PROJECTOR: No one's controlling the project, request controls");
+                RequestControlRpc();
+            }
+        }
+        
         // DEBUG: You can claim the projector control just with a button press for now
 
         //Debug.Log("PROJECTOR: Update initialized");
@@ -48,11 +65,8 @@ public class SlideShowController : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.O))
         {
             Debug.Log("PROJECTOR: O pressed, controllingPlayer is " + ControllingPlayer);
-
-            if (ControllingPlayer == PlayerRef.None)
-                RequestControlRpc();
-            else if (ControllingPlayer == Runner.LocalPlayer) // If we're controlling the project, release control
-                ReleaseControlRpc();
+            RequestProjectorControls();
+            
         }
 
         // Debug controls for changing slides in the projector
@@ -70,6 +84,49 @@ public class SlideShowController : NetworkBehaviour
         }        
         
     }
+
+    #region General Controls
+
+
+
+    #endregion
+
+    void OpenProjectorGUI()
+    {
+        projectorControlGUI.SetActive(true);
+        setupControlGUI.SetActive(true);
+        presentationControlGUI.SetActive(false);
+    }
+
+    public void CloseProjectorControls()
+    {
+        if (ControllingPlayer == Runner.LocalPlayer)
+        {
+            ReleaseControlRpc();
+            projectorControlGUI.SetActive(false);
+            projectorImageGO.SetActive(false);
+            // NOTE: Is it possible that in some cases, the controls are not released?
+        }
+    }
+
+    #region SlidePreparation
+    public void DownloadSlides()
+    {
+        // TODO: Actually downloading stuff
+
+        // After initializing the slides, show the presentation controls
+        ShowPresentationControls();
+        projectorImageGO.SetActive(true);
+    }
+
+    void ShowPresentationControls()
+    {
+        setupControlGUI.SetActive(false);
+        presentationControlGUI.SetActive(true);
+    }
+
+    #endregion
+
 
     #region Slide Changing
 
@@ -127,13 +184,25 @@ public class SlideShowController : NetworkBehaviour
     #endregion
 
     #region Control Requesting
+
+    private void RequestProjectorControls()
+    {
+        if (ControllingPlayer == PlayerRef.None)
+            RequestControlRpc();
+        else if (ControllingPlayer == Runner.LocalPlayer) // If we're controlling the project, release control
+            ReleaseControlRpc();
+    }
+
     [Rpc(RpcSources.All, RpcTargets.All)]
     private void RequestControlRpc(RpcInfo info = default)
     {
         if (ControllingPlayer == PlayerRef.None)
         {
             ControllingPlayer = info.Source;                // grant control to the calling player
-            Debug.Log("PROJECTOR: Player " + info.Source.PlayerId + " claimed control of the projector");
+            Debug.Log("SLIDE CONTROLLER: Player " + info.Source.PlayerId + " claimed control of the projector");
+
+            if (Runner.LocalPlayer == info.Source)
+                OpenProjectorGUI();
         }
     }
 
