@@ -284,7 +284,7 @@ namespace PixelCrushers.DialogueSystem
 
         public void OnMobileInteractButtonPressed()
         {
-            Debug.Log("MOBILE: Interact button pressed (prox selector)");
+            //Debug.Log("MOBILE: Interact button pressed (prox selector)");
             UseCurrentSelection();
         }
 
@@ -293,10 +293,11 @@ namespace PixelCrushers.DialogueSystem
         /// </summary>
         public virtual void UseCurrentSelection()
         {
+            Debug.Log("INTERACT BUG: START: Use Usable within promiximityselector.cs");
 
             if ((currentUsable != null) && currentUsable.enabled && (currentUsable.gameObject != null) && (Time.time >= timeToEnableUseButton))
             {
-                Debug.Log("INTERACT: Use Usable within promiximityselector.cs");
+                Debug.Log("INTERACT BUG: INSIDE IF: Use Usable within promiximityselector.cs");
 
                 //Debug.LogError("UseCurrentSelection");
                 currentUsable.OnUseUsable();

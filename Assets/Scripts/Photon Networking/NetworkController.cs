@@ -91,14 +91,14 @@ public class NetworkController : NetworkBehaviour
 
     public async void SwitchRoomAndScene(string newSceneName)
     {
-        Debug.Log("SWITCH ROOM CALLED");
+        Debug.Log("INTERACT BUG: SWITCH ROOM CALLED");
 
-        if (WalletManager.instance)
-            Debug.Log("TUTORIAL: New scene name is " +  newSceneName + ", wallet manager tut completed: " + WalletManager.instance.tutorialCompleted);        
+        //if (WalletManager.instance)
+        //    Debug.Log("TUTORIAL: New scene name is " +  newSceneName + ", wallet manager tut completed: " + WalletManager.instance.tutorialCompleted);        
 
         if (!WalletManager.instance.tutorialCompleted && newSceneName == "MainHub")
         {
-            Debug.Log("TUTORIAL COMPLETED (SWITCH ROOM AND SCENE IN MAIN HUB): " + WalletManager.instance.tutorialCompleted);
+            //Debug.Log("TUTORIAL COMPLETED (SWITCH ROOM AND SCENE IN MAIN HUB): " + WalletManager.instance.tutorialCompleted);
             WalletManager.instance.tutorialCompleted = true;
             PlayerPrefs.SetInt(WalletManager.instance.PLAYER_PREFS_TUTORIAL_COMPLETED_KEY, 1); // mark tutorial as completed
         }

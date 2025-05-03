@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Core/mainGallery.unity
     guid: 59c40ef876010456e86b251da4943906
   - enabled: 1
-    path: Assets/Scenes/Core/MainHub 1.unity
+    path: Assets/Scenes/Core/MainHub.unity
     guid: 901e7b6e15e134634ae27df155cd4983
   - enabled: 1
     path: Assets/Scenes/Core/mainGalleryMultiplayer.unity
