@@ -1,18 +1,23 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Fusion;
+using Solana.Unity.Metaplex.MplNftPacks.Program;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class SlideShowController : NetworkBehaviour
 {
-    [Networked, HideInInspector]
+    [Networked, HideInInspector, OnChangedRender(nameof(OnControllingPlayerChanged))]
     public PlayerRef ControllingPlayer { get ; set; }    // who may change slides
-
-    bool initialized = false;
-
+    
     [Networked, OnChangedRender(nameof(OnSlideIndexChanged))]
     public int SlideIndex { get => default; set { } }    // current slide
+
+    [Networked]
+    public bool IsSlideShowActive { get => default; set { } }
+
+    bool initialized = false;
 
     List<string> slideUrls;                            // thumbnail URLs
     Dictionary<int, Texture2D> slideCache = new();     // cached textures
@@ -29,18 +34,31 @@ public class SlideShowController : NetworkBehaviour
     [SerializeField]
     GameObject projectorControlGUI, setupControlGUI, presentationControlGUI, projectorImageGO;
 
+    [SerializeField]
+    Button previousSlideButton, nextSlideButton;
+
+    MeshRenderer projectorImageMeshRenderer;
+
     public override void Spawned()
     {
-        ControllingPlayer = PlayerRef.None;             // no controller at start
+        if (ControllingPlayer == null)
+            ControllingPlayer = PlayerRef.None;
+
+        //ControllingPlayer = PlayerRef.None;             // no controller at start
         slideCache.Add(0, debugSlideTextures[0]);
         slideCache.Add(1, debugSlideTextures[1]);
 
         slideUrls = new List<string>(2);
 
-        Debug.Log("PROJECTOR: Spawned");
+        Debug.Log("SLIDE CONTROLLER: Spawned, controlling player is " + ControllingPlayer);
 
-        projectorImageGO.SetActive(false);
+        projectorImageMeshRenderer = projectorImageGO.GetComponent<MeshRenderer>();
+        projectorImageGO.SetActive(IsSlideShowActive);
 
+        // Check a networked boolean like IsSlideShowActive to be able to set the visibility of the projectorImageGo correctly
+        if (IsSlideShowActive)
+            ApplySlideChange();
+        
         initialized = true;
     }
 
@@ -53,7 +71,7 @@ public class SlideShowController : NetworkBehaviour
         {
             if (interactionArea.localPlayerInsideInteractionArea && ControllingPlayer == PlayerRef.None)
             {
-                Debug.Log("PROJECTOR: No one's controlling the project, request controls");
+                Debug.Log("SLIDE CONTROLLER: No one's controlling the project, request controls");
                 RequestControlRpc();
             }
         }
@@ -62,12 +80,12 @@ public class SlideShowController : NetworkBehaviour
 
         //Debug.Log("PROJECTOR: Update initialized");
 
-        if (Input.GetKeyDown(KeyCode.O))
+        /*if (Input.GetKeyDown(KeyCode.O))
         {
             Debug.Log("PROJECTOR: O pressed, controllingPlayer is " + ControllingPlayer);
-            RequestProjectorControls();
+            RequestProjectorControls();SLIDE
             
-        }
+        }*/
 
         // Debug controls for changing slides in the projector
         if (ControllingPlayer == Runner.LocalPlayer)
@@ -77,10 +95,10 @@ public class SlideShowController : NetworkBehaviour
                 // TODO: Setting the slide base URL that we can use to download
             }
 
-            if (Input.GetKeyDown(KeyCode.A))
+            /*if (Input.GetKeyDown(KeyCode.A))
                 ChangeSlide(-1);
             else if (Input.GetKeyDown(KeyCode.D))
-                ChangeSlide(1);
+                ChangeSlide(1);*/
         }        
         
     }
@@ -93,6 +111,7 @@ public class SlideShowController : NetworkBehaviour
 
     void OpenProjectorGUI()
     {
+        Debug.Log("SLIDE CONTROLLER: Open projector GUI");
         projectorControlGUI.SetActive(true);
         setupControlGUI.SetActive(true);
         presentationControlGUI.SetActive(false);
@@ -115,8 +134,19 @@ public class SlideShowController : NetworkBehaviour
         // TODO: Actually downloading stuff
 
         // After initializing the slides, show the presentation controls
-        ShowPresentationControls();
-        projectorImageGO.SetActive(true);
+        SlideIndex = 0;
+        previousSlideButton.interactable = false;
+        nextSlideButton.interactable = true;
+
+        ActivateProjectorImageRpc(true);
+
+        ShowPresentationControls();        
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    private void ActivateProjectorImageRpc(bool enable)
+    {
+        projectorImageMeshRenderer.enabled = enable;
     }
 
     void ShowPresentationControls()
@@ -154,23 +184,33 @@ public class SlideShowController : NetworkBehaviour
 
     public void ChangeSlide(int delta)
     {
-        Debug.Log("PROJECTOR: Changing slide");
+        Debug.Log("SLIDE CONTROLLER: Changing slide");
 
         if (Runner.LocalPlayer != ControllingPlayer) 
             return;
 
-        Debug.Log("PROJECTOR: The slide changer is the controlling player, slide Urls count is " + slideUrls.Count);
+        Debug.Log("SLIDE CONTROLLER: The slide changer is the controlling player, slide Urls count is " + slideUrls.Count);
 
         int next = Mathf.Clamp(SlideIndex + delta, 0, 1 /*slideUrls.Count - 1*/); //NOTE: 1 is just a debug value for now
         if (next != SlideIndex)
-            SlideIndex = next;
+            ChangeSlideIndexRpc(next);
 
-        Debug.Log("PROJECTOR: Slide changed, SlideIndex is now " + SlideIndex);
+        previousSlideButton.interactable = SlideIndex > 0;
+        nextSlideButton.interactable = SlideIndex < 1; // NOTE: Change to slideUrls.Count - 1
+
+        Debug.Log("SLIDE CONTROLLER: Slide changed, SlideIndex is now " + SlideIndex);
     }
-    
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void ChangeSlideIndexRpc(int newIndex)
+    {
+        SlideIndex = newIndex;
+        OnSlideIndexChanged();
+    }
+
     private void OnSlideIndexChanged()
     {
-        Debug.Log("PROJECTOR: On Slide index changed");
+        Debug.Log("SLIDE CONTROLLER: On Slide index changed");
         ApplySlideChange();                             // apply slide on index change
     }
 
@@ -188,10 +228,18 @@ public class SlideShowController : NetworkBehaviour
     private void RequestProjectorControls()
     {
         if (ControllingPlayer == PlayerRef.None)
-            RequestControlRpc();
-        else if (ControllingPlayer == Runner.LocalPlayer) // If we're controlling the project, release control
-            ReleaseControlRpc();
+            ControllingPlayer = Runner.LocalPlayer;
+        
+        Debug.Log("SLIDE CONTROLLER: The controlling player is now " + ControllingPlayer);        
     }
+
+    /*private void ReleaseProjectorControls()
+    {
+        if (ControllingPlayer == Runner.LocalPlayer) // If we're controlling the project, release control
+            ControllingPlayer = PlayerRef.None; // NOTE: Can this cause issue if two players claim the controls at around the same time? But then again, since this is a networked variable, there should be
+                                                // Sync resolution
+                                                //ReleaseControlRpc();
+    }*/
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     private void RequestControlRpc(RpcInfo info = default)
@@ -203,27 +251,49 @@ public class SlideShowController : NetworkBehaviour
 
             if (Runner.LocalPlayer == info.Source)
                 OpenProjectorGUI();
+            
         }
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     private void ReleaseControlRpc(RpcInfo info = default)
     {
-        ControllingPlayer = PlayerRef.None;
-        Debug.Log("PROJECTOR: Projector control released");
+        //if (Runner.LocalPlayer == ControllingPlayer)        
+        projectorImageGO.SetActive(false);        
+
+        ControllingPlayer = PlayerRef.None;        
+        Debug.Log("SLIDE CONTROLLER: Projector control released");
     }
 
+    public void OnControllingPlayerChanged()
+    {
+        Debug.Log("SLIDE CONTROLLER: On controlling player changed to " + ControllingPlayer);
+
+        if (ControllingPlayer != PlayerRef.None)
+        {
+            Debug.Log("SLIDE CONTROLLER: Controlling player is not none, local player is " + Runner.LocalPlayer);
+
+            if (ControllingPlayer == Runner.LocalPlayer)
+                OpenProjectorGUI();
+
+            projectorImageGO.SetActive(true);
+            projectorImageMeshRenderer.enabled = false;
+        }
+        else
+            projectorImageGO.SetActive(false);
+
+    }
     #endregion
 
     #region Downloading
 
-    private async UniTask DownloadAllThumbnails()
-    {
-        var tasks = new List<UniTask>(slideUrls.Count);
-        for (int i = 0; i < slideUrls.Count; i++)
-            tasks.Add(DownloadAndCache(i, slideUrls[i]));
-        await UniTask.WhenAll(tasks);
-    }
+            private async UniTask DownloadAllThumbnails()
+            {
+                var tasks = new List<UniTask>(slideUrls.Count);
+                for (int i = 0; i < slideUrls.Count; i++)
+                    tasks.Add(DownloadAndCache(i, slideUrls[i]));
+                await UniTask.WhenAll(tasks);
+            }
 
     private async UniTask DownloadAndCache(int index, string url)
     {

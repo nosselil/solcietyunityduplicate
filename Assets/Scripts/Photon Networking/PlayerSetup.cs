@@ -138,7 +138,10 @@ public class PlayerSetup : MonoBehaviour
         // TextMeshFader
         TextMeshFader textMeshFader = GetComponent<TextMeshFader>();
         if (textMeshFader != null)
+        {
+            textMeshFader.enabled = true; // Only enable this for the local player
             textMeshFader.textMeshes = dependencyContainer.textMeshes;
+        }
 
         #endregion
 
