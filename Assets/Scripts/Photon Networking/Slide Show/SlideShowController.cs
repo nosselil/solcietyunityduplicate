@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Cysharp.Threading.Tasks;
 using Fusion;
 using Solana.Unity.Metaplex.MplNftPacks.Program;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -36,6 +39,9 @@ public class SlideShowController : NetworkBehaviour
 
     [SerializeField]
     Button previousSlideButton, nextSlideButton;
+
+    [SerializeField]
+    TMP_InputField slideDownloadUrlInputField;
 
     MeshRenderer projectorImageMeshRenderer;
 
@@ -74,33 +80,7 @@ public class SlideShowController : NetworkBehaviour
                 Debug.Log("SLIDE CONTROLLER: No one's controlling the project, request controls");
                 RequestControlRpc();
             }
-        }
-        
-        // DEBUG: You can claim the projector control just with a button press for now
-
-        //Debug.Log("PROJECTOR: Update initialized");
-
-        /*if (Input.GetKeyDown(KeyCode.O))
-        {
-            Debug.Log("PROJECTOR: O pressed, controllingPlayer is " + ControllingPlayer);
-            RequestProjectorControls();SLIDE
-            
-        }*/
-
-        // Debug controls for changing slides in the projector
-        if (ControllingPlayer == Runner.LocalPlayer)
-        {
-            if (Input.GetKeyDown(KeyCode.I))
-            {
-                // TODO: Setting the slide base URL that we can use to download
-            }
-
-            /*if (Input.GetKeyDown(KeyCode.A))
-                ChangeSlide(-1);
-            else if (Input.GetKeyDown(KeyCode.D))
-                ChangeSlide(1);*/
-        }        
-        
+        }              
     }
 
     #region General Controls
@@ -131,28 +111,55 @@ public class SlideShowController : NetworkBehaviour
     #region SlidePreparation
     public void DownloadSlides()
     {
+        // TODO: Should we be able to activate this by using enter as well?
+
+        string downloadUrl = slideDownloadUrlInputField.text;
+        // Extract the slide show id 
+        Debug.Log("SLIDE CONTROLLER: Begin downloading from URL " + downloadUrl);
+        string exportUrl = GenerateSlideExportUrl(downloadUrl);
+
+        Debug.Log("SLIDE CONTROLLER: Generated export URL " + exportUrl);
+
         // TODO: Actually downloading stuff
 
-        // After initializing the slides, show the presentation controls
-        SlideIndex = 0;
-        previousSlideButton.interactable = false;
-        nextSlideButton.interactable = true;
-
-        ActivateProjectorImageRpc(true);
+        ActivateSlideShowRpc();
 
         ShowPresentationControls();        
     }
 
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    private void ActivateProjectorImageRpc(bool enable)
+
+
+    private string GenerateSlideExportUrl(string shareUrl)
     {
-        projectorImageMeshRenderer.enabled = enable;
+        if (string.IsNullOrEmpty(shareUrl))
+            throw new ArgumentException(nameof(shareUrl) + " cannot be null or empty");
+
+        var match = Regex.Match(shareUrl, @"/d/([^/]+)");
+        if (!match.Success)
+            throw new ArgumentException("Invalid Google Slides URL", nameof(shareUrl));
+
+        var presentationId = match.Groups[1].Value;
+        return $"https://docs.google.com/presentation/d/{presentationId}/export?format=pdf";
+    }
+
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    private void ActivateSlideShowRpc() //bool enable
+    {
+        Debug.Log("SLIDE CONTROLLER: Activate slide show RPC");
+        SlideIndex = 0;
+        IsSlideShowActive = true; // enable
+        projectorImageMeshRenderer.enabled = true;  // bool enable
     }
 
     void ShowPresentationControls()
     {
         setupControlGUI.SetActive(false);
         presentationControlGUI.SetActive(true);
+
+        // After initializing the slides, show the presentation controls        
+        previousSlideButton.interactable = false;
+        nextSlideButton.interactable = true;
     }
 
     #endregion
@@ -257,9 +264,9 @@ public class SlideShowController : NetworkBehaviour
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     private void ReleaseControlRpc(RpcInfo info = default)
-    {
-        //if (Runner.LocalPlayer == ControllingPlayer)        
-        projectorImageGO.SetActive(false);        
+    {        
+        projectorImageGO.SetActive(false);
+        IsSlideShowActive = false;
 
         ControllingPlayer = PlayerRef.None;        
         Debug.Log("SLIDE CONTROLLER: Projector control released");
@@ -287,13 +294,13 @@ public class SlideShowController : NetworkBehaviour
 
     #region Downloading
 
-            private async UniTask DownloadAllThumbnails()
-            {
-                var tasks = new List<UniTask>(slideUrls.Count);
-                for (int i = 0; i < slideUrls.Count; i++)
-                    tasks.Add(DownloadAndCache(i, slideUrls[i]));
-                await UniTask.WhenAll(tasks);
-            }
+    private async UniTask DownloadAllThumbnails()
+    {
+        var tasks = new List<UniTask>(slideUrls.Count);
+        for (int i = 0; i < slideUrls.Count; i++)
+            tasks.Add(DownloadAndCache(i, slideUrls[i]));
+        await UniTask.WhenAll(tasks);
+    }
 
     private async UniTask DownloadAndCache(int index, string url)
     {
