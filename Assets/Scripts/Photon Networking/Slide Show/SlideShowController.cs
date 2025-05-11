@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Cysharp.Threading.Tasks;
 using Fusion;
+using PixelCrushers.DialogueSystem;
 using Solana.Unity.Metaplex.MplNftPacks.Program;
 using TMPro;
 using UnityEngine;
@@ -45,6 +46,9 @@ public class SlideShowController : NetworkBehaviour
 
     MeshRenderer projectorImageMeshRenderer;
 
+    [SerializeField]
+    Usable usable;
+    
     public override void Spawned()
     {
         if (ControllingPlayer == null)
@@ -73,14 +77,10 @@ public class SlideShowController : NetworkBehaviour
         if (!initialized)
             return;
 
-        if (Input.GetKeyDown(KeyCode.E))
+        /*if (Input.GetKeyDown(KeyCode.E))
         {
-            if (interactionArea.localPlayerInsideInteractionArea && ControllingPlayer == PlayerRef.None)
-            {
-                Debug.Log("SLIDE CONTROLLER: No one's controlling the project, request controls");
-                RequestControlRpc();
-            }
-        }              
+            RequestProjectorControls();
+        } */             
     }
 
     #region General Controls
@@ -116,9 +116,9 @@ public class SlideShowController : NetworkBehaviour
         string downloadUrl = slideDownloadUrlInputField.text;
         // Extract the slide show id 
         Debug.Log("SLIDE CONTROLLER: Begin downloading from URL " + downloadUrl);
-        string exportUrl = GenerateSlideExportUrl(downloadUrl);
-
-        Debug.Log("SLIDE CONTROLLER: Generated export URL " + exportUrl);
+        
+        //string exportUrl = GenerateSlideExportUrl(downloadUrl);
+        //Debug.Log("SLIDE CONTROLLER: Generated export URL " + exportUrl);
 
         // TODO: Actually downloading stuff
 
@@ -232,12 +232,20 @@ public class SlideShowController : NetworkBehaviour
 
     #region Control Requesting
 
-    private void RequestProjectorControls()
+    public void RequestProjectorControls()
     {
-        if (ControllingPlayer == PlayerRef.None)
-            ControllingPlayer = Runner.LocalPlayer;
+        Debug.Log("SLIDE CONTROLLER: Request projector controls, start");
         
-        Debug.Log("SLIDE CONTROLLER: The controlling player is now " + ControllingPlayer);        
+        if (interactionArea.localPlayerInsideInteractionArea && ControllingPlayer == PlayerRef.None)
+        {
+            Debug.Log("SLIDE CONTROLLER: No one's controlling the projector, request controls");
+            RequestControlRpc();
+        }
+
+        /*if (ControllingPlayer == PlayerRef.None)
+            ControllingPlayer = Runner.LocalPlayer;*/
+
+        //Debug.Log("SLIDE CONTROLLER: The controlling player is now " + ControllingPlayer);        
     }
 
     /*private void ReleaseProjectorControls()
@@ -283,11 +291,15 @@ public class SlideShowController : NetworkBehaviour
             if (ControllingPlayer == Runner.LocalPlayer)
                 OpenProjectorGUI();
 
+            usable.enabled = false;            
             projectorImageGO.SetActive(true);
             projectorImageMeshRenderer.enabled = false;
         }
         else
-            projectorImageGO.SetActive(false);
+        {
+            projectorImageGO.SetActive(false);            
+            usable.enabled = true; // Other players can interact with the monitor again
+        }
 
     }
     #endregion
