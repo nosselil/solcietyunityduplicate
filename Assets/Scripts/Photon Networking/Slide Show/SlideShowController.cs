@@ -40,8 +40,8 @@ public class SlideShowController : NetworkBehaviour
     bool slideIdsReady = false;
     bool[] thumbUrlsReady;
 
-    [Networked, Capacity(32)] // Sets the fixed capacity of the collection
-    NetworkArray<NetworkString<_256>> slideUrls { get; } = MakeInitializer(new NetworkString<_256>[] 
+    [Networked, Capacity(24), OnChangedRender(nameof(OnSlideUrlsChanged))] // Sets the fixed capacity of the collection
+    NetworkArray<NetworkString<_256>> SlideUrls { get; } = MakeInitializer(new NetworkString<_256>[] 
     { "https://lh7-us.googleusercontent.com/docsdf/AFQj2d4DPSTQSxou8jtnhqzfd-0MvdYDgZ4Zg-yHdAEbcmFErEYjD2eIOhbppGnZLKD6iY6Mdp9dNqIUBA7jrIQ5DXwZtdNfg0o-VDycAk8Kp-CNFt5xPwfhHHiYnCEX3iZbywvixheWWJQ6RZaTvOL_xB-SPYZMkpRkEwnqbBlnRNHGxeAt=s800",
       "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5zaTzBgTuC_1aqeEoaxnjVuUNB9fH9jSfDl_8C1eomaL3dRKypGPlBNjFnmsMKiYTygtAWpliqbwPqOYP-f99IRMN-hB0UQ5nKqKUzsCOvBWoA8Y-kvysTzRMxU5cPRvj8hZxByvjrFHHbH8iqGF_BBs9AGB9rbwO_kkSpor0W-iDV=s800"});    
 
@@ -77,6 +77,10 @@ public class SlideShowController : NetworkBehaviour
 
     //string apiKey = "AIzaSyB7MNydTlHyTURQbufpZzJAe2wf0SHln0U"; // TODO: Secure this
 
+    public void OnSlideUrlsChanged()
+    {
+        //Debug.Log("SLIDE DEBUG: Slide urls 2 contains " + SlideUrls[2].ToString());        
+    }
 
 
     public override void Spawned()
@@ -97,7 +101,11 @@ public class SlideShowController : NetworkBehaviour
 
         // Check a networked boolean like IsSlideShowActive to be able to set the visibility of the projectorImageGo correctly
         if (IsSlideShowActive)
-            ApplySlideChange();
+        {
+            Debug.Log("SLIDE SHOW: Active already, need to download slide URLs: " + SlideUrls.ToArray().ToString());
+            DownloadSlides();
+            //ApplySlideChange();
+        }
         
         initialized = true;
     }
@@ -107,10 +115,15 @@ public class SlideShowController : NetworkBehaviour
         if (!initialized)
             return;
 
-        /*if (Input.GetKeyDown(KeyCode.E))
+        /*if (Input.GetKeyDown(KeyCode.F))
         {
-            RequestProjectorControls();
-        } */             
+            string randomString = UnityEngine.Random.Range(0, 100000).ToString("D5");
+            //            "D5" pads with leading zeros so the length is always 5
+
+            // Commit it to the networked array
+            SlideUrls.Set(2, randomString);
+            //RequestProjectorControls();
+        }*/
     }
 
     #region General Controls
@@ -154,8 +167,8 @@ public class SlideShowController : NetworkBehaviour
             slideIdsReady = true;
 
             // Prepare parallel arrays for URLs and ready-flags
-            slideUrls = new string[slideIds.Length];
-            slideUrlsReady = new bool[slideIds.Length];
+            //slideUrls.Clear();
+            //slideUrlsReady = new bool[slideIds.Length];
 
             Debug.Log($"OnSlidesListed: received {slideIds.Length} slide IDs");
         }
@@ -187,7 +200,7 @@ public class SlideShowController : NetworkBehaviour
             return;
         }
 
-        slideUrls[idx] = url;
+        SlideUrls.Set(idx, url);
         slideUrlsReady[idx] = true;
 
         Debug.Log($"OnThumbnailUrlReceived: slide {idx} URL ready");
@@ -248,7 +261,7 @@ public class SlideShowController : NetworkBehaviour
         Debug.Log("SLIDE CONTROLLER: Slides for presentation id " + presentationId + " are ready");
 
         int total = slideIds.Length;
-        slideUrls = new string[total];
+        SlideUrls.Clear();
         slideUrlsReady = new bool[total];
 
         // 3. Kick off per-slide URL fetch with exponential back-off 
@@ -273,7 +286,7 @@ public class SlideShowController : NetworkBehaviour
         /*slideUrls = new string[2];
         slideUrls[0] = "https://lh7-us.googleusercontent.com/docsdf/AFQj2d4DPSTQSxou8jtnhqzfd-0MvdYDgZ4Zg-yHdAEbcmFErEYjD2eIOhbppGnZLKD6iY6Mdp9dNqIUBA7jrIQ5DXwZtdNfg0o-VDycAk8Kp-CNFt5xPwfhHHiYnCEX3iZbywvixheWWJQ6RZaTvOL_xB-SPYZMkpRkEwnqbBlnRNHGxeAt=s800";
         slideUrls[1] = "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5zaTzBgTuC_1aqeEoaxnjVuUNB9fH9jSfDl_8C1eomaL3dRKypGPlBNjFnmsMKiYTygtAWpliqbwPqOYP-f99IRMN-hB0UQ5nKqKUzsCOvBWoA8Y-kvysTzRMxU5cPRvj8hZxByvjrFHHbH8iqGF_BBs9AGB9rbwO_kkSpor0W-iDV=s800";*/
-        DownloadSlidesRpc(slideUrls);
+        DownloadSlidesRpc();
 
         yield break;
     }
@@ -306,20 +319,26 @@ public class SlideShowController : NetworkBehaviour
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
-    public void DownloadSlidesRpc(string[] urls)
+    public void DownloadSlidesRpc()
     {
         // Download slides from the given list of urls
         //string shareUrl = "https://docs.google.com/presentation/d/1mal-rfHMSLX-l2p2Gvog8OZcm7vFHELusi5vO_jcW-Y/edit?usp=sharing"; // slideDownloadUrlInputField.text;
         //string presentationId = ExtractPresentationId(shareUrl);        
 
-        StartCoroutine(DownloadingSlides(urls));
+        DownloadSlides();
         
     }
 
-
-
-    private IEnumerator DownloadingSlides(string[] urls)
+    private void DownloadSlides()
     {
+        StartCoroutine(DownloadingSlides());
+    }
+
+
+    private IEnumerator DownloadingSlides()
+    {
+        string[] urls = SlideUrls.Select(ns => (string)ns).ToArray(); // Convert networked string to normal strings
+
         int total = urls.Length;
 
         // 1) build / reset the slide map

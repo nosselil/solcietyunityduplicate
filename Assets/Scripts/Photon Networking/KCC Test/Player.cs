@@ -67,7 +67,7 @@ namespace Starter.Platformer
         {
             // TODO: 
 
-            if (Input.GetKeyDown(KeyCode.F1))
+            /*if (Input.GetKeyDown(KeyCode.F1))
                 NetworkController.Instance.SwitchRoomAndScene("mainStartingarea");
 
             if (Input.GetKeyDown(KeyCode.F2))
@@ -78,7 +78,7 @@ namespace Starter.Platformer
                 NetworkController.Instance.SwitchRoomAndScene("MainHub");
 
             if (Input.GetKeyDown(KeyCode.F4))
-                NetworkController.Instance.SwitchRoomAndScene("mainGalleryMultiplayer");
+                NetworkController.Instance.SwitchRoomAndScene("mainGalleryMultiplayer");*/
 
         }
 
