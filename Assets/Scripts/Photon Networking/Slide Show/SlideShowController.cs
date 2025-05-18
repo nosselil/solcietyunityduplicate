@@ -1,17 +1,29 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Cysharp.Threading.Tasks;
 using Fusion;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PixelCrushers.DialogueSystem;
 using Solana.Unity.Metaplex.MplNftPacks.Program;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using static System.Net.WebRequestMethods;
 
 public class SlideShowController : NetworkBehaviour
 {
+    class SlideEntry
+    {
+        public string Url;
+        public Texture2D Texture;
+    }
+
+
     [Networked, HideInInspector, OnChangedRender(nameof(OnControllingPlayerChanged))]
     public PlayerRef ControllingPlayer { get ; set; }    // who may change slides
     
@@ -23,11 +35,25 @@ public class SlideShowController : NetworkBehaviour
 
     bool initialized = false;
 
-    List<string> slideUrls;                            // thumbnail URLs
-    Dictionary<int, Texture2D> slideCache = new();     // cached textures
+    bool isAuthComplete = false;
+    string[] slideIds;
+    bool slideIdsReady = false;
+    bool[] thumbUrlsReady;
 
-    [SerializeField]
-    Texture2D[] debugSlideTextures;
+    [Networked, Capacity(32)] // Sets the fixed capacity of the collection
+    NetworkArray<NetworkString<_256>> slideUrls { get; } = MakeInitializer(new NetworkString<_256>[] 
+    { "https://lh7-us.googleusercontent.com/docsdf/AFQj2d4DPSTQSxou8jtnhqzfd-0MvdYDgZ4Zg-yHdAEbcmFErEYjD2eIOhbppGnZLKD6iY6Mdp9dNqIUBA7jrIQ5DXwZtdNfg0o-VDycAk8Kp-CNFt5xPwfhHHiYnCEX3iZbywvixheWWJQ6RZaTvOL_xB-SPYZMkpRkEwnqbBlnRNHGxeAt=s800",
+      "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5zaTzBgTuC_1aqeEoaxnjVuUNB9fH9jSfDl_8C1eomaL3dRKypGPlBNjFnmsMKiYTygtAWpliqbwPqOYP-f99IRMN-hB0UQ5nKqKUzsCOvBWoA8Y-kvysTzRMxU5cPRvj8hZxByvjrFHHbH8iqGF_BBs9AGB9rbwO_kkSpor0W-iDV=s800"});    
+
+    bool[] slideUrlsReady;
+
+    /*List<string> slideUrls;                            // thumbnail URLs
+    Dictionary<int, Texture2D> slideCache = new();     // cached textures*/
+
+    /*[SerializeField]
+    Texture2D[] slideTextures;*/
+
+    Dictionary<int, SlideEntry> slides = new();
 
     [SerializeField]
     Renderer slideRenderer;                             // display target
@@ -48,17 +74,21 @@ public class SlideShowController : NetworkBehaviour
 
     [SerializeField]
     Usable usable;
-    
+
+    //string apiKey = "AIzaSyB7MNydTlHyTURQbufpZzJAe2wf0SHln0U"; // TODO: Secure this
+
+
+
     public override void Spawned()
     {
         if (ControllingPlayer == null)
             ControllingPlayer = PlayerRef.None;
 
         //ControllingPlayer = PlayerRef.None;             // no controller at start
-        slideCache.Add(0, debugSlideTextures[0]);
-        slideCache.Add(1, debugSlideTextures[1]);
+        //slideCache.Add(0, slideTextures[0]);
+        //slideCache.Add(1, slideTextures[1]);
 
-        slideUrls = new List<string>(2);
+        //slideUrls = new List<string>(2);
 
         Debug.Log("SLIDE CONTROLLER: Spawned, controlling player is " + ControllingPlayer);
 
@@ -108,28 +138,75 @@ public class SlideShowController : NetworkBehaviour
         }
     }
 
-    #region SlidePreparation
-    public void DownloadSlides()
+    #region Google Api callbacks
+
+    public void OnAuthSuccess()
     {
-        // TODO: Should we be able to activate this by using enter as well?
-
-        string downloadUrl = slideDownloadUrlInputField.text;
-        // Extract the slide show id 
-        Debug.Log("SLIDE CONTROLLER: Begin downloading from URL " + downloadUrl);
-        
-        //string exportUrl = GenerateSlideExportUrl(downloadUrl);
-        //Debug.Log("SLIDE CONTROLLER: Generated export URL " + exportUrl);
-
-        // TODO: Actually downloading stuff
-
-        ActivateSlideShowRpc();
-
-        ShowPresentationControls();        
+        Debug.Log("Auth succeeded - continuing download");
+        isAuthComplete = true;
     }
 
+    public void OnSlidesListed(string json)
+    {
+        try
+        {
+            slideIds = JsonConvert.DeserializeObject<string[]>(json);
+            slideIdsReady = true;
 
+            // Prepare parallel arrays for URLs and ready-flags
+            slideUrls = new string[slideIds.Length];
+            slideUrlsReady = new bool[slideIds.Length];
 
-    private string GenerateSlideExportUrl(string shareUrl)
+            Debug.Log($"OnSlidesListed: received {slideIds.Length} slide IDs");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("OnSlidesListed: JSON parse failed: " + e);
+        }
+    }
+
+    public void OnThumbnailUrlReceived(string message)
+    {
+        // expect "pageId|https://..."
+        int pipe = message.IndexOf('|');
+        if (pipe < 0)
+        {
+            Debug.LogError("OnThumbnailUrlReceived: bad message format");
+            return;
+        }
+
+        string pageId = message.Substring(0, pipe);
+        string url = message.Substring(pipe + 1);
+
+        // TODO: We could just supply the index as a parameter I suppose
+        // find the slide index that matches this pageId
+        int idx = Array.IndexOf(slideIds, pageId);
+        if (idx < 0)
+        {
+            Debug.LogWarning($"OnThumbnailUrlReceived: unknown pageId {pageId}");
+            return;
+        }
+
+        slideUrls[idx] = url;
+        slideUrlsReady[idx] = true;
+
+        Debug.Log($"OnThumbnailUrlReceived: slide {idx} URL ready");
+    }
+
+    #endregion
+
+    #region Slide Preparation
+
+    public void PrepareSlideDeck()
+    {
+        string shareUrl = slideDownloadUrlInputField.text;
+            //"https://docs.google.com/presentation/d/1TZ0A1z2Am7RQpWzS4bDYEWcZ0Ke0Z16UP3UNcSVgIpw/edit?usp=sharing";
+            //"https://docs.google.com/presentation/d/1mal-rfHMSLX-l2p2Gvog8OZcm7vFHELusi5vO_jcW-Y/edit?usp=sharing"; //; //https://docs.google.com/presentation/d/1mal-rfHMSLX-l2p2Gvog8OZcm7vFHELusi5vO_jcW-Y/edit?usp=sharing
+        string presentationId = ExtractPresentationId(shareUrl);
+        StartCoroutine(FetchingSlides(presentationId));
+    }
+
+    private string ExtractPresentationId(string shareUrl)
     {
         if (string.IsNullOrEmpty(shareUrl))
             throw new ArgumentException(nameof(shareUrl) + " cannot be null or empty");
@@ -138,9 +215,168 @@ public class SlideShowController : NetworkBehaviour
         if (!match.Success)
             throw new ArgumentException("Invalid Google Slides URL", nameof(shareUrl));
 
-        var presentationId = match.Groups[1].Value;
-        return $"https://docs.google.com/presentation/d/{presentationId}/export?format=pdf";
+        return match.Groups[1].Value;
     }
+
+    private IEnumerator FetchingSlides(string presentationId)
+    {
+
+        // MOCK IMPLEMENTATION FOR TESTING
+        /*int total = 1; //slideIds.Length;
+        slideUrls = new string[total];
+        slideUrlsReady = new bool[total];
+
+        slideUrls[0] = //https://lh7-us.googleusercontent.com/docsdf/AFQj2d5OxMFdGMTHWoHK6QjRmuCoj8lOJSzGPzt_GUAMA5YAROpoZJz-LodYSZUBjgKMt13Ii0xoL20bv--5A3dy076WVjDOZ2qK64Xsk9snLiYbtZYcrmUxhYhCEgJNGg_AtQ47VHezBkYzl2fFjZI9Cca9kIkjMKgCvRE2TQ74lYM8_eOa=s800";        
+        DownloadSlidesRpc(slideUrls);
+
+        yield break;*/
+        // END OF MOCK IMPLEMENTATION
+
+
+        // 1) kick off OAuth
+        GoogleApiController.Login();
+
+        // 2) wait for auth
+        yield return new WaitUntil(() => isAuthComplete);
+
+        Debug.Log("SLIDE CONTROLLER: Proceed to fetching slide ids for presentation id " + presentationId);
+        // 3) request slide IDs
+        slideIdsReady = false;
+        GoogleApiController.ListSlides(presentationId);
+        yield return new WaitUntil(() => slideIdsReady);
+
+        Debug.Log("SLIDE CONTROLLER: Slides for presentation id " + presentationId + " are ready");
+
+        int total = slideIds.Length;
+        slideUrls = new string[total];
+        slideUrlsReady = new bool[total];
+
+        // 3. Kick off per-slide URL fetch with exponential back-off 
+        for (int i = 0; i < total; i++)
+            StartCoroutine(FetchThumbnailUrlWithRetry(i, slideIds[i], presentationId));
+
+        // 4. Wait until every URL slot is filled
+        yield return new WaitUntil(() =>
+        {
+            for (int i = 0; i < total; i++)
+                if (!slideUrlsReady[i]) return false;
+            Debug.Log("SLIDE CONTROLLER: All thumbnail URLs resolved — start downloading textures.");
+            return true;
+        });
+
+        ActivateSlideShowRpc();
+        ShowPresentationControls();
+
+        // 6) broadcast the URLs to all clients
+
+        // MOCK IMPLEMENTATION
+        /*slideUrls = new string[2];
+        slideUrls[0] = "https://lh7-us.googleusercontent.com/docsdf/AFQj2d4DPSTQSxou8jtnhqzfd-0MvdYDgZ4Zg-yHdAEbcmFErEYjD2eIOhbppGnZLKD6iY6Mdp9dNqIUBA7jrIQ5DXwZtdNfg0o-VDycAk8Kp-CNFt5xPwfhHHiYnCEX3iZbywvixheWWJQ6RZaTvOL_xB-SPYZMkpRkEwnqbBlnRNHGxeAt=s800";
+        slideUrls[1] = "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5zaTzBgTuC_1aqeEoaxnjVuUNB9fH9jSfDl_8C1eomaL3dRKypGPlBNjFnmsMKiYTygtAWpliqbwPqOYP-f99IRMN-hB0UQ5nKqKUzsCOvBWoA8Y-kvysTzRMxU5cPRvj8hZxByvjrFHHbH8iqGF_BBs9AGB9rbwO_kkSpor0W-iDV=s800";*/
+        DownloadSlidesRpc(slideUrls);
+
+        yield break;
+    }
+
+    private IEnumerator FetchThumbnailUrlWithRetry(int index, string pageId, string presId)
+    {
+        int delay = 1;               // seconds: 1,2,4,8,16,32
+        const int maxDelay = 32;
+        const float responseTimeout = 10f;   // secs to wait for a JS reply
+
+        while (!slideUrlsReady[index])
+        {
+            /* ask JS for the URL */
+            GoogleApiController.GetThumbnailUrl(presId, pageId);
+
+            /* wait up to responseTimeout for JS to call OnThumbnailUrlReceived */
+            float t = 0f;
+            while (t < responseTimeout && !slideUrlsReady[index])
+            {
+                yield return null;
+                t += Time.deltaTime;
+            }
+
+            if (slideUrlsReady[index]) break;   // success
+
+            Debug.LogWarning($"Slide {index}: thumbnail URL not returned, retrying in {delay}s");
+            yield return new WaitForSeconds(delay);
+            delay = Mathf.Min(delay * 2, maxDelay);   // exponential back-off
+        }
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void DownloadSlidesRpc(string[] urls)
+    {
+        // Download slides from the given list of urls
+        //string shareUrl = "https://docs.google.com/presentation/d/1mal-rfHMSLX-l2p2Gvog8OZcm7vFHELusi5vO_jcW-Y/edit?usp=sharing"; // slideDownloadUrlInputField.text;
+        //string presentationId = ExtractPresentationId(shareUrl);        
+
+        StartCoroutine(DownloadingSlides(urls));
+        
+    }
+
+
+
+    private IEnumerator DownloadingSlides(string[] urls)
+    {
+        int total = urls.Length;
+
+        // 1) build / reset the slide map
+        slides.Clear();
+        for (int i = 0; i < total; i++)
+            slides[i] = new SlideEntry { Url = urls[i], Texture = null };
+
+        Debug.Log($"Start downloading {total} slide textures from provided urls");
+
+        // 2) bounded parallelism - max 5 in flight
+        const int maxConcurrent = 5;
+        var queue = new Queue<int>(Enumerable.Range(0, total));
+        int running = 0;
+
+        while (queue.Count > 0 || running > 0)
+        {
+            // launch new requests while we still have capacity
+            while (queue.Count > 0 && running < maxConcurrent)
+            {
+                int idx = queue.Dequeue();
+                running++;
+                StartCoroutine(DownloadSingleSlide(idx, slides[idx].Url, () => running--));
+            }
+            yield return null; // wait a frame
+        }
+
+        Debug.Log("All slide textures downloaded.");
+
+        ApplySlideChange(); // This will make us pick the correct starting slide from the get-go
+    }
+
+    private IEnumerator DownloadSingleSlide(int index, string url, Action onComplete)
+    {
+        Debug.Log("Start downloading single slide from " + url);
+        using var uwr = UnityWebRequestTexture.GetTexture(url);
+        yield return uwr.SendWebRequest();
+
+        if (uwr.result == UnityWebRequest.Result.Success)
+        {
+            slides[index].Texture = DownloadHandlerTexture.GetContent(uwr);
+            Debug.Log($"Slide {index} texture downloaded.");
+        }
+        else
+        {
+            Debug.LogError($"Slide {index} download failed: {uwr.error}");
+        }
+
+        onComplete?.Invoke();
+    }
+
+
+
+
+
+
+
+
 
 
     [Rpc(RpcSources.All, RpcTargets.All)]
@@ -183,9 +419,9 @@ public class SlideShowController : NetworkBehaviour
         if (info.Source != ControllingPlayer) 
             return;
 
-        slideUrls = new List<string>(urls);
-        slideCache.Clear();
-        DownloadAllThumbnails().Forget();               // start all downloads
+        //slideUrls = new List<string>(urls);
+        //slideCache.Clear();
+        //DownloadAllThumbnails().Forget();               // start all downloads
         ApplySlideChange();                             // show first slide (index 0)
     }
 
@@ -196,9 +432,9 @@ public class SlideShowController : NetworkBehaviour
         if (Runner.LocalPlayer != ControllingPlayer) 
             return;
 
-        Debug.Log("SLIDE CONTROLLER: The slide changer is the controlling player, slide Urls count is " + slideUrls.Count);
+        Debug.Log("SLIDE CONTROLLER: The slide changer is the controlling player, slide Urls count is " + slides.Count);
 
-        int next = Mathf.Clamp(SlideIndex + delta, 0, 1 /*slideUrls.Count - 1*/); //NOTE: 1 is just a debug value for now
+        int next = Mathf.Clamp(SlideIndex + delta, 0, slides.Count); //NOTE: 1 is just a debug value for now
         if (next != SlideIndex)
             ChangeSlideIndexRpc(next);
 
@@ -223,10 +459,17 @@ public class SlideShowController : NetworkBehaviour
 
     void ApplySlideChange()
     {
-        // TODO: Using material property blocks for efficiency
-        if (slideCache.TryGetValue(SlideIndex, out var tex))
-            slideRenderer.material.mainTexture = tex;
+        // Use our new slides map instead of slideCache
+        if (slides.TryGetValue(SlideIndex, out var entry) && entry.Texture != null)
+        {
+            // Optional: use a MaterialPropertyBlock for better batching
+            var mpb = new MaterialPropertyBlock();
+            slideRenderer.GetPropertyBlock(mpb);
+            mpb.SetTexture("_MainTex", entry.Texture);
+            slideRenderer.SetPropertyBlock(mpb);
+        }
     }
+
 
     #endregion
 
@@ -306,7 +549,7 @@ public class SlideShowController : NetworkBehaviour
 
     #region Downloading
 
-    private async UniTask DownloadAllThumbnails()
+    /*private async UniTask DownloadAllThumbnails()
     {
         var tasks = new List<UniTask>(slideUrls.Count);
         for (int i = 0; i < slideUrls.Count; i++)
@@ -320,7 +563,7 @@ public class SlideShowController : NetworkBehaviour
         await uwr.SendWebRequest().ToUniTask();
         if (uwr.result == UnityWebRequest.Result.Success)
             slideCache[index] = DownloadHandlerTexture.GetContent(uwr);
-    }
+    }*/
 
     public void InitializeDeck(IEnumerable<string> urls)
     {

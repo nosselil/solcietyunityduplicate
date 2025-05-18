@@ -11592,7 +11592,7 @@ PrefabInstance:
     - target: {fileID: 7020258058116445272, guid: 51b19f34b566aa04ea3325e5810f314c, type: 3}
       propertyPath: publicKeyInputField
       value: 
-      objectReference: {fileID: 2047499978}
+      objectReference: {fileID: 340510573}
     - target: {fileID: 7020514102854740350, guid: 51b19f34b566aa04ea3325e5810f314c, type: 3}
       propertyPath: m_Type
       value: 0

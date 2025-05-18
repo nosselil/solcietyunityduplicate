@@ -21,7 +21,7 @@ public class ReceiveScreen : SimpleScreen
 
     private void Start()
     {
-        publicKeyInputField.text = publicKeyInputField.text = Web3.Instance.WalletBase.Account.PublicKey;
+        publicKeyInputField.text = publicKeyInputField.text = Web3.Instance.WalletBase.Account.PublicKey;        
 
         airdrop_btn.onClick.AddListener(RequestAirdrop);
 
@@ -48,7 +48,8 @@ public class ReceiveScreen : SimpleScreen
 
         GenerateQr();
 
-        Debug.Log("Show screen, address text in public key field currently: " + publicKey_txt);
+        //Debug.Log("Show screen, address text in public key field currently: " + publicKey_txt.text);
+        Debug.Log("Show screen, wallet base account public key: " + Web3.Instance.WalletBase.Account.PublicKey);
 
         publicKeyInputField.text = Web3.Instance.WalletBase.Account.PublicKey;
         //publicKey_txt.text = Web3.Instance.WalletBase.Account.PublicKey;
