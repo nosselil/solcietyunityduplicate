@@ -47,6 +47,8 @@ public class SlideShowController : NetworkBehaviour
 
     bool[] slideUrlsReady;
 
+    int slideCount = 0; // A local variable to keep track of the total slides
+
     /*List<string> slideUrls;                            // thumbnail URLs
     Dictionary<int, Texture2D> slideCache = new();     // cached textures*/
 
@@ -213,9 +215,9 @@ public class SlideShowController : NetworkBehaviour
     public void PrepareSlideDeck()
     {
         string shareUrl = slideDownloadUrlInputField.text;
-            //"https://docs.google.com/presentation/d/1TZ0A1z2Am7RQpWzS4bDYEWcZ0Ke0Z16UP3UNcSVgIpw/edit?usp=sharing";
-            //"https://docs.google.com/presentation/d/1mal-rfHMSLX-l2p2Gvog8OZcm7vFHELusi5vO_jcW-Y/edit?usp=sharing"; //; //https://docs.google.com/presentation/d/1mal-rfHMSLX-l2p2Gvog8OZcm7vFHELusi5vO_jcW-Y/edit?usp=sharing
-        string presentationId = ExtractPresentationId(shareUrl);
+        //"https://docs.google.com/presentation/d/1TZ0A1z2Am7RQpWzS4bDYEWcZ0Ke0Z16UP3UNcSVgIpw/edit?usp=sharing";
+        //"https://docs.google.com/presentation/d/1mal-rfHMSLX-l2p2Gvog8OZcm7vFHELusi5vO_jcW-Y/edit?usp=sharing"; //; //https://docs.google.com/presentation/d/1mal-rfHMSLX-l2p2Gvog8OZcm7vFHELusi5vO_jcW-Y/edit?usp=sharing
+        string presentationId = "";//ExtractPresentationId(shareUrl);
         StartCoroutine(FetchingSlides(presentationId));
     }
 
@@ -233,14 +235,19 @@ public class SlideShowController : NetworkBehaviour
 
     private IEnumerator FetchingSlides(string presentationId)
     {
+        int total;
 
-        // MOCK IMPLEMENTATION FOR TESTING
-        /*int total = 1; //slideIds.Length;
-        slideUrls = new string[total];
+        // MOCK IMPLEMENTATION FOR TESTING                
+        /*total = 2; //slideIds.Length;        
         slideUrlsReady = new bool[total];
 
-        slideUrls[0] = //https://lh7-us.googleusercontent.com/docsdf/AFQj2d5OxMFdGMTHWoHK6QjRmuCoj8lOJSzGPzt_GUAMA5YAROpoZJz-LodYSZUBjgKMt13Ii0xoL20bv--5A3dy076WVjDOZ2qK64Xsk9snLiYbtZYcrmUxhYhCEgJNGg_AtQ47VHezBkYzl2fFjZI9Cca9kIkjMKgCvRE2TQ74lYM8_eOa=s800";        
-        DownloadSlidesRpc(slideUrls);
+        SlideUrls.Set(0, "https://lh7-us.googleusercontent.com/docsdf/AFQj2d4xQQUsjGNWIHKkJ90KT6McWJivIsCLAZjdTdQI3u8qjDywfGkE2nsBmOwgnaS8d8tztfwno4_dso44qys6s65JJaltgo97JehdCly2WKYTHOJhODVIW5jWHQyaSNKwn9Uvd_VvUoAdBJc58q-vD63fd11v7N4cZpYgwgmUb-IULGzJ=s800");
+        SlideUrls.Set(1, "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5Hr72PC8LreuLS-BPxHCd5an0kN43ysxGwit8B4SYKWQGSzdOUmcpWHjnoOlFQbEQkkvOLu2_XMtT4DhsyvBg9IzKKO4StnpRrX2PYpQc7a4-bCrlRz4yNAR3zK_0fka3eKJjQ8ZDQYoTQGXy_gB4y_7V23UO9cVFkBrsqE7BxwsVb=s800");
+        SlideUrls.Set(2, "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5ZxPLz-5zfAXNWb8X3n-K-Mr4b505Zc7DucRaC1RHKk6h8JCbCSwq3WklJSZk7GG1DE47q8oL8dQkgW9Wg0Zgh9scJKHPcOuGk0QIzGQ0OawMgGMiXu-mR-C8gop_-za4JO-PumKRqi8CP8gnxpx0C7ovbCNyVbygAk68xxhudX1SX=s800");
+
+        ActivateSlideShowRpc();
+        ShowPresentationControls();
+        DownloadSlidesRpc();
 
         yield break;*/
         // END OF MOCK IMPLEMENTATION
@@ -260,7 +267,7 @@ public class SlideShowController : NetworkBehaviour
 
         Debug.Log("SLIDE CONTROLLER: Slides for presentation id " + presentationId + " are ready");
 
-        int total = slideIds.Length;
+        total = slideIds.Length;
         SlideUrls.Clear();
         slideUrlsReady = new bool[total];
 
@@ -337,10 +344,14 @@ public class SlideShowController : NetworkBehaviour
 
     private IEnumerator DownloadingSlides()
     {
-        string[] urls = SlideUrls.Select(ns => (string)ns).ToArray(); // Convert networked string to normal strings
+        string[] urls = SlideUrls
+            .Where(ns => ns.Length > 0)               // keep only populated slots
+            .Select(ns => (string)ns)
+            .ToArray();
 
         int total = urls.Length;
-
+        slideCount = total; // TODO: No total needed if we use the slideCount
+        
         // 1) build / reset the slide map
         slides.Clear();
         for (int i = 0; i < total; i++)
@@ -388,15 +399,6 @@ public class SlideShowController : NetworkBehaviour
 
         onComplete?.Invoke();
     }
-
-
-
-
-
-
-
-
-
 
     [Rpc(RpcSources.All, RpcTargets.All)]
     private void ActivateSlideShowRpc() //bool enable
@@ -458,9 +460,9 @@ public class SlideShowController : NetworkBehaviour
             ChangeSlideIndexRpc(next);
 
         previousSlideButton.interactable = SlideIndex > 0;
-        nextSlideButton.interactable = SlideIndex < 1; // NOTE: Change to slideUrls.Count - 1
+        nextSlideButton.interactable = SlideIndex < slideCount - 1;
 
-        Debug.Log("SLIDE CONTROLLER: Slide changed, SlideIndex is now " + SlideIndex);
+        Debug.Log("SLIDE CONTROLLER: Slide changed, SlideIndex is now " + SlideIndex + " / " + (slideCount - 1));
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
