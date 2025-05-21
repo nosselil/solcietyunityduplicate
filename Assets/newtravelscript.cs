@@ -33,7 +33,7 @@ public class newtravelscript : MonoBehaviour
     {
         if (playerTransform == null)
         {
-            Debug.LogWarning("Player transform is not assigned.");
+            //Debug.LogWarning("Player transform is not assigned.");
             return;
         }
 

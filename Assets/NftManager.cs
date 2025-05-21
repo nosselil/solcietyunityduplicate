@@ -1028,8 +1028,10 @@ public class NftManager : MonoBehaviour
             }
 
             LogFeedback($"🎉 NFT Transfer successful! TX: {transferResult.Result}");
+
+            Debug.Log("PINATA: NFT MANAGER: Transfer successful, call move function NFT");
             //   CallMoveFunctionOnNFT(specificNFTs[0]);
-            //CallMoveFunctionOnNFT("https://red-tough-wildcat-877.mypinata.cloud/ipfs/bafkreif7f2t73t5njpwpepnb7hbco4c5dl2nyuu4nbgrtpuq52r35irmxu?pinataGatewayToken=cpHZtQlPAxJ8AdYhHsEev_jKs5G0ABgFvMMXdRcP4VqBkZhXn8BD60cOXXcMoYl9");
+            CallMoveFunctionOnNFT("https://red-tough-wildcat-877.mypinata.cloud/ipfs/bafkreif7f2t73t5njpwpepnb7hbco4c5dl2nyuu4nbgrtpuq52r35irmxu?pinataGatewayToken=cpHZtQlPAxJ8AdYhHsEev_jKs5G0ABgFvMMXdRcP4VqBkZhXn8BD60cOXXcMoYl9");
         }
 
         await UniTask.Delay(25000);
@@ -1192,6 +1194,8 @@ public class NftManager : MonoBehaviour
             }
 
             string fullMetadataUrl = gatewayUrl + cid;
+            Debug.Log("PINATA: Full meta data url: " + fullMetadataUrl);
+
             using (UnityWebRequest request = UnityWebRequest.Get(fullMetadataUrl))
             {
                 try
@@ -1557,8 +1561,8 @@ public class NftManager : MonoBehaviour
         loadpanelTxt.text = "Minting Nft...";
         // Set NFT metadata values.
         string mintName = "Sombre";
-        //string mintUri = "https://red-tough-wildcat-877.mypinata.cloud/ipfs/bafkreif7f2t73t5njpwpepnb7hbco4c5dl2nyuu4nbgrtpuq52r35irmxu?pinataGatewayToken=cpHZtQlPAxJ8AdYhHsEev_jKs5G0ABgFvMMXdRcP4VqBkZhXn8BD60cOXXcMoYl9";
-        string mintUri = "";
+        string mintUri = "https://red-tough-wildcat-877.mypinata.cloud/ipfs/bafkreif7f2t73t5njpwpepnb7hbco4c5dl2nyuu4nbgrtpuq52r35irmxu?pinataGatewayToken=cpHZtQlPAxJ8AdYhHsEev_jKs5G0ABgFvMMXdRcP4VqBkZhXn8BD60cOXXcMoYl9";
+        //string mintUri = "";
 
         // Create a new mint account.
         var mint = new Account();

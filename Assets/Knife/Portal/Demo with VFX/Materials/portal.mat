@@ -89,7 +89,7 @@ Material:
     - _GradientLength: -0.4
     - _GradientPower: 7.32
     - _HUE: 0
-    - _HueOffset: 0.054
+    - _HueOffset: 0
     - _LineMul: 4.26
     - _LinePower: 2.94
     - _LineSub: 2.51
