@@ -17,7 +17,6 @@ using System.Net.Http;
     {
         public static WalletManager instance;
 
-
         public Button InteractBtn;
 
         public IRpcClient rpcClient; // RpcClient interface
