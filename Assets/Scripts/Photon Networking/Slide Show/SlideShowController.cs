@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using Cysharp.Threading.Tasks;
 using Fusion;
@@ -217,8 +218,17 @@ public class SlideShowController : NetworkBehaviour
         string shareUrl = slideDownloadUrlInputField.text;
         //"https://docs.google.com/presentation/d/1TZ0A1z2Am7RQpWzS4bDYEWcZ0Ke0Z16UP3UNcSVgIpw/edit?usp=sharing";
         //"https://docs.google.com/presentation/d/1mal-rfHMSLX-l2p2Gvog8OZcm7vFHELusi5vO_jcW-Y/edit?usp=sharing"; //; //https://docs.google.com/presentation/d/1mal-rfHMSLX-l2p2Gvog8OZcm7vFHELusi5vO_jcW-Y/edit?usp=sharing
-        string presentationId = "";//ExtractPresentationId(shareUrl);
-        StartCoroutine(FetchingSlides(presentationId));
+        try
+        {
+            string presentationId = ExtractPresentationId(shareUrl);
+            
+            StartCoroutine(FetchingSlides(presentationId));                        
+        }
+        catch (Exception e)
+        {
+            // TODO: Show proper error message
+            Debug.Log("There was an error downloading your slideshow. Please make sure your share URL begins with the format https://docs.google.com/presentation/d/{PRESENTATION_ID}");
+        }        
     }
 
     private string ExtractPresentationId(string shareUrl)

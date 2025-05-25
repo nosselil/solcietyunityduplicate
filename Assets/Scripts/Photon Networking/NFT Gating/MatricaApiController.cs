@@ -14,7 +14,8 @@ public static class MatricaApiController
 #if UNITY_WEBGL && !UNITY_EDITOR
         MatricaApiLogin();
 #else
-        Debug.Log("MatricaApiController.Login() only works in WebGL builds");
+        Debug.Log("MatricaApiController.Login() only works in WebGL builds, mocking response");
+        GameObject.Find("GatedPortal").GetComponent<GatedPortalController>().MockAuthResponse();
 #endif
     }
 
@@ -26,7 +27,9 @@ public static class MatricaApiController
 #if UNITY_WEBGL && !UNITY_EDITOR
         MatricaApiCheckOwnership();
 #else
-        Debug.Log("MatricaApiController.CheckNftOwnership() only works in WebGL builds");
+        Debug.Log("MatricaApiController.CheckNftOwnership() only works in WebGL builds, mocking response");
+        GameObject.Find("GatedPortal").GetComponent<GatedPortalController>().OnOwnershipChecked("true");
+        //GameObject.Find("GatedPortal").GetComponent<GatedPortalController>().OnOwnershipError("Error");
 #endif
     }
 
@@ -40,4 +43,5 @@ public static class MatricaApiController
     [DllImport("__Internal")]
     private static extern void MatricaApiCheckOwnership();
 #endif
+    
 }

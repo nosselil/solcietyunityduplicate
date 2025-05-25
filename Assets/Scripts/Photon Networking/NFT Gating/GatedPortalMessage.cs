@@ -3,6 +3,7 @@ using UnityEngine;
 public class GatedPortalMessage : MonoBehaviour
 {
     Transform cameraTransform;
+
     private void Awake()
     {
         cameraTransform = Camera.main.transform;
