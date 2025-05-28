@@ -2157,7 +2157,7 @@ MonoBehaviour:
   artworkText: {fileID: 1924259703}
   artworkText2: {fileID: 1924259702}
   artworkImage: {fileID: 1030025691}
-  buyNFTfromGalleryScript: {fileID: 1731583502}
+  buyNFTfromGalleryScript: {fileID: 0}
 --- !u!65 &60010479
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4500,11 +4500,6 @@ Transform:
   - {fileID: 390200861}
   m_Father: {fileID: 259304835}
   m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
---- !u!1 &196744377 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3920394816495009966, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
-  m_PrefabInstance: {fileID: 3680620439553538455}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &197089023
 GameObject:
   m_ObjectHideFlags: 0
@@ -7204,6 +7199,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3317070873988301217, guid: 9e67950a3ca0cb343b53fe7cab3cfdf5, type: 3}
   m_PrefabInstance: {fileID: 913183893}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &333505940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 333505941}
+  - component: {fileID: 333505943}
+  - component: {fileID: 333505942}
+  m_Layer: 13
+  m_Name: BubbleImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &333505941
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333505940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1551533447}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 8, y: 1.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &333505942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333505940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: bac75f822ea214f11a80370f4a0de696, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 5
+--- !u!222 &333505943
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333505940}
+  m_CullTransparentMesh: 1
 --- !u!4 &334130314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4753890621540132, guid: 7d931555e87222947a8181fc81cabd1e, type: 3}
@@ -7696,17 +7766,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2638669727031523357, guid: 219eab030b0acec4985c841039d61b73, type: 3}
   m_PrefabInstance: {fileID: 1897226654}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &355401125 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5135643371535105132, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
-  m_PrefabInstance: {fileID: 3680620439553538455}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &355558778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4884527957135856928, guid: ec5b1a463c2d6db42a07b7081bee2f59, type: 3}
@@ -14282,11 +14341,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 70a828ae27da9964d8d27d27dc497add, type: 3}
   m_PrefabInstance: {fileID: 327844828}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &693964102 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2837531249400088666, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
-  m_PrefabInstance: {fileID: 3680620439553538455}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &695717744 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 2dd46914e2e0a3b47b77e36a4a942f19, type: 3}
@@ -16959,11 +17013,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4753890621540132, guid: 7d931555e87222947a8181fc81cabd1e, type: 3}
   m_PrefabInstance: {fileID: 547925222}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &779598453 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1468435115294894821, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
-  m_PrefabInstance: {fileID: 3680620439553538455}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &779845502
 GameObject:
@@ -31730,11 +31779,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4581715721912470, guid: 4dc2c143bf9ffbb4b8178ab20f930ca6, type: 3}
   m_PrefabInstance: {fileID: 1945271732}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1257876825 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6687382749802798958, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
-  m_PrefabInstance: {fileID: 3680620439553538455}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1257986856
 GameObject:
   m_ObjectHideFlags: 0
@@ -32027,11 +32071,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 20, y: 30, z: 4}
   m_Center: {x: 0, y: 0, z: -2}
---- !u!224 &1263767151 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1215200851464229300, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
-  m_PrefabInstance: {fileID: 3680620439553538455}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1265556530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36201,7 +36240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274b80ab5b659c646ba9338870d14625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_overrideName: To the Monkey Dao Room (Requires a Solana Monkey Business NFT)
+  m_overrideName: To the Monkey Dao Room
   m_overrideUseMessage: Press E to Travel
   maxUseDistance: 13.6
   events:
@@ -36250,6 +36289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792550304975bd54587dfa9a898f1e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gatedPortalAccessMessageParent: {fileID: 1551533446}
   gatedPortalAccessText: {fileID: 2129023749}
 --- !u!1 &1433509210
 GameObject:
@@ -40115,6 +40155,7 @@ GameObject:
   - component: {fileID: 1551533447}
   - component: {fileID: 1551533450}
   - component: {fileID: 1551533449}
+  - component: {fileID: 1551533451}
   m_Layer: 13
   m_Name: GatedPortalMessageParent
   m_TagString: Untagged
@@ -40134,12 +40175,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 333505941}
   - {fileID: 2129023748}
   m_Father: {fileID: 1433181579}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.48}
+  m_AnchoredPosition: {x: 0, y: 3.24}
   m_SizeDelta: {x: 8, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1551533449
@@ -40188,6 +40230,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1551533451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551533446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7528359000bbbd4cae37b2d11e56c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1554595935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49001,137 +49055,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d931555e87222947a8181fc81cabd1e, type: 3}
---- !u!1 &1731583500
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1731583501}
-  - component: {fileID: 1731583503}
-  - component: {fileID: 1731583502}
-  m_Layer: 0
-  m_Name: NftFetchManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1731583501
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731583500}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 262.89383, y: -6.282769, z: -9.097633}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1971127817}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1731583502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731583500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb427d67bb6a7d4e972404d13af9097, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BoxArtworkWorkMesh: {fileID: 0}
-  GalleryContent_transform: {fileID: 0}
-  nftDisplayScript: {fileID: 1731583503}
-  loadingPanel: {fileID: 1919285717}
-  loadpanelTxt: {fileID: 355401125}
-  mintName: 
-  mintUri: 
-  cluster: 0
-  npcMnemonic: miss gate front unique liberty gap bind choice lumber clown loan absorb
-  userPublicKey: 6tyYVbCJ2Ru7gkeVF6qefvk5szvL6HdwxBpLquEzRqPg
-  nftMintAddress: 
-  feedbackTxt: {fileID: 0}
-  nftObjects:
-  - {fileID: 779598453}
-  - {fileID: 1257876825}
-  - {fileID: 196744377}
-  nftMeshes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  nftImagesUi:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  specificNFTs:
-  - EVB7ZaWbUEuSZkZ2uYCwxrjtinF2XhwiAJ8k9EotMCH3
-  - Ez85tZZB9ReALFMcSfzwJrnZdXG8gghdDujkz88YkWmR
-  - 3Y9VopbKo9ju6McVSrfF3M83z2VZdRKAMoPGrEy2vqML
-  specificNFTsDEVNET:
-  - 51wjYTs2iUr8BxgGsr2QV98rKSDq4rgitPpsVFCWxbMu
-  - HwSRDe2yZar5nfpstboPZHBB4MYjRahxSM6hhMEgRQGC
-  - 4eLxvCL5aCafj1Fn6vLNVguZUYwvUYWbpg6Uo3LEKvoT
-  specificNFTsTestNet:
-  - 
-  - 
-  - 
-  heliusApiKey: 175c4a04-c6bf-4602-bdf8-d31dd4322429
-  rpcUrl: 
---- !u!114 &1731583503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731583500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c46904f3dabb9af43bf49f3809f27592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isStartAreaScene: 0
-  loadingPanel: {fileID: 1919285717}
-  tokenItem: {fileID: 6269036519149151341, guid: 4201b43b5062d459986aabe2ea566797, type: 3}
-  tokenItemMoveable: {fileID: 6269036519149151341, guid: 9ca81f788a643d14ba4c84768d963554, type: 3}
-  InventoryContent: {fileID: 1263767151}
-  WagerContent: {fileID: 2103071985}
-  TradeContent: {fileID: 693964102}
-  FirstCanvesContent: {fileID: 0}
 --- !u!4 &1733421574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4960817310007188, guid: 9af4bc1d01b9ec04c9d66a88ace89c21, type: 3}
@@ -57507,11 +57430,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d931555e87222947a8181fc81cabd1e, type: 3}
---- !u!1 &1919285717 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3076055956378216911, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
-  m_PrefabInstance: {fileID: 3680620439553538455}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1921507558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58726,7 +58644,6 @@ Transform:
   - {fileID: 4815794262172379}
   - {fileID: 1867356934}
   - {fileID: 60010468}
-  - {fileID: 1731583501}
   - {fileID: 1337329014}
   - {fileID: 1511108300}
   - {fileID: 1658030674}
@@ -63621,11 +63538,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1764546145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &2103071985 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 717258001731468837, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
-  m_PrefabInstance: {fileID: 3680620439553538455}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2103071988 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 717258001730970661, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
@@ -64032,7 +63944,6 @@ GameObject:
   - component: {fileID: 2129023748}
   - component: {fileID: 2129023750}
   - component: {fileID: 2129023749}
-  - component: {fileID: 2129023751}
   m_Layer: 13
   m_Name: GatedPortalMessage
   m_TagString: Untagged
@@ -64079,7 +63990,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Checking NFT ownership...
+  m_text: 'A Solana Monkey Business NFT
+
+    is required to enter.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1324a7b79a8db4423a43a918b38a37bd, type: 2}
   m_sharedMaterial: {fileID: 3788668012099067831, guid: 1324a7b79a8db4423a43a918b38a37bd, type: 2}
@@ -64158,18 +64071,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129023747}
   m_CullTransparentMesh: 1
---- !u!114 &2129023751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129023747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7528359000bbbd4cae37b2d11e56c99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2135191478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7790102078596148062, guid: 21c989502cbc23c4ea0d6ac516d657b8, type: 3}
@@ -76368,7 +76269,7 @@ PrefabInstance:
     - target: {fileID: 1331416769505649313, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1731583502}
+      objectReference: {fileID: 0}
     - target: {fileID: 1565807572048214329, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -76500,7 +76401,7 @@ PrefabInstance:
     - target: {fileID: 6067021114385292140, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1731583502}
+      objectReference: {fileID: 0}
     - target: {fileID: 6279738978880968018, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
       propertyPath: m_Name
       value: GUI

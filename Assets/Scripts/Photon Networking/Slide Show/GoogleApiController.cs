@@ -12,7 +12,8 @@ public static class GoogleApiController
 #if UNITY_WEBGL && !UNITY_EDITOR
         GoogleApiLogin();
 #else
-        Debug.Log("GoogleApiController.Login() only works in WebGL builds");
+        Debug.Log("GoogleApiController.Login() only works in WebGL builds, mocking response");
+        GameObject.Find("ProjectorSet").GetComponent<SlideShowController>().OnAuthSuccess();
 #endif
     }
 
@@ -22,7 +23,8 @@ public static class GoogleApiController
 #if UNITY_WEBGL && !UNITY_EDITOR
         GoogleApiListSlides(presentationId);
 #else
-        Debug.Log($"GoogleApiController.ListSlides({presentationId})");
+        Debug.Log($"GoogleApiController.ListSlides({presentationId}), mocking response");
+        GameObject.Find("ProjectorSet").GetComponent<SlideShowController>().MockOnSlidesListed();
 #endif
     }
 
@@ -32,7 +34,8 @@ public static class GoogleApiController
 #if UNITY_WEBGL && !UNITY_EDITOR
         GoogleApiGetThumbnailUrl(presentationId, pageId);
 #else
-        Debug.Log($"GoogleApiController.GetThumbnailUrl({presentationId}, {pageId})");
+        Debug.Log($"GoogleApiController.GetThumbnailUrl({presentationId}, {pageId}), mock response");
+        GameObject.Find("ProjectorSet").GetComponent<SlideShowController>().MockOnThumbnailUrlReceived();
 #endif
     }
 

@@ -5,11 +5,13 @@ public class GatedPortalController : MonoBehaviour
 {
     [Header("UI Elements")]
     //[SerializeField] GameObject gatedPortalAccessCheckVeil;
+    [SerializeField] GameObject gatedPortalAccessMessageParent;
     [SerializeField] TextMeshProUGUI gatedPortalAccessText;
 
     private void Start()
     {
-        gatedPortalAccessText.gameObject.SetActive(false);
+        //gatedPortalAccessMessageParent.SetActive(true);
+        gatedPortalAccessText.text = "A Solana Monkey Business NFT\r\nis required to enter this portal.";
     }
 
     /// <summary>
@@ -18,15 +20,15 @@ public class GatedPortalController : MonoBehaviour
     public void CheckGatedPortalAccess()
     {
         // Hide any previous “denied” message
-        gatedPortalAccessText.gameObject.SetActive(true);
-        gatedPortalAccessText.text = "Checking NFT Ownership...";
+        //gatedPortalAccessText.gameObject.SetActive(true);
+        gatedPortalAccessText.text = "Checking NFT Ownership...\r\nPlease complete Matrica authentication.";
 
 
-        Debug.Log("[GatedPortal] Mocking access");
-        NetworkController.Instance.SwitchRoomAndScene("Monkeydaoroom");
+        //Debug.Log("[GatedPortal] Mocking access");
+        //NetworkController.Instance.SwitchRoomAndScene("Monkeydaoroom");
 
         // Kick off Matrica OAuth
-        //MatricaApiController.Login();
+        MatricaApiController.Login();
     }
 
     /// <summary>
@@ -61,8 +63,8 @@ public class GatedPortalController : MonoBehaviour
         else
         {
             // Deny access: show denial text for 3 seconds
-            gatedPortalAccessText.gameObject.SetActive(true);
-            gatedPortalAccessText.text = "You need a Solana Monkey Business NFT to access this area.";
+            //gatedPortalAccessMessageParent.SetActive(true);
+            gatedPortalAccessText.text = "No Solana Monkey Business NFT found\r\nin your Matrica Wallet.";
             Invoke(nameof(HideDeniedText), 3f);
         }
     }
@@ -73,15 +75,16 @@ public class GatedPortalController : MonoBehaviour
     /// </summary>
     public void OnOwnershipError(string err)
     {
-        Debug.LogError($"[GatedPortal] Ownership check error: {err}");        
-        gatedPortalAccessText.gameObject.SetActive(true);
-        gatedPortalAccessText.text = "There was an error checking NFT ownerhship. Please try again.";
+        Debug.LogError($"[GatedPortal] Ownership check error: {err}");
+        //gatedPortalAccessMessageParent.SetActive(true);
+        gatedPortalAccessText.text = "There was an error checking NFT\r\nownerhship.Please try again.";
         Invoke(nameof(HideDeniedText), 3f);
     }
 
     private void HideDeniedText()
     {
-        gatedPortalAccessText.gameObject.SetActive(false);
+        //gatedPortalAccessMessageParent.SetActive(false);
+        gatedPortalAccessText.text = "A Solana Monkey Business NFT\r\nis required to enter this portal.";
     }
 
     public void MockAuthResponse()

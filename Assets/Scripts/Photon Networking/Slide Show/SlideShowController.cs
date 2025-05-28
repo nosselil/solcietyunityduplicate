@@ -25,6 +25,8 @@ public class SlideShowController : NetworkBehaviour
     }
 
 
+    private bool anySlideFailed = false;
+
     [Networked, HideInInspector, OnChangedRender(nameof(OnControllingPlayerChanged))]
     public PlayerRef ControllingPlayer { get ; set; }    // who may change slides
     
@@ -43,8 +45,8 @@ public class SlideShowController : NetworkBehaviour
 
     [Networked, Capacity(24), OnChangedRender(nameof(OnSlideUrlsChanged))] // Sets the fixed capacity of the collection
     NetworkArray<NetworkString<_256>> SlideUrls { get; } = MakeInitializer(new NetworkString<_256>[] 
-    { "https://lh7-us.googleusercontent.com/docsdf/AFQj2d4DPSTQSxou8jtnhqzfd-0MvdYDgZ4Zg-yHdAEbcmFErEYjD2eIOhbppGnZLKD6iY6Mdp9dNqIUBA7jrIQ5DXwZtdNfg0o-VDycAk8Kp-CNFt5xPwfhHHiYnCEX3iZbywvixheWWJQ6RZaTvOL_xB-SPYZMkpRkEwnqbBlnRNHGxeAt=s800",
-      "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5zaTzBgTuC_1aqeEoaxnjVuUNB9fH9jSfDl_8C1eomaL3dRKypGPlBNjFnmsMKiYTygtAWpliqbwPqOYP-f99IRMN-hB0UQ5nKqKUzsCOvBWoA8Y-kvysTzRMxU5cPRvj8hZxByvjrFHHbH8iqGF_BBs9AGB9rbwO_kkSpor0W-iDV=s800"});    
+    { /*"https://lh7-us.googleusercontent.com/docsdf/AFQj2d4DPSTQSxou8jtnhqzfd-0MvdYDgZ4Zg-yHdAEbcmFErEYjD2eIOhbppGnZLKD6iY6Mdp9dNqIUBA7jrIQ5DXwZtdNfg0o-VDycAk8Kp-CNFt5xPwfhHHiYnCEX3iZbywvixheWWJQ6RZaTvOL_xB-SPYZMkpRkEwnqbBlnRNHGxeAt=s800",
+      "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5zaTzBgTuC_1aqeEoaxnjVuUNB9fH9jSfDl_8C1eomaL3dRKypGPlBNjFnmsMKiYTygtAWpliqbwPqOYP-f99IRMN-hB0UQ5nKqKUzsCOvBWoA8Y-kvysTzRMxU5cPRvj8hZxByvjrFHHbH8iqGF_BBs9AGB9rbwO_kkSpor0W-iDV=s800"*/});    
 
     bool[] slideUrlsReady;
 
@@ -65,7 +67,7 @@ public class SlideShowController : NetworkBehaviour
     SlideShowControllerInteractionArea interactionArea;
 
     [SerializeField]
-    GameObject projectorControlGUI, setupControlGUI, presentationControlGUI, projectorImageGO;
+    GameObject projectorControlGUI, setupControlGUI, setupInfoText, presentationControlGUI, projectorImageGO, notificationCanvasGO;
 
     [SerializeField]
     Button previousSlideButton, nextSlideButton;
@@ -73,8 +75,11 @@ public class SlideShowController : NetworkBehaviour
     [SerializeField]
     TMP_InputField slideDownloadUrlInputField;
 
-    MeshRenderer projectorImageMeshRenderer;
+    [SerializeField]
+    TextMeshProUGUI notificationText;
 
+    MeshRenderer projectorImageMeshRenderer;
+    
     [SerializeField]
     Usable usable;
 
@@ -120,11 +125,12 @@ public class SlideShowController : NetworkBehaviour
 
         /*if (Input.GetKeyDown(KeyCode.F))
         {
-            string randomString = UnityEngine.Random.Range(0, 100000).ToString("D5");
+            //UpdateProjectorImageTexture(default);
+            //string randomString = UnityEngine.Random.Range(0, 100000).ToString("D5");
             //            "D5" pads with leading zeros so the length is always 5
 
             // Commit it to the networked array
-            SlideUrls.Set(2, randomString);
+            //SlideUrls.Set(2, randomString);
             //RequestProjectorControls();
         }*/
     }
@@ -139,6 +145,7 @@ public class SlideShowController : NetworkBehaviour
     {
         Debug.Log("SLIDE CONTROLLER: Open projector GUI");
         projectorControlGUI.SetActive(true);
+        setupInfoText.transform.parent.gameObject.SetActive(true);
         setupControlGUI.SetActive(true);
         presentationControlGUI.SetActive(false);
     }
@@ -199,7 +206,7 @@ public class SlideShowController : NetworkBehaviour
         int idx = Array.IndexOf(slideIds, pageId);
         if (idx < 0)
         {
-            Debug.LogWarning($"OnThumbnailUrlReceived: unknown pageId {pageId}");
+            Debug.LogError($"OnThumbnailUrlReceived: unknown pageId {pageId}");
             return;
         }
 
@@ -215,21 +222,31 @@ public class SlideShowController : NetworkBehaviour
 
     public void PrepareSlideDeck()
     {
-        string shareUrl = slideDownloadUrlInputField.text;
+        
+        string shareUrl =
+            //"https://docs.google.com/presentation/d/1mal-rfHMSLX-l2p2Gvog8OZcm7vFHELusi5vO_jcW-Y/edit?usp=sharing"; // MOCK
+            slideDownloadUrlInputField.text;
+
         //"https://docs.google.com/presentation/d/1TZ0A1z2Am7RQpWzS4bDYEWcZ0Ke0Z16UP3UNcSVgIpw/edit?usp=sharing";
         //"https://docs.google.com/presentation/d/1mal-rfHMSLX-l2p2Gvog8OZcm7vFHELusi5vO_jcW-Y/edit?usp=sharing"; //; //https://docs.google.com/presentation/d/1mal-rfHMSLX-l2p2Gvog8OZcm7vFHELusi5vO_jcW-Y/edit?usp=sharing
         try
         {
-            string presentationId = ExtractPresentationId(shareUrl);
-            
-            StartCoroutine(FetchingSlides(presentationId));                        
+            string presentationId = ExtractPresentationId(shareUrl);            
+            StartCoroutine(FetchingSlides(presentationId));
+            setupInfoText.transform.parent.gameObject.SetActive(false);
+            notificationCanvasGO.SetActive(true);
+            notificationText.text = "Preparing slide show...";
         }
         catch (Exception e)
         {
-            // TODO: Show proper error message
+            notificationCanvasGO.SetActive(true);
+            notificationText.text = "There was an error downloading your slideshow. Please make sure your share URL begins with the format https://docs.google.com/presentation/d/{PRESENTATION_ID}, and is set to public.";
+            CancelInvoke("HideNotificationCanvas");
+            Invoke("HideNotificationCanvas", 3.0f);
+
             Debug.Log("There was an error downloading your slideshow. Please make sure your share URL begins with the format https://docs.google.com/presentation/d/{PRESENTATION_ID}");
         }        
-    }
+    }    
 
     private string ExtractPresentationId(string shareUrl)
     {
@@ -248,18 +265,18 @@ public class SlideShowController : NetworkBehaviour
         int total;
 
         // MOCK IMPLEMENTATION FOR TESTING                
-        /*total = 2; //slideIds.Length;        
+        /*total = 1; //slideIds.Length;        
         slideUrlsReady = new bool[total];
 
-        SlideUrls.Set(0, "https://lh7-us.googleusercontent.com/docsdf/AFQj2d4xQQUsjGNWIHKkJ90KT6McWJivIsCLAZjdTdQI3u8qjDywfGkE2nsBmOwgnaS8d8tztfwno4_dso44qys6s65JJaltgo97JehdCly2WKYTHOJhODVIW5jWHQyaSNKwn9Uvd_VvUoAdBJc58q-vD63fd11v7N4cZpYgwgmUb-IULGzJ=s800");
-        SlideUrls.Set(1, "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5Hr72PC8LreuLS-BPxHCd5an0kN43ysxGwit8B4SYKWQGSzdOUmcpWHjnoOlFQbEQkkvOLu2_XMtT4DhsyvBg9IzKKO4StnpRrX2PYpQc7a4-bCrlRz4yNAR3zK_0fka3eKJjQ8ZDQYoTQGXy_gB4y_7V23UO9cVFkBrsqE7BxwsVb=s800");
-        SlideUrls.Set(2, "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5ZxPLz-5zfAXNWb8X3n-K-Mr4b505Zc7DucRaC1RHKk6h8JCbCSwq3WklJSZk7GG1DE47q8oL8dQkgW9Wg0Zgh9scJKHPcOuGk0QIzGQ0OawMgGMiXu-mR-C8gop_-za4JO-PumKRqi8CP8gnxpx0C7ovbCNyVbygAk68xxhudX1SX=s800");
+        SlideUrls.Set(0, "https://lh7-us.googleusercontent.com/docsdf/AFQj2d6tE19qYy4y6_C_ZzCfDucWujme9BzHdFOkAXFOsyQs4qNox50Sv01tUfwWnwLUq88S3hbNSmRzCNmk7wwSlrGCm-wbEWAJCg4pjhKUCObyu1mN3ISScMUNDA4c4aodFAt_-_Kt967FBOOkNkFWUiIpW5jch0rMyDcL2NPy5unJAd89=s800");
+        //SlideUrls.Set(1, "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5Hr72PC8LreuLS-BPxHCd5an0kN43ysxGwit8B4SYKWQGSzdOUmcpWHjnoOlFQbEQkkvOLu2_XMtT4DhsyvBg9IzKKO4StnpRrX2PYpQc7a4-bCrlRz4yNAR3zK_0fka3eKJjQ8ZDQYoTQGXy_gB4y_7V23UO9cVFkBrsqE7BxwsVb=s800");
+        //SlideUrls.Set(2, "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5ZxPLz-5zfAXNWb8X3n-K-Mr4b505Zc7DucRaC1RHKk6h8JCbCSwq3WklJSZk7GG1DE47q8oL8dQkgW9Wg0Zgh9scJKHPcOuGk0QIzGQ0OawMgGMiXu-mR-C8gop_-za4JO-PumKRqi8CP8gnxpx0C7ovbCNyVbygAk68xxhudX1SX=s800");
 
         ActivateSlideShowRpc();
         ShowPresentationControls();
         DownloadSlidesRpc();
 
-        yield break;*/
+        yield break; //*/
         // END OF MOCK IMPLEMENTATION
 
 
@@ -294,15 +311,17 @@ public class SlideShowController : NetworkBehaviour
             return true;
         });
 
-        ActivateSlideShowRpc();
+        // ActivateSlideShowRpc();        
         ShowPresentationControls();
 
         // 6) broadcast the URLs to all clients
 
         // MOCK IMPLEMENTATION
-        /*slideUrls = new string[2];
-        slideUrls[0] = "https://lh7-us.googleusercontent.com/docsdf/AFQj2d4DPSTQSxou8jtnhqzfd-0MvdYDgZ4Zg-yHdAEbcmFErEYjD2eIOhbppGnZLKD6iY6Mdp9dNqIUBA7jrIQ5DXwZtdNfg0o-VDycAk8Kp-CNFt5xPwfhHHiYnCEX3iZbywvixheWWJQ6RZaTvOL_xB-SPYZMkpRkEwnqbBlnRNHGxeAt=s800";
-        slideUrls[1] = "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5zaTzBgTuC_1aqeEoaxnjVuUNB9fH9jSfDl_8C1eomaL3dRKypGPlBNjFnmsMKiYTygtAWpliqbwPqOYP-f99IRMN-hB0UQ5nKqKUzsCOvBWoA8Y-kvysTzRMxU5cPRvj8hZxByvjrFHHbH8iqGF_BBs9AGB9rbwO_kkSpor0W-iDV=s800";*/
+        //slideUrls = new string[1];
+        //slideUrls[0] = https://lh7-us.googleusercontent.com/docsdf/AFQj2d78wI_Yr6G_kYRIMAagSKqinGWEHNuqwdrT02vB-5am46_ZsmCy0Hd5hVp3t0FNPy_ycJ2ezPuyjaZgjjrtY9bmM7hn2QTY1masFr63kMjrQa21BL3UVwNLDv3ZbTJ2sdRIaOtbj3nSbVBNfD5VD2UKDvLHfR-UIe-r0AAO8wnJ5Gb9=s800"        
+        //slideUrls[1] = "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5zaTzBgTuC_1aqeEoaxnjVuUNB9fH9jSfDl_8C1eomaL3dRKypGPlBNjFnmsMKiYTygtAWpliqbwPqOYP-f99IRMN-hB0UQ5nKqKUzsCOvBWoA8Y-kvysTzRMxU5cPRvj8hZxByvjrFHHbH8iqGF_BBs9AGB9rbwO_kkSpor0W-iDV=s800";*/
+        
+        
         DownloadSlidesRpc();
 
         yield break;
@@ -329,7 +348,7 @@ public class SlideShowController : NetworkBehaviour
 
             if (slideUrlsReady[index]) break;   // success
 
-            Debug.LogWarning($"Slide {index}: thumbnail URL not returned, retrying in {delay}s");
+            Debug.LogError($"Slide {index}: thumbnail URL not returned, retrying in {delay}s");
             yield return new WaitForSeconds(delay);
             delay = Mathf.Min(delay * 2, maxDelay);   // exponential back-off
         }
@@ -348,70 +367,127 @@ public class SlideShowController : NetworkBehaviour
 
     private void DownloadSlides()
     {
+        notificationText.text = "Downloading slides...";
         StartCoroutine(DownloadingSlides());
     }
 
 
     private IEnumerator DownloadingSlides()
     {
+        anySlideFailed = false;            // reset for this run
+
+        // pull only populated slots
         string[] urls = SlideUrls
-            .Where(ns => ns.Length > 0)               // keep only populated slots
+            .Where(ns => ns.Length > 0)
             .Select(ns => (string)ns)
             .ToArray();
 
         int total = urls.Length;
-        slideCount = total; // TODO: No total needed if we use the slideCount
-        
-        // 1) build / reset the slide map
+        slideCount = total;
+
+        // reset slide map
         slides.Clear();
         for (int i = 0; i < total; i++)
             slides[i] = new SlideEntry { Url = urls[i], Texture = null };
 
-        Debug.Log($"Start downloading {total} slide textures from provided urls");
+        Debug.Log($"Start downloading {total} slide textures ...");
 
-        // 2) bounded parallelism - max 5 in flight
+        // bounded parallelism (<= 5 simultaneous requests)
         const int maxConcurrent = 5;
         var queue = new Queue<int>(Enumerable.Range(0, total));
         int running = 0;
 
+        const float spacing = 2f;   // avoid hammering the CDN
+
         while (queue.Count > 0 || running > 0)
         {
-            // launch new requests while we still have capacity
             while (queue.Count > 0 && running < maxConcurrent)
             {
+                yield return new WaitForSeconds(spacing);
+
                 int idx = queue.Dequeue();
+                Debug.Log("Initiate download for slide " + slides[idx].Url);
                 running++;
-                StartCoroutine(DownloadSingleSlide(idx, slides[idx].Url, () => running--));
+                StartCoroutine(DownloadSingleSlideWithRetry(
+                    idx,
+                    slides[idx].Url,
+                    () => running--           // frees the slot
+                ));
             }
-            yield return null; // wait a frame
+            yield return null;               // wait one frame
+        }
+
+        // -----------------------------------------------------
+        //  decide what to do after all coroutines completed
+        // -----------------------------------------------------
+        if (anySlideFailed)
+        {
+            projectorControlGUI.SetActive(true);
+            setupControlGUI.SetActive(true);
+            setupInfoText.transform.parent.gameObject.SetActive(true);
+            presentationControlGUI.SetActive(false);
+            notificationText.text = "Slides could not be downloaded. Please try again later.";
+            CancelInvoke("HideNotificationCanvas");
+            Invoke("HideNotificationCanvas", 3.0f);
+            yield break;                     // do not launch the slide show
         }
 
         Debug.Log("All slide textures downloaded.");
-
-        ApplySlideChange(); // This will make us pick the correct starting slide from the get-go
+        notificationCanvasGO.SetActive(false);
+        ActivateSlideShow();
+        ApplySlideChange();
     }
 
-    private IEnumerator DownloadSingleSlide(int index, string url, Action onComplete)
+    private IEnumerator DownloadSingleSlideWithRetry(int index, string url, Action onComplete)
     {
-        Debug.Log("Start downloading single slide from " + url);
-        using var uwr = UnityWebRequestTexture.GetTexture(url);
-        yield return uwr.SendWebRequest();
+        const int initialDelay = 1;
+        const int maxDelay = 16;
+        const int maxRetries = 4;
+        const int requestTimeout = 15; // seconds
 
-        if (uwr.result == UnityWebRequest.Result.Success)
+        int delay = initialDelay;
+        int attempt = 0;
+
+        while (true)
         {
-            slides[index].Texture = DownloadHandlerTexture.GetContent(uwr);
-            Debug.Log($"Slide {index} texture downloaded.");
-        }
-        else
-        {
-            Debug.LogError($"Slide {index} download failed: {uwr.error}");
+            attempt++;
+            Debug.Log($"Slide {index}: attempt {attempt} -> {url}");
+
+            using (var uwr = UnityWebRequestTexture.GetTexture(url))
+            {
+                uwr.timeout = requestTimeout;
+                yield return uwr.SendWebRequest();
+
+                if (uwr.result == UnityWebRequest.Result.Success)
+                {
+                    slides[index].Texture = DownloadHandlerTexture.GetContent(uwr);
+                    Debug.Log($"Slide {index} downloaded on attempt {attempt}");
+                    break;                           // success
+                }
+
+                Debug.LogError(
+                    $"Slide {index} failed (attempt {attempt}): {uwr.error} - " +
+                    $"retrying in {delay}s");
+
+                if (attempt >= maxRetries)
+                {
+                    // mark global failure flag and stop retrying
+                    anySlideFailed = true;
+                    Debug.LogError($"Slide {index} exceeded max retries, giving up.");
+                    break;
+                }
+
+                yield return new WaitForSeconds(delay);
+                delay = Mathf.Min(delay * 2, maxDelay);
+            }
         }
 
-        onComplete?.Invoke();
+        onComplete?.Invoke();                        // free the concurrency slot
     }
 
-    [Rpc(RpcSources.All, RpcTargets.All)]
-    private void ActivateSlideShowRpc() //bool enable
+
+    //[Rpc(RpcSources.All, RpcTargets.All)]
+    private void ActivateSlideShow() //bool enable
     {
         Debug.Log("SLIDE CONTROLLER: Activate slide show RPC");
         SlideIndex = 0;
@@ -491,16 +567,19 @@ public class SlideShowController : NetworkBehaviour
     void ApplySlideChange()
     {
         // Use our new slides map instead of slideCache
-        if (slides.TryGetValue(SlideIndex, out var entry) && entry.Texture != null)
-        {
-            // Optional: use a MaterialPropertyBlock for better batching
-            var mpb = new MaterialPropertyBlock();
-            slideRenderer.GetPropertyBlock(mpb);
-            mpb.SetTexture("_MainTex", entry.Texture);
-            slideRenderer.SetPropertyBlock(mpb);
-        }
+        if (slides.TryGetValue(SlideIndex, out var entry) && entry.Texture != null)        
+            UpdateProjectorImageTexture(entry.Texture);   
+        
     }
 
+    void UpdateProjectorImageTexture(Texture2D entryTexture)
+    {
+        // Optional: use a MaterialPropertyBlock for better batching
+        var mpb = new MaterialPropertyBlock();
+        slideRenderer.GetPropertyBlock(mpb);
+        mpb.SetTexture("_MainTex", entryTexture);
+        slideRenderer.SetPropertyBlock(mpb);
+    }
 
     #endregion
 
@@ -580,27 +659,64 @@ public class SlideShowController : NetworkBehaviour
 
     #region Downloading
 
-    /*private async UniTask DownloadAllThumbnails()
-    {
-        var tasks = new List<UniTask>(slideUrls.Count);
-        for (int i = 0; i < slideUrls.Count; i++)
-            tasks.Add(DownloadAndCache(i, slideUrls[i]));
-        await UniTask.WhenAll(tasks);
-    }
-
-    private async UniTask DownloadAndCache(int index, string url)
-    {
-        using var uwr = UnityWebRequestTexture.GetTexture(url);
-        await uwr.SendWebRequest().ToUniTask();
-        if (uwr.result == UnityWebRequest.Result.Success)
-            slideCache[index] = DownloadHandlerTexture.GetContent(uwr);
-    }*/
-
     public void InitializeDeck(IEnumerable<string> urls)
     {
         SetSlideUrlsRpc(new List<string>(urls).ToArray());
     }
 
     #endregion
+
+    #region notifications
+
+    // Called via invoke
+    private void HideNotificationCanvas() 
+    {
+        notificationCanvasGO.SetActive(false);
+    }
+
+    #endregion
+
+
+#if UNITY_EDITOR
+    public void MockOnSlidesListed()
+    {
+        slideIds = new string[] { "p", "g353f3de4406_0_0", "g353f6112c34_0_0" };
+        slideIdsReady = true;
+    }
+
+    public void MockOnThumbnailUrlReceived()
+    {
+        // expect "pageId|https://..."
+        /*int pipe = message.IndexOf('|');
+        if (pipe < 0)
+        {
+            Debug.LogError("OnThumbnailUrlReceived: bad message format");
+            return;
+        }
+
+        string pageId = message.Substring(0, pipe);
+        string url = message.Substring(pipe + 1);
+
+        // TODO: We could just supply the index as a parameter I suppose
+        // find the slide index that matches this pageId
+        int idx = Array.IndexOf(slideIds, pageId);
+        if (idx < 0)
+        {
+            Debug.LogWarning($"OnThumbnailUrlReceived: unknown pageId {pageId}");
+            return;
+        }*/
+
+        SlideUrls.Set(0, "https://lh7-us.googleusercontent.com/docsdf/AFQj2d4gOBU4dRxF5fTyJCrzpvvsK42LW7Y4aPwl9IbZFcgh3LFOvQrczZKw252e-sHSG9ExAtQ4PTvHONhOgqtwdkxYc3HeFez5rgLMhc34XG0nEQgxzy4oy6ABlm37qRtM_5gGFz-na39159hBXiP28hZnF732nqkp2x7TFSaKfDQ9Ev9Y=s800");
+        slideUrlsReady[0] = true;
+
+        SlideUrls.Set(1, "https://lh7-us.googleusercontent.com/docsdf/AFQj2d5AgrECykhyF5YKWABQvjSY3S5MIP8V6elgmixgQT03Chn6cWUqw_wmH6G_DlaoDXutAkdvCArgAVx08bp4H-BnUpE8bm-qgngTG6_-0nwLj54OzzIZqzRYjH46gY62cw-FjL3CPl61F7tblbb23u5chqc-vktQi6AqQHa93RTWjyyA=s800");
+        slideUrlsReady[1] = true;
+
+        SlideUrls.Set(2, "https://lh7-us.googleusercontent.com/docsdf/AFQj2d6W8PRFClHJ2NxjZvUSBJ4XmF1TmHGzlpmBRy8SP-LJz8JUUEBPzJaDBOz0UX9Z1XacVp_lWNp8LUOBHT6EZ2biTzvCFCmlZ66l4WVIMqT1kGqwViO7Gt_KeHFz7KOU-UhKTEfFuXlzTMoS_Su_mVg1I0gQMs1IYZh-jn1m3eRFSefk=s800");
+        slideUrlsReady[2] = true;
+
+        Debug.Log($"MOCK: OnThumbnailUrlReceived: slides 0 to 2: URLs ready");
+    }
+#endif
 
 }

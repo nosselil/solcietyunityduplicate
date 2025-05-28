@@ -1194,8 +1194,8 @@ public class NftManager : MonoBehaviour
             }
 
             string fullMetadataUrl = gatewayUrl + cid;
-            Debug.Log("PINATA: Full meta data url: " + fullMetadataUrl);
-
+            Debug.Log("PINATA: Full meta data url: " + fullMetadataUrl + ", DO NOT SEND");
+        
             using (UnityWebRequest request = UnityWebRequest.Get(fullMetadataUrl))
             {
                 try
