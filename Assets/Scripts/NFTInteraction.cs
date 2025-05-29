@@ -23,7 +23,7 @@ public class NFTInteraction : MonoBehaviour
     public void ShowNftDetailsPopup()
  {
  if ( currentMetadata != null) {
- Debug.LogError("ShowNftDetailsPopup");
+ //Debug.LogError("ShowNftDetailsPopup");
  ShowNFTDetails(currentMetadata);
  }
 }
@@ -44,7 +44,7 @@ public class NFTInteraction : MonoBehaviour
             buyNFTfromGalleryScript.mintName = metadataHolder.nftName;
             buyNFTfromGalleryScript.mintUri = metadataHolder.uri;
 
-            Debug.LogError(buyNFTfromGalleryScript.mintUri);
+            //Debug.LogError(buyNFTfromGalleryScript.mintUri);
 
             if (!string.IsNullOrEmpty(nftMintAddress))
             {

@@ -2698,6 +2698,133 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: d246b0661f548694db22da9b8f2098ab, type: 3}
   m_PrefabInstance: {fileID: 951654321}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &85069563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 85069566}
+  - component: {fileID: 85069565}
+  - component: {fileID: 85069564}
+  m_Layer: 0
+  m_Name: NftFetchManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &85069564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85069563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb427d67bb6a7d4e972404d13af9097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoxArtworkWorkMesh: {fileID: 0}
+  GalleryContent_transform: {fileID: 0}
+  nftDisplayScript: {fileID: 0}
+  loadingPanel: {fileID: 0}
+  loadpanelTxt: {fileID: 0}
+  mintName: 
+  mintUri: 
+  cluster: 0
+  npcMnemonic: game friend amused purchase govern million just open snack pupil barely
+    cushion maze fruit cherry pigeon account road wreck depend true toddler nest
+    weekend
+  userPublicKey: 
+  nftMintAddress: 
+  feedbackTxt: {fileID: 0}
+  nftObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nftMeshes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nftImagesUi:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  specificNFTs:
+  - H5e5B5stux8Jim8un6ntv7CXCgVYAwhPqL9pxgbTfjUp
+  specificNFTsDEVNET:
+  - BfjBR2hemRDMJAmEfDNvT8cibyivpqcc1Scbug9nKg5d
+  specificNFTsTestNet:
+  - 9zJQHcWRtSrRSdZAHcgkg3F66Sc7BHbUKPareeny1s5E
+  heliusApiKey: 175c4a04-c6bf-4602-bdf8-d31dd4322429
+  rpcUrl: 
+--- !u!114 &85069565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85069563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c46904f3dabb9af43bf49f3809f27592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStartAreaScene: 0
+  loadingPanel: {fileID: 3680620439553538459}
+  tokenItem: {fileID: 6269036519149151341, guid: 4201b43b5062d459986aabe2ea566797, type: 3}
+  tokenItemMoveable: {fileID: 6269036519149151341, guid: 9ca81f788a643d14ba4c84768d963554, type: 3}
+  InventoryContent: {fileID: 3680620439553538458}
+  WagerContent: {fileID: 3680620439553538457}
+  TradeContent: {fileID: 3680620439553538456}
+  FirstCanvesContent: {fileID: 0}
+--- !u!4 &85069566
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85069563}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -34.63617, y: -13.663939, z: 73.17175}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &91666848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36249,7 +36376,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1558577574}
           m_TargetAssemblyTypeName: Knife.Portal.PortalControlByKey, Assembly-CSharp
-          m_MethodName: OpenPortal
+          m_MethodName: 
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -36264,7 +36391,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1558577574}
           m_TargetAssemblyTypeName: Knife.Portal.PortalControlByKey, Assembly-CSharp
-          m_MethodName: ClosePortal
+          m_MethodName: 
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -36291,6 +36418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gatedPortalAccessMessageParent: {fileID: 1551533446}
   gatedPortalAccessText: {fileID: 2129023749}
+  portalController: {fileID: 1558577574}
 --- !u!1 &1433509210
 GameObject:
   m_ObjectHideFlags: 0
@@ -76547,6 +76675,26 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
+--- !u!224 &3680620439553538456 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2837531249400088666, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
+  m_PrefabInstance: {fileID: 3680620439553538455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &3680620439553538457 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 717258001731468837, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
+  m_PrefabInstance: {fileID: 3680620439553538455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &3680620439553538458 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1215200851464229300, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
+  m_PrefabInstance: {fileID: 3680620439553538455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3680620439553538459 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3076055956378216911, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
+  m_PrefabInstance: {fileID: 3680620439553538455}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8692758224391496601 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8692758224808551316, guid: 9223ecc530dd9c549ad1e0ff57237460, type: 3}
@@ -76568,6 +76716,7 @@ SceneRoots:
   - {fileID: 344347423}
   - {fileID: 283563646}
   - {fileID: 768905377}
+  - {fileID: 85069566}
   - {fileID: 1657107441}
   - {fileID: 1841154093}
   - {fileID: 522469389}

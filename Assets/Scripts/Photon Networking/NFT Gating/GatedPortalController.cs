@@ -1,3 +1,4 @@
+using Knife.Portal;
 using TMPro;
 using UnityEngine;
 
@@ -8,10 +9,13 @@ public class GatedPortalController : MonoBehaviour
     [SerializeField] GameObject gatedPortalAccessMessageParent;
     [SerializeField] TextMeshProUGUI gatedPortalAccessText;
 
+    [SerializeField] PortalControlByKey portalController;
+
     private void Start()
     {
         //gatedPortalAccessMessageParent.SetActive(true);
         gatedPortalAccessText.text = "A Solana Monkey Business NFT\r\nis required to enter this portal.";
+        portalController.OpenPortal(); // Force the portal to be open when the scene starts
     }
 
     /// <summary>

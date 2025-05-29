@@ -507,8 +507,21 @@ namespace PixelCrushers.DialogueSystem
 
         public void OnConversationEnd(Transform actor)
         {
+            Debug.Log("DIALOGUE SYSTEM TRIGGER: On conversation end");
+            OnConversationEnded?.Invoke();
+
             if (!enabled) return;
             if (trigger == DialogueSystemTriggerEvent.OnConversationEnd) TryStart(actor);
+        }
+
+        public static void ForceOnConversationStartedInvoke()
+        {
+            OnConversationStarted?.Invoke();
+        }
+
+        public static void ForceOnConversationEndedInvoke()
+        {
+            OnConversationEnded?.Invoke();
         }
 
         // These methods run even if this DialogueSystemTrigger isn't on the actor or conversant.
@@ -543,7 +556,7 @@ namespace PixelCrushers.DialogueSystem
         private void OnConversationEndAnywhere(Transform actor)
         {
             Debug.Log("DIALOGUE: Stop active conversation");
-            OnConversationEnded?.Invoke();
+            
 
             var didMyConversationEnd = !DialogueManager.allowSimultaneousConversations ||
                 (activeConversation == null) || !activeConversation.conversationController.isActive;

@@ -69,17 +69,19 @@ namespace Starter.Platformer
             if (MultiplayerChat.Instance.IsChatInputActive || !NetworkingDataContainer.Instance.allowPlayerControlling) //LocalChatWindowController.Instance.IsChatWindowActive) // don't allow input gathering if chat is open
 				return;
 
-            // Accumulate input only if the cursor is locked.
-            //if (Cursor.lockState != CursorLockMode.Locked)
-            //	return;
+			// Accumulate input only if the cursor is locked.
+			//if (Cursor.lockState != CursorLockMode.Locked)
+			//	return;
 
-            // Accumulate input from Keyboard/Mouse. Input accumulation is mandatory (at least for look rotation here) as Update can be
-            // called multiple times before next FixedUpdateNetwork is called - common if rendering speed is faster than Fusion simulation.
+			// Accumulate input from Keyboard/Mouse. Input accumulation is mandatory (at least for look rotation here) as Update can be
+			// called multiple times before next FixedUpdateNetwork is called - common if rendering speed is faster than Fusion simulation.
+			if (NetworkingDataContainer.Instance.allowPlayerCameraControlling)
+			{
+				Vector2 lookRotationDelta = !WalletManager.instance.isMobile ? new Vector2(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X")) * LookRotationMultiplier
+					: GetMobileLookRotationDelta();
 
-            Vector2 lookRotationDelta = !WalletManager.instance.isMobile ? new Vector2(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X")) * LookRotationMultiplier
-				: GetMobileLookRotationDelta();
-
-            _input.LookRotation = ClampLookRotation(_input.LookRotation + lookRotationDelta);
+				_input.LookRotation = ClampLookRotation(_input.LookRotation + lookRotationDelta);
+			}
 			
 			var moveDirection = !WalletManager.instance.isMobile ? new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) : 
 				new Vector2(joystick.GetHorizontal(), joystick.GetVertical());

@@ -39,7 +39,7 @@ namespace Solana.Unity.SDK.Example
         public void UpdateNfts()
         {
           
-            Debug.LogError("UpdateNfts");
+            //Debug.LogError("UpdateNfts");
             GetOwnedTokenAccounts().AsAsyncUnitUniTask().Forget();
         }
 

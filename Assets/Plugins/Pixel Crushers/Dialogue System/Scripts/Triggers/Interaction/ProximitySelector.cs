@@ -5,6 +5,7 @@ using PixelCrushers.DialogueSystem.UnityGUI;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -236,6 +237,7 @@ namespace PixelCrushers.DialogueSystem
 
         public virtual void OnConversationEnd(Transform actor)
         {
+            Debug.Log("PROXIMITY: Conversation end");
             timeToEnableUseButton = Time.time + MinTimeBetweenUseButton;
         }
 
@@ -244,6 +246,8 @@ namespace PixelCrushers.DialogueSystem
         /// </summary>
         protected virtual void Update()
         {
+            //Debug.Log("USABLE NAME: " + currentUsable.name);
+
             // Exit if disabled or paused:
             if (!enabled || (Time.timeScale <= 0)) return;
 
@@ -297,7 +301,13 @@ namespace PixelCrushers.DialogueSystem
 
             if ((currentUsable != null) && currentUsable.enabled && (currentUsable.gameObject != null) && (Time.time >= timeToEnableUseButton))
             {
-                Debug.Log("INTERACT BUG: INSIDE IF: Use Usable within promiximityselector.cs");
+                Debug.Log("INTERACT: INSIDE IF: Use Usable within promiximityselector.cs, currentusable name " + currentUsable.gameObject.name);
+
+                // For some reason, we're not using the DialogueSystemTriggers with the skeleton in the gallery scene, we we're using this hacky way to fire the OnConversationStarted event any way
+                if (SceneManager.GetActiveScene().name == "mainGallery" && currentUsable.name == "skeleton")
+                {
+                    DialogueSystemTrigger.ForceOnConversationStartedInvoke();                    
+                }
 
                 //Debug.LogError("UseCurrentSelection");
                 currentUsable.OnUseUsable();
@@ -491,6 +501,8 @@ namespace PixelCrushers.DialogueSystem
 
         protected virtual void OnUsableDisabled(Usable usable)
         {
+            Debug.Log("PROXIMITYSELECTOR: Usable disabled");
+
             if (usable != null)
             {
                 RemoveUsableFromDetectedList(usable);

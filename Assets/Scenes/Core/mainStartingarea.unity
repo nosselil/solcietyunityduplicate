@@ -3404,6 +3404,133 @@ Transform:
   - {fileID: 1930632869}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &929267625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 929267628}
+  - component: {fileID: 929267627}
+  - component: {fileID: 929267626}
+  m_Layer: 0
+  m_Name: NftFetchManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &929267626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929267625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb427d67bb6a7d4e972404d13af9097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoxArtworkWorkMesh: {fileID: 0}
+  GalleryContent_transform: {fileID: 0}
+  nftDisplayScript: {fileID: 929267627}
+  loadingPanel: {fileID: 0}
+  loadpanelTxt: {fileID: 0}
+  mintName: 
+  mintUri: 
+  cluster: 0
+  npcMnemonic: game friend amused purchase govern million just open snack pupil barely
+    cushion maze fruit cherry pigeon account road wreck depend true toddler nest
+    weekend
+  userPublicKey: 
+  nftMintAddress: 
+  feedbackTxt: {fileID: 0}
+  nftObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nftMeshes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nftImagesUi:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  specificNFTs:
+  - H5e5B5stux8Jim8un6ntv7CXCgVYAwhPqL9pxgbTfjUp
+  specificNFTsDEVNET:
+  - BfjBR2hemRDMJAmEfDNvT8cibyivpqcc1Scbug9nKg5d
+  specificNFTsTestNet:
+  - 9zJQHcWRtSrRSdZAHcgkg3F66Sc7BHbUKPareeny1s5E
+  heliusApiKey: 175c4a04-c6bf-4602-bdf8-d31dd4322429
+  rpcUrl: 
+--- !u!114 &929267627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929267625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c46904f3dabb9af43bf49f3809f27592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStartAreaScene: 0
+  loadingPanel: {fileID: 2096416433}
+  tokenItem: {fileID: 6269036519149151341, guid: 4201b43b5062d459986aabe2ea566797, type: 3}
+  tokenItemMoveable: {fileID: 6269036519149151341, guid: 9ca81f788a643d14ba4c84768d963554, type: 3}
+  InventoryContent: {fileID: 2096416432}
+  WagerContent: {fileID: 2096416431}
+  TradeContent: {fileID: 2096416430}
+  FirstCanvesContent: {fileID: 0}
+--- !u!4 &929267628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929267625}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -34.63617, y: -13.663939, z: 73.17175}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &956414657
 GameObject:
   m_ObjectHideFlags: 0
@@ -7582,6 +7709,26 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
+--- !u!224 &2096416430 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2837531249400088666, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
+  m_PrefabInstance: {fileID: 2096416429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &2096416431 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 717258001731468837, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
+  m_PrefabInstance: {fileID: 2096416429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &2096416432 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1215200851464229300, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
+  m_PrefabInstance: {fileID: 2096416429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2096416433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3076055956378216911, guid: f72fd915d170a0745b5eb4884631f52c, type: 3}
+  m_PrefabInstance: {fileID: 2096416429}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1016931446154053
 GameObject:
   m_ObjectHideFlags: 0
@@ -19655,4 +19802,5 @@ SceneRoots:
   - {fileID: 711007824970996004}
   - {fileID: 6723070492641474750}
   - {fileID: 1098577571}
+  - {fileID: 929267628}
   - {fileID: 1726537178}

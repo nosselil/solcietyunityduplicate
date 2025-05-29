@@ -66,7 +66,9 @@ using System.Net.Http;
 
             Application.runInBackground = true;
 
-        tutorialCompleted = PlayerPrefs.GetInt(PLAYER_PREFS_TUTORIAL_COMPLETED_KEY, 0) == 1; // false
+        tutorialCompleted = 
+            //false;
+            PlayerPrefs.GetInt(PLAYER_PREFS_TUTORIAL_COMPLETED_KEY, 0) == 1; 
 
             wagerAmount = 0.1f;
             if (instance == null)

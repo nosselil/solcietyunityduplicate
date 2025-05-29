@@ -18,6 +18,9 @@ public class NetworkingDataContainer : MonoBehaviour
     public bool allowPlayerControlling = true; // Lock player controls when a dialogue box is active. NOTE: Not really a networking variable, so refactor once we've got more variables like this
 
     [HideInInspector]
+    public bool allowPlayerCameraControlling = true;
+
+    [HideInInspector]
     public bool usingMobileJoystick = false; // Lock mobile camera rotation when mobile joystick is used
 
     void Awake()

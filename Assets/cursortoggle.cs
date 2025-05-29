@@ -91,6 +91,7 @@ public class CursorToggle : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         isCursorLocked = true;
+        NetworkingDataContainer.Instance.allowPlayerCameraControlling = true;
     }
 
     void UnlockCursor()
@@ -99,6 +100,7 @@ public class CursorToggle : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         isCursorLocked = false;
+        NetworkingDataContainer.Instance.allowPlayerCameraControlling = false;
     }
 
     void ToggleCursorLock()
