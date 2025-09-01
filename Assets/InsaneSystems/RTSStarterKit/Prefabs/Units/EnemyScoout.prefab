@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 114024993814544926}
   - component: {fileID: -5887542954543925}
   - component: {fileID: -5525438192986947544}
-  - component: {fileID: 3608795537090236404}
+  - component: {fileID: -56592420984733099}
   m_Layer: 9
   m_Name: EnemyScoout
   m_TagString: Untagged
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToDeath: 55
---- !u!114 &3608795537090236404
+--- !u!114 &-56592420984733099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -340,8 +340,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiElementPrefab: {fileID: 8475286627085536007, guid: f9434721ec3c64897b0b71266e07a688, type: 3}
   moveLeftToRight: 0
-  moveSpeed: 10
-  destroyAfterSeconds: 50
+  moveSpeed: 100
+  boatTransform: {fileID: 4425196995400888}
+  lineStart: {fileID: 0}
+  lineEnd: {fileID: 0}
+  worldStartZ: 0
+  worldEndZ: 0
+  destinationTransform: {fileID: 0}
 --- !u!1 &1085402120460454
 GameObject:
   m_ObjectHideFlags: 0

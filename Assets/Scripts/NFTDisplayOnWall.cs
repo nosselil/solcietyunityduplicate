@@ -11,7 +11,7 @@ public class NFTDisplayOnWall : MonoBehaviour
 {
     public Renderer[] nftRenderers; // Array of GameObjects' renderers to apply textures
     public string npcWalletAddress = "GvekSRZc6XCX1TxF96QHhngfKFE67zwobo23K9Npo5ke"; // NPC Wallet Address
-    private string rpcUrl = "https://rpc.mainnet-alpha.sonic.game"; // Solana RPC URL
+    private string rpcUrl = "https://mainnet.helius-rpc.com/?api-key=0a682a0d-9417-48e9-b5e2-dca209af89eb"; // Solana RPC URL
 
     private Dictionary<string, Texture2D> imageCache = new Dictionary<string, Texture2D>(); // Image cache
     private HashSet<string> displayedMintAddresses = new HashSet<string>(); // Track displayed mint addresses

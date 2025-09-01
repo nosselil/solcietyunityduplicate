@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using CMF;
 using UnityEngine.SceneManagement;
 using static Unity.Collections.Unicode;
+using TMPro;
 
 namespace Starter.Platformer
 {
@@ -60,8 +61,11 @@ namespace Starter.Platformer
 
         private Vector3 _moveVelocity;
 
+        private float _originalWalkSpeed;
 
         private bool previouslyGrounded = false; // Used to keep track of when we land
+
+        public TextMeshProUGUI statusText;
 
         void Update()
         {
@@ -153,7 +157,8 @@ namespace Starter.Platformer
 
         private void Awake()
         {
-            AssignAnimationIDs();            
+            AssignAnimationIDs();
+            _originalWalkSpeed = WalkSpeed;
         }
 
         private void LateUpdate()
@@ -170,6 +175,16 @@ namespace Starter.Platformer
         private void ProcessInput(GameplayInput input)
         {
             float jumpImpulse = 0f;
+
+            // Set WalkSpeed to 12 while shift is held
+            if (input.Sprint || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            {
+                WalkSpeed = 12f;
+            }
+            else
+            {
+                WalkSpeed = _originalWalkSpeed;
+            }
 
             if (KCC.IsGrounded && input.Jump)
             {
@@ -233,6 +248,23 @@ namespace Starter.Platformer
             }
             else
                 Debug.Log("DISCONNECT: Local player has been destroyed, no returns since this is not a network condition");*/
+        }
+
+        public void TeleportToLocation(string locationId)
+        {
+            if (locationId == "gallery")
+            {
+                NetworkController.Instance.SwitchRoomAndScene("mainGalleryMultiplayer");
+                return;
+            }
+            else if (locationId == "mainhub")
+            {
+                NetworkController.Instance.SwitchRoomAndScene("MainHub");
+                return;
+            }
+
+            // Optionally, handle other locations here in the future
+            Debug.LogWarning("Unknown location ID: " + locationId);
         }
 
     }

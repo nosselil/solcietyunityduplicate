@@ -1,0 +1,422 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c615044c00c70fd4487244b98279f25e, type: 3}
+  m_Name: Level 008
+  m_EditorClassIdentifier: 
+  note: Level 8
+  movementMode: 1
+  cameraDataId: desert_camera
+  rewardCurrency: 0
+  rewardAmount: 20
+  playerSpawnPositionZ: 5
+  characterType: 0
+  overrideBonusStage: {fileID: 0}
+  gatesData:
+  - id: gate_damage
+    position: {x: -1.5, y: 0, z: 212.10004}
+    gateType: 3
+    operationType: 0
+    numericalValue: 1.2
+    updateOnHit: 1
+    step: 0.1
+    explicitId: default_character
+    charactersAmount: 1
+  - id: gate_range
+    position: {x: 1.5, y: 0, z: 212.10004}
+    gateType: 5
+    operationType: 2
+    numericalValue: 1.6
+    updateOnHit: 1
+    step: 0.05
+    explicitId: default_character
+    charactersAmount: 1
+  - id: gate_character
+    position: {x: -0.3902765, y: 0, z: 189.50003}
+    gateType: 0
+    operationType: 0
+    numericalValue: 1
+    updateOnHit: 1
+    step: 0.1
+    explicitId: heavy_character
+    charactersAmount: 1
+  - id: gate_character
+    position: {x: 1.5, y: 0, z: 178.20003}
+    gateType: 0
+    operationType: 0
+    numericalValue: 1
+    updateOnHit: 1
+    step: 0.1
+    explicitId: heavy_character
+    charactersAmount: 1
+  - id: gate_health
+    position: {x: 1.5, y: 0, z: 155.60002}
+    gateType: 2
+    operationType: 1
+    numericalValue: 5
+    updateOnHit: 1
+    step: 0.1
+    explicitId: default_character
+    charactersAmount: 1
+  - id: gate_damage
+    position: {x: -1.5, y: 0, z: 76.5}
+    gateType: 3
+    operationType: 0
+    numericalValue: 0.5
+    updateOnHit: 1
+    step: 0.1
+    explicitId: default_character
+    charactersAmount: 1
+  - id: gate_health
+    position: {x: 1.5, y: 0, z: 76.5}
+    gateType: 2
+    operationType: 0
+    numericalValue: 2
+    updateOnHit: 1
+    step: 0.2
+    explicitId: default_character
+    charactersAmount: 1
+  boostersData:
+  - id: booster_damage
+    position: {x: 1.5, y: 0, z: 223.40004}
+    boosterType: 3
+    operationType: 1
+    numericalValue: 1.2
+    explicitId: 
+    charactersAmount: 1
+  - id: booster_character
+    position: {x: -0.9605859, y: 0, z: 200.80003}
+    boosterType: 0
+    operationType: 0
+    numericalValue: 1
+    explicitId: heavy_character
+    charactersAmount: 1
+  - id: booster_character
+    position: {x: -1.5, y: 0, z: 155.60002}
+    boosterType: 0
+    operationType: 0
+    numericalValue: 1
+    explicitId: default_character
+    charactersAmount: 1
+  - id: booster_range
+    position: {x: -0.12965864, y: 0, z: 144.30002}
+    boosterType: 5
+    operationType: 2
+    numericalValue: 1.16
+    explicitId: 
+    charactersAmount: 1
+  - id: booster_damage
+    position: {x: -1.5, y: 0, z: 133.00002}
+    boosterType: 3
+    operationType: 0
+    numericalValue: 1.2
+    explicitId: 
+    charactersAmount: 1
+  - id: booster_health
+    position: {x: 1.5, y: 0, z: 133.00002}
+    boosterType: 2
+    operationType: 0
+    numericalValue: 3
+    explicitId: 
+    charactersAmount: 1
+  - id: booster_range
+    position: {x: -1.565455, y: 1, z: 99.100006}
+    boosterType: 5
+    operationType: 0
+    numericalValue: 1.5
+    explicitId: 
+    charactersAmount: 1
+  - id: booster_character
+    position: {x: 0.9957489, y: 0, z: 53.899998}
+    boosterType: 0
+    operationType: 0
+    numericalValue: 1
+    explicitId: default_character
+    charactersAmount: 1
+  obstaclesData:
+  - id: small_obstacle
+    position: {x: -1.5, y: 0, z: 234.70004}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 6
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: -1.5, y: 0, z: 223.40004}
+    dropType: 1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 1
+    health: 11
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: -1.5, y: 0, z: 221.90004}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 6
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: -1.5, y: 0, z: 178.20003}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 12
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: -1.565455, y: 0, z: 99.100006}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 7
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: -1.565455, y: 0, z: 97.600006}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 10
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: -1.294899, y: 0, z: 87.8}
+    dropType: 1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 1
+    health: 4
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: -1.294899, y: 0, z: 86.3}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 4
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: -1.5, y: 0, z: 65.2}
+    dropType: 1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 1
+    health: 4
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: 1.5, y: 0, z: 65.2}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 6
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: -0.79773563, y: 0, z: 31.3}
+    dropType: 1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 1
+    health: 7
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: 1.5, y: 0, z: 20}
+    dropType: 1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 1
+    health: 12
+    boosterHeight: 1
+  enemiesData:
+  - id: enemy
+    position: {x: 1.5, y: 0, z: 234.70004}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 3
+    damage: 2
+    fireRate: 0.49721846
+    gunId: default_gun
+  - id: enemy_heavy
+    position: {x: -1.5, y: 0, z: 166.90002}
+    dropType: 1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 5
+    health: 9
+    damage: 1
+    fireRate: 0.6778201
+    gunId: minigun
+  - id: enemy
+    position: {x: 1.5, y: 0, z: 166.90002}
+    dropType: 1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 2
+    health: 3
+    damage: 1
+    fireRate: 0.48692626
+    gunId: none
+  - id: enemy
+    position: {x: -1.5, y: 0, z: 121.70001}
+    dropType: 0
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 2
+    health: 5
+    damage: 2
+    fireRate: 0.45033616
+    gunId: default_gun
+  - id: enemy_heavy
+    position: {x: 1.5, y: 0, z: 121.70001}
+    dropType: 1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 2
+    health: 7
+    damage: 1
+    fireRate: 0.7942929
+    gunId: none
+  - id: enemy_heavy
+    position: {x: -1.5, y: 0, z: 110.40001}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 9
+    damage: 1
+    fireRate: 0.6843364
+    gunId: minigun
+  - id: enemy
+    position: {x: 1.5, y: 0, z: 110.40001}
+    dropType: 1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 2
+    health: 5
+    damage: 1
+    fireRate: 0.5601256
+    gunId: default_gun
+  - id: enemy
+    position: {x: -1.5, y: 0, z: 42.6}
+    dropType: 0
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 2
+    health: 3
+    damage: 1
+    fireRate: 0.49909294
+    gunId: default_gun
+  - id: enemy
+    position: {x: 1.5, y: 0, z: 42.6}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 5
+    damage: 1
+    fireRate: 0.49377403
+    gunId: default_gun
+  - id: enemy_heavy
+    position: {x: -1.5, y: 0, z: 20}
+    dropType: 1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 3
+    health: 6
+    damage: 1
+    fireRate: 0.6840315
+    gunId: minigun
+  finishLevelData:
+  - id: finish
+    position: {x: 0, y: 0, z: 246.00005}
+  roadsData:
+  - id: road_desert
+    position: {x: 0, y: 0, z: 290}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 280}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 270}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 260}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 250}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 240}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 230}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 220}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 210}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 200}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 190}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 180}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 170}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 160}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 150}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 140}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 130}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 120}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 110}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 100}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 90}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 80}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 70}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 60}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 50}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 40}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 30}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 20}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 10}
+  - id: road_desert
+    position: {x: 0, y: 0, z: 0}
+  environmentLevelData:
+  - id: environment_desert
+    position: {x: 0, y: 0, z: 280}
+  - id: environment_desert
+    position: {x: 0, y: 0, z: 240}
+  - id: environment_desert
+    position: {x: 0, y: 0, z: 200}
+  - id: environment_desert
+    position: {x: 0, y: 0, z: 160}
+  - id: environment_desert
+    position: {x: 0, y: 0, z: 120}
+  - id: environment_desert
+    position: {x: 0, y: 0, z: 80}
+  - id: environment_desert
+    position: {x: 0, y: 0, z: 40}
+  - id: environment_desert
+    position: {x: 0, y: 0, z: 0}

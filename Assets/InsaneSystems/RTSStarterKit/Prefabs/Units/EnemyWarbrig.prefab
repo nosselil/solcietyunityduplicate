@@ -341,7 +341,7 @@ MonoBehaviour:
   uiElementPrefab: {fileID: 8475286627085536007, guid: f9434721ec3c64897b0b71266e07a688, type: 3}
   moveLeftToRight: 0
   moveSpeed: 10
-  destroyAfterSeconds: 50
+  boatTransform: {fileID: 4425196995400888}
 --- !u!1 &1085402120460454
 GameObject:
   m_ObjectHideFlags: 0

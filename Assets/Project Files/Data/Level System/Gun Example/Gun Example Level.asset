@@ -1,0 +1,331 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c615044c00c70fd4487244b98279f25e, type: 3}
+  m_Name: Gun Example Level
+  m_EditorClassIdentifier: 
+  note: Gun Example
+  movementMode: 1
+  cameraDataId: city_camera
+  rewardCurrency: 0
+  rewardAmount: 20
+  playerSpawnPositionZ: 5
+  characterType: 1
+  overrideBonusStage: {fileID: 8558497136857710916, guid: 9da9c26aa41accb4ba62939b70e4f71d,
+    type: 3}
+  gatesData:
+  - id: gate_range
+    position: {x: -1.1, y: 0, z: 143.33539}
+    gateType: 5
+    operationType: 2
+    numericalValue: 1.3
+    updateOnHit: 1
+    step: 0.025
+    explicitId: default_character
+    charactersAmount: 1
+  - id: gate_range
+    position: {x: -1.12, y: 0, z: 109.514694}
+    gateType: 5
+    operationType: 1
+    numericalValue: 0.7
+    updateOnHit: 1
+    step: 0.1
+    explicitId: default_character
+    charactersAmount: 1
+  - id: gate_fire_rate
+    position: {x: 1.31, y: 0, z: 109.514694}
+    gateType: 4
+    operationType: 2
+    numericalValue: 1.6
+    updateOnHit: 1
+    step: 0.025
+    explicitId: default_character
+    charactersAmount: 1
+  - id: gate_damage
+    position: {x: -0.23610592, y: 0, z: 53.14683}
+    gateType: 3
+    operationType: 0
+    numericalValue: 1.2
+    updateOnHit: 1
+    step: 0.05
+    explicitId: default_character
+    charactersAmount: 1
+  boostersData:
+  - id: booster_weapon
+    position: {x: 1.32, y: 0, z: 143.19}
+    boosterType: 1
+    operationType: 0
+    numericalValue: 0
+    explicitId: minigun
+    charactersAmount: 1
+  - id: booster_range
+    position: {x: 1.29, y: 1, z: 132.06181}
+    boosterType: 5
+    operationType: 0
+    numericalValue: 1.8
+    explicitId: 
+    charactersAmount: 0
+  - id: booster_fire_rate
+    position: {x: -1.5, y: 0, z: 98.241104}
+    boosterType: 4
+    operationType: 0
+    numericalValue: 1
+    explicitId: 
+    charactersAmount: 0
+  - id: booster_range
+    position: {x: 1.26, y: 1, z: 86.96755}
+    boosterType: 5
+    operationType: 1
+    numericalValue: 2
+    explicitId: 
+    charactersAmount: 0
+  - id: booster_range
+    position: {x: -1.0531533, y: 0, z: 75.69398}
+    boosterType: 5
+    operationType: 0
+    numericalValue: 1.6
+    explicitId: 
+    charactersAmount: 0
+  - id: booster_range
+    position: {x: 1.18, y: 1, z: 75.497}
+    boosterType: 5
+    operationType: 2
+    numericalValue: 1.1
+    explicitId: 
+    charactersAmount: 0
+  - id: booster_health
+    position: {x: -1.0531533, y: 1, z: 30.59969}
+    boosterType: 2
+    operationType: 0
+    numericalValue: 5
+    explicitId: 
+    charactersAmount: 0
+  - id: booster_fire_rate
+    position: {x: 1.18, y: 1, z: 30.59969}
+    boosterType: 4
+    operationType: 2
+    numericalValue: 1.29
+    explicitId: 
+    charactersAmount: 0
+  - id: booster_damage
+    position: {x: -1.2, y: 1, z: 19.326118}
+    boosterType: 3
+    operationType: 1
+    numericalValue: 0.9
+    explicitId: 
+    charactersAmount: 0
+  obstaclesData:
+  - id: small_obstacle
+    position: {x: -1.0531533, y: 0, z: 132.06181}
+    dropType: 1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 1
+    health: 22
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: 1.29, y: 0, z: 132.06181}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 24
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: 0.46009326, y: 0, z: 120.788246}
+    dropType: 1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 1
+    health: 10
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: -1.0531533, y: 0, z: 86.96755}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 16
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: 1.26, y: 0, z: 86.96755}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 14
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: 1.18, y: 0, z: 75.497}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 1
+    health: 9
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: -1.0531533, y: 0, z: 30.59969}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 10
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: 1.18, y: 0, z: 30.59969}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 10
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: -1.2, y: 0, z: 19.326118}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 10
+    boosterHeight: 1
+  - id: small_obstacle
+    position: {x: -1.2, y: 0, z: 16.910355}
+    dropType: 0
+    dropCurrencyType: 0
+    dropItemsCount: 2
+    dropItemValue: 2
+    health: 14
+    boosterHeight: 1
+  enemiesData:
+  - id: enemy
+    position: {x: -1, y: 0, z: 154.20633}
+    dropType: 0
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 2
+    health: 8
+    damage: 1
+    fireRate: 0.48758966
+    gunId: default_gun
+  - id: enemy
+    position: {x: 1, y: 0, z: 154.20633}
+    dropType: 0
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 2
+    health: 12
+    damage: 1
+    fireRate: 0.4846282
+    gunId: default_gun
+  - id: enemy
+    position: {x: 0.04, y: 0, z: 98.241104}
+    dropType: 0
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 2
+    health: 8
+    damage: 1
+    fireRate: 0.48758966
+    gunId: default_gun
+  - id: enemy
+    position: {x: 1.8, y: 0, z: 98.241104}
+    dropType: 0
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 2
+    health: 12
+    damage: 1
+    fireRate: 0.4846282
+    gunId: default_gun
+  - id: enemy
+    position: {x: 0.1342969, y: 0, z: 64.4204}
+    dropType: -1
+    dropCurrencyType: 0
+    dropItemsCount: 0
+    dropItemValue: 0
+    health: 6
+    damage: 1
+    fireRate: 0.41968933
+    gunId: default_gun
+  - id: enemy_heavy
+    position: {x: 0.840686, y: 0, z: 41.873264}
+    dropType: 1
+    dropCurrencyType: 0
+    dropItemsCount: 1
+    dropItemValue: 4
+    health: 12
+    damage: 1
+    fireRate: 0.7885355
+    gunId: minigun
+  finishLevelData:
+  - id: finish
+    position: {x: 0, y: 0, z: 168.70091}
+  roadsData:
+  - id: road_city
+    position: {x: 0, y: 0, z: 220}
+  - id: road_city
+    position: {x: 0, y: 0, z: 210}
+  - id: road_city
+    position: {x: 0, y: 0, z: 200}
+  - id: road_city
+    position: {x: 0, y: 0, z: 190}
+  - id: road_city
+    position: {x: 0, y: 0, z: 180}
+  - id: road_city
+    position: {x: 0, y: 0, z: 170}
+  - id: road_city
+    position: {x: 0, y: 0, z: 160}
+  - id: road_city
+    position: {x: 0, y: 0, z: 150}
+  - id: road_city
+    position: {x: 0, y: 0, z: 140}
+  - id: road_city
+    position: {x: 0, y: 0, z: 130}
+  - id: road_city
+    position: {x: 0, y: 0, z: 120}
+  - id: road_city
+    position: {x: 0, y: 0, z: 110}
+  - id: road_city
+    position: {x: 0, y: 0, z: 100}
+  - id: road_city
+    position: {x: 0, y: 0, z: 90}
+  - id: road_city
+    position: {x: 0, y: 0, z: 80}
+  - id: road_city
+    position: {x: 0, y: 0, z: 70}
+  - id: road_city
+    position: {x: 0, y: 0, z: 60}
+  - id: road_city
+    position: {x: 0, y: 0, z: 50}
+  - id: road_city
+    position: {x: 0, y: 0, z: 40}
+  - id: road_city
+    position: {x: 0, y: 0, z: 30}
+  - id: road_city
+    position: {x: 0, y: 0, z: 20}
+  - id: road_city
+    position: {x: 0, y: 0, z: 10}
+  - id: road_city
+    position: {x: 0, y: 0, z: 0}
+  environmentLevelData:
+  - id: environment_city
+    position: {x: 0, y: 0, z: 240}
+  - id: environment_city
+    position: {x: 0, y: 0, z: 200}
+  - id: environment_city
+    position: {x: 0, y: 0, z: 160}
+  - id: environment_city
+    position: {x: 0, y: 0, z: 120}
+  - id: environment_city
+    position: {x: 0, y: 0, z: 80}
+  - id: environment_city
+    position: {x: 0, y: 0, z: 40}
+  - id: environment_city
+    position: {x: 0, y: 0, z: 0}

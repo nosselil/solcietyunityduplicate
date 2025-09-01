@@ -16,23 +16,11 @@ namespace UltimateClean
 
         protected Canvas m_canvas;
         protected GameObject m_popup;
-        public GameObject BG;
+
         protected void Start()
         {
-            GameObject GUICanvas = GameObject.Find("GUI");
-            /*if (GUICanvas != null)
-                m_canvas = GUICanvas.GetComponent<Canvas>();*/
+            m_canvas = GameObject.Find("GUI").GetComponent<Canvas>();
         }
-
-        public virtual void OpenPopupWAGER()
-        {
-            BG.SetActive(true);
-            // m_popup = Instantiate(popupPrefab, m_canvas.transform, false);
-            popupPrefab.SetActive(true);
-            popupPrefab.transform.localScale = Vector3.zero;
-        //    popupPrefab.GetComponent<Popup>().Open();
-        }
-
 
         public virtual void OpenPopup()
         {

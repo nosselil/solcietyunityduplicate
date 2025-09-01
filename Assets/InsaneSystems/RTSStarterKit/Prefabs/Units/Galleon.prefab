@@ -756,7 +756,12 @@ MonoBehaviour:
   uiElementPrefab: {fileID: 3625478947359185225, guid: 1229e720dbbdb4d1abdc2383339f4a31, type: 3}
   moveLeftToRight: 1
   moveSpeed: 10
-  destroyAfterSeconds: 50
+  boatTransform: {fileID: 4758402857863550}
+  lineStart: {fileID: 0}
+  lineEnd: {fileID: 0}
+  worldStartZ: 0
+  worldEndZ: 0
+  destinationTransform: {fileID: 0}
 --- !u!1 &1928132698244540
 GameObject:
   m_ObjectHideFlags: 0

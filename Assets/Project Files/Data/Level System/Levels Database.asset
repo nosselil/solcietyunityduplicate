@@ -1,0 +1,405 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0854286f19b0db74ea867626cd6ef998, type: 3}
+  m_Name: Levels Database
+  m_EditorClassIdentifier: 
+  levels:
+  - {fileID: 11400000, guid: a293459880e551a4dba8be340249631b, type: 2}
+  - {fileID: 11400000, guid: f27b9d974c155964eb590a6d64ed4d19, type: 2}
+  - {fileID: 11400000, guid: 62b8e50d32aa11b4aacc084540b6d25c, type: 2}
+  - {fileID: 11400000, guid: 1ab00b6c085a4594faf8c8e7999439fa, type: 2}
+  - {fileID: 11400000, guid: dd6e41439276be64e9b8600342c7dad3, type: 2}
+  - {fileID: 11400000, guid: 463e4c2476eff224da07934a2ca038bb, type: 2}
+  - {fileID: 11400000, guid: 0bf6b9b8feebb2d45a637665c134e4f4, type: 2}
+  - {fileID: 11400000, guid: 7bf251637235c644d86792c9ac085619, type: 2}
+  cameraData:
+  - id: desert_camera
+    followOffset: {x: 0, y: 20, z: -12}
+    rotation: {x: 46.5, y: 0, z: 0}
+    fov: 40
+    isMovingSideways: 0
+  - id: city_camera
+    followOffset: {x: 1, y: 4, z: -10}
+    rotation: {x: 46.5, y: 0, z: 0}
+    fov: 50
+    isMovingSideways: 1
+  boostersData:
+  - id: booster_damage
+    prefab: {fileID: 2228984556421201433, guid: cf39b7d0075c2f04195abb56774049f5, type: 3}
+    boosterType: 3
+    isNumerical: 1
+    previewImage: {fileID: 2800000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+  - id: booster_character
+    prefab: {fileID: 9169311938550452575, guid: 07b2312d53fa1b34f9b22c85bea0ff9b, type: 3}
+    boosterType: 0
+    isNumerical: 0
+    previewImage: {fileID: 2800000, guid: 3c2f99fb38125f14fafe883e01d917e0, type: 3}
+  - id: booster_weapon
+    prefab: {fileID: 9169311938550452575, guid: 0ba771b74f823cd4db3767124ee6d8f4, type: 3}
+    boosterType: 1
+    isNumerical: 0
+    previewImage: {fileID: 2800000, guid: 160af81c0dfd39f469bc452794fcd7c9, type: 3}
+  - id: booster_health
+    prefab: {fileID: 9139486548471671493, guid: 8bb9c773ec25896498dfa1fa1b9021d7, type: 3}
+    boosterType: 2
+    isNumerical: 1
+    previewImage: {fileID: 2800000, guid: 8e68eb39c513f134daeb91f28c0f1f53, type: 3}
+  - id: booster_fire_rate
+    prefab: {fileID: 8459813530989082434, guid: eb7be62f00208114a9415fac82b14a3e, type: 3}
+    boosterType: 4
+    isNumerical: 1
+    previewImage: {fileID: 2800000, guid: 4af92901e040ffb408b01af864188159, type: 3}
+  - id: booster_range
+    prefab: {fileID: 410478747743429739, guid: a68f61446f812b34191ed2b0623e40b9, type: 3}
+    boosterType: 5
+    isNumerical: 1
+    previewImage: {fileID: 2800000, guid: c81b0d3ba44db8d4c9e26e907d9c0f84, type: 3}
+  obstaclesData:
+  - id: small_obstacle
+    prefab: {fileID: 4092556607918028534, guid: 00f343d4adb19e641a74512dcb4b5210, type: 3}
+    defaultHealth: 5
+    defaultBoosterHeight: 1
+    obstacleLengthAlongZ: 1.5
+  enemiesData:
+  - id: enemy
+    prefab: {fileID: 6343580571744271787, guid: a25e1cbd71e9c5043903b3fc1d303d9e, type: 3}
+  - id: enemy_heavy
+    prefab: {fileID: 6343580571744271787, guid: c7427ec862f6081418824ed7942aab09, type: 3}
+  finishData:
+  - id: finish
+    prefab: {fileID: 2390828919641220376, guid: 09077e6ed2eb19542b72e312eb67330c, type: 3}
+  roadsData:
+  - id: road_city
+    prefab: {fileID: 2883039255544672129, guid: ccbb0f2d5b2d42645856dab037fa61fe, type: 3}
+    lengthAlongZ: 10
+    roadWidth: 4
+  - id: road_desert
+    prefab: {fileID: 2883039255544672129, guid: 4b625b2dd42843c4d9718324c194e2b6, type: 3}
+    lengthAlongZ: 10
+    roadWidth: 6
+  environmentData:
+  - id: environment_city
+    prefab: {fileID: 7873467090942078105, guid: 8349c327c49543348b6aa5fd9260fa81, type: 3}
+    lengthAlongZ: 40
+  - id: environment_desert
+    prefab: {fileID: 7873467090942078105, guid: ea27f0912fceb1948a901967b89cf09a, type: 3}
+    lengthAlongZ: 40
+  gatesData:
+  - id: gate_character
+    prefab: {fileID: 5766881451266689558, guid: 5409d01871b9efb49bb3443196ebe8bd, type: 3}
+    gateType: 0
+    isNumerical: 0
+    previewImage: {fileID: 2800000, guid: 4bf9f3343d77736449b785acd5615ebf, type: 3}
+  - id: gate_weapon
+    prefab: {fileID: 6247683635073706049, guid: 9ad4ab17b27828d418079fa7e1f38c4e, type: 3}
+    gateType: 1
+    isNumerical: 0
+    previewImage: {fileID: 2800000, guid: 19f1278735eaa634a992d0880adf6498, type: 3}
+  - id: gate_health
+    prefab: {fileID: 5183432695213306144, guid: 965680d64346e9c4693e912bb864e960, type: 3}
+    gateType: 2
+    isNumerical: 1
+    previewImage: {fileID: 2800000, guid: e68c5c00c28b0e64bab0e3156eefe0b6, type: 3}
+  - id: gate_damage
+    prefab: {fileID: 8577125770827630375, guid: 114d6a2edc5f2294baf3f10eda404a91, type: 3}
+    gateType: 3
+    isNumerical: 1
+    previewImage: {fileID: 2800000, guid: fcd16e2e449cb664786a02e96b3bc7a0, type: 3}
+  - id: gate_fire_rate
+    prefab: {fileID: 2490177055952555751, guid: 3a7fcec7b8fa3a94b95bc7db7a5b2d64, type: 3}
+    gateType: 4
+    isNumerical: 1
+    previewImage: {fileID: 2800000, guid: 50564bdfd6c407d49b9f10ad5288d56e, type: 3}
+  - id: gate_range
+    prefab: {fileID: 1097515351932537231, guid: 5a4a94402db376a42ad383ad063db2c7, type: 3}
+    gateType: 5
+    isNumerical: 1
+    previewImage: {fileID: 2800000, guid: 2212f3fcd7c3ad943ab1a21008fba474, type: 3}
+  - id: gate_money
+    prefab: {fileID: 7398471641989535122, guid: f216baeaa802e824495601e5314534b6, type: 3}
+    gateType: 6
+    isNumerical: 1
+    previewImage: {fileID: 2800000, guid: 4aa7e0f966374cf46bc861a3189d5ae8, type: 3}
+  charactersData:
+  - id: default_character
+    prefab: {fileID: 3116716204771541216, guid: a2127f7447307b543b9e14aa6c8fb88e, type: 3}
+    characterType: 0
+    isDefault: 1
+    isGunLocked: 0
+    lockedGunId: 
+    previewSprite: {fileID: 21300000, guid: 3c2f99fb38125f14fafe883e01d917e0, type: 3}
+    shootingImpactType: 2
+    displayName: Soldier
+  - id: heavy_character
+    prefab: {fileID: 3116716204771541216, guid: d499e579645d1924ab0b2781201ea914, type: 3}
+    characterType: 0
+    isDefault: 0
+    isGunLocked: 1
+    lockedGunId: minigun
+    previewSprite: {fileID: 21300000, guid: 9d8b32223f8ee29489a819a407bafaf9, type: 3}
+    shootingImpactType: 2
+    displayName: Heavy
+  - id: gun_character
+    prefab: {fileID: 6735668338781035707, guid: ef08b5ddbe7efe84ab54652ac67c01a7, type: 3}
+    characterType: 1
+    isDefault: 1
+    isGunLocked: 0
+    lockedGunId: minigun
+    previewSprite: {fileID: 21300000, guid: 160af81c0dfd39f469bc452794fcd7c9, type: 3}
+    shootingImpactType: 2
+    displayName: 
+  gunsData:
+  - id: none
+    prefab: {fileID: 0}
+    isDefault: 0
+    fireRateMultiplier: 1
+    damageMultiplier: 1
+    bulletRangeMultiplier: 1
+    bulletSpeed: 25
+    bulletsCount: 1
+    spread: 1
+    previewSprite: {fileID: 0}
+    poseAnimation: {fileID: 0}
+    shootingImpactDistance: 0
+    shootingImpactDuration: 0
+    shootingImpactCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 3.3387942
+        outSlope: 3.3387942
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.030174445
+      - serializedVersion: 3
+        time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -1.1376632
+        outSlope: -1.1376632
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.037718058
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    displayName: none
+  - id: default_gun
+    prefab: {fileID: 8373500992315428005, guid: 105881b27b342994598c2412077fdf48, type: 3}
+    isDefault: 1
+    fireRateMultiplier: 1
+    damageMultiplier: 1
+    bulletRangeMultiplier: 5
+    bulletSpeed: 23
+    bulletsCount: 1
+    spread: 0
+    previewSprite: {fileID: 21300000, guid: 160af81c0dfd39f469bc452794fcd7c9, type: 3}
+    poseAnimation: {fileID: 7141564764606606549, guid: b8f55f1b16324544d8265a07be511f58, type: 3}
+    shootingImpactDistance: 0.07
+    shootingImpactDuration: 0.15
+    shootingImpactCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 3.3387942
+        outSlope: 3.3387942
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.030174445
+      - serializedVersion: 3
+        time: 0.5
+        value: 1
+        inSlope: -0.0009775162
+        outSlope: -0.0009775162
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.9995117
+        value: 0
+        inSlope: -2.2159674
+        outSlope: -2.2159674
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.03960901
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    displayName: Pistol
+  - id: rifle
+    prefab: {fileID: 1127116773536995631, guid: be634e8f71c08fa4eb4a4f4ca1658702, type: 3}
+    isDefault: 0
+    fireRateMultiplier: 1
+    damageMultiplier: 2
+    bulletRangeMultiplier: 5
+    bulletSpeed: 23
+    bulletsCount: 1
+    spread: 0
+    previewSprite: {fileID: 21300000, guid: 326c3e37fb0e8fe4da390b31399c255a, type: 3}
+    poseAnimation: {fileID: -4343789905003869318, guid: 8225051a8e38b304fbe358751b7f8de8, type: 3}
+    shootingImpactDistance: 0.1
+    shootingImpactDuration: 0.15
+    shootingImpactCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 3.3387942
+        outSlope: 3.3387942
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.030174445
+      - serializedVersion: 3
+        time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -1.1376632
+        outSlope: -1.1376632
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.037718058
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    displayName: Rifle
+  - id: shotgun
+    prefab: {fileID: 1127116773536995631, guid: 114d560e26332ee40812f11fb304d3b1, type: 3}
+    isDefault: 0
+    fireRateMultiplier: 0.75
+    damageMultiplier: 1.6
+    bulletRangeMultiplier: 5
+    bulletSpeed: 23
+    bulletsCount: 3
+    spread: 10
+    previewSprite: {fileID: 21300000, guid: 45b55da4549e58e44bcf448b384885ed, type: 3}
+    poseAnimation: {fileID: 6054108731721544028, guid: 11dadf25fe2f6674a8e9af8eabcdcb02, type: 3}
+    shootingImpactDistance: 0.15
+    shootingImpactDuration: 0.2
+    shootingImpactCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 3.3387942
+        outSlope: 3.3387942
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.030174445
+      - serializedVersion: 3
+        time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -1.1376632
+        outSlope: -1.1376632
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.037718058
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    displayName: Shotgun
+  - id: minigun
+    prefab: {fileID: 1127116773536995631, guid: a7b2975082c16194a87f63fc2d6015eb, type: 3}
+    isDefault: 0
+    fireRateMultiplier: 3
+    damageMultiplier: 0.7
+    bulletRangeMultiplier: 5
+    bulletSpeed: 25
+    bulletsCount: 1
+    spread: 1
+    previewSprite: {fileID: 21300000, guid: f90a0d785a933a648b712e2a87fafd76, type: 3}
+    poseAnimation: {fileID: 6461450792151128023, guid: dc367e2901da9a54daf185fbe0f3bb61, type: 3}
+    shootingImpactDistance: 0.1
+    shootingImpactDuration: 0.1
+    shootingImpactCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 3.3387942
+        outSlope: 3.3387942
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.030174445
+      - serializedVersion: 3
+        time: 0.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -1.1376632
+        outSlope: -1.1376632
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.037718058
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    displayName: Minigun
+  bonusStages:
+  - id: first bonus stage
+    prefab: {fileID: 8558497136857710916, guid: 415e9f3e84e4b294892b78669f4ac1ec, type: 3}
+  - id: second bonus stage
+    prefab: {fileID: 8558497136857710916, guid: 4c23f7a7b37628a419d7bcaa43c5b622, type: 3}
+  defaultEnvironmentSpawnPositionZ: 0
+  defaultPlayerSpawnPositionZ: 5
+  defaultContentSpawnPositionZ: 20
+  defaultContentOffsetZ: 11.3
+  defaultCameraDataId: desert_camera

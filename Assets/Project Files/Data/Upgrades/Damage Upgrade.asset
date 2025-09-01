@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39724e3cdd2a83442979597984e3d49c, type: 3}
+  m_Name: Damage Upgrade
+  m_EditorClassIdentifier: 
+  upgradeType: 0
+  title: Damage
+  upgrades:
+  - price: 0
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 1
+  - price: 20
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 1.15
+  - price: 45
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 1.25
+  - price: 60
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 1.45
+  - price: 75
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 1.65
+  - price: 90
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 2
+  - price: 100
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 2.2
+  - price: 120
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 2.5
+  - price: 140
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 2.8
+  - price: 155
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 3
+  - price: 160
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 3.2
+  - price: 185
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 3.5
+  - price: 190
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 3.8
+  - price: 200
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 4
+  - price: 220
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: cfd68ab4960554745891a3769bdde9b5, type: 3}
+    value: 4.2

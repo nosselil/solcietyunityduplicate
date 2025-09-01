@@ -23,18 +23,15 @@ public class NFTInteraction : MonoBehaviour
     public void ShowNftDetailsPopup()
  {
  if ( currentMetadata != null) {
- //Debug.LogError("ShowNftDetailsPopup");
+ Debug.LogError("ShowNftDetailsPopup");
  ShowNFTDetails(currentMetadata);
  }
 }
    private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("ART: Entered trigger");
-
         NFTMetadataHolder metadataHolder = other.gameObject.GetComponent<NFTMetadataHolder>();
         if (metadataHolder != null)
         {
-            Debug.Log("ART: Metadata holder is present");
             currentMetadata = metadataHolder.nftName; // Store metadata
             nftArtist = metadataHolder.artistName;
             // Get the mint address directly from the NFTMetadataHolder
@@ -44,7 +41,7 @@ public class NFTInteraction : MonoBehaviour
             buyNFTfromGalleryScript.mintName = metadataHolder.nftName;
             buyNFTfromGalleryScript.mintUri = metadataHolder.uri;
 
-            //Debug.LogError(buyNFTfromGalleryScript.mintUri);
+            Debug.LogError(buyNFTfromGalleryScript.mintUri);
 
             if (!string.IsNullOrEmpty(nftMintAddress))
             {
@@ -72,11 +69,7 @@ public class NFTInteraction : MonoBehaviour
                 // Display the texture on the RawImage
                 artworkImage.texture = texture;
             }
-            else
-            {
-
-                Debug.LogWarning(gameObject.name+" No texture found on the collided object's material.");
-            }
+        
         }
     }
     private void OnTriggerExit(Collider other)
@@ -95,13 +88,11 @@ public class NFTInteraction : MonoBehaviour
 
     private void ShowNFTDetails(string metadata)
     {
-            // Assign values to UI elements
-            artworkText.text = metadata;
-            artworkText2.text = metadata;
-            artistText.text = nftArtist;
-
-            if (popupPanel != null)
-                popupPanel.SetActive(true);
+            // Assign values to UI elements, but only if they are assigned
+            if (artworkText != null) artworkText.text = metadata;
+            if (artworkText2 != null) artworkText2.text = metadata;
+            if (artistText != null) artistText.text = nftArtist;
+            if (popupPanel != null) popupPanel.SetActive(true);
        
     }
 

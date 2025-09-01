@@ -99,27 +99,24 @@ public partial class TranslucentImage : Image, IMeshModifier, IActiveRegionProvi
 #endif
     }
 
- protected override void OnEnable()
-{
-    base.OnEnable();
-    Canvas = canvas;
-    SetVerticesDirty();
+    protected override void OnEnable()
+    {
+        Canvas = canvas;
+        base.OnEnable();
+        SetVerticesDirty();
 
-    // Force re-acquire the source when the object is enabled
-    AutoAcquireSource();
-
-    ConnectSource(source);
-    _sourcePrev = source;
+        ConnectSource(source);
+        _sourcePrev = source;
 
 #if UNITY_EDITOR
-    if (!UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode)
-    {
-        Start();
-    }
+        if (!UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode)
+        {
+            Start();
+        }
 
-    UnityEditor.Undo.undoRedoPerformed += ApplySerializedData;
+        UnityEditor.Undo.undoRedoPerformed += ApplySerializedData;
 #endif
-}
+    }
 
     protected override void OnDisable()
     {
@@ -255,32 +252,20 @@ public partial class TranslucentImage : Image, IMeshModifier, IActiveRegionProvi
 
     bool sourceAcquiredOnStart = false;
 
-void AutoAcquireSource()
-{
-    if (IsInPrefabMode())
+    void AutoAcquireSource()
     {
-        Debug.Log("AutoAcquireSource: Skipping because we're in prefab mode.");
-        return;
+        var found = Shims.FindObjectOfType<TranslucentImageSource>();
+        Debug.Log($"[TranslucentImage] AutoAcquireSource found: {found}");
+        source = found;
+        sourceAcquiredOnStart = true;
     }
 
-    // Clear the current source
-    _source = null;
-    Debug.Log("AutoAcquireSource: Cleared existing source.");
-
-    // Search for a TranslucentImageSource in the current scene
-    source = FindObjectOfType<TranslucentImageSource>();
-
-    if (source == null)
+    public void ForceAcquireSource()
     {
-        Debug.LogWarning("AutoAcquireSource: No TranslucentImageSource found in the scene. Please add a TranslucentImageSource component to your camera or another GameObject.");
-    }
-    else
-    {
-        Debug.Log("AutoAcquireSource: Found and assigned TranslucentImageSource: " + source.name);
+        sourceAcquiredOnStart = false;
+        AutoAcquireSource();
     }
 
-    sourceAcquiredOnStart = true;
-}
     void ApplySerializedData()
     {
         source = _source;

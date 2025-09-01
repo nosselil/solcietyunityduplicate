@@ -23,10 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/mh/wager.unity
     guid: e1c364e494623460a90931ae7dd55143
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Minigame/MiniGame.unity
     guid: ea8a8838ad22f4d08853073bbe503ca7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Minigame/punicLobby.unity
     guid: 1dcf20accd6064b47bce41a0c898a0f7
   - enabled: 0
@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Core/Monkeydaoroom.unity
     guid: d8518c799770142f68711132c0bf2daa
+  - enabled: 1
+    path: Assets/Project Files/Game/Scenes/Game.unity
+    guid: 361eea68332b709408fe8391773229a1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39724e3cdd2a83442979597984e3d49c, type: 3}
+  m_Name: Health Upgrade
+  m_EditorClassIdentifier: 
+  upgradeType: 2
+  title: Health
+  upgrades:
+  - price: 0
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: c30e696c126969e4a9d020b50ee8fc24, type: 3}
+    value: 10
+  - price: 20
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: c30e696c126969e4a9d020b50ee8fc24, type: 3}
+    value: 12
+  - price: 45
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: c30e696c126969e4a9d020b50ee8fc24, type: 3}
+    value: 14
+  - price: 60
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: c30e696c126969e4a9d020b50ee8fc24, type: 3}
+    value: 16
+  - price: 70
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: c30e696c126969e4a9d020b50ee8fc24, type: 3}
+    value: 18
+  - price: 90
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: c30e696c126969e4a9d020b50ee8fc24, type: 3}
+    value: 20
+  - price: 100
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: c30e696c126969e4a9d020b50ee8fc24, type: 3}
+    value: 22
+  - price: 150
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: c30e696c126969e4a9d020b50ee8fc24, type: 3}
+    value: 24
+  - price: 200
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: c30e696c126969e4a9d020b50ee8fc24, type: 3}
+    value: 26
+  - price: 250
+    currencyType: 0
+    previewSprite: {fileID: 21300000, guid: c30e696c126969e4a9d020b50ee8fc24, type: 3}
+    value: 28

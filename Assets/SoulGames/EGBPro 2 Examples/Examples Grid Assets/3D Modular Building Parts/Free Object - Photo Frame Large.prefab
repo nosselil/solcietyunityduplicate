@@ -231,14 +231,10 @@ MonoBehaviour:
   rootObject: {fileID: 0}
   excludedChildObjects: []
   baseMaterial: {fileID: 2100000, guid: 5ad94145be526b14e8fa4e05fc5a3686, type: 2}
-  destroyerHoverChangeMaterial: {fileID: 2100000, guid: 393ac59727782db45b214bd6ea3a5b7c,
-    type: 2}
-  selectorHoverChangeMaterial: {fileID: 2100000, guid: 36408c231694b7941ae625e416a1472e,
-    type: 2}
-  selectorSelectedMaterial: {fileID: 2100000, guid: f09454d79c5634243bb530a95652996e,
-    type: 2}
-  moverHoverChangeMaterial: {fileID: 2100000, guid: 36408c231694b7941ae625e416a1472e,
-    type: 2}
+  destroyerHoverChangeMaterial: {fileID: 2100000, guid: 393ac59727782db45b214bd6ea3a5b7c, type: 2}
+  selectorHoverChangeMaterial: {fileID: 2100000, guid: 36408c231694b7941ae625e416a1472e, type: 2}
+  selectorSelectedMaterial: {fileID: 2100000, guid: f09454d79c5634243bb530a95652996e, type: 2}
+  moverHoverChangeMaterial: {fileID: 2100000, guid: 36408c231694b7941ae625e416a1472e, type: 2}
   makeSoundEffect: 0
   destroyerHoverEnterAudioClip: {fileID: 0}
   destroyerHoverExitAudioClip: {fileID: 0}
@@ -301,6 +297,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

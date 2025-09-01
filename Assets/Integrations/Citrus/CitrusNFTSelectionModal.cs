@@ -1,0 +1,356 @@
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Networking;
+using TMPro;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Cysharp.Threading.Tasks;
+using Solana.Unity.Rpc.Types;
+using Solana.Unity.SDK;
+using Solana.Unity.SDK.Example;
+using Solana.Unity.SDK.Nft;
+
+public class CitrusNFTSelectionModal : MonoBehaviour
+{
+    [Header("UI References")]
+    [SerializeField] private GameObject modalPanel;
+    [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private Transform nftContainer;
+    [SerializeField] private GameObject nftItemPrefab;
+    [SerializeField] private Button closeButton;
+    [SerializeField] private Button confirmButton;
+    [SerializeField] private TextMeshProUGUI selectedNFTText;
+    [SerializeField] private GameObject loadingPanel;
+    [SerializeField] private TextMeshProUGUI noNFTsText;
+    
+    // Item UI is provided by the prefab via CitrusNFTItemUI
+    
+    private List<CitrusNFTItem> nftItems = new List<CitrusNFTItem>();
+    private CitrusNFTItem selectedNFT;
+    private string currentCollectionId;
+    private string currentCollectionName;
+    private System.Action<string> onNFTSelectedCallback;
+    
+    [System.Serializable]
+    public class ServerNFT
+    {
+        public string mint;
+        public string name;
+        public string imageUrl;
+        public string collection;
+    }
+    
+    [System.Serializable]
+    public class UserNFTsResponse
+    {
+        public bool success;
+        public ServerNFT[] nfts;
+        public int count;
+    }
+    
+    [System.Serializable]
+    public class CitrusNFTItem
+    {
+        public string mintAddress;
+        public string name;
+        public string imageUrl;
+        public GameObject uiObject;
+        public Button selectButton;
+        public CitrusNFTItemUI uiComponent;
+        public Texture2D nftTexture; // Store the texture directly
+    }
+    
+    void Awake()
+    {
+        // Setup button listeners
+        if (closeButton != null)
+            closeButton.onClick.AddListener(CloseModal);
+        
+        if (confirmButton != null)
+            confirmButton.onClick.AddListener(OnConfirmSelected);
+    }
+    
+    public void Show(string collectionId, string collectionName, System.Action<string> callback)
+    {
+        currentCollectionId = collectionId;
+        currentCollectionName = collectionName;
+        onNFTSelectedCallback = callback;
+        
+        // Update title
+        if (titleText != null)
+            titleText.text = $"Select NFT from {collectionName}";
+        
+        // Show modal
+        modalPanel.SetActive(true);
+        
+        // Clear previous selection
+        selectedNFT = null;
+        if (selectedNFTText != null)
+            selectedNFTText.text = "No NFT selected";
+        
+        // Load NFTs for this collection
+        LoadNFTsForCollection().Forget();
+    }
+    
+    private async UniTask LoadNFTsForCollection()
+    {
+        Debug.Log($"CitrusNFTSelectionModal: Starting to load NFTs for collection: {currentCollectionId}");
+        
+        // Show loading
+        if (loadingPanel != null)
+            loadingPanel.SetActive(true);
+        
+        if (noNFTsText != null)
+            noNFTsText.gameObject.SetActive(false);
+        
+        // Clear previous NFTs
+        ClearNFTItems();
+        
+        // Get user's NFTs from server (using server-side wallet)
+        string url = $"https://solcietyserver.vercel.app/api/citrus-user-nfts-by-collection?collectionId={currentCollectionId}";
+        Debug.Log($"CitrusNFTSelectionModal: Fetching NFTs from: {url}");
+        
+        using (UnityWebRequest request = UnityWebRequest.Get(url))
+        {
+            await request.SendWebRequest();
+            
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                string jsonResponse = request.downloadHandler.text;
+                Debug.Log($"CitrusNFTSelectionModal: Server response: {jsonResponse}");
+                
+                try
+                {
+                    // Parse the server response
+                    var response = JsonUtility.FromJson<UserNFTsResponse>(jsonResponse);
+                    
+                    if (response != null && response.success && response.nfts != null)
+                    {
+                        Debug.Log($"CitrusNFTSelectionModal: Found {response.nfts.Length} NFTs from server");
+                        
+                        // Process each NFT from server
+                        foreach (var serverNFT in response.nfts)
+                        {
+                            // Get detailed NFT data using Unity's NFT system
+                            var nftData = await Nft.TryGetNftData(
+                                serverNFT.mint,
+                                Web3.Rpc,
+                                commitment: Commitment.Processed);
+                            if (nftData != null)
+                            {
+                                Debug.Log($"CitrusNFTSelectionModal: Got NFT data for {serverNFT.mint}: {nftData.metaplexData?.data?.offchainData?.name}");
+                                
+                                // Check if this NFT belongs to the target collection
+                                if (IsNFTInCollection(nftData, currentCollectionId))
+                                {
+                                    Debug.Log($"CitrusNFTSelectionModal: NFT {serverNFT.mint} belongs to collection {currentCollectionId}");
+                                    
+                                    CitrusNFTItem nftItem = new CitrusNFTItem
+                                    {
+                                        mintAddress = serverNFT.mint,
+                                        name = nftData.metaplexData?.data?.offchainData?.name ?? "Unknown NFT",
+                                        imageUrl = "", // We'll use the texture directly instead of URL
+                                        uiObject = null,
+                                        selectButton = null
+                                    };
+                                    
+                                    // Store the texture directly if available
+                                    if (nftData.metaplexData?.nftImage?.file != null)
+                                    {
+                                        nftItem.nftTexture = nftData.metaplexData.nftImage.file;
+                                    }
+                                    
+                                    // Create UI for this NFT
+                                    await CreateNFTItemUI(nftItem);
+                                }
+                                else
+                                {
+                                    Debug.Log($"CitrusNFTSelectionModal: NFT {serverNFT.mint} does NOT belong to collection {currentCollectionId}");
+                                }
+                            }
+                            else
+                            {
+                                Debug.Log($"CitrusNFTSelectionModal: No NFT data found for {serverNFT.mint}");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogError("CitrusNFTSelectionModal: Failed to parse server response");
+                        ShowNoNFTsMessage();
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogError($"CitrusNFTSelectionModal: Error parsing response: {e.Message}");
+                    ShowNoNFTsMessage();
+                }
+            }
+            else
+            {
+                Debug.LogError($"CitrusNFTSelectionModal: Error fetching NFTs: {request.error}");
+                ShowNoNFTsMessage();
+            }
+        }
+        
+        // Hide loading
+        if (loadingPanel != null)
+            loadingPanel.SetActive(false);
+    }
+    
+    private bool IsNFTInCollection(Nft nftData, string collectionId)
+    {
+        // Use off-chain metadata to determine collection match
+        var offchain = nftData.metaplexData?.data?.offchainData;
+        if (offchain?.collection != null)
+        {
+            // Match against the selected collection name first (most reliable cross-source)
+            if (!string.IsNullOrEmpty(currentCollectionName))
+            {
+                if (offchain.collection.family == currentCollectionName || offchain.collection.name == currentCollectionName)
+                    return true;
+            }
+            // Fallback: sometimes the collection id matches family/name
+            if (!string.IsNullOrEmpty(collectionId))
+            {
+                if (offchain.collection.family == collectionId || offchain.collection.name == collectionId)
+                    return true;
+            }
+        }
+
+        // Fall back to attributes that may store collection name
+        if (offchain?.attributes != null && !string.IsNullOrEmpty(currentCollectionName))
+        {
+            foreach (var attribute in offchain.attributes)
+            {
+                if ((attribute.trait_type == "Collection" || attribute.trait_type == "Collection Name") && attribute.value == currentCollectionName)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+    
+    private async UniTask CreateNFTItemUI(CitrusNFTItem nftItem)
+    {
+        // Instantiate NFT item prefab
+        GameObject nftObject = Instantiate(nftItemPrefab, nftContainer);
+        nftItem.uiObject = nftObject;
+        
+        // Prefer dedicated UI component on the prefab
+        nftItem.uiComponent = nftObject.GetComponentInChildren<CitrusNFTItemUI>(true);
+        if (nftItem.uiComponent != null)
+        {
+            Sprite sprite = null;
+            if (nftItem.nftTexture != null)
+            {
+                sprite = Sprite.Create(
+                    nftItem.nftTexture,
+                    new Rect(0, 0, nftItem.nftTexture.width, nftItem.nftTexture.height),
+                    new Vector2(0.5f, 0.5f)
+                );
+            }
+            nftItem.uiComponent.SetNFTData(nftItem.name, nftItem.mintAddress, sprite);
+        }
+        
+        // Find/select button on the prefab and wire up click
+        nftItem.selectButton = nftObject.GetComponentInChildren<Button>(true);
+        if (nftItem.selectButton != null)
+        {
+            nftItem.selectButton.onClick.RemoveAllListeners();
+            nftItem.selectButton.onClick.AddListener(() => OnNFTSelected(nftItem));
+        }
+        
+        nftItems.Add(nftItem);
+    }
+    
+
+    
+    private void OnNFTSelected(CitrusNFTItem nftItem)
+    {
+        // Deselect previous NFT
+        if (selectedNFT != null)
+        {
+            if (selectedNFT.uiComponent != null)
+            {
+                selectedNFT.uiComponent.SetSelected(false);
+            }
+            else if (selectedNFT.selectButton != null)
+            {
+                var img = selectedNFT.selectButton.GetComponent<Image>();
+                if (img != null) img.color = Color.white;
+            }
+        }
+        
+        // Select new NFT
+        selectedNFT = nftItem;
+        if (selectedNFT != null)
+        {
+            if (selectedNFT.uiComponent != null)
+            {
+                selectedNFT.uiComponent.SetSelected(true);
+            }
+            else if (selectedNFT.selectButton != null)
+            {
+                var img = selectedNFT.selectButton.GetComponent<Image>();
+                if (img != null) img.color = Color.green;
+            }
+        }
+        
+        // Update selected text
+        if (selectedNFTText != null)
+        {
+            selectedNFTText.text = $"Selected: {selectedNFT.name}";
+        }
+    }
+    
+    private void OnConfirmSelected()
+    {
+        if (selectedNFT != null)
+        {
+            onNFTSelectedCallback?.Invoke(selectedNFT.mintAddress);
+            CloseModal();
+        }
+        else
+        {
+            Debug.LogWarning("No NFT selected");
+        }
+    }
+    
+    private void ShowNoNFTsMessage()
+    {
+        if (loadingPanel != null)
+            loadingPanel.SetActive(false);
+        
+        if (noNFTsText != null)
+        {
+            noNFTsText.gameObject.SetActive(true);
+            noNFTsText.text = $"No NFTs found in {currentCollectionName} collection";
+        }
+    }
+    
+    private void ClearNFTItems()
+    {
+        foreach (var nftItem in nftItems)
+        {
+            if (nftItem.uiObject != null)
+                Destroy(nftItem.uiObject);
+        }
+        nftItems.Clear();
+    }
+    
+    private void CloseModal()
+    {
+        modalPanel.SetActive(false);
+        ClearNFTItems();
+    }
+    
+    private string ShortenAddress(string address)
+    {
+        if (string.IsNullOrEmpty(address) || address.Length < 8)
+            return address;
+        
+        return address.Substring(0, 4) + "..." + address.Substring(address.Length - 4);
+    }
+} 

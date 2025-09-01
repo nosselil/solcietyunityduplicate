@@ -724,7 +724,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3996392001735877454}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -885,7 +885,6 @@ MonoBehaviour:
   nameplate: {fileID: 989450920182959187}
   capMaterial: {fileID: 2100000, guid: bbfba1bed9130b346ace2f34da8e6765, type: 2}
   capMaterialTextures:
-  - {fileID: 2800000, guid: 01850d720f10ea448b0f077161735996, type: 3}
   - {fileID: 2800000, guid: df1af775354c0d240a70b923955c70c7, type: 3}
   - {fileID: 2800000, guid: cff6c4a4994123f458536cb3440ee931, type: 3}
   - {fileID: 2800000, guid: f5ab01ec0064d2d42b7afcb923c89bfe, type: 3}
@@ -959,12 +958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e611e1e1a39ff4120a23b7289a9046c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 6c25189fecb044abe805a62d5d416639, type: 3}
-  hotspot: {x: 0, y: 0}
-  cursorMode: 0
-  toggleLockKey: 99
-  lockCursorAtStart: 1
-  dialogueObject: {fileID: 0}
 --- !u!65 &1658158561194883662
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1130,7 +1123,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4252807520051894478}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a1d63a5effe2fa42bd1da8c15116505, type: 3}
   m_Name: 
@@ -1242,6 +1235,7 @@ MonoBehaviour:
   LandAudioClip: {fileID: 0}
   CoinCollectedAudioClip: {fileID: 0}
   DustParticles: {fileID: 0}
+  statusText: {fileID: 0}
 --- !u!114 &1598499451811261306
 MonoBehaviour:
   m_ObjectHideFlags: 0

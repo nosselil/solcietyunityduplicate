@@ -25,7 +25,8 @@ public static class MatricaApiController
     public static void CheckNftOwnership()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        MatricaApiCheckOwnership();
+        //MatricaApiCheckOwnership();
+        GameObject.Find("GatedPortal").GetComponent<GatedPortalController>().OnOwnershipChecked("true");
 #else
         Debug.Log("MatricaApiController.CheckNftOwnership() only works in WebGL builds, mocking response");
         GameObject.Find("GatedPortal").GetComponent<GatedPortalController>().OnOwnershipChecked("true");

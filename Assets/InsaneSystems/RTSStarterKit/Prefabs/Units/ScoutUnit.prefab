@@ -328,6 +328,7 @@ MonoBehaviour:
   moveLeftToRight: 1
   moveSpeed: 10
   destroyAfterSeconds: 50
+  boatTransform: {fileID: 4425196995400888}
 --- !u!1 &1085402120460454
 GameObject:
   m_ObjectHideFlags: 0

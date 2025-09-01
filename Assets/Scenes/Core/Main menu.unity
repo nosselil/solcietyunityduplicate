@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldReplicaId: -1
   allowPlayerControlling: 1
+  allowPlayerCameraControlling: 1
   usingMobileJoystick: 0
 --- !u!4 &37452053
 Transform:
@@ -2354,7 +2355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49468381a6133490793bd95fb5f9b23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: mainstartingarea
+  nextSceneName: mainhub
 --- !u!95 &481788176
 Animator:
   serializedVersion: 7
@@ -4887,7 +4888,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1061421852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5912,7 +5913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75a4e92c14884ea6bf3e46d07a33eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rpcCluster: 1
+  rpcCluster: 0
   customRpc: https://devnet.helius-rpc.com
   webSocketsRpc: 
   autoConnectOnStartup: 1

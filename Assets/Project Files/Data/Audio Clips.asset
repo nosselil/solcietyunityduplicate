@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8634c5cf5896bb84ca6474552cf85648, type: 3}
+  m_Name: Audio Clips
+  m_EditorClassIdentifier: 
+  buttonSound: {fileID: 8300000, guid: 43778771ca132fe44baa768ab4be8bc2, type: 3}
+  objectHit: {fileID: 8300000, guid: 7c0e314b98dda16418d3aeb190a30c95, type: 3}
+  shot: {fileID: 8300000, guid: 0a3f518544ab51741a953b2ec5951d8b, type: 3}
+  obstcleDestroyed: {fileID: 8300000, guid: 7e0f0e8d8d9e29c4e9366610fe3356da, type: 3}
+  buff: {fileID: 8300000, guid: e5fa53dc0313c02468f854aa088773c3, type: 3}
+  debuff: {fileID: 8300000, guid: f04ee4e9c7e8c174e963a48b0f119f28, type: 3}
+  win: {fileID: 8300000, guid: 5bbcbc58c8dd1164d93babfa24264d80, type: 3}
+  lose: {fileID: 8300000, guid: 5e16c6702440f4c4a8fcb02b66579832, type: 3}
+  heal: {fileID: 8300000, guid: b0601216a9635094f8d3d940b42bbfaf, type: 3}
+  reward: {fileID: 8300000, guid: e4c7800ea762313408a42ea8137d8b97, type: 3}
+  screams:
+  - {fileID: 8300000, guid: b75d98e4839f5fd4aa06cb288ffb2e23, type: 3}
+  - {fileID: 8300000, guid: c0ede5365feec5f408232b1187560c62, type: 3}
+  shotClipHandler:
+    audioType: 1
+    clipVolume: 0.5
+    advancedSettings: 1
+    minDelay: 0.01
+    dynamicPitch: 1
+    pitchRange:
+      firstValue: 0.8
+      secondValue: 1.2
+    pitchSteps: 10
+    pitchResetTime: 1
+    customAudioSource: {fileID: 0}

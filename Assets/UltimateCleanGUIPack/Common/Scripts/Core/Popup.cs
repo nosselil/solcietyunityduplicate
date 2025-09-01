@@ -18,9 +18,8 @@ namespace UltimateClean
 
         public float destroyTime = 0.5f;
 
-        public GameObject m_background;
+        private GameObject m_background;
 
-        public bool fromHierarchy;
         public void Open()
         {
             AddBackground();
@@ -33,15 +32,6 @@ namespace UltimateClean
             {
                 animator.Play("Close");
             }
-
-            if (fromHierarchy)
-            {
-                m_background.SetActive(false);
-                gameObject.SetActive(false);
-                return;
-            }
-          
-
 
             RemoveBackground();
             StartCoroutine(RunPopupDestroy());
@@ -66,7 +56,6 @@ namespace UltimateClean
 
             m_background = new GameObject("PopupBackground");
             var image = m_background.AddComponent<Image>();
-
             var rect = new Rect(0, 0, bgTex.width, bgTex.height);
             var sprite = Sprite.Create(bgTex, rect, new Vector2(0.5f, 0.5f), 1);
             image.material.mainTexture = bgTex;

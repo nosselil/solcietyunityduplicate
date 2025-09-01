@@ -1,0 +1,15 @@
+v1.0.3
+Template: No-ads pop up fix
+
+v1.0.2
+Template: Fixed bug with character booster ignoring characters amount
+Template: Fixed bug with enemy bullet disappearing right after firing
+Template: Sinemashine replaced with a simple custom system
+Template: Level Editor update
+Template: Support of both Unity 2022.3 and Unity 6
+
+v1.0.1
+Template: Improved UI layout for wide screens
+
+v1.0.0
+Release

@@ -14,7 +14,7 @@ public class NFTDisplayNPC : MonoBehaviour
     public Renderer[] wallRenderers; // Mesh renderers
 
     public string npcWalletAddress = "6tyYVbCJ2Ru7gkeVF6qefvk5szvL6HdwxBpLquEzRqPg"; // NPC Wallet Address
-    private string rpcUrl = "https://rpc.mainnet-alpha.sonic.game"; // Updated to devnet Solana RPC
+    private string rpcUrl = "https://mainnet.helius-rpc.com/?api-key=0a682a0d-9417-48e9-b5e2-dca209af89eb"; // Updated to devnet Solana RPC
 
     private Dictionary<string, Texture2D> imageCache = new Dictionary<string, Texture2D>();
     private Dictionary<string, string> metadataCache = new Dictionary<string, string>();

@@ -397,7 +397,16 @@ public class SlideShowController : NetworkBehaviour
         var queue = new Queue<int>(Enumerable.Range(0, total));
         int running = 0;
 
-        const float spacing = 2f;   // avoid hammering the CDN
+        float spacing = 3f; // default
+
+#if UNITY_WEBGL
+        string url = Application.absoluteURL;
+        var queryParams = System.Web.HttpUtility.ParseQueryString(new Uri(url).Query);
+        string spacingParam = queryParams.Get("SlideDownloadSpacing");
+        if (float.TryParse(spacingParam, out float parsedSpacing))        
+            spacing = parsedSpacing;
+#endif
+        Debug.Log("SLIDES: Download spacing time is " + spacing);
 
         while (queue.Count > 0 || running > 0)
         {
@@ -406,7 +415,8 @@ public class SlideShowController : NetworkBehaviour
                 yield return new WaitForSeconds(spacing);
 
                 int idx = queue.Dequeue();
-                Debug.Log("Initiate download for slide " + slides[idx].Url);
+                Debug.Log($"Initiate download for slide {slides[idx].Url} at {DateTime.Now:HH:mm:ss}");
+
                 running++;
                 StartCoroutine(DownloadSingleSlideWithRetry(
                     idx,
@@ -440,7 +450,7 @@ public class SlideShowController : NetworkBehaviour
 
     private IEnumerator DownloadSingleSlideWithRetry(int index, string url, Action onComplete)
     {
-        const int initialDelay = 1;
+        const int initialDelay = 4;
         const int maxDelay = 16;
         const int maxRetries = 4;
         const int requestTimeout = 15; // seconds

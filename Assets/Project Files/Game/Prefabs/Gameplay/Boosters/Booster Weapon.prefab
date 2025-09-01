@@ -1,0 +1,222 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3670641563871926126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 584945282760228992}
+  m_Layer: 0
+  m_Name: Gun Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &584945282760228992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3670641563871926126}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7448411521669195414}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5178395495463185723
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1394744499793787673, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342797133441403821, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342797133441403821, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342797133441403821, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342797133441403821, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342797133441403821, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342797133441403821, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342797133441403821, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342797133441403821, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342797133441403821, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2342797133441403821, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3780587758133857415, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4099027609983958116, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      propertyPath: m_Name
+      value: Booster Weapon
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2342797133441403821, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 584945282760228992}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4099027609983958116, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7486337173997138380}
+    - targetCorrespondingSourceObject: {fileID: 4099027609983958116, guid: c8b02cca1f8747346815225ecdf70c9b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4305239944419585792}
+  m_SourcePrefab: {fileID: 100100000, guid: c8b02cca1f8747346815225ecdf70c9b, type: 3}
+--- !u!198 &91835480573683604 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5087687306376104623, guid: c8b02cca1f8747346815225ecdf70c9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5178395495463185723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &645985088479347049 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5704472241682656338, guid: c8b02cca1f8747346815225ecdf70c9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5178395495463185723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6626137737014262780 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2029327304305104583, guid: c8b02cca1f8747346815225ecdf70c9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5178395495463185723}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &7448411521669195414 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2342797133441403821, guid: c8b02cca1f8747346815225ecdf70c9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5178395495463185723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8935060826572500302 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 4333286646788931701, guid: c8b02cca1f8747346815225ecdf70c9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5178395495463185723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9169311938550452575 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4099027609983958116, guid: c8b02cca1f8747346815225ecdf70c9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5178395495463185723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7486337173997138380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169311938550452575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e9db7d08110434d9008f747a2d31e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMultiplier:
+    enabled: 0
+    newValue: 0
+  boosterCollider: {fileID: 8935060826572500302}
+  applyOnObstacleDestroyed: 1
+  pickUpParticle: {fileID: 91835480573683604}
+  visuals: {fileID: 645985088479347049}
+  amountText: {fileID: 0}
+  displayNameText: {fileID: 6626137737014262780}
+  gunHolder: {fileID: 584945282760228992}
+  weaponPlacementData:
+  - weaponId: default_gun
+    localOffset: {x: 0.09, y: 0, z: 0}
+    localEulerAngles: {x: 346.71, y: 280.35, z: -0.00000043863386}
+    localScale: {x: 2.5, y: 2.5, z: 2.5}
+  - weaponId: rifle
+    localOffset: {x: -0.245, y: 0.042, z: -0.139}
+    localEulerAngles: {x: 348.43, y: 60.41, z: 0}
+    localScale: {x: 2, y: 2, z: 2}
+  - weaponId: shotgun
+    localOffset: {x: -0.161, y: 0.029, z: -0.058}
+    localEulerAngles: {x: 342.49, y: 69.99999, z: 0}
+    localScale: {x: 2, y: 2, z: 2}
+  - weaponId: minigun
+    localOffset: {x: -0.343, y: 0.41, z: 0.101}
+    localEulerAngles: {x: 331.77002, y: 69.99999, z: 0}
+    localScale: {x: 1.7, y: 1.7, z: 1.7}
+--- !u!114 &4305239944419585792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169311938550452575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88760eea3f8c1c499acd111ad249374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  receiverObject: {fileID: 9169311938550452575}
+  database: {fileID: 11400000, guid: 0661776c737377244b8e57b5ba3174bb, type: 2}
+  isInited: 1
+  animationTime: 0
+  isClonerActive: 0
+  cloneDataFrom: {fileID: 0}

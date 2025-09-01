@@ -65,7 +65,6 @@ namespace Knife.Portal
         public void StartRendering()
         {
             portalViewCamera.gameObject.SetActive(true);
-            portalViewCamera.Render();
         }
 
         public void StopRendering()

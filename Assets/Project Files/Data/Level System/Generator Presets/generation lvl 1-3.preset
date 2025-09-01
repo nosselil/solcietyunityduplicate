@@ -1,0 +1,2073 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: generation lvl 1-3
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 426bf131a902ece49aa30675548d54af,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: linesAmount
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: overrideLineOffset.enabled
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: overrideLineOffset.value
+    value: 9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: singleElementPerLineChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: singleItemSpawnPositionType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: twoElementsPerLineChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: thereElementsPerLineChance
+    value: 0.179
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: gatesChance
+    value: 0.75
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterGateChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterGateOptions.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterGateOptions.Array.data[0].weight
+    value: 0.754
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterGateOptions.Array.data[0].item.explicitID
+    value: default_character
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterGateOptions.Array.data[0].item.explicitAmount
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterGateOptions.Array.data[1].weight
+    value: 0.341
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterGateOptions.Array.data[1].item.explicitID
+    value: heavy_character
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterGateOptions.Array.data[1].item.explicitAmount
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateChance
+    value: 0.8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateOptions.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateOptions.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateOptions.Array.data[0].item.explicitID
+    value: default_gun
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateOptions.Array.data[0].item.explicitAmount
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateOptions.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateOptions.Array.data[1].item.explicitID
+    value: rifle
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateOptions.Array.data[1].item.explicitAmount
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateOptions.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateOptions.Array.data[2].item.explicitID
+    value: shotgun
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateOptions.Array.data[2].item.explicitAmount
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateOptions.Array.data[3].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateOptions.Array.data[3].item.explicitID
+    value: minigun
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponGateOptions.Array.data[3].item.explicitAmount
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[0].item.operationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[0].item.valueRange.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[0].item.valueRange.secondValue
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[0].item.decimalPlacesAfterRounding
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[0].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[0].item.step
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[1].weight
+    value: 0.4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[1].item.operationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[1].item.valueRange.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[1].item.valueRange.secondValue
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[1].item.decimalPlacesAfterRounding
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[1].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[1].item.step
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[2].weight
+    value: 0.31
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[2].item.operationType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[2].item.valueRange.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[2].item.valueRange.secondValue
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[2].item.decimalPlacesAfterRounding
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[2].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthGateSettings.Array.data[2].item.step
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[0].item.operationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[0].item.valueRange.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[0].item.valueRange.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[0].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[0].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[0].item.step
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[1].item.operationType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[1].item.valueRange.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[1].item.valueRange.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[1].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[1].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[1].item.step
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[2].item.operationType
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[2].item.valueRange.firstValue
+    value: 0.5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[2].item.valueRange.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[2].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[2].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[2].item.step
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[3].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[3].item.operationType
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[3].item.valueRange.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[3].item.valueRange.secondValue
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[3].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[3].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageGateSettings.Array.data[3].item.step
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[0].item.operationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[0].item.valueRange.firstValue
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[0].item.valueRange.secondValue
+    value: 1.3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[0].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[0].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[0].item.step
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[1].weight
+    value: 0.3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[1].item.operationType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[1].item.valueRange.firstValue
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[1].item.valueRange.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[1].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[1].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[1].item.step
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[2].weight
+    value: 0.3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[2].item.operationType
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[2].item.valueRange.firstValue
+    value: 1.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[2].item.valueRange.secondValue
+    value: 1.6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[2].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[2].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[2].item.step
+    value: 0.025
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[3].weight
+    value: 0.3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[3].item.operationType
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[3].item.valueRange.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[3].item.valueRange.secondValue
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[3].item.decimalPlacesAfterRounding
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[3].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateGateSettings.Array.data[3].item.step
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[0].item.operationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[0].item.valueRange.firstValue
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[0].item.valueRange.secondValue
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[0].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[0].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[0].item.step
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[1].item.operationType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[1].item.valueRange.firstValue
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[1].item.valueRange.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[1].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[1].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[1].item.step
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[2].item.operationType
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[2].item.valueRange.firstValue
+    value: 1.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[2].item.valueRange.secondValue
+    value: 1.6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[2].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[2].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[2].item.step
+    value: 0.025
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[3].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[3].item.operationType
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[3].item.valueRange.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[3].item.valueRange.secondValue
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[3].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[3].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeGateSettings.Array.data[3].item.step
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[0].item.operationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[0].item.valueRange.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[0].item.valueRange.secondValue
+    value: 15
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[0].item.decimalPlacesAfterRounding
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[0].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[0].item.step
+    value: 0.25
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[1].weight
+    value: 0.5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[1].item.operationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[1].item.valueRange.firstValue
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[1].item.valueRange.secondValue
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[1].item.decimalPlacesAfterRounding
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[1].item.updateOnHit
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: moneyGateSettings.Array.data[1].item.step
+    value: 0.5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: boostersChance
+    value: 0.75
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterBoosterChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterBoosterOptions.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterBoosterOptions.Array.data[0].weight
+    value: 0.754
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterBoosterOptions.Array.data[0].item.explicitID
+    value: default_character
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterBoosterOptions.Array.data[0].item.explicitAmount
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterBoosterOptions.Array.data[1].weight
+    value: 0.341
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterBoosterOptions.Array.data[1].item.explicitID
+    value: heavy_character
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: characterBoosterOptions.Array.data[1].item.explicitAmount
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterChance
+    value: 0.8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterOptions.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterOptions.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterOptions.Array.data[0].item.explicitID
+    value: default_gun
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterOptions.Array.data[0].item.explicitAmount
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterOptions.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterOptions.Array.data[1].item.explicitID
+    value: rifle
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterOptions.Array.data[1].item.explicitAmount
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterOptions.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterOptions.Array.data[2].item.explicitID
+    value: shotgun
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterOptions.Array.data[2].item.explicitAmount
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterOptions.Array.data[3].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterOptions.Array.data[3].item.explicitID
+    value: minigun
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: weaponBoosterOptions.Array.data[3].item.explicitAmount
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[0].item.operationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[0].item.valueRange.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[0].item.valueRange.secondValue
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[0].item.decimalPlacesAfterRounding
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[1].weight
+    value: 0.4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[1].item.operationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[1].item.valueRange.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[1].item.valueRange.secondValue
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[1].item.decimalPlacesAfterRounding
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[2].weight
+    value: 0.31
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[2].item.operationType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[2].item.valueRange.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[2].item.valueRange.secondValue
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: healthBoosterSettings.Array.data[2].item.decimalPlacesAfterRounding
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[0].item.operationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[0].item.valueRange.firstValue
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[0].item.valueRange.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[0].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[1].item.operationType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[1].item.valueRange.firstValue
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[1].item.valueRange.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[1].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[2].item.operationType
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[2].item.valueRange.firstValue
+    value: 1.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[2].item.valueRange.secondValue
+    value: 1.7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[2].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[3].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[3].item.operationType
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[3].item.valueRange.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[3].item.valueRange.secondValue
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: damageBoosterSettings.Array.data[3].item.decimalPlacesAfterRounding
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[0].item.operationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[0].item.valueRange.firstValue
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[0].item.valueRange.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[0].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[1].weight
+    value: 0.3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[1].item.operationType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[1].item.valueRange.firstValue
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[1].item.valueRange.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[1].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[2].weight
+    value: 0.3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[2].item.operationType
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[2].item.valueRange.firstValue
+    value: 1.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[2].item.valueRange.secondValue
+    value: 1.4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[2].item.decimalPlacesAfterRounding
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[3].weight
+    value: 0.3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[3].item.operationType
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[3].item.valueRange.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[3].item.valueRange.secondValue
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRateBoosterSettings.Array.data[3].item.decimalPlacesAfterRounding
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[0].item.operationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[0].item.valueRange.firstValue
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[0].item.valueRange.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[0].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[1].item.operationType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[1].item.valueRange.firstValue
+    value: 0.3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[1].item.valueRange.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[1].item.decimalPlacesAfterRounding
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[2].item.operationType
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[2].item.valueRange.firstValue
+    value: 1.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[2].item.valueRange.secondValue
+    value: 1.5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[2].item.decimalPlacesAfterRounding
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[3].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[3].item.operationType
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[3].item.valueRange.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[3].item.valueRange.secondValue
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rangeBoosterSettings.Array.data[3].item.decimalPlacesAfterRounding
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstaclesChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.obstacleId
+    value: small_obstacle
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.obstacleHealth.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.obstacleHealth.secondValue
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.doubleObstacleChance
+    value: 0.272
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.chanceToSpawnBoosterOnTop
+    value: 0.347
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].item.dropType
+    value: -1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].item.dropItemsCount.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].item.dropItemsCount.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].item.dropItemValue.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].item.dropItemValue.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].item.dropType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].item.dropItemsCount.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].item.dropType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].item.dropItemsCount.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.obstacleId
+    value: small_obstacle
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.obstacleHealth.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.obstacleHealth.secondValue
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.doubleObstacleChance
+    value: 0.272
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.chanceToSpawnBoosterOnTop
+    value: 0.347
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].item.dropType
+    value: -1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].item.dropItemsCount.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].item.dropItemsCount.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].item.dropItemValue.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].item.dropItemValue.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].item.dropType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].item.dropItemsCount.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].item.dropType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].item.dropItemsCount.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.obstacleId
+    value: small_obstacle
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.obstacleHealth.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.obstacleHealth.secondValue
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.doubleObstacleChance
+    value: 0.272
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.chanceToSpawnBoosterOnTop
+    value: 0.347
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].item.dropType
+    value: -1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].item.dropItemsCount.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].item.dropItemsCount.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].item.dropItemValue.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].item.dropItemValue.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].item.dropType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].item.dropItemsCount.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].item.dropType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].item.dropItemsCount.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: obstacleGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemiesChance
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.size
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.enemyId
+    value: enemy
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.health.firstValue
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.health.secondValue
+    value: 8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.damage.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.damage.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.fireRate.firstValue
+    value: 0.4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.fireRate.secondValue
+    value: 0.6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.gunId
+    value: default_gun
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].item.dropType
+    value: -1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].item.dropItemsCount.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].item.dropItemsCount.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].item.dropItemValue.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[0].item.dropItemValue.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].item.dropType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].item.dropItemsCount.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[1].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].item.dropType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].item.dropItemsCount.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[0].item.dropSettings.Array.data[2].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.enemyId
+    value: enemy
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.health.firstValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.health.secondValue
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.damage.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.damage.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.fireRate.firstValue
+    value: 0.3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.fireRate.secondValue
+    value: 0.5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.gunId
+    value: default_gun
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].item.dropType
+    value: -1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].item.dropItemsCount.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].item.dropItemsCount.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].item.dropItemValue.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[0].item.dropItemValue.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].item.dropType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].item.dropItemsCount.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[1].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].item.dropType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].item.dropItemsCount.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[1].item.dropSettings.Array.data[2].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.enemyId
+    value: enemy_heavy
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.health.firstValue
+    value: 12
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.health.secondValue
+    value: 20
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.damage.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.damage.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.fireRate.firstValue
+    value: 0.6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.fireRate.secondValue
+    value: 0.8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.gunId
+    value: minigun
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].item.dropType
+    value: -1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].item.dropItemsCount.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].item.dropItemsCount.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].item.dropItemValue.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[0].item.dropItemValue.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].item.dropType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].item.dropItemsCount.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[1].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].item.dropType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].item.dropItemsCount.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[2].item.dropSettings.Array.data[2].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.enemyId
+    value: enemy_heavy
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.health.firstValue
+    value: 12
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.health.secondValue
+    value: 20
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.damage.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.damage.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.fireRate.firstValue
+    value: 0.6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.fireRate.secondValue
+    value: 0.8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.gunId
+    value: none
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[0].item.dropType
+    value: -1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[0].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[0].item.dropItemsCount.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[0].item.dropItemsCount.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[0].item.dropItemValue.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[0].item.dropItemValue.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[1].item.dropType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[1].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[1].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[1].item.dropItemsCount.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[1].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[1].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[2].item.dropType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[2].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[2].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[2].item.dropItemsCount.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[2].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[3].item.dropSettings.Array.data[2].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.enemyId
+    value: enemy
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.health.firstValue
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.health.secondValue
+    value: 8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.damage.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.damage.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.fireRate.firstValue
+    value: 0.4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.fireRate.secondValue
+    value: 0.6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.gunId
+    value: none
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[0].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[0].item.dropType
+    value: -1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[0].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[0].item.dropItemsCount.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[0].item.dropItemsCount.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[0].item.dropItemValue.firstValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[0].item.dropItemValue.secondValue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[1].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[1].item.dropType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[1].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[1].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[1].item.dropItemsCount.secondValue
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[1].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[1].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[2].weight
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[2].item.dropType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[2].item.dropCurrencyType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[2].item.dropItemsCount.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[2].item.dropItemsCount.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[2].item.dropItemValue.firstValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: enemyGenerationSettings.Array.data[4].item.dropSettings.Array.data[2].item.dropItemValue.secondValue
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: roadType
+    value: road_desert
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: environmentType
+    value: environment_desert
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []
+  m_CoupledType:
+    m_NativeTypeID: 0
+    m_ManagedTypePPtr: {fileID: 0}
+    m_ManagedTypeFallback: 
+  m_CoupledProperties: []

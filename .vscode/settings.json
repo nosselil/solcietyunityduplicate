@@ -52,5 +52,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "MainSolciety adding mobile.sln"
+    "dotnet.defaultSolution": "solciety aftervercel.sln"
 }

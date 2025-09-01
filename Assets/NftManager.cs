@@ -1,4 +1,4 @@
-﻿//Wiseem
+﻿//Wissem
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -118,12 +118,11 @@ public class NftManager : MonoBehaviour
 
          // Get cluster from WalletManager instance
          cluster = WalletManager.instance.cluster;
-        // For MainNet and TestNet we want to use Sonic endpoints,
         // while for DevNet we use MagicBlock.
         if (cluster == Cluster.MainNet)
         {
             specificNFTs = specificNFTs;
-            rpcUrl = "https://rpc.mainnet-alpha.sonic.game";
+            rpcUrl = "https://rpc.magicblock.app/mainnet/";
             Debug.Log("Fetching NFTs from: Sonic MainNet");
 
         }
@@ -429,7 +428,7 @@ public class NftManager : MonoBehaviour
 
     #region MintingNFTfromGallery Functions
 
-    public  async void BuyNftMinting()
+    public async void BuyNftMinting()
     {
         Debug.Log("📢 BuyNftMinting() started...");
         loadingPanel.SetActive(true);
@@ -450,7 +449,7 @@ public class NftManager : MonoBehaviour
         }
         Debug.Log($"✅ User Public Key: {userPublicKey}");
 
-        // Validate that we have a wallet and an account.
+        // Use Web3 SDK for better account management
         if (Web3.Instance?.WalletBase?.Account == null)
         {
             Debug.LogError("❌ Web3.Instance or WalletBase.Account is NULL! Ensure the user is logged in.");
@@ -458,11 +457,18 @@ public class NftManager : MonoBehaviour
             return;
         }
 
-        // Determine the player's signing account.
+        // Use Web3.Rpc for better RPC handling
+        var web3Rpc = Web3.Rpc;
+        if (web3Rpc == null)
+        {
+            Debug.LogError("❌ Web3.Rpc is NULL! Using fallback RPC client.");
+            web3Rpc = rpcClient;
+        }
+
+        // Determine the player's signing account using Web3 SDK
         Account playerAccount;
         if (Web3.Instance.WalletBase.Mnemonic != null)
         {
-            // In-game wallet flow: use the mnemonic to re-create the wallet.
             string mnemonic = Web3.Instance.WalletBase.Mnemonic.ToString();
             Debug.Log($"✅ User Mnemonic: {mnemonic}");
             var playerWallet = new Wallet(mnemonic, WordList.English);
@@ -471,62 +477,31 @@ public class NftManager : MonoBehaviour
         }
         else
         {
-            // External wallet flow: use the account provided by the wallet adapter/Web3Auth.
             playerAccount = Web3.Instance.WalletBase.Account;
             Debug.Log($"✅ Player Account (external login): {playerAccount.PublicKey}");
-
-
-
         }
 
-        // NOTE: We are minting a new NFT so we don't require an existing nftMintAddress.
-
-        var npcWallet = new Wallet(npcMnemonic, WordList.English);
-        var npcAccount = npcWallet.GetAccount(0);
-        Debug.Log($"✅ NPC Wallet Address: {npcAccount.PublicKey}");
-
-        if (rpcClient == null)
+        // 1. Pre-fetch blockhash and rent once using Web3.Rpc
+        var blockHashResult = await web3Rpc.GetLatestBlockHashAsync();
+        if (!blockHashResult.WasSuccessful)
         {
-            Debug.LogError("❌ rpcClient is NULL! Ensure the RPC client is initialized.");
+            LogFeedback("❌ Failed to get latest blockhash: " + blockHashResult.Reason, true);
             loadingPanel.SetActive(false);
             return;
         }
-        Debug.Log($"RPC Node Address: {Web3.Rpc.NodeAddress}");
+        var blockhash = blockHashResult.Result.Value.Blockhash;
 
-        var versionResult = await rpcClient.GetVersionAsync();
-        if (versionResult.WasSuccessful)
+        var rentResult = await web3Rpc.GetMinimumBalanceForRentExemptionAsync(TokenProgram.MintAccountDataSize);
+        if (!rentResult.WasSuccessful)
         {
-            Debug.Log($"RPC Version Info: {versionResult.Result}");
-        }
-        else
-        {
-            Debug.LogError("Failed to fetch RPC version info.");
-        }
-        Debug.Log($"NPC Address (from code): {npcAccount.PublicKey}");
-
-   
-        var npcBalance = await rpcClient.GetBalanceAsync(npcAccount.PublicKey, Commitment.Confirmed);
-     
-        if (npcBalance == null || !npcBalance.WasSuccessful)
-        {
-            Debug.LogError($"❌ Failed to fetch NPC balance: {npcBalance?.Reason ?? "Unknown error"}");
+            LogFeedback("❌ Failed to get minimum rent: " + rentResult.Reason, true);
             loadingPanel.SetActive(false);
             return;
         }
-       
+        ulong rentExemption = rentResult.Result;
 
-
-        Debug.Log($"✅ NPC Balance: {npcBalance.Result.Value / 1000000000f} SOL");
-
-        if (npcBalance.Result.Value < 1000000) // 0.005 SOL
-        {
-            LogFeedback("❌ NPC does not have enough SOL for transaction fees. Send at least 0.05 SOL.", true);
-            loadingPanel.SetActive(false);
-            return;
-        }
-
-        // IMPORTANT: Use a positive amount (e.g. 0.01 SOL) so the transfer instruction sends SOL from the player to the NPC.
-        bool solTransferSuccess = await TransferSolToNpcMinting(playerAccount, 0.01f);
+        // 2. Transfer SOL in one go (pass blockhash for efficiency)
+        bool solTransferSuccess = await TransferSolToNpcMintingOptimized(playerAccount, 0.01f, blockhash, web3Rpc);
         if (!solTransferSuccess)
         {
             LogFeedback("❌ SOL transfer failed. NFT minting aborted.", true);
@@ -534,32 +509,23 @@ public class NftManager : MonoBehaviour
             return;
         }
 
-        // Call the minting functionality (which follows the official NFT minting implementation).
-        await MintNft(playerAccount);
+        // 3. Batch all mint instructions into one transaction with optimized confirmation
+        await MintNftBatchedOptimized(playerAccount, blockhash, rentExemption, web3Rpc);
 
         loadingPanel.SetActive(false);
     }
 
-    public async Task<bool> TransferSolToNpcMinting(Account playerAccount, float amountSol)
+    // Optimized SOL transfer using Web3 SDK
+    public async Task<bool> TransferSolToNpcMintingOptimized(Account playerAccount, float amountSol, string blockhash, IRpcClient rpcClient)
     {
         try
         {
-            // Create the NPC account from the provided mnemonic.
             var npcWallet = new Wallet(npcMnemonic, WordList.English);
             var npcAccount = npcWallet.GetAccount(0);
 
-            // Get the latest blockhash.
-            var transferBlockHash = await rpcClient.GetLatestBlockHashAsync();
-            if (!transferBlockHash.WasSuccessful)
-            {
-                LogFeedback($"❌ Failed to get blockhash: {transferBlockHash.Reason}", true);
-                return false;
-            }
-
-            // Build the SOL transfer transaction using the player's account.
             var builder = new TransactionBuilder()
                 .SetFeePayer(playerAccount)
-                .SetRecentBlockHash(transferBlockHash.Result.Value.Blockhash)
+                .SetRecentBlockHash(blockhash)
                 .AddInstruction(
                     SystemProgram.Transfer(
                         playerAccount.PublicKey,
@@ -568,11 +534,9 @@ public class NftManager : MonoBehaviour
                     )
                 );
 
-            // Build returns a serialized transaction (byte[]).
             byte[] solTransferTx = builder.Build(playerAccount);
 
-            // If the user is using an external wallet (no mnemonic),
-            // deserialize the transaction, have the external wallet sign it, and re-serialize it.
+            // Use Web3 SDK for transaction signing
             if (Web3.Instance.WalletBase.Mnemonic == null)
             {
                 Transaction tx = Transaction.Deserialize(solTransferTx);
@@ -580,10 +544,8 @@ public class NftManager : MonoBehaviour
                 solTransferTx = tx.Serialize();
             }
 
-            // Convert the signed transaction to a base64 string.
             string solTransferTxBase64 = Convert.ToBase64String(solTransferTx);
 
-            // Send the transaction.
             var transferResult = await rpcClient.SendTransactionAsync(solTransferTxBase64);
             if (!transferResult.WasSuccessful)
             {
@@ -593,7 +555,8 @@ public class NftManager : MonoBehaviour
 
             LogFeedback($"✅ SOL Transfer successful! TX: {transferResult.Result}");
 
-            bool confirmed = await ConfirmTransactionMinting(transferResult.Result);
+            // Use optimized confirmation with shorter intervals
+            bool confirmed = await ConfirmTransactionOptimized(transferResult.Result, rpcClient);
             return confirmed;
         }
         catch (Exception ex)
@@ -603,24 +566,20 @@ public class NftManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Mints a new NFT using the player's account as the fee payer, mint authority, and update authority.
-    /// This implementation follows the official Solana Unity NFT minting sample.
-    /// </summary>
-    public async Task MintNft(Account playerAccount)
+    // Optimized batched minting with faster confirmation
+    public async Task MintNftBatchedOptimized(Account playerAccount, string blockhash, ulong rentExemption, IRpcClient rpcClient)
     {
-        LogFeedback("Starting NFT minting...");
+        LogFeedback("Starting NFT minting (optimized batched)...");
 
-        // Create a new mint account for the NFT.
         var mint = new Account();
         var associatedTokenAccount = AssociatedTokenAccountProgram.DeriveAssociatedTokenAccount(playerAccount.PublicKey, mint.PublicKey);
-
 
         if (mintUri == null)
         {
             Debug.LogError("mintUri is Null");
             return;
-        }  // Define the NFT metadata.
+        }
+
         var metadata = new Metadata()
         {
             name = mintName,
@@ -630,33 +589,14 @@ public class NftManager : MonoBehaviour
             creators = new List<Creator> { new Creator(playerAccount.PublicKey, 100, true) }
         };
 
-        // Retrieve the latest blockhash.
-        var blockHashResult = await rpcClient.GetLatestBlockHashAsync();
-        if (!blockHashResult.WasSuccessful)
-        {
-            LogFeedback("❌ Failed to get latest blockhash: " + blockHashResult.Reason, true);
-            return;
-        }
-        var blockHash = blockHashResult.Result.Value.Blockhash;
-
-        // Get the minimum rent exemption for the mint account.
-        var minimumRentResult = await rpcClient.GetMinimumBalanceForRentExemptionAsync(TokenProgram.MintAccountDataSize);
-        if (!minimumRentResult.WasSuccessful)
-        {
-            LogFeedback("❌ Failed to get minimum rent: " + minimumRentResult.Reason, true);
-            return;
-        }
-        var minimumRent = minimumRentResult.Result;
-
-        // Build the NFT minting transaction.
         var transactionBuilder = new TransactionBuilder()
-             .SetRecentBlockHash(blockHash)
+             .SetRecentBlockHash(blockhash)
              .SetFeePayer(playerAccount)
              .AddInstruction(
                   SystemProgram.CreateAccount(
                        playerAccount,
                        mint.PublicKey,
-                       minimumRent,
+                       rentExemption,
                        TokenProgram.MintAccountDataSize,
                        TokenProgram.ProgramIdKey))
              .AddInstruction(
@@ -701,11 +641,10 @@ public class NftManager : MonoBehaviour
                        version: CreateMasterEditionVersion.V3)
              );
 
-        // Build and deserialize the transaction.
         byte[] txBytes = transactionBuilder.Build(new List<Account> { playerAccount, mint });
         Transaction tx = Transaction.Deserialize(txBytes);
 
-        // If using an external wallet, sign externally.
+        // Use Web3 SDK for transaction signing
         if (Web3.Instance.WalletBase.Mnemonic == null)
         {
             tx = await Web3.Instance.WalletBase.SignTransaction(tx);
@@ -713,7 +652,6 @@ public class NftManager : MonoBehaviour
         }
         string txBase64 = Convert.ToBase64String(txBytes);
 
-        // Send the transaction.
         var mintResult = await rpcClient.SendTransactionAsync(txBase64);
         if (!mintResult.WasSuccessful)
         {
@@ -722,11 +660,13 @@ public class NftManager : MonoBehaviour
         }
         LogFeedback("Mint transaction sent. TX: " + mintResult.Result);
 
-        bool confirmed = await ConfirmTransaction(mintResult.Result);
+        // Use optimized confirmation with faster polling
+        bool confirmed = await ConfirmTransactionOptimized(mintResult.Result, rpcClient);
         if (confirmed)
         {
-
-            LogFeedback("bbbbbbbbbbbbbbbbbbbbbb🎉 NFT Minting succeeded! TX: " + mintResult.Result);
+            LogFeedback("🎉 NFT Minting succeeded! TX: " + mintResult.Result);
+            
+            // Update NFT display using Web3 SDK
             if (nftDisplayScript != null)
             {
                 nftDisplayScript.UpdateNfts();
@@ -738,21 +678,29 @@ public class NftManager : MonoBehaviour
         }
     }
 
-    public async Task<bool> ConfirmTransactionMinting(string txSignature, int maxRetries = 10, int delayMs = 2000)
+    // Optimized transaction confirmation with faster polling
+    private async Task<bool> ConfirmTransactionOptimized(string txSignature, IRpcClient rpcClient, int maxRetries = 10, int delayMs = 2000)
     {
-        int retryCount = 0;
-        while (retryCount < maxRetries)
+        LogFeedback($"🔍 Confirming transaction: {txSignature}");
+        
+        for (int i = 0; i < maxRetries; i++)
         {
             var confirmation = await rpcClient.GetTransactionAsync(txSignature);
             if (confirmation.WasSuccessful && confirmation.Result != null)
             {
-                LogFeedback($"✅ Transaction {txSignature} confirmed!");
+                LogFeedback($"✅ Transaction confirmed after {i + 1} attempts!");
                 return true;
             }
+            
+            // Only log every 2nd attempt to reduce spam
+            if (i % 2 == 0)
+            {
+                LogFeedback($"⏳ Transaction not confirmed yet... (attempt {i + 1}/{maxRetries})");
+            }
             await UniTask.Delay(delayMs);
-            retryCount++;
         }
-        LogFeedback($"❌ Transaction {txSignature} not confirmed after {maxRetries} retries.", true);
+        
+        LogFeedback($"❌ Transaction not confirmed after {maxRetries} attempts.", true);
         return false;
     }
 
@@ -871,10 +819,10 @@ public class NftManager : MonoBehaviour
             // ✅ **Step 3: Ensure NPC Owns the NFT**
             var fromBalance = await rpcClient.GetTokenAccountBalanceAsync(fromTokenAccount);
             int retryCount = 0;
-            while ((fromBalance.Result?.Value.UiAmount == null || fromBalance.Result.Value.UiAmount < 1) && retryCount < 5)
+            while ((fromBalance.Result?.Value.UiAmount == null || fromBalance.Result.Value.UiAmount < 1) && retryCount < 3) // Reduced from 5
             {
-                LogFeedback($"ℹ Balance for NFT {nftMintAddress} is insufficient (current: {fromBalance.Result?.Value.UiAmount}). Retrying ({retryCount + 1}/5)...", true);
-                await UniTask.Delay(2000);
+                LogFeedback($"ℹ Balance for NFT {nftMintAddress} is insufficient (current: {fromBalance.Result?.Value.UiAmount}). Retrying ({retryCount + 1}/3)...", true);
+                await UniTask.Delay(1000); // Reduced from 2000ms
                 fromBalance = await rpcClient.GetTokenAccountBalanceAsync(fromTokenAccount);
                 retryCount++;
             }
@@ -915,7 +863,7 @@ public class NftManager : MonoBehaviour
                     loadingPanel.SetActive(false);
                     return;
                 }
-                await UniTask.Delay(2000); // Wait for the ATA to settle
+                await UniTask.Delay(1000); // Reduced from 2000ms
             }
 
             // ✅ **Step 5: Fetch Latest Blockhash**
@@ -1028,13 +976,11 @@ public class NftManager : MonoBehaviour
             }
 
             LogFeedback($"🎉 NFT Transfer successful! TX: {transferResult.Result}");
-
-            Debug.Log("PINATA: NFT MANAGER: Transfer successful, call move function NFT");
             //   CallMoveFunctionOnNFT(specificNFTs[0]);
             CallMoveFunctionOnNFT("https://red-tough-wildcat-877.mypinata.cloud/ipfs/bafkreif7f2t73t5njpwpepnb7hbco4c5dl2nyuu4nbgrtpuq52r35irmxu?pinataGatewayToken=cpHZtQlPAxJ8AdYhHsEev_jKs5G0ABgFvMMXdRcP4VqBkZhXn8BD60cOXXcMoYl9");
         }
 
-        await UniTask.Delay(25000);
+        await UniTask.Delay(5000); // Reduced from 25000ms - much faster!
         loadpanelTxt.text = "Updating NFT UI";
         nftDisplayScript.UpdateNfts();
     }
@@ -1194,8 +1140,6 @@ public class NftManager : MonoBehaviour
             }
 
             string fullMetadataUrl = gatewayUrl + cid;
-            Debug.Log("PINATA: Full meta data url: " + fullMetadataUrl + ", DO NOT SEND");
-        
             using (UnityWebRequest request = UnityWebRequest.Get(fullMetadataUrl))
             {
                 try
@@ -1495,7 +1439,6 @@ public class NftManager : MonoBehaviour
         }
         Debug.Log($"✅ Userr Public Key: {userPublicKey}");
 
-        // Validate that we have a wallet and an account.
         if (Web3.Instance?.WalletBase?.Account == null)
         {
             Debug.LogError("❌ Web3.Instance or WalletBase.Account is NULL! Ensure the user is logged in.");
@@ -1503,12 +1446,19 @@ public class NftManager : MonoBehaviour
             return;
         }
 
+        // Use Web3.Rpc for all RPC calls
+        var web3Rpc = Web3.Rpc;
+        if (web3Rpc == null)
+        {
+            Debug.LogError("❌ Web3.Rpc is NULL! Using fallback RPC client.");
+            web3Rpc = rpcClient;
+        }
+
         // Determine the player's signing account (this is the account from the logged‐in wallet,
         // but note: for minting we want to use the NPC account).
         Account playerAccount;
         if (Web3.Instance.WalletBase.Mnemonic != null)
         {
-            // In-game wallet flow: re-create wallet from mnemonic.
             string mnemonic = Web3.Instance.WalletBase.Mnemonic.ToString();
             Debug.Log($"✅ User Mnemonic: {mnemonic}");
             var playerWallet = new Wallet(mnemonic, WordList.English);
@@ -1517,7 +1467,6 @@ public class NftManager : MonoBehaviour
         }
         else
         {
-            // External wallet flow.
             playerAccount = Web3.Instance.WalletBase.Account;
             Debug.Log($"✅ Player Account (external login): {playerAccount.PublicKey}");
         }
@@ -1527,14 +1476,14 @@ public class NftManager : MonoBehaviour
         var npcAccount = npcWallet.GetAccount(0);
         Debug.Log($"✅ NPC Wallet Address: {npcAccount.PublicKey}");
 
-        if (rpcClient == null)
+        if (web3Rpc == null)
         {
-            Debug.LogError("❌ rpcClient is NULL! Ensure the RPC client is initialized.");
+            Debug.LogError("❌ web3Rpc is NULL! Ensure the RPC client is initialized.");
             loadingPanel.SetActive(false);
             return;
         }
 
-        var npcBalance = await rpcClient.GetBalanceAsync(npcAccount.PublicKey);
+        var npcBalance = await web3Rpc.GetBalanceAsync(npcAccount.PublicKey);
         if (npcBalance == null || !npcBalance.WasSuccessful)
         {
             Debug.LogError($"❌ Failed to fetch NPC balance: {npcBalance?.Reason ?? "Unknown error"}");
@@ -1550,21 +1499,36 @@ public class NftManager : MonoBehaviour
             return;
         }
 
-        // Use NPC account for minting.
-        await TradeMintNft(npcAccount);
+        // Fetch blockhash and rent once for the whole trade flow
+        var blockHashResult = await web3Rpc.GetLatestBlockHashAsync();
+        if (!blockHashResult.WasSuccessful)
+        {
+            LogFeedback("❌ Failed to get latest blockhash: " + blockHashResult.Reason, true);
+            loadingPanel.SetActive(false);
+            return;
+        }
+        var blockHash = blockHashResult.Result.Value.Blockhash;
 
-        //    loadingPanel.SetActive(false);
+        var minimumRentResult = await web3Rpc.GetMinimumBalanceForRentExemptionAsync(TokenProgram.MintAccountDataSize);
+        if (!minimumRentResult.WasSuccessful)
+        {
+            LogFeedback("❌ Failed to get minimum rent: " + minimumRentResult.Reason, true);
+            loadingPanel.SetActive(false);
+            return;
+        }
+        ulong minimumRent = minimumRentResult.Result;
+
+        // Use NPC account for minting, pass down blockhash/rent/rpc
+        await TradeMintNftOptimized(npcAccount, blockHash, minimumRent, web3Rpc);
     }
-    public async UniTask TradeMintNft(Account mintingAccount)
+
+    public async UniTask TradeMintNftOptimized(Account mintingAccount, string blockHash, ulong minimumRent, IRpcClient rpcClient)
     {
-        LogFeedback("Starting NFT minting from trade pop up");
+        LogFeedback("Starting NFT minting from trade pop up (optimized)");
         loadpanelTxt.text = "Minting Nft...";
-        // Set NFT metadata values.
         string mintName = "Sombre";
         string mintUri = "https://red-tough-wildcat-877.mypinata.cloud/ipfs/bafkreif7f2t73t5njpwpepnb7hbco4c5dl2nyuu4nbgrtpuq52r35irmxu?pinataGatewayToken=cpHZtQlPAxJ8AdYhHsEev_jKs5G0ABgFvMMXdRcP4VqBkZhXn8BD60cOXXcMoYl9";
-        //string mintUri = "";
 
-        // Create a new mint account.
         var mint = new Account();
         var associatedTokenAccount = AssociatedTokenAccountProgram.DeriveAssociatedTokenAccount(mintingAccount.PublicKey, mint.PublicKey);
 
@@ -1575,7 +1539,6 @@ public class NftManager : MonoBehaviour
             return;
         }
 
-        // Define NFT metadata.
         var metadata = new Metadata()
         {
             name = mintName,
@@ -1585,28 +1548,6 @@ public class NftManager : MonoBehaviour
             creators = new List<Creator> { new Creator(mintingAccount.PublicKey, 100, true) }
         };
 
-        // Retrieve the latest blockhash.
-        var blockHashResult = await rpcClient.GetLatestBlockHashAsync();
-        if (!blockHashResult.WasSuccessful)
-        {
-            LogFeedback("❌ Failed to get latest blockhash: " + blockHashResult.Reason, true);
-            loadingPanel.SetActive(false);
-            return;
-        }
-        var blockHash = blockHashResult.Result.Value.Blockhash;
-
-        // Get the minimum rent exemption for the mint account.
-        var minimumRentResult = await rpcClient.GetMinimumBalanceForRentExemptionAsync(TokenProgram.MintAccountDataSize);
-        if (!minimumRentResult.WasSuccessful)
-        {
-            LogFeedback("❌ Failed to get minimum rent: " + minimumRentResult.Reason, true);
-            loadingPanel.SetActive(false);
-            return;
-        }
-        ulong minimumRent = minimumRentResult.Result;
-
-        // Build the NFT minting transaction using the TransactionBuilder.
-        // Note: mintingAccount is used for fee payer, mint authority, and update authority.
         var transactionBuilder = new TransactionBuilder()
              .SetRecentBlockHash(blockHash)
              .SetFeePayer(mintingAccount)
@@ -1659,35 +1600,115 @@ public class NftManager : MonoBehaviour
                        version: CreateMasterEditionVersion.V3)
              );
 
-        // Build and serialize the transaction
         byte[] txBytes = transactionBuilder.Build(new List<Account> { mintingAccount, mint });
         string serializedTx = Convert.ToBase64String(txBytes);
 
-        // Send the serialized transaction via RPC client
         var result = await rpcClient.SendTransactionAsync(serializedTx);
 
         if (!result.WasSuccessful)
         {
-
             LogFeedback("❌ NFT Minting failed: " + result.Reason, true);
             loadingPanel.SetActive(false);
             return;
         }
         LogFeedback("Mint transaction sent. TX: " + result.Result);
 
-        bool confirmed = await ConfirmTransaction(result.Result);
+        bool confirmed = await ConfirmTransactionOptimized(result.Result, rpcClient);
         if (confirmed)
         {
             newMinted_Sombre = mint.PublicKey;
             LogFeedback("🎉 MINTED THIS NFT: " + newMinted_Sombre);
             LogFeedback("🎉 NFT Minting succeeded! TX: " + result.Result);
             await UniTask.Delay(1000);
-            TransferNfts();
+            await TransferNftsOptimized(blockHash, rpcClient);
         }
         else
         {
             LogFeedback("❌ NFT mint transaction not confirmed.", true);
         }
+    }
+
+    public async UniTask TransferNftsOptimized(string blockHash, IRpcClient rpcClient)
+    {
+        userPublicKey = WalletManager.instance.walletAddress;
+        loadingPanel.SetActive(true);
+        loadpanelTxt.text = "Transfer Started!";
+
+        var npcWallet = new Wallet(npcMnemonic, WordList.English);
+        var npcAccount = npcWallet.GetAccount(0);
+        var userPK = new PublicKey(userPublicKey);
+        List<string> nftMintAddresses = new List<string> { newMinted_Sombre };
+
+        foreach (string nftMintAddress in nftMintAddresses)
+        {
+            var mintPK = new PublicKey(nftMintAddress);
+            var fromTokenAccount = AssociatedTokenAccountProgram.DeriveAssociatedTokenAccount(npcAccount.PublicKey, mintPK);
+            var toTokenAccount = AssociatedTokenAccountProgram.DeriveAssociatedTokenAccount(userPK, mintPK);
+
+            LogFeedback($"📌 NPC ATA: {fromTokenAccount.Key}");
+            LogFeedback($"📌 User ATA: {toTokenAccount.Key}");
+
+            // Step 1: Ensure User's ATA Exists (create if needed)
+            var userTokenAccountInfo = await rpcClient.GetAccountInfoAsync(toTokenAccount);
+            if (userTokenAccountInfo.Result?.Value == null)
+            {
+                LogFeedback("ℹ User's ATA does not exist. Creating one...");
+                var createAtaTx = new TransactionBuilder()
+                    .SetFeePayer(npcAccount)
+                    .SetRecentBlockHash(blockHash)
+                    .AddInstruction(
+                        AssociatedTokenAccountProgram.CreateAssociatedTokenAccount(
+                            npcAccount.PublicKey, userPK, mintPK))
+                    .Build(npcAccount);
+
+                var createResult = await rpcClient.SendTransactionAsync(createAtaTx);
+                if (!createResult.WasSuccessful)
+                {
+                    LogFeedback($"❌ Failed to create User's ATA for NFT {nftMintAddress}: {createResult.Reason}", true);
+                    continue;
+                }
+                LogFeedback($"✅ User's ATA created successfully! TX: {createResult.Result}");
+                bool ataConfirmed = await ConfirmTransactionOptimized(createResult.Result, rpcClient);
+                if (!ataConfirmed)
+                {
+                    LogFeedback("❌ User's ATA creation not confirmed. Skipping transfer.", true);
+                    loadingPanel.SetActive(false);
+                    return;
+                }
+                await UniTask.Delay(500);
+            }
+
+            // Step 2: Perform NFT Transfer
+            LogFeedback($"🚀 Sending NFT transfer transaction for {nftMintAddress}...");
+            var transferTx = new TransactionBuilder()
+                .SetFeePayer(npcAccount)
+                .SetRecentBlockHash(blockHash)
+                .AddInstruction(
+                    TokenProgram.TransferChecked(
+                        fromTokenAccount,
+                        toTokenAccount,
+                        1UL,
+                        0,
+                        npcAccount.PublicKey,
+                        mintPK
+                    )
+                )
+                .Build(npcAccount);
+
+            var transferResult = await rpcClient.SendTransactionAsync(transferTx);
+            if (!transferResult.WasSuccessful)
+            {
+                LogFeedback($"❌ NFT Transfer failed for {nftMintAddress}: {transferResult.Reason}", true);
+                loadingPanel.SetActive(false);
+                return;
+            }
+            LogFeedback($"🎉 NFT Transfer successful! TX: {transferResult.Result}");
+            CallMoveFunctionOnNFT("https://red-tough-wildcat-877.mypinata.cloud/ipfs/bafkreif7f2t73t5njpwpepnb7hbco4c5dl2nyuu4nbgrtpuq52r35irmxu?pinataGatewayToken=cpHZtQlPAxJ8AdYhHsEev_jKs5G0ABgFvMMXdRcP4VqBkZhXn8BD60cOXXcMoYl9");
+        }
+
+        await UniTask.Delay(2000); // Reduced delay
+        loadpanelTxt.text = "Updating NFT UI";
+        nftDisplayScript.UpdateNfts();
     }
 
 

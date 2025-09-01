@@ -7,6 +7,7 @@ using Solana.Unity.SDK;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
+using TMPro;
 
 namespace Solana.Unity.SDK.Example
 {
@@ -23,6 +24,10 @@ namespace Solana.Unity.SDK.Example
         [SerializeField] private Transform WagerContent;       // Second UI panel
         [SerializeField] private Transform TradeContent;       // Third UI panel
         [SerializeField] private Transform FirstCanvesContent;   // Fourth UI panel
+        
+        // NFT name display components
+        [SerializeField] private TextMeshProUGUI nftNameDisplay; // UI text to show NFT name
+        [SerializeField] private GameObject nftNamePanel; // Panel containing the name display
 
         public void Start()
         {
@@ -41,6 +46,34 @@ namespace Solana.Unity.SDK.Example
           
             //Debug.LogError("UpdateNfts");
             GetOwnedTokenAccounts().AsAsyncUnitUniTask().Forget();
+        }
+        
+        // Method to show NFT name when clicked
+        public void ShowNFTName(string nftName, Vector3 position)
+        {
+            if (nftNameDisplay != null && nftNamePanel != null)
+            {
+                nftNameDisplay.text = nftName;
+                nftNamePanel.SetActive(true);
+                
+                // Position the name panel near the clicked position
+                if (nftNamePanel.GetComponent<RectTransform>() != null)
+                {
+                    nftNamePanel.GetComponent<RectTransform>().position = position;
+                }
+                
+                // Hide the name after 3 seconds
+                StartCoroutine(HideNFTNameAfterDelay(3f));
+            }
+        }
+        
+        private System.Collections.IEnumerator HideNFTNameAfterDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            if (nftNamePanel != null)
+            {
+                nftNamePanel.SetActive(false);
+            }
         }
 
         private async UniTask GetOwnedTokenAccounts()
@@ -115,7 +148,11 @@ namespace Solana.Unity.SDK.Example
                                     _instantiatedTokens.Add(tkInstance1);
                                     tk1.SetActive(true);
                                     if (tkInstance1)
+                                    {
                                         tkInstance1.InitializeData(item, this, nft).Forget();
+                                        // Add click handler for NFT name display
+                                        AddClickHandler(tk1, nft);
+                                    }
                                 }).Forget();
                             });
                         }
@@ -141,7 +178,11 @@ namespace Solana.Unity.SDK.Example
                                         _instantiatedTokens.Add(tkInstance2);
                                         tk2.SetActive(true);
                                         if (tkInstance2)
+                                        {
                                             tkInstance2.InitializeData(item, this, nft).Forget();
+                                            // Add click handler for NFT name display
+                                            AddClickHandler(tk2, nft);
+                                        }
                                     }).Forget();
                                 });
                             }
@@ -166,7 +207,11 @@ namespace Solana.Unity.SDK.Example
                                         _instantiatedTokens.Add(tkInstance3);
                                         tk3.SetActive(true);
                                         if (tkInstance3)
+                                        {
                                             tkInstance3.InitializeData(item, this, nft).Forget();
+                                            // Add click handler for NFT name display
+                                            AddClickHandler(tk3, nft);
+                                        }
                                     }).Forget();
                                 });
                             }
@@ -194,7 +239,11 @@ namespace Solana.Unity.SDK.Example
                                         _instantiatedTokens.Add(tkInstance4);
                                         tk4.SetActive(true);
                                         if (tkInstance4)
+                                        {
                                             tkInstance4.InitializeData(item, this, nft).Forget();
+                                            // Add click handler for NFT name display
+                                            AddClickHandler(tk4, nft);
+                                        }
                                     }).Forget();
                                 });
                             }
@@ -208,6 +257,30 @@ namespace Solana.Unity.SDK.Example
             loadingPanel.SetActive(false);
 
             _isLoadingTokens = false;
+        }
+        
+        // Helper method to add click handler to NFT items
+        private void AddClickHandler(GameObject nftObject, Solana.Unity.SDK.Nft.Nft nftData)
+        {
+            // Add Button component if it doesn't exist
+            Button button = nftObject.GetComponent<Button>();
+            if (button == null)
+            {
+                button = nftObject.AddComponent<Button>();
+            }
+            
+            // Get the NFT name
+            string nftName = "Unknown NFT";
+            if (nftData != null && nftData.metaplexData?.data?.offchainData?.name != null)
+            {
+                nftName = nftData.metaplexData.data.offchainData.name;
+            }
+            
+            // Add click listener
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(() => {
+                ShowNFTName(nftName, Input.mousePosition);
+            });
         }
     }
 }

@@ -1,0 +1,621 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426bf131a902ece49aa30675548d54af, type: 3}
+  m_Name: Levels Generator Database
+  m_EditorClassIdentifier: 
+  linesAmount: 20
+  overrideLineOffset:
+    enabled: 0
+    value: 9
+  singleElementPerLineChance: 1
+  singleItemSpawnPositionType: 0
+  twoElementsPerLineChance: 1
+  thereElementsPerLineChance: 0.179
+  gatesChance: 0.75
+  characterGateChance: 1
+  characterGateOptions:
+  - weight: 0.3
+    item:
+      explicitID: default_character
+      explicitAmount: 1
+  - weight: 0.19
+    item:
+      explicitID: heavy_character
+      explicitAmount: 1
+  weaponGateChance: 0.279
+  weaponGateOptions:
+  - weight: 0.6
+    item:
+      explicitID: default_gun
+      explicitAmount: 1
+  - weight: 1
+    item:
+      explicitID: rifle
+      explicitAmount: 1
+  - weight: 1
+    item:
+      explicitID: shotgun
+      explicitAmount: 1
+  - weight: 1
+    item:
+      explicitID: minigun
+      explicitAmount: 1
+  healthGateChance: 0.627
+  healthGateSettings:
+  - weight: 1
+    item:
+      operationType: 0
+      valueRange:
+        firstValue: 2
+        secondValue: 5
+      decimalPlacesAfterRounding: 0
+      updateOnHit: 1
+      step: 0.1
+  - weight: 0.4
+    item:
+      operationType: 0
+      valueRange:
+        firstValue: 2
+        secondValue: 5
+      decimalPlacesAfterRounding: 0
+      updateOnHit: 1
+      step: 0.2
+  - weight: 0.31
+    item:
+      operationType: 1
+      valueRange:
+        firstValue: 2
+        secondValue: 5
+      decimalPlacesAfterRounding: 0
+      updateOnHit: 1
+      step: 0.1
+  damageGateChance: 1
+  damageGateSettings:
+  - weight: 1
+    item:
+      operationType: 0
+      valueRange:
+        firstValue: 0
+        secondValue: 2
+      decimalPlacesAfterRounding: 1
+      updateOnHit: 1
+      step: 0.1
+  - weight: 0.6
+    item:
+      operationType: 1
+      valueRange:
+        firstValue: 0
+        secondValue: 2
+      decimalPlacesAfterRounding: 1
+      updateOnHit: 1
+      step: 0.1
+  - weight: 1
+    item:
+      operationType: 2
+      valueRange:
+        firstValue: 0.5
+        secondValue: 2
+      decimalPlacesAfterRounding: 1
+      updateOnHit: 1
+      step: 0.1
+  - weight: 0.6
+    item:
+      operationType: 3
+      valueRange:
+        firstValue: 2
+        secondValue: 5
+      decimalPlacesAfterRounding: 1
+      updateOnHit: 1
+      step: 0.1
+  fireRateGateChance: 1
+  fireRateGateSettings:
+  - weight: 1
+    item:
+      operationType: 0
+      valueRange:
+        firstValue: 0.1
+        secondValue: 1.3
+      decimalPlacesAfterRounding: 1
+      updateOnHit: 1
+      step: 0.1
+  - weight: 0.3
+    item:
+      operationType: 1
+      valueRange:
+        firstValue: 0.2
+        secondValue: 1
+      decimalPlacesAfterRounding: 1
+      updateOnHit: 1
+      step: 0.1
+  - weight: 0.3
+    item:
+      operationType: 2
+      valueRange:
+        firstValue: 1.1
+        secondValue: 1.6
+      decimalPlacesAfterRounding: 1
+      updateOnHit: 1
+      step: 0.05
+  - weight: 0.3
+    item:
+      operationType: 3
+      valueRange:
+        firstValue: 2
+        secondValue: 5
+      decimalPlacesAfterRounding: 0
+      updateOnHit: 1
+      step: 0.2
+  rangeGateChance: 1
+  rangeGateSettings:
+  - weight: 1
+    item:
+      operationType: 0
+      valueRange:
+        firstValue: 0.1
+        secondValue: 3
+      decimalPlacesAfterRounding: 1
+      updateOnHit: 1
+      step: 0.1
+  - weight: 0.6
+    item:
+      operationType: 1
+      valueRange:
+        firstValue: 0.1
+        secondValue: 2
+      decimalPlacesAfterRounding: 1
+      updateOnHit: 1
+      step: 0.2
+  - weight: 1
+    item:
+      operationType: 2
+      valueRange:
+        firstValue: 1.1
+        secondValue: 1.6
+      decimalPlacesAfterRounding: 1
+      updateOnHit: 1
+      step: 0.05
+  - weight: 0.6
+    item:
+      operationType: 3
+      valueRange:
+        firstValue: 2
+        secondValue: 4
+      decimalPlacesAfterRounding: 1
+      updateOnHit: 1
+      step: 0.1
+  moneyGateChance: 1
+  moneyGateSettings:
+  - weight: 1
+    item:
+      operationType: 0
+      valueRange:
+        firstValue: 1
+        secondValue: 15
+      decimalPlacesAfterRounding: 0
+      updateOnHit: 1
+      step: 0.5
+  - weight: 0.5
+    item:
+      operationType: 0
+      valueRange:
+        firstValue: 5
+        secondValue: 10
+      decimalPlacesAfterRounding: 0
+      updateOnHit: 1
+      step: 1
+  boostersChance: 0.75
+  characterBoosterChance: 1
+  characterBoosterOptions:
+  - weight: 0.754
+    item:
+      explicitID: default_character
+      explicitAmount: 1
+  - weight: 0.341
+    item:
+      explicitID: heavy_character
+      explicitAmount: 1
+  weaponBoosterChance: 0.8
+  weaponBoosterOptions:
+  - weight: 0.4
+    item:
+      explicitID: default_gun
+      explicitAmount: 1
+  - weight: 1
+    item:
+      explicitID: rifle
+      explicitAmount: 1
+  - weight: 1
+    item:
+      explicitID: shotgun
+      explicitAmount: 1
+  - weight: 1
+    item:
+      explicitID: minigun
+      explicitAmount: 1
+  healthBoosterChance: 1
+  healthBoosterSettings:
+  - weight: 1
+    item:
+      operationType: 0
+      valueRange:
+        firstValue: 2
+        secondValue: 5
+      decimalPlacesAfterRounding: 0
+  - weight: 0.4
+    item:
+      operationType: 0
+      valueRange:
+        firstValue: 2
+        secondValue: 5
+      decimalPlacesAfterRounding: 0
+  - weight: 0.31
+    item:
+      operationType: 1
+      valueRange:
+        firstValue: 2
+        secondValue: 5
+      decimalPlacesAfterRounding: 0
+  damageBoosterChance: 1
+  damageBoosterSettings:
+  - weight: 1
+    item:
+      operationType: 0
+      valueRange:
+        firstValue: 0.1
+        secondValue: 2
+      decimalPlacesAfterRounding: 1
+  - weight: 0.6
+    item:
+      operationType: 1
+      valueRange:
+        firstValue: 0.1
+        secondValue: 2
+      decimalPlacesAfterRounding: 1
+  - weight: 1
+    item:
+      operationType: 2
+      valueRange:
+        firstValue: 1.1
+        secondValue: 1.7
+      decimalPlacesAfterRounding: 1
+  - weight: 0.6
+    item:
+      operationType: 3
+      valueRange:
+        firstValue: 2
+        secondValue: 5
+      decimalPlacesAfterRounding: 0
+  fireRateBoosterChance: 1
+  fireRateBoosterSettings:
+  - weight: 1
+    item:
+      operationType: 0
+      valueRange:
+        firstValue: 0.1
+        secondValue: 1
+      decimalPlacesAfterRounding: 1
+  - weight: 0.3
+    item:
+      operationType: 1
+      valueRange:
+        firstValue: 0.2
+        secondValue: 1
+      decimalPlacesAfterRounding: 1
+  - weight: 0.3
+    item:
+      operationType: 2
+      valueRange:
+        firstValue: 1.1
+        secondValue: 1.4
+      decimalPlacesAfterRounding: 2
+  - weight: 0.3
+    item:
+      operationType: 3
+      valueRange:
+        firstValue: 2
+        secondValue: 5
+      decimalPlacesAfterRounding: 0
+  rangeBoosterChance: 1
+  rangeBoosterSettings:
+  - weight: 1
+    item:
+      operationType: 0
+      valueRange:
+        firstValue: 0.1
+        secondValue: 2
+      decimalPlacesAfterRounding: 1
+  - weight: 0.6
+    item:
+      operationType: 1
+      valueRange:
+        firstValue: 0.3
+        secondValue: 2
+      decimalPlacesAfterRounding: 1
+  - weight: 1
+    item:
+      operationType: 2
+      valueRange:
+        firstValue: 1.1
+        secondValue: 1.5
+      decimalPlacesAfterRounding: 2
+  - weight: 0.6
+    item:
+      operationType: 3
+      valueRange:
+        firstValue: 2
+        secondValue: 4
+      decimalPlacesAfterRounding: 0
+  obstaclesChance: 1
+  obstacleGenerationSettings:
+  - weight: 0.4
+    item:
+      obstacleId: small_obstacle
+      obstacleHealth:
+        firstValue: 4
+        secondValue: 12
+      doubleObstacleChance: 0.272
+      chanceToSpawnBoosterOnTop: 0.347
+      dropSettings:
+      - weight: 1
+        item:
+          dropType: -1
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 0
+            secondValue: 0
+          dropItemValue:
+            firstValue: 0
+            secondValue: 0
+      - weight: 0.5
+        item:
+          dropType: 0
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 2
+            secondValue: 4
+          dropItemValue:
+            firstValue: 2
+            secondValue: 3
+      - weight: 0.3
+        item:
+          dropType: 1
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 1
+            secondValue: 1
+          dropItemValue:
+            firstValue: 1
+            secondValue: 1
+  enemiesChance: 1
+  enemyGenerationSettings:
+  - weight: 1
+    item:
+      enemyId: enemy
+      health:
+        firstValue: 3
+        secondValue: 6
+      damage:
+        firstValue: 1
+        secondValue: 2
+      fireRate:
+        firstValue: 0.4
+        secondValue: 0.6
+      gunId: default_gun
+      dropSettings:
+      - weight: 1
+        item:
+          dropType: -1
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 0
+            secondValue: 0
+          dropItemValue:
+            firstValue: 0
+            secondValue: 0
+      - weight: 1
+        item:
+          dropType: 0
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 1
+            secondValue: 1
+          dropItemValue:
+            firstValue: 2
+            secondValue: 2
+      - weight: 1
+        item:
+          dropType: 1
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 1
+            secondValue: 1
+          dropItemValue:
+            firstValue: 1
+            secondValue: 2
+  - weight: 1
+    item:
+      enemyId: enemy
+      health:
+        firstValue: 2
+        secondValue: 3
+      damage:
+        firstValue: 1
+        secondValue: 1
+      fireRate:
+        firstValue: 0.3
+        secondValue: 0.5
+      gunId: default_gun
+      dropSettings:
+      - weight: 1
+        item:
+          dropType: -1
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 0
+            secondValue: 0
+          dropItemValue:
+            firstValue: 0
+            secondValue: 0
+      - weight: 1
+        item:
+          dropType: 0
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 1
+            secondValue: 2
+          dropItemValue:
+            firstValue: 2
+            secondValue: 3
+      - weight: 1
+        item:
+          dropType: 1
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 1
+            secondValue: 1
+          dropItemValue:
+            firstValue: 1
+            secondValue: 4
+  - weight: 1
+    item:
+      enemyId: enemy_heavy
+      health:
+        firstValue: 6
+        secondValue: 10
+      damage:
+        firstValue: 1
+        secondValue: 1
+      fireRate:
+        firstValue: 0.6
+        secondValue: 0.8
+      gunId: minigun
+      dropSettings:
+      - weight: 1
+        item:
+          dropType: -1
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 0
+            secondValue: 0
+          dropItemValue:
+            firstValue: 0
+            secondValue: 0
+      - weight: 1
+        item:
+          dropType: 0
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 2
+            secondValue: 4
+          dropItemValue:
+            firstValue: 2
+            secondValue: 3
+      - weight: 1
+        item:
+          dropType: 1
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 1
+            secondValue: 1
+          dropItemValue:
+            firstValue: 2
+            secondValue: 5
+  - weight: 0.6
+    item:
+      enemyId: enemy_heavy
+      health:
+        firstValue: 6
+        secondValue: 10
+      damage:
+        firstValue: 1
+        secondValue: 1
+      fireRate:
+        firstValue: 0.6
+        secondValue: 0.8
+      gunId: none
+      dropSettings:
+      - weight: 1
+        item:
+          dropType: -1
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 0
+            secondValue: 0
+          dropItemValue:
+            firstValue: 0
+            secondValue: 0
+      - weight: 1
+        item:
+          dropType: 0
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 2
+            secondValue: 4
+          dropItemValue:
+            firstValue: 2
+            secondValue: 3
+      - weight: 1
+        item:
+          dropType: 1
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 1
+            secondValue: 1
+          dropItemValue:
+            firstValue: 2
+            secondValue: 5
+  - weight: 1
+    item:
+      enemyId: enemy
+      health:
+        firstValue: 3
+        secondValue: 6
+      damage:
+        firstValue: 1
+        secondValue: 2
+      fireRate:
+        firstValue: 0.4
+        secondValue: 0.6
+      gunId: none
+      dropSettings:
+      - weight: 1
+        item:
+          dropType: -1
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 0
+            secondValue: 0
+          dropItemValue:
+            firstValue: 0
+            secondValue: 0
+      - weight: 1
+        item:
+          dropType: 0
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 1
+            secondValue: 1
+          dropItemValue:
+            firstValue: 2
+            secondValue: 2
+      - weight: 1
+        item:
+          dropType: 1
+          dropCurrencyType: 0
+          dropItemsCount:
+            firstValue: 1
+            secondValue: 1
+          dropItemValue:
+            firstValue: 1
+            secondValue: 2
+  roadType: road_desert
+  environmentType: environment_desert
