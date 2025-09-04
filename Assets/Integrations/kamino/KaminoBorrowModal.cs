@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Globalization;
 
 public class KaminoBorrowModal : MonoBehaviour
 {
@@ -22,9 +23,9 @@ public class KaminoBorrowModal : MonoBehaviour
         currentOffer = offer;
         availableToBorrow = available;
         titleText.text = $"Borrow {offer.symbol}";
-        availableText.text = "<b>Available to borrow:</b> \n<size=80%>" + availableToBorrow.ToString("F2") + "</size>";
+        availableText.text = "<b>Available to borrow:</b> \n<size=80%>" + availableToBorrow.ToString("F2", CultureInfo.InvariantCulture) + "</size>";
         apyText.text = "<b>APY:</b> <size=80%>" + offer.borrowApy + "%</size>";
-        collateralText.text = "<b>Collateral you put:</b> \n<size=80%>" + collateral.ToString("F2") + "</size>";
+        collateralText.text = "<b>Collateral you put:</b> \n<size=80%>" + collateral.ToString("F2", CultureInfo.InvariantCulture) + "</size>";
         amountInput.text = "";
         errorText.text = "";
         gameObject.SetActive(true);
@@ -44,12 +45,12 @@ public class KaminoBorrowModal : MonoBehaviour
 
     private void SetAmount(float amount)
     {
-        amountInput.text = amount.ToString("F4");
+        amountInput.text = amount.ToString("F4", CultureInfo.InvariantCulture);
     }
 
     private void OnAmountChanged(string input)
     {
-        if (float.TryParse(input, out float amount))
+        if (TryParseFloatFlexible(input, out float amount))
         {
             if (amount > availableToBorrow)
             {
@@ -68,11 +69,11 @@ public class KaminoBorrowModal : MonoBehaviour
 
     private void OnConfirmClicked()
     {
-        if (float.TryParse(amountInput.text, out float amount) && amount > 0 && amount <= availableToBorrow)
+        if (TryParseFloatFlexible(amountInput.text, out float amount) && amount > 0 && amount <= availableToBorrow)
         {
+            // Show neutral status; KaminoAPI will update with success/error after confirmation
+            SetError("Submitting...", false);
             KaminoAPI.Instance.Borrow(currentOffer, amount);
-            SetError("Borrow successful!", false, true);
-            // Do not close the modal
         }
         else
         {
@@ -88,7 +89,7 @@ public class KaminoBorrowModal : MonoBehaviour
     public void UpdateCollateral(float collateral)
     {
         if (collateralText != null)
-            collateralText.text = "<b>Collateral:</b> <size=80%>" + collateral.ToString("F2") + "</size>";
+            collateralText.text = "<b>Collateral:</b> <size=80%>" + collateral.ToString("F2", CultureInfo.InvariantCulture) + "</size>";
     }
 
     public void SetError(string message, bool isError, bool isSuccess = false)
@@ -103,5 +104,13 @@ public class KaminoBorrowModal : MonoBehaviour
                 errorText.color = Color.white;
             errorText.text = message;
         }
+    }
+
+    private static bool TryParseFloatFlexible(string s, out float value)
+    {
+        value = 0f;
+        if (string.IsNullOrWhiteSpace(s)) return false;
+        string normalized = s.Trim().Replace(',', '.');
+        return float.TryParse(normalized, NumberStyles.Float, CultureInfo.InvariantCulture, out value);
     }
 }

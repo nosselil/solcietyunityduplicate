@@ -40,7 +40,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined // NOTE: Origina
             {
                 // How many players are in the session right now?
                 int totalPlayers = Runner.ActivePlayers.Count();
-                // Bucket them: players 1–64 → 1, 65–128 → 2, etc. (assuming 64 players is the max per replica)
+                // Bucket them: players 1–64->1, 65–128->2, etc. (assuming 64 players is the max per replica)
                 int replicaId = ((totalPlayers - 1) / NetworkController.Instance.maxPlayersPerReplica) + 1;
                 NetworkingDataContainer.Instance.worldReplicaId = replicaId;
                 Debug.Log($"WORLD REPLICA: Assigned worldReplicaId = {replicaId} (player #{totalPlayers})");

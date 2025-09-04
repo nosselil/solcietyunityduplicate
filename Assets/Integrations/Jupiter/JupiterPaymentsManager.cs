@@ -178,12 +178,12 @@ public class JupiterPaymentsManager : MonoBehaviour
             // Display route information
             if (routeText != null)
             {
-                var routePath = string.Join(" → ", _currentQuote.RoutePlan.Select(p => p.SwapInfo.Label));
+                var routePath = string.Join("->", _currentQuote.RoutePlan.Select(p => p.SwapInfo.Label));
                 routeText.text = $"Route: {routePath}";
             }
 
             resultText.text = $"✅ Payment quote ready! Click Pay to execute.";
-            Debug.Log($"💰 Payment Quote: {inputAmount:F6} {_paymentToken.Symbol} → {amount} {_targetToken.Symbol}");
+            Debug.Log($"💰 Payment Quote: {inputAmount:F6} {_paymentToken.Symbol}->{amount} {_targetToken.Symbol}");
         }
         catch (Exception e)
         {

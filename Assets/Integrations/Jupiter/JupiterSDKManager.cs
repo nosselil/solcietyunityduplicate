@@ -669,7 +669,7 @@ public class JupiterSDKManager : MonoBehaviour
                 usdcEstimateText.text = $"{outputAmount:F6} {_tokenB.Symbol}";
 
                 resultText.text = $"Quote ready! Click Swap to execute.";
-                Debug.Log($"📊 Quote: {ConvertFromBigInteger(inputAmount, _tokenA.Decimals)} {_tokenA.Symbol} → {outputAmount:F6} {_tokenB.Symbol}");
+                Debug.Log($"📊 Quote: {ConvertFromBigInteger(inputAmount, _tokenA.Decimals)} {_tokenA.Symbol}->{outputAmount:F6} {_tokenB.Symbol}");
                 yield break;
             }
             catch (Exception e)
