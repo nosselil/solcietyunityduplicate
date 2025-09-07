@@ -5,6 +5,10 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using Solana.Unity.SDK;
+using Solana.Unity.Rpc;
+using Solana.Unity.Rpc.Models;
+using Solana.Unity.Rpc.Types;
 
 [Serializable]
 public class Collection
@@ -76,6 +80,8 @@ public class CitrusAPI : MonoBehaviour
     private const string API_BASE_URL = "https://solcietyserver.vercel.app/api";
     private const string TENSOR_IMAGE_BASE_URL = "https://tensor.so/api/v1/collection/";
 
+    public static CitrusAPI Instance { get; private set; }
+
     [Header("UI References")]
     [SerializeField] private Transform collectionsContainer; // Parent for collection elements
     [SerializeField] private GameObject collectionTemplate; // Template prefab for each collection
@@ -94,6 +100,11 @@ public class CitrusAPI : MonoBehaviour
     private LoanOffer selectedOffer; // Currently selected offer for borrowing
     private string currentCollectionName; // Name of collection being viewed
     private string currentCollectionId; // ID of collection being viewed
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -807,7 +818,7 @@ public class CitrusAPI : MonoBehaviour
             Debug.Log($"CitrusAPI: Borrowing loan with NFT: {selectedNFTMint}");
             Debug.Log($"CitrusAPI: Offer details - Principal: {selectedOffer.terms.principal / 1_000_000_000f:F2} SOL, APY: {selectedOffer.terms.apy / 100}%");
             
-            // Execute the borrow transaction
+            // Execute the borrow transaction (client-signed)
             StartCoroutine(BorrowLoan(selectedOffer.loanAccount, selectedNFTMint));
         }
         else
@@ -816,14 +827,141 @@ public class CitrusAPI : MonoBehaviour
         }
     }
 
+    // -------- Client-signed borrow flow (build -> sign -> send -> confirm) --------
 
+    [Serializable]
+    private class BuildBorrowRequest
+    {
+        public string loanAccount;
+        public string nftMint;
+        public string wallet;
+    }
+
+    [Serializable]
+    private class BuildTxResponse
+    {
+        public string transaction;
+        public string blockhash;
+        public string lastValidBlockHeight;
+        public string error;
+        public string rpcUrl;
+        public string minContextSlot;
+    }
+
+    [Serializable]
+    private class RpcError { public int code; public string message; public string data; }
+    [Serializable]
+    private class RpcRespString
+    {
+        public string jsonrpc;
+        public string id;
+        public string result;
+        public RpcError error;
+    }
+
+    private static int SafeLen(string s) => string.IsNullOrEmpty(s) ? 0 : s.Length;
+    private static string Truncate(string s, int max) => string.IsNullOrEmpty(s) ? "<null>" : (s.Length <= max ? s : s.Substring(0, max));
+
+    private IEnumerator SendTransactionJsonRpc(IRpcClient rpc, string signedB64, string rpcUrl, string minContextSlot,
+        Commitment preflightCommitment, bool skipPreflight,
+        Action<bool, string, string> callback)
+    {
+        string endpoint = !string.IsNullOrEmpty(rpcUrl)
+            ? rpcUrl
+            : (rpc?.NodeAddress != null ? rpc.NodeAddress.ToString() : null);
+
+        if (string.IsNullOrEmpty(endpoint))
+        {
+            callback?.Invoke(false, null, "No RPC endpoint available.");
+            yield break;
+        }
+
+        ulong mcs = 0UL;
+        bool haveMcs = !string.IsNullOrEmpty(minContextSlot) && ulong.TryParse(minContextSlot, out mcs);
+
+        string cfg = haveMcs
+            ? $"{{\"skipPreflight\":{skipPreflight.ToString().ToLowerInvariant()},\"preflightCommitment\":\"{preflightCommitment.ToString().ToLowerInvariant()}\",\"encoding\":\"base64\",\"minContextSlot\":{mcs}}}"
+            : $"{{\"skipPreflight\":{skipPreflight.ToString().ToLowerInvariant()},\"preflightCommitment\":\"{preflightCommitment.ToString().ToLowerInvariant()}\",\"encoding\":\"base64\"}}";
+
+        string payload = $"{{\"jsonrpc\":\"2.0\",\"id\":1,\"method\":\"sendTransaction\",\"params\":[\"{signedB64}\",{cfg}]}}";
+
+        using (var uwr = new UnityWebRequest(endpoint, "POST"))
+        {
+            byte[] body = System.Text.Encoding.UTF8.GetBytes(payload);
+            uwr.uploadHandler = new UploadHandlerRaw(body);
+            uwr.downloadHandler = new DownloadHandlerBuffer();
+            uwr.SetRequestHeader("Content-Type", "application/json");
+            yield return uwr.SendWebRequest();
+
+            string raw = uwr.downloadHandler != null ? uwr.downloadHandler.text : null;
+
+            if (uwr.result != UnityWebRequest.Result.Success)
+            {
+                callback?.Invoke(false, null, $"HTTP {uwr.responseCode} {uwr.error}. Raw: {Truncate(raw, 800)}");
+                yield break;
+            }
+
+            RpcRespString resp = null;
+            try { resp = JsonUtility.FromJson<RpcRespString>(raw); } catch { }
+
+            if (resp != null && !string.IsNullOrEmpty(resp.result))
+            {
+                callback?.Invoke(true, resp.result, raw);
+            }
+            else
+            {
+                string msg = resp?.error != null ? $"{resp.error.code}: {resp.error.message}" : "Unknown RPC error";
+                callback?.Invoke(false, null, $"RPC error: {msg}. Raw: {Truncate(raw, 800)}");
+            }
+        }
+    }
+
+    private IEnumerator WaitForConfirmation(IRpcClient rpc, string signature, float timeoutSeconds)
+    {
+        float elapsed = 0f;
+        const float step = 0.8f;
+        while (elapsed < timeoutSeconds)
+        {
+            var statusTask = rpc.GetSignatureStatusesAsync(new List<string> { signature }, false);
+            while (!statusTask.IsCompleted) yield return null;
+
+            var rr = statusTask.Result;
+            if (rr != null && rr.WasSuccessful && rr.Result != null && rr.Result.Value != null && rr.Result.Value.Count > 0)
+            {
+                var info = rr.Result.Value[0];
+                if (info != null && (info.ConfirmationStatus == "confirmed" || info.ConfirmationStatus == "finalized"))
+                {
+                    Debug.Log($"CitrusAPI: Borrow confirmed signature={signature} status={info.ConfirmationStatus}");
+                    yield break;
+                }
+            }
+
+            yield return new WaitForSeconds(step);
+            elapsed += step;
+        }
+
+        Debug.LogWarning("CitrusAPI: Borrow confirmation timeout for " + signature);
+    }
 
     private IEnumerator BorrowLoan(string loanAccount, string nftMint)
     {
+        string borrower = WalletManager.instance != null ? WalletManager.instance.walletAddress : null;
+        if (string.IsNullOrEmpty(borrower))
+        {
+            Debug.LogError("CitrusAPI: BorrowLoan aborted: no wallet connected.");
+            yield break;
+        }
+
         string url = $"{API_BASE_URL}/citrus-borrow-loan";
-        string jsonBody = $"{{\"loanAccount\":\"{loanAccount}\",\"nftMint\":\"{nftMint}\"}}";
-        
-        Debug.Log($"CitrusAPI: Borrowing loan for loan account: {loanAccount}");
+        var payload = new BuildBorrowRequest
+        {
+            loanAccount = loanAccount,
+            nftMint = nftMint,
+            wallet = borrower
+        };
+        string jsonBody = JsonUtility.ToJson(payload);
+
+        Debug.Log($"CitrusAPI: Borrowing loan (build) for loanAccount={loanAccount}, nftMint={nftMint}, wallet={borrower}");
         Debug.Log($"CitrusAPI: Request body: {jsonBody}");
 
         using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
@@ -835,23 +973,100 @@ public class CitrusAPI : MonoBehaviour
 
             yield return request.SendWebRequest();
 
-            if (request.result == UnityWebRequest.Result.Success)
+            var respText = request.downloadHandler != null ? request.downloadHandler.text : null;
+            Debug.Log($"CitrusAPI: Borrow build HTTP {request.responseCode} respLen={SafeLen(respText)}");
+
+            if (request.result != UnityWebRequest.Result.Success)
             {
-                string response = request.downloadHandler.text;
-                Debug.Log($"CitrusAPI: Loan borrowed successfully: {response}");
-                
-                // Clear selection and close panel
-                selectedOffer = null;
-                CloseAvailableOffersPanel();
-                
-                // Refresh user loans to show the new borrowed loan
-                FetchAndDisplayUserOffers();
+                string errorMsg = string.IsNullOrEmpty(respText) ? request.error : respText;
+                Debug.LogError("CitrusAPI: Borrow build failed: " + errorMsg);
+                yield break;
             }
-            else
+
+            var buildResp = JsonUtility.FromJson<BuildTxResponse>(respText);
+            if (buildResp == null || !string.IsNullOrEmpty(buildResp.error) || string.IsNullOrEmpty(buildResp.transaction))
             {
-                string errorResponse = request.downloadHandler.text;
-                Debug.LogError($"CitrusAPI: Error borrowing loan: {request.error}\nResponse: {errorResponse}");
+                string e = buildResp != null && !string.IsNullOrEmpty(buildResp.error) ? buildResp.error : "Invalid borrow build response";
+                string rawSnippet = string.IsNullOrEmpty(respText) ? "<null>" : Truncate(respText, 512);
+                Debug.LogError($"CitrusAPI: Borrow build parse error: {e}. Raw (truncated): {rawSnippet}");
+                yield break;
             }
+
+            Debug.Log($"CitrusAPI: Borrow build OK: blockhash={buildResp.blockhash} lastValid={buildResp.lastValidBlockHeight} txB64Len={SafeLen(buildResp.transaction)}");
+
+            // Deserialize base64 -> Transaction
+            Transaction tx;
+            try
+            {
+                byte[] txBytes = Convert.FromBase64String(buildResp.transaction);
+                tx = Transaction.Deserialize(txBytes);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("CitrusAPI: Borrow invalid transaction data: " + ex.Message);
+                yield break;
+            }
+
+            // Sign with client wallet
+            var signTask = Web3.Wallet.SignTransaction(tx);
+            while (!signTask.IsCompleted) yield return null;
+
+            if (signTask.IsFaulted || signTask.Result == null)
+            {
+                Debug.LogError("CitrusAPI: Borrow sign task faulted: " + (signTask.Exception != null ? signTask.Exception.Message : "unknown"));
+                yield break;
+            }
+
+            string signedB64;
+            try
+            {
+                signedB64 = Convert.ToBase64String(signTask.Result.Serialize());
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("CitrusAPI: Borrow serialize error: " + ex.Message);
+                yield break;
+            }
+
+            // Choose RPC endpoint: prefer server-provided rpcUrl
+            var chosenRpc = !string.IsNullOrEmpty(buildResp.rpcUrl)
+                ? ClientFactory.GetClient(buildResp.rpcUrl)
+                : Web3.Rpc;
+
+            // Send via JSON-RPC with preflight=confirmed and minContextSlot
+            bool sendOk = false;
+            string signature = null;
+            string rawRpcResponse = null;
+
+            yield return StartCoroutine(SendTransactionJsonRpc(
+                chosenRpc,
+                signedB64,
+                buildResp.rpcUrl,
+                buildResp.minContextSlot,
+                Commitment.Confirmed,
+                false,
+                (ok, sig, raw) => { sendOk = ok; signature = sig; rawRpcResponse = raw; }
+            ));
+
+            if (!sendOk || string.IsNullOrEmpty(signature))
+            {
+                string endpoint = chosenRpc?.NodeAddress != null ? chosenRpc.NodeAddress.ToString() : "<null>";
+                Debug.LogError($"CitrusAPI: Borrow send failed. Endpoint={endpoint}\nRaw RPC: {Truncate(rawRpcResponse, 1200)}");
+                yield break;
+            }
+
+            Debug.Log($"CitrusAPI: Borrow sent, signature={signature}");
+
+            // Confirm
+            yield return StartCoroutine(WaitForConfirmation(chosenRpc, signature, 45f));
+            Debug.Log("CitrusAPI: Borrow confirmation finished (either confirmed or timed out)");
+
+            // Clear selection and close panel
+            selectedOffer = null;
+            CloseAvailableOffersPanel();
+
+            // Refresh user loans to show the new borrowed loan
+            FetchAndDisplayUserOffers();
         }
     }
 
@@ -865,4 +1080,40 @@ public class CitrusAPI : MonoBehaviour
         // Hide borrow button
         if (borrowButton != null) borrowButton.gameObject.SetActive(false);
     }
-} 
+
+    // New: centralize user NFT fetch, injecting the connected wallet. Returns raw JSON.
+    public void FetchUserNftsByCollection(string collectionId, Action<string> callback)
+    {
+        StartCoroutine(FetchUserNftsByCollectionCoroutine(collectionId, callback));
+    }
+
+    private IEnumerator FetchUserNftsByCollectionCoroutine(string collectionId, Action<string> callback)
+    {
+        var wallet = WalletManager.instance != null ? WalletManager.instance.walletAddress : null;
+        if (string.IsNullOrEmpty(wallet))
+        {
+            Debug.LogWarning("CitrusAPI: FetchUserNftsByCollection: no wallet connected.");
+            callback?.Invoke(null);
+            yield break;
+        }
+
+        string url = $"{API_BASE_URL}/citrus-user-nfts-by-collection?collectionId={UnityWebRequest.EscapeURL(collectionId)}&wallet={UnityWebRequest.EscapeURL(wallet)}";
+        Debug.Log($"CitrusAPI: FetchUserNftsByCollection URL: {url}");
+
+        using (UnityWebRequest request = UnityWebRequest.Get(url))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                string jsonResponse = request.downloadHandler.text;
+                callback?.Invoke(jsonResponse);
+            }
+            else
+            {
+                Debug.LogError($"CitrusAPI: Error fetching user NFTs: {request.error} | {request.downloadHandler.text}");
+                callback?.Invoke(null);
+            }
+        }
+    }
+}

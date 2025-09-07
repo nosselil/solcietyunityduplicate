@@ -108,109 +108,124 @@ public class CitrusNFTSelectionModal : MonoBehaviour
         // Clear previous NFTs
         ClearNFTItems();
 
-        // Get user's NFTs from server (using server-side wallet)
-        string url = $"http://localhost:3000/api/citrus-user-nfts-by-collection?collectionId={currentCollectionId}";
-        Debug.Log($"CitrusNFTSelectionModal: Fetching NFTs from: {url}");
-
-        using (UnityWebRequest request = UnityWebRequest.Get(url))
+        // Require a connected wallet (CitrusAPI also checks, but we provide early UI feedback)
+        string wallet = WalletManager.instance != null ? WalletManager.instance.walletAddress : null;
+        if (string.IsNullOrEmpty(wallet))
         {
-            await request.SendWebRequest();
+            Debug.LogWarning("CitrusNFTSelectionModal: No wallet connected; cannot fetch user NFTs.");
+            ShowNoNFTsMessage();
+            if (loadingPanel != null) loadingPanel.SetActive(false);
+            return;
+        }
 
-            if (request.result == UnityWebRequest.Result.Success)
+        if (CitrusAPI.Instance == null)
+        {
+            Debug.LogError("CitrusNFTSelectionModal: CitrusAPI.Instance is null. Ensure CitrusAPI is present in the scene.");
+            ShowNoNFTsMessage();
+            if (loadingPanel != null) loadingPanel.SetActive(false);
+            return;
+        }
+
+        // Fetch JSON from CitrusAPI (includes wallet)
+        var tcs = new UniTaskCompletionSource<string>();
+        CitrusAPI.Instance.FetchUserNftsByCollection(currentCollectionId, json => tcs.TrySetResult(json));
+        string jsonResponse = await tcs.Task;
+
+        if (string.IsNullOrEmpty(jsonResponse))
+        {
+            Debug.LogError("CitrusNFTSelectionModal: Empty response from server.");
+            ShowNoNFTsMessage();
+            if (loadingPanel != null) loadingPanel.SetActive(false);
+            return;
+        }
+
+        Debug.Log($"CitrusNFTSelectionModal: Server response: {jsonResponse}");
+
+        // Parse only
+        UserNFTsResponse response = null;
+        try
+        {
+            response = JsonUtility.FromJson<UserNFTsResponse>(jsonResponse);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"CitrusNFTSelectionModal: JSON parse error: {e.Message}");
+            ShowNoNFTsMessage();
+            if (loadingPanel != null) loadingPanel.SetActive(false);
+            return;
+        }
+
+        if (response != null && response.success && response.nfts != null)
+        {
+            Debug.Log($"CitrusNFTSelectionModal: Found {response.nfts.Length} NFTs from server");
+
+            // Validate required UI refs before creating items
+            if (nftItemPrefab == null || nftContainer == null)
             {
-                string jsonResponse = request.downloadHandler.text;
-                Debug.Log($"CitrusNFTSelectionModal: Server response: {jsonResponse}");
+                Debug.LogError("CitrusNFTSelectionModal: NFT item prefab or container is not assigned in the inspector.");
+                ShowNoNFTsMessage();
+                if (loadingPanel != null) loadingPanel.SetActive(false);
+                return;
+            }
 
-                // Parse only
-                UserNFTsResponse response = null;
+            // Process each NFT from server
+            foreach (var serverNFT in response.nfts)
+            {
+                if (string.IsNullOrEmpty(serverNFT?.mint))
+                    continue;
+
+                IRpcClient rpcClient = Web3.Rpc ?? ClientFactory.GetClient("https://blissful-tiniest-aura.solana-mainnet.quiknode.pro/8305bf1921b2c1cc4067111258d59f82a873d509/");
+                Nft nftData = null;
                 try
                 {
-                    response = JsonUtility.FromJson<UserNFTsResponse>(jsonResponse);
+                    nftData = await Nft.TryGetNftData(
+                        serverNFT.mint,
+                        rpcClient,
+                        commitment: Commitment.Processed);
                 }
-                catch (System.Exception e)
+                catch (System.Exception ex)
                 {
-                    Debug.LogError($"CitrusNFTSelectionModal: JSON parse error: {e.Message}");
-                    ShowNoNFTsMessage();
-                    return;
+                    Debug.LogError($"CitrusNFTSelectionModal: Error fetching NFT data for {serverNFT.mint}: {ex.Message}");
                 }
-
-                if (response != null && response.success && response.nfts != null)
+                if (nftData != null)
                 {
-                    Debug.Log($"CitrusNFTSelectionModal: Found {response.nfts.Length} NFTs from server");
+                    Debug.Log($"CitrusNFTSelectionModal: Got NFT data for {serverNFT.mint}: {nftData.metaplexData?.data?.offchainData?.name}");
 
-                    // Validate required UI refs before creating items
-                    if (nftItemPrefab == null || nftContainer == null)
+                    if (IsNFTInCollection(nftData, currentCollectionId))
                     {
-                        Debug.LogError("CitrusNFTSelectionModal: NFT item prefab or container is not assigned in the inspector.");
-                        ShowNoNFTsMessage();
-                        return;
+                        Debug.Log($"CitrusNFTSelectionModal: NFT {serverNFT.mint} belongs to collection {currentCollectionId}");
+
+                        CitrusNFTItem nftItem = new CitrusNFTItem
+                        {
+                            mintAddress = serverNFT.mint,
+                            name = nftData.metaplexData?.data?.offchainData?.name ?? "Unknown NFT",
+                            imageUrl = "",
+                            uiObject = null,
+                            selectButton = null
+                        };
+
+                        if (nftData.metaplexData?.nftImage?.file != null)
+                        {
+                            nftItem.nftTexture = nftData.metaplexData.nftImage.file;
+                        }
+
+                        await CreateNFTItemUI(nftItem);
                     }
-
-                    // Process each NFT from server
-                    foreach (var serverNFT in response.nfts)
+                    else
                     {
-                        if (string.IsNullOrEmpty(serverNFT?.mint))
-                            continue;
-
-                        IRpcClient rpcClient = Web3.Rpc ?? ClientFactory.GetClient("https://blissful-tiniest-aura.solana-mainnet.quiknode.pro/8305bf1921b2c1cc4067111258d59f82a873d509/");
-                        Nft nftData = null;
-                        try
-                        {
-                            nftData = await Nft.TryGetNftData(
-                                serverNFT.mint,
-                                rpcClient,
-                                commitment: Commitment.Processed);
-                        }
-                        catch (System.Exception ex)
-                        {
-                            Debug.LogError($"CitrusNFTSelectionModal: Error fetching NFT data for {serverNFT.mint}: {ex.Message}");
-                        }
-                        if (nftData != null)
-                        {
-                            Debug.Log($"CitrusNFTSelectionModal: Got NFT data for {serverNFT.mint}: {nftData.metaplexData?.data?.offchainData?.name}");
-
-                            if (IsNFTInCollection(nftData, currentCollectionId))
-                            {
-                                Debug.Log($"CitrusNFTSelectionModal: NFT {serverNFT.mint} belongs to collection {currentCollectionId}");
-
-                                CitrusNFTItem nftItem = new CitrusNFTItem
-                                {
-                                    mintAddress = serverNFT.mint,
-                                    name = nftData.metaplexData?.data?.offchainData?.name ?? "Unknown NFT",
-                                    imageUrl = "",
-                                    uiObject = null,
-                                    selectButton = null
-                                };
-
-                                if (nftData.metaplexData?.nftImage?.file != null)
-                                {
-                                    nftItem.nftTexture = nftData.metaplexData.nftImage.file;
-                                }
-
-                                await CreateNFTItemUI(nftItem);
-                            }
-                            else
-                            {
-                                Debug.Log($"CitrusNFTSelectionModal: NFT {serverNFT.mint} does NOT belong to collection {currentCollectionId}");
-                            }
-                        }
-                        else
-                        {
-                            Debug.Log($"CitrusNFTSelectionModal: No NFT data found for {serverNFT.mint}");
-                        }
+                        Debug.Log($"CitrusNFTSelectionModal: NFT {serverNFT.mint} does NOT belong to collection {currentCollectionId}");
                     }
                 }
                 else
                 {
-                    Debug.LogError("CitrusNFTSelectionModal: Failed to parse server response or empty nfts array");
-                    ShowNoNFTsMessage();
+                    Debug.Log($"CitrusNFTSelectionModal: No NFT data found for {serverNFT.mint}");
                 }
             }
-            else
-            {
-                Debug.LogError($"CitrusNFTSelectionModal: Error fetching NFTs: {request.error}");
-                ShowNoNFTsMessage();
-            }
+        }
+        else
+        {
+            Debug.LogError("CitrusNFTSelectionModal: Failed to parse server response or empty nfts array");
+            ShowNoNFTsMessage();
         }
 
         // Hide loading
