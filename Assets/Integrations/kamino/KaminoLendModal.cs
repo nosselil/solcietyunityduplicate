@@ -68,6 +68,16 @@ public class KaminoLendModal : MonoBehaviour
         }
 
         Debug.Log($"{LogTag} OnConfirmClicked amountInput='{amountInput.text}'");
+
+        // Pre-format as UI string; if too small, tell the user early
+        string uiAmount = FormatUiAmountForApi(amountInput.text);
+        if (uiAmount == "0")
+        {
+            Debug.LogWarning($"{LogTag} Amount too small for token decimals. Raw='{amountInput.text}'");
+            SetResult("Amount is too small for token decimals.", true);
+            return;
+        }
+
         if (TryParseFloatFlexible(amountInput.text, out float amount) && amount > 0f)
         {
             Debug.Log($"{LogTag} Parsed amount={amount}, calling KaminoAPI.Lend");
@@ -117,5 +127,15 @@ public class KaminoLendModal : MonoBehaviour
         if (string.IsNullOrWhiteSpace(s)) return false;
         string normalized = s.Trim().Replace(',', '.');
         return float.TryParse(normalized, NumberStyles.Float, CultureInfo.InvariantCulture, out value);
+    }
+
+    // New: normalize and format to up to 18 decimals; return "0" if it would round to zero
+    private static string FormatUiAmountForApi(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input)) return "0";
+        string normalized = input.Trim().Replace(',', '.');
+        if (!decimal.TryParse(normalized, NumberStyles.Float, CultureInfo.InvariantCulture, out var d)) return "0";
+        if (d <= 0m) return "0";
+        return d.ToString("0.##################", CultureInfo.InvariantCulture);
     }
 }

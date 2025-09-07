@@ -79,62 +79,46 @@ public class KaminoUserActivityModal : MonoBehaviour
     public void OnWithdraw(UserPosition pos)
     {
         Debug.Log($"[KaminoUserActivityModal] OnWithdraw called for symbol: {pos.symbol}, cTokenBalance: {pos.cTokenBalance}");
-        // Only allow withdraw if cTokenBalance is present and > 0
-        if (string.IsNullOrEmpty(pos.cTokenBalance) || float.Parse(pos.cTokenBalance) <= 0f)
+
+        // Only allow withdraw if cTokenBalance exists and > 0 (string check)
+        if (string.IsNullOrEmpty(pos.cTokenBalance) || pos.cTokenBalance.Trim('0').Length == 0)
         {
             SetStatus($"No withdrawable cTokens for {pos.symbol}. The cToken account may not exist. Try supplying a small amount first to create it.", true);
             return;
         }
-        
-        // Show loading spinner
+
         if (KaminoAPI.Instance.loadingSpinner != null)
-        {
             KaminoAPI.Instance.loadingSpinner.Show("Processing withdraw transaction...");
-        }
-        
-        float cTokenAmount = float.Parse(pos.cTokenBalance);
-        KaminoAPI.Instance.Withdraw(pos.symbol, cTokenAmount, (success, response) => {
-            // Hide loading spinner
+
+        // Use client-signed withdraw with raw cToken amount to avoid precision loss
+        KaminoAPI.Instance.Withdraw(pos.symbol, pos.cTokenBalance, (success, response) =>
+        {
             if (KaminoAPI.Instance.loadingSpinner != null)
-            {
                 KaminoAPI.Instance.loadingSpinner.Hide();
-            }
+
             if (success)
             {
-                SetStatus($"Withdraw successful for {pos.symbol}, cToken amount: {cTokenAmount}", false);
-                // Remove the position UI from the modal
+                SetStatus($"Withdraw successful for {pos.symbol}. Tx: {response}", false);
                 RemovePositionBySymbol(pos.symbol, true);
             }
             else
             {
-                // Parse the error response to get user-friendly message
                 try
                 {
-                    // Try to parse as JSON to get the error message
-                    if (response.Contains("\"error\":"))
+                    if (!string.IsNullOrEmpty(response) && response.Contains("\"error\":"))
                     {
-                        // Extract error message from JSON response
                         int errorStart = response.IndexOf("\"error\":\"") + 9;
                         int errorEnd = response.IndexOf("\"", errorStart);
                         if (errorStart > 8 && errorEnd > errorStart)
                         {
                             string errorMessage = response.Substring(errorStart, errorEnd - errorStart);
                             SetStatus($"Withdraw failed: {errorMessage}", true);
-                        }
-                        else
-                        {
-                            SetStatus($"Withdraw failed: {response}", true);
+                            return;
                         }
                     }
-                    else
-                    {
-                        SetStatus($"Withdraw failed: {response}", true);
-                    }
                 }
-                catch
-                {
-                    SetStatus($"Withdraw failed: {response}", true);
-                }
+                catch { }
+                SetStatus($"Withdraw failed: {response}", true);
             }
         });
     }
@@ -211,4 +195,4 @@ public class KaminoUserActivityModal : MonoBehaviour
             }
         }
     }
-} 
+}
