@@ -5,6 +5,7 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using Solana.Unity.SDK;
 using Solana.Unity.Rpc;
 using Solana.Unity.Rpc.Models;
@@ -366,22 +367,22 @@ public class CitrusAPI : MonoBehaviour
 
                 if (offers != null && offers.offers != null && offers.offers.Length > 0)
                 {
+                    // PRIORITIZE: any offer with loanAccount or lender starting with "iwuA" goes first
+                    offers.offers = PrioritizeByAddressPrefix(offers.offers, "iwuA");
+
                     Debug.Log($"CitrusAPI: Parsed {offers.offers.Length} offers successfully.");
-                    
                     // Clear all existing offer elements
                     for (int i = offersContainer.childCount - 1; i >= 0; i--)
                     {
                         Destroy(offersContainer.GetChild(i).gameObject);
                     }
-                    
-                    // Create new elements for each offer
+
+                    // Create new elements for each offer (unchanged)
                     for (int i = 0; i < offers.offers.Length; i++)
                     {
                         var offer = offers.offers[i];
                         var offerObject = Instantiate(offerTemplate, offersContainer);
-                        
                         if (offerObject == null) continue;
-                        
                         if (offer.terms == null)
                         {
                             Debug.LogWarning($"CitrusAPI: Offer {offer.loanAccount} has null terms.");
@@ -390,28 +391,24 @@ public class CitrusAPI : MonoBehaviour
 
                         Debug.Log($"CitrusAPI: Processing offer {offer.loanAccount}. Raw terms - Principal: {offer.terms.principal}, APY: {offer.terms.apy}, Duration: {offer.terms.duration}");
 
-                        // Handle LTV-based offers (principal = 0) vs fixed principal offers
                         float principalSol;
                         string principalDisplay;
-                        
+
                         if (offer.terms.principal == 0 && offer.ltvTerms != null)
                         {
-                            // LTV-based offer
                             principalSol = offer.ltvTerms.maxOffer / 1_000_000_000f;
                             int ltvPercent = offer.ltvTerms.ltvBps / 100;
                             principalDisplay = $"Up to {principalSol:F2} SOL ({ltvPercent}% LTV)";
                         }
                         else
                         {
-                            // Fixed principal offer
                             principalSol = offer.terms.principal / 1_000_000_000f;
                             principalDisplay = $"{principalSol:F2} SOL";
                         }
-                        
+
                         int apyPercent = offer.terms.apy / 100;
                         int durationDays = offer.terms.duration / 86400;
 
-                        // Get collection name
                         string collectionName = "Unknown Collection";
                         var collection = collections.Find(c => c.id == offer.collectionConfig);
                         if (collection != null)
@@ -419,18 +416,9 @@ public class CitrusAPI : MonoBehaviour
                             collectionName = collection.name;
                         }
 
-                        // Convert creation time to readable date
                         System.DateTime creationDate = System.DateTimeOffset.FromUnixTimeSeconds(offer.creationTime).DateTime;
                         string formattedDate = creationDate.ToString("MMM dd, yyyy");
 
-                        Debug.Log($"CitrusAPI: Calculated values - Principal: {principalDisplay}, APY: {apyPercent}%, Duration: {durationDays} days");
-                        if (offer.terms.principal == 0 && offer.ltvTerms != null)
-                        {
-                            Debug.Log($"CitrusAPI: LTV Offer - Max: {offer.ltvTerms.maxOffer / 1_000_000_000f:F2} SOL, LTV: {offer.ltvTerms.ltvBps / 100}%");
-                        }
-                        Debug.Log($"CitrusAPI: Collection: {collectionName}, Created: {formattedDate}, Status: {offer.status}");
-                        
-                        // Get the text component and set the content
                         var textComponent = offerObject.GetComponentInChildren<TextMeshProUGUI>();
                         if (textComponent != null)
                         {
@@ -441,8 +429,7 @@ public class CitrusAPI : MonoBehaviour
                             textComponent.text += $"<color=#FFA500>Created:</color> {formattedDate}, ";
                             textComponent.text += $"<color=#FFA500>Status:</color> {offer.status}";
                         }
-                        
-                        // Set up cancel button
+
                         var cancelButton = offerObject.GetComponentInChildren<Button>();
                         if (cancelButton != null)
                         {
@@ -454,7 +441,6 @@ public class CitrusAPI : MonoBehaviour
                 else
                 {
                     Debug.LogWarning("CitrusAPI: No offers found in parsed JSON or failed to parse.");
-                    // Clear all displays
                     for (int i = offersContainer.childCount - 1; i >= 0; i--)
                     {
                         Destroy(offersContainer.GetChild(i).gameObject);
@@ -464,7 +450,6 @@ public class CitrusAPI : MonoBehaviour
             else
             {
                 Debug.LogError($"CitrusAPI: Failed to fetch offers: {request.error}");
-                // Clear all displays
                 for (int i = offersContainer.childCount - 1; i >= 0; i--)
                 {
                     Destroy(offersContainer.GetChild(i).gameObject);
@@ -626,34 +611,32 @@ public class CitrusAPI : MonoBehaviour
 
     private void DisplayAvailableOffers(LoanOffer[] offers, string collectionName)
     {
-        // Show the offers panel
         if (availableOffersPanel != null) availableOffersPanel.SetActive(true);
         currentCollectionName = collectionName;
-        
-        // Clear existing offer elements
+
         for (int i = availableOffersContainer.childCount - 1; i >= 0; i--)
         {
             Destroy(availableOffersContainer.GetChild(i).gameObject);
         }
-        
-        // Create elements for each available offer
-        for (int i = 0; i < offers.Length; i++)
+
+        // PRIORITIZE: move matching address prefix "iwuA" to the front
+        var prioritized = PrioritizeByAddressPrefix(offers, "iwuA");
+
+        for (int i = 0; i < prioritized.Length; i++)
         {
-            var offer = offers[i];
+            var offer = prioritized[i];
             var offerObject = Instantiate(availableOfferTemplate, availableOffersContainer);
-            
             if (offerObject == null) continue;
-            
+
             if (offer.terms == null)
             {
                 Debug.LogWarning($"CitrusAPI: Offer {offer.loanAccount} has null terms.");
                 continue;
             }
 
-            // Handle LTV-based offers vs fixed principal offers
             float principalSol;
             string principalDisplay;
-            
+
             if (offer.terms.principal == 0 && offer.ltvTerms != null)
             {
                 principalSol = offer.ltvTerms.maxOffer / 1_000_000_000f;
@@ -665,11 +648,10 @@ public class CitrusAPI : MonoBehaviour
                 principalSol = offer.terms.principal / 1_000_000_000f;
                 principalDisplay = $"{principalSol:F2} SOL";
             }
-            
+
             int apyPercent = offer.terms.apy / 100;
             int durationDays = offer.terms.duration / 86400;
 
-            // Get the text component and set the content
             var textComponent = offerObject.GetComponentInChildren<TextMeshProUGUI>();
             if (textComponent != null)
             {
@@ -677,22 +659,18 @@ public class CitrusAPI : MonoBehaviour
                 textComponent.text += $"<color=#FFA500>Principal:</color> {principalDisplay}, ";
                 textComponent.text += $"<color=#FFA500>APY:</color> {apyPercent}%, ";
                 textComponent.text += $"<color=#FFA500>Duration:</color> {durationDays} days\n";
-                textComponent.text += $"<color=#FFA500>Lender:</color> {offer.lender.Substring(0, 8)}...";
+                // lender may be null/short; guard Substring
+                string lenderShort = !string.IsNullOrEmpty(offer.lender) && offer.lender.Length >= 8 ? offer.lender.Substring(0, 8) : (offer.lender ?? "unknown");
+                textComponent.text += $"<color=#FFA500>Lender:</color> {lenderShort}...";
             }
-            
-            // Set up select button (instead of borrow button)
+
             var selectButton = offerObject.GetComponentInChildren<Button>();
             if (selectButton != null)
             {
                 selectButton.onClick.RemoveAllListeners();
                 selectButton.onClick.AddListener(() => OnSelectOfferClicked(offer, collectionName));
-                
-                // Change button text to "Borrow"
                 var buttonText = selectButton.GetComponentInChildren<TextMeshProUGUI>();
-                if (buttonText != null)
-                {
-                    buttonText.text = "Borrow";
-                }
+                if (buttonText != null) buttonText.text = "Borrow";
             }
         }
     }
@@ -1115,5 +1093,21 @@ public class CitrusAPI : MonoBehaviour
                 callback?.Invoke(null);
             }
         }
+    }
+
+    private static bool OfferAddressStartsWith(LoanOffer o, string prefix)
+    {
+        if (o == null || string.IsNullOrEmpty(prefix)) return false;
+        if (!string.IsNullOrEmpty(o.loanAccount) && o.loanAccount.StartsWith(prefix)) return true;
+        if (!string.IsNullOrEmpty(o.lender) && o.lender.StartsWith(prefix)) return true;
+        return false;
+    }
+
+    private static LoanOffer[] PrioritizeByAddressPrefix(LoanOffer[] offers, string prefix)
+    {
+        if (offers == null || offers.Length == 0 || string.IsNullOrEmpty(prefix)) return offers;
+        return offers
+            .OrderByDescending(o => OfferAddressStartsWith(o, prefix))
+            .ToArray();
     }
 }

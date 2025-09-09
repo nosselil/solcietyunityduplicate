@@ -174,19 +174,19 @@ public class CitrusNFTSelectionModal : MonoBehaviour
                 if (string.IsNullOrEmpty(serverNFT?.mint))
                     continue;
 
-                IRpcClient rpcClient = Web3.Rpc ?? ClientFactory.GetClient("https://blissful-tiniest-aura.solana-mainnet.quiknode.pro/8305bf1921b2c1cc4067111258d59f82a873d509/");
+                // Use configured Web3.Rpc; if not set, fall back to public mainnet
+                IRpcClient rpcClient = Web3.Rpc ?? ClientFactory.GetClient("https://api.mainnet-beta.solana.com");
+
                 Nft nftData = null;
                 try
                 {
-                    nftData = await Nft.TryGetNftData(
-                        serverNFT.mint,
-                        rpcClient,
-                        commitment: Commitment.Processed);
+                    nftData = await Nft.TryGetNftData(serverNFT.mint, rpcClient, commitment: Commitment.Confirmed);
                 }
                 catch (System.Exception ex)
                 {
                     Debug.LogError($"CitrusNFTSelectionModal: Error fetching NFT data for {serverNFT.mint}: {ex.Message}");
                 }
+
                 if (nftData != null)
                 {
                     Debug.Log($"CitrusNFTSelectionModal: Got NFT data for {serverNFT.mint}: {nftData.metaplexData?.data?.offchainData?.name}");
@@ -218,7 +218,31 @@ public class CitrusNFTSelectionModal : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log($"CitrusNFTSelectionModal: No NFT data found for {serverNFT.mint}");
+                    // Fallback: render with server-provided metadata
+                    if (!string.IsNullOrEmpty(serverNFT.imageUrl))
+                    {
+                        Texture2D tex = null;
+                        using (var req = UnityWebRequestTexture.GetTexture(serverNFT.imageUrl))
+                        {
+                            await req.SendWebRequest();
+                            if (req.result == UnityWebRequest.Result.Success)
+                                tex = DownloadHandlerTexture.GetContent(req);
+                        }
+
+                        var item = new CitrusNFTItem
+                        {
+                            mintAddress = serverNFT.mint,
+                            name = string.IsNullOrEmpty(serverNFT.name) ? "NFT" : serverNFT.name,
+                            imageUrl = serverNFT.imageUrl,
+                            nftTexture = tex
+                        };
+
+                        await CreateNFTItemUI(item);
+                    }
+                    else
+                    {
+                        Debug.Log($"CitrusNFTSelectionModal: No NFT data found and no imageUrl for {serverNFT.mint}");
+                    }
                 }
             }
         }
