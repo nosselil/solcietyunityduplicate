@@ -97,6 +97,9 @@ public class CitrusAPI : MonoBehaviour
     [Header("NFT Selection Modal")]
     [SerializeField] private CitrusNFTSelectionModal nftSelectionModal; // Reference to the NFT selection modal
 
+    // Add serialized reference to borrow manager
+    [SerializeField] private CitrusClientBorrowManager borrowManager;
+
     private List<Collection> collections = new List<Collection>();
     private LoanOffer selectedOffer; // Currently selected offer for borrowing
     private string currentCollectionName; // Name of collection being viewed
@@ -105,6 +108,12 @@ public class CitrusAPI : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        
+        // Find and assign the borrow manager if not set
+        if (borrowManager == null)
+        {
+            borrowManager = FindObjectOfType<CitrusClientBorrowManager>(includeInactive: true);
+        }
     }
 
     void Start()
@@ -118,6 +127,26 @@ public class CitrusAPI : MonoBehaviour
         
         FetchCollections();
         FetchAndDisplayUserOffers();
+    }
+
+    private void OnEnable()
+    {
+        if (borrowManager != null)
+        {
+            borrowManager.OnBorrowStarted.AddListener(OnBorrowStarted_UI);
+            borrowManager.OnBorrowSignature.AddListener(OnBorrowSignature_UI);
+            borrowManager.OnBorrowFailed.AddListener(OnBorrowFailed_UI);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (borrowManager != null)
+        {
+            borrowManager.OnBorrowStarted.RemoveListener(OnBorrowStarted_UI);
+            borrowManager.OnBorrowSignature.RemoveListener(OnBorrowSignature_UI);
+            borrowManager.OnBorrowFailed.RemoveListener(OnBorrowFailed_UI);
+        }
     }
 
     public void FetchCollections()
@@ -615,16 +644,17 @@ public class CitrusAPI : MonoBehaviour
         currentCollectionName = collectionName;
 
         for (int i = availableOffersContainer.childCount - 1; i >= 0; i--)
-        {
             Destroy(availableOffersContainer.GetChild(i).gameObject);
-        }
 
-        // PRIORITIZE: move matching address prefix "iwuA" to the front
         var prioritized = PrioritizeByAddressPrefix(offers, "iwuA");
 
         for (int i = 0; i < prioritized.Length; i++)
         {
             var offer = prioritized[i];
+
+            // Add this log to see the exact IDs you need:
+            Debug.Log($"[Citrus] Offer loanAccount={offer.loanAccount} lender={offer.lender} status={offer.status}");
+
             var offerObject = Instantiate(availableOfferTemplate, availableOffersContainer);
             if (offerObject == null) continue;
 
@@ -790,14 +820,25 @@ public class CitrusAPI : MonoBehaviour
     private void OnNFTSelected(string selectedNFTMint)
     {
         Debug.Log($"CitrusAPI: NFT selected: {selectedNFTMint}");
-        
+
         if (selectedOffer != null)
         {
             Debug.Log($"CitrusAPI: Borrowing loan with NFT: {selectedNFTMint}");
             Debug.Log($"CitrusAPI: Offer details - Principal: {selectedOffer.terms.principal / 1_000_000_000f:F2} SOL, APY: {selectedOffer.terms.apy / 100}%");
-            
-            // Execute the borrow transaction (client-signed)
-            StartCoroutine(BorrowLoan(selectedOffer.loanAccount, selectedNFTMint));
+
+            if (borrowManager == null)
+            {
+                borrowManager = FindObjectOfType<CitrusClientBorrowManager>(includeInactive: true);
+            }
+
+            if (borrowManager != null)
+            {
+                borrowManager.BeginBorrow(selectedOffer.loanAccount, selectedNFTMint);
+            }
+            else
+            {
+                Debug.LogError("CitrusAPI: CitrusClientBorrowManager not found in scene.");
+            }
         }
         else
         {
@@ -972,46 +1013,107 @@ public class CitrusAPI : MonoBehaviour
 
             Debug.Log($"CitrusAPI: Borrow build OK: blockhash={buildResp.blockhash} lastValid={buildResp.lastValidBlockHeight} txB64Len={SafeLen(buildResp.transaction)}");
 
-            // Deserialize base64 -> Transaction
-            Transaction tx;
+            // 1) Decode + quick legacy ix-count check
+            byte[] txBytes = null;
+            bool isVersioned = false;
+            VersionedTransaction vtx = null;
+            Transaction ltx = null;
+            string decodeErr = null;
+
             try
             {
-                byte[] txBytes = Convert.FromBase64String(buildResp.transaction);
-                tx = Transaction.Deserialize(txBytes);
+                txBytes = Convert.FromBase64String(buildResp.transaction);
+                if (txBytes == null || txBytes.Length == 0)
+                    throw new Exception("Empty transaction payload");
+
+                // Quick check: if legacy and ixs==0, fail early with a clear message
+                if (TryReadLegacyIxCount(txBytes, out var ixCount) && ixCount == 0)
+                {
+                    Debug.LogError("CitrusAPI: Server returned an empty transaction (no instructions). Borrow cannot proceed.");
+                    InspectLegacyTx(txBytes); // keep the helpful log
+                    yield break;
+                }
+
+                byte first = txBytes[0];
+                isVersioned = (first & 0x80) != 0; // OK for sigCount<128; server returns legacy here
+                if (isVersioned)
+                {
+                    int version = first & 0x7F;
+                    Debug.Log($"CitrusAPI: Borrow tx detected as Versioned v{version}, bytes={txBytes.Length}");
+                    vtx = VersionedTransaction.Deserialize(txBytes);
+                }
+                else
+                {
+                    Debug.Log($"CitrusAPI: Borrow tx detected as Legacy, bytes={txBytes.Length}");
+                    ltx = Transaction.Deserialize(txBytes);
+                }
             }
             catch (Exception ex)
             {
-                Debug.LogError("CitrusAPI: Borrow invalid transaction data: " + ex.Message);
+                decodeErr = ex.Message;
+            }
+
+            if (decodeErr != null)
+            {
+                Debug.LogError("CitrusAPI: Borrow invalid transaction data: " + decodeErr);
+                try { InspectLegacyTx(txBytes); } catch { }
                 yield break;
             }
 
-            // Sign with client wallet
-            var signTask = Web3.Wallet.SignTransaction(tx);
-            while (!signTask.IsCompleted) yield return null;
+            // 2) Sign (yields allowed here)
+            string signedB64 = null;
 
-            if (signTask.IsFaulted || signTask.Result == null)
+            if (isVersioned)
             {
-                Debug.LogError("CitrusAPI: Borrow sign task faulted: " + (signTask.Exception != null ? signTask.Exception.Message : "unknown"));
-                yield break;
+                var signTaskV = Web3.Wallet.SignTransaction(vtx);
+                while (!signTaskV.IsCompleted) yield return null;
+
+                if (signTaskV.IsFaulted || signTaskV.Result == null)
+                {
+                    Debug.LogError("CitrusAPI: Borrow sign task (versioned) faulted: " + (signTaskV.Exception != null ? signTaskV.Exception.Message : "unknown"));
+                    yield break;
+                }
+
+                // Serialize result (no yield in try/catch)
+                bool serOk = true;
+                string serErr = null;
+                try { signedB64 = Convert.ToBase64String(signTaskV.Result.Serialize()); }
+                catch (Exception ex) { serOk = false; serErr = ex.Message; }
+
+                if (!serOk)
+                {
+                    Debug.LogError("CitrusAPI: Borrow serialize error (versioned): " + serErr);
+                    yield break;
+                }
+            }
+            else
+            {
+                var signTaskL = Web3.Wallet.SignTransaction(ltx);
+                while (!signTaskL.IsCompleted) yield return null;
+
+                if (signTaskL.IsFaulted || signTaskL.Result == null)
+                {
+                    Debug.LogError("CitrusAPI: Borrow sign task (legacy) faulted: " + (signTaskL.Exception != null ? signTaskL.Exception.Message : "unknown"));
+                    yield break;
+                }
+
+                bool serOk = true;
+                string serErr = null;
+                try { signedB64 = Convert.ToBase64String(signTaskL.Result.Serialize()); }
+                catch (Exception ex) { serOk = false; serErr = ex.Message; }
+
+                if (!serOk)
+                {
+                    Debug.LogError("CitrusAPI: Borrow serialize error (legacy): " + serErr);
+                    yield break;
+                }
             }
 
-            string signedB64;
-            try
-            {
-                signedB64 = Convert.ToBase64String(signTask.Result.Serialize());
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError("CitrusAPI: Borrow serialize error: " + ex.Message);
-                yield break;
-            }
-
-            // Choose RPC endpoint: prefer server-provided rpcUrl
+            // 3) Send via JSON-RPC with preflight=confirmed and minContextSlot
             var chosenRpc = !string.IsNullOrEmpty(buildResp.rpcUrl)
                 ? ClientFactory.GetClient(buildResp.rpcUrl)
                 : Web3.Rpc;
 
-            // Send via JSON-RPC with preflight=confirmed and minContextSlot
             bool sendOk = false;
             string signature = null;
             string rawRpcResponse = null;
@@ -1035,7 +1137,7 @@ public class CitrusAPI : MonoBehaviour
 
             Debug.Log($"CitrusAPI: Borrow sent, signature={signature}");
 
-            // Confirm
+            // 4) Confirm
             yield return StartCoroutine(WaitForConfirmation(chosenRpc, signature, 45f));
             Debug.Log("CitrusAPI: Borrow confirmation finished (either confirmed or timed out)");
 
@@ -1109,5 +1211,86 @@ public class CitrusAPI : MonoBehaviour
         return offers
             .OrderByDescending(o => OfferAddressStartsWith(o, prefix))
             .ToArray();
+    }
+
+    // Put these helpers inside CitrusAPI
+    private static ulong DecodeShortVec(byte[] data, ref int offset)
+    {
+        ulong result = 0; int shift = 0;
+        while (true)
+        {
+            if (offset >= data.Length) throw new Exception("shortvec decode past end");
+            byte b = data[offset++]; result |= (ulong)(b & 0x7FUL) << shift;
+            if ((b & 0x80) == 0) break;
+            shift += 7; if (shift > 63) throw new Exception("shortvec overflow");
+        }
+        return result;
+    }
+
+    private static void InspectLegacyTx(byte[] txBytes)
+    {
+        try
+        {
+            int off = 0;
+            ulong sigCount = DecodeShortVec(txBytes, ref off);
+            off += checked((int)(sigCount * 64UL));
+            byte numRequiredSignatures = txBytes[off++];
+            byte numReadOnlySigned = txBytes[off++];
+            byte numReadOnlyUnsigned = txBytes[off++];
+            ulong acctCnt = DecodeShortVec(txBytes, ref off);
+            off += checked((int)acctCnt * 32);
+            off += 32; // blockhash
+            ulong ixCnt = DecodeShortVec(txBytes, ref off);
+            Debug.Log($"Citrus Inspect: sigCount={sigCount}, hdr.numRequiredSignatures={numRequiredSignatures}, accounts={acctCnt}, ixs={ixCnt}");
+        }
+        catch (Exception e) { Debug.LogWarning("Citrus Inspect failed: " + e.Message); }
+    }
+
+    // Returns true and sets ixCount for legacy wire format; false on parse failure
+    private static bool TryReadLegacyIxCount(byte[] txBytes, out ulong ixCount)
+    {
+        ixCount = 0UL;
+        try
+        {
+            int off = 0;
+            // sigs
+            ulong sigCount = DecodeShortVec(txBytes, ref off);
+            off += checked((int)(sigCount * 64UL));
+            // header (3 bytes)
+            off += 3;
+            // accounts
+            ulong acctCnt = DecodeShortVec(txBytes, ref off);
+            off += checked((int)acctCnt * 32);
+            // blockhash
+            off += 32;
+            // instructions count
+            ixCount = DecodeShortVec(txBytes, ref off);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private void OnBorrowStarted_UI()
+    {
+        Debug.Log("CitrusAPI: Borrow started (manager).");
+        // Optional: show a spinner, disable buttons, etc.
+    }
+
+    private void OnBorrowSignature_UI(string sig)
+    {
+        Debug.Log($"CitrusAPI: Borrow sent (manager) signature={sig}");
+        // Close panels and refresh lists on success
+        selectedOffer = null;
+        CloseAvailableOffersPanel();
+        FetchAndDisplayUserOffers();
+    }
+
+    private void OnBorrowFailed_UI(string err)
+    {
+        Debug.LogError("CitrusAPI: Borrow failed (manager): " + err);
+        // Optional: surface error to UI
     }
 }
